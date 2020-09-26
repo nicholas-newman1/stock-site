@@ -2,6 +2,7 @@ import React, { useEffect, useState, useContext } from 'react';
 import { SearchContext } from '../context/SearchContext';
 import { Link } from 'react-router-dom';
 import Spinner from './Spinner';
+import '../css/searchResults.css';
 
 const SearchResults = ({ match }) => {
   const { APIKey } = useContext(SearchContext);
@@ -23,15 +24,18 @@ const SearchResults = ({ match }) => {
   return loading ? (
     <Spinner />
   ) : (
-    <ul>
+    <ul className='results'>
       {searchResults.map(({ symbol, securityName, exchange }) => (
-        <li key={symbol}>
-          <h2>
-            <Link to={`/stocks/${symbol}`}>
-              {symbol} ({exchange})
-            </Link>
-          </h2>
-          <h3>{securityName}</h3>
+        <li className='result' key={symbol}>
+          <div className='result-content'>
+            <h2 className='result-heading'>
+              <Link className='result-link' to={`/stocks/${symbol}`}>
+                {symbol} ({exchange})
+              </Link>
+            </h2>
+            <p className='result-subheading'>{securityName}</p>
+          </div>
+          <button className='save-result-btn'>Add to Watchlist</button>
         </li>
       ))}
     </ul>

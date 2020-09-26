@@ -37,18 +37,17 @@ header {
 }
 
 .watchlist-btn {
-  background: none;
-  border: 1px solid #006acc;
-  color: #006acc;
+  background: #006acc;
+  color: white;
   border-radius: 3px;
   font-size: 0.9rem;
   font-weight: 400;
   padding: 0.5rem 1rem;
+  border: none;
 }
 
 .watchlist-btn:hover {
-  background: #006acc;
-  color: white;
+  background: #148eff;
   cursor: pointer;
 }
 

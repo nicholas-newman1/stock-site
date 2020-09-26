@@ -1,0 +1,42 @@
+.results {
+  margin: 1rem 0;
+  list-style: none;
+}
+
+.result {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+  padding: 1rem;
+  background: #eee;
+  align-items: center;
+  border-radius: 3px;
+}
+
+.result-link {
+  color: #148eff;
+}
+
+.result-link:hover {
+  color: #006acc;
+}
+
+.result-heading {
+  margin-bottom: 0.5rem;
+}
+
+.save-result-btn {
+  flex-shrink: 0;
+  border: 1px solid #006acc;
+  padding: 0.75em 1em;
+  background: none;
+  color: #006acc;
+  border-radius: 3px;
+}
+
+.save-result-btn:hover {
+  background: #006acc;
+  cursor: pointer;
+  color: white;
+}

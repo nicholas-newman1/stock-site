@@ -33,7 +33,7 @@
   left: 0;
   height: 3px;
   width: 100%;
-  background: blue;
+  background: #006acc;
   transform: scale(0, 1);
   transform-origin: left;
   transition: transform 200ms ease-in-out;
