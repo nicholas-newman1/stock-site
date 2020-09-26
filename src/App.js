@@ -12,11 +12,11 @@ const App = () => {
     <SearchProvider>
       <Router>
         <Header />
-        <main>
+        <main className="container">
           <Switch>
-            <Route exact path='/' component={Home} />
-            <Route exact path='/search/:query' component={SearchResults} />
-            <Route exact path='/stocks/:ticker' component={StockPage} />
+            <Route exact path="/" component={Home} />
+            <Route exact path="/search/:query" component={SearchResults} />
+            <Route exact path="/stocks/:ticker" component={StockPage} />
           </Switch>
         </main>
         <Footer />
