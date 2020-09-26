@@ -33,7 +33,7 @@ const SearchResults = ({ match }) => {
                 {symbol} ({exchange})
               </Link>
             </h2>
-            <p className='result-subheading'>{securityName}</p>
+            <p className='result-desc'>{securityName}</p>
           </div>
           <button className='save-result-btn'>Add to Watchlist</button>
         </li>

@@ -26,6 +26,10 @@
   margin-bottom: 0.5rem;
 }
 
+.result-desc {
+  font-weight: 300;
+}
+
 .save-result-btn {
   flex-shrink: 0;
   border: 1px solid #006acc;
