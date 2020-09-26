@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useContext } from 'react';
 import { SearchContext } from '../context/SearchContext';
-import SearchResult from './SearchResult';
+import { Link } from 'react-router-dom';
 import Spinner from './Spinner';
 
 const SearchResults = ({ match }) => {
@@ -24,8 +24,15 @@ const SearchResults = ({ match }) => {
     <Spinner />
   ) : (
     <ul>
-      {searchResults.map((result) => (
-        <SearchResult key={result.symbol} result={result} />
+      {searchResults.map(({ symbol, securityName, exchange }) => (
+        <li key={symbol}>
+          <h2>
+            <Link to={`/stocks/${symbol}`}>
+              {symbol} ({exchange})
+            </Link>
+          </h2>
+          <h3>{securityName}</h3>
+        </li>
       ))}
     </ul>
   );
