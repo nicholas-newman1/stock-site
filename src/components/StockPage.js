@@ -12,13 +12,13 @@ const StockPage = ({ match }) => {
     fetch(
       `https://sandbox.iexapis.com/v1/stock/${match.params.ticker}/intraday-prices?token=${APIKey}&chartInterval=5&filter=date,minute,open,close`
     )
-      .then(res => res.json())
-      .then(data => {
+      .then((res) => res.json())
+      .then((data) => {
         console.log(data);
-        setData(data.filter(item => item.open && item.close));
+        setData(data.filter((item) => item.open && item.close));
         setLoading(false);
       });
-  }, []);
+  }, [APIKey, match.params.ticker]);
 
   return (
     <div>

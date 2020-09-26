@@ -33,3 +33,11 @@
   color: white;
   font-size: 1rem;
 }
+
+@media (max-width: 600px) {
+  .search-form {
+    align-self: start;
+    margin: 1rem 0;
+    width: 100%;
+  }
+}

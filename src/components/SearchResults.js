@@ -13,18 +13,18 @@ const SearchResults = ({ match }) => {
     fetch(
       `https://sandbox.iexapis.com/v1/search/${match.params.query}?token=${APIKey}`
     )
-      .then(res => res.json())
-      .then(data => {
+      .then((res) => res.json())
+      .then((data) => {
         setSearchResults(data);
         setLoading(false);
       });
-  }, [match.params.query]);
+  }, [match.params.query, APIKey]);
 
   return loading ? (
     <Spinner />
   ) : (
     <ul>
-      {searchResults.map(result => (
+      {searchResults.map((result) => (
         <SearchResult key={result.symbol} result={result} />
       ))}
     </ul>

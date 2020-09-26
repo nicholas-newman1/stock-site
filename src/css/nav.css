@@ -4,7 +4,7 @@
 }
 
 .nav-item + .nav-item {
-  padding-left: 1.5rem;
+  margin-left: 1.5rem;
 }
 
 .nav-item {
@@ -41,4 +41,14 @@
 
 .nav-link:hover::after {
   transform: scale(1, 1);
+}
+
+@media (max-width: 600px) {
+  .nav-list {
+    flex-direction: column;
+  }
+
+  .nav-item + .nav-item {
+    margin-left: 0;
+  }
 }

@@ -21,3 +21,9 @@ main {
 .hidden {
   display: none;
 }
+
+@media (max-width: 600px) {
+  main {
+    padding-top: 44px;
+  }
+}
