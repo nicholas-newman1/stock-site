@@ -1,7 +1,7 @@
 import React, { Component, createRef } from 'react';
 import { createChart } from 'lightweight-charts';
 
-class Chart extends Component {
+class IntradayChart extends Component {
   constructor() {
     super();
     this.div = createRef();
@@ -98,4 +98,4 @@ class Chart extends Component {
   }
 }
 
-export default Chart;
+export default IntradayChart;
