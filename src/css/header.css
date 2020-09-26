@@ -2,7 +2,7 @@ header {
   position: fixed;
   top: 0;
   width: 100%;
-  background: #eee;
+  background: #fafafa;
   box-shadow: 0px 0px 7px rgba(0, 0, 0, 0.25);
 }
 
@@ -18,8 +18,10 @@ header {
 }
 
 .logo-content {
-  color: blue;
+  color: #006acc;
   font-weight: 700;
+  font-size: 1.5rem;
+  text-transform: uppercase;
 }
 
 .watchlist-link {
@@ -40,4 +42,7 @@ header {
   background: #006acc;
   color: white;
   cursor: pointer;
+}
+
+@media (max-width: 600px) {
 }

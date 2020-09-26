@@ -7,6 +7,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 const Search = () => {
   const [text, setText] = useState('');
 
+  const handleFocus = (e) => {
+    e.target.style.border = '1px solid #777';
+  };
+
   return (
     <form className='search-form'>
       <input
@@ -15,6 +19,8 @@ const Search = () => {
         placeholder='Search...'
         value={text}
         onChange={(e) => setText(e.target.value)}
+        onFocus={(e) => (e.target.style.border = '1px solid #777')}
+        onBlur={(e) => (e.target.style.border = '1px solid #ddd')}
       />
 
       <Link
