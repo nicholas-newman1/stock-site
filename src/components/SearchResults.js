@@ -1,25 +1,25 @@
 import React, { useEffect, useState, useContext } from 'react';
-import { SearchContext } from '../context/SearchContext';
+import { APIKeyContext } from '../context/APIKeyContext';
 import { Link } from 'react-router-dom';
 import Spinner from './Spinner';
 import '../css/searchResults.css';
 
 const SearchResults = ({ match }) => {
-  const { APIKey } = useContext(SearchContext);
+  const { iexSandboxKey } = useContext(APIKeyContext);
   const [searchResults, setSearchResults] = useState([]);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     setLoading(true);
     fetch(
-      `https://sandbox.iexapis.com/v1/search/${match.params.query}?token=${APIKey}`
+      `https://sandbox.iexapis.com/v1/search/${match.params.query}?token=${iexSandboxKey}`
     )
       .then((res) => res.json())
       .then((data) => {
         setSearchResults(data);
         setLoading(false);
       });
-  }, [match.params.query, APIKey]);
+  }, [match.params.query, iexSandboxKey]);
 
   return loading ? (
     <Spinner />
@@ -35,7 +35,10 @@ const SearchResults = ({ match }) => {
             </h2>
             <p className='result-desc'>{securityName}</p>
           </div>
-          <button className='save-result-btn'>Add to Watchlist</button>
+          <div>
+            <button className='view-quote-btn'>View Quote</button>
+            <button className='save-result-btn'>Add to Watchlist</button>
+          </div>
         </li>
       ))}
     </ul>

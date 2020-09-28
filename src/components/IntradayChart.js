@@ -13,7 +13,7 @@ class IntradayChart extends Component {
   }
 
   componentDidMount() {
-    const formatAMPM = timestamp => {
+    const formatAMPM = (timestamp) => {
       const date = new Date(timestamp);
       let hours = date.getHours();
       let minutes = date.getMinutes();
@@ -36,15 +36,15 @@ class IntradayChart extends Component {
         border: '1px solid white',
       },
       localization: {
-        timeFormatter: time => formatAMPM(time * 1000), // changes hover time to AM/PM
-        priceFormatter: price => '$' + price, // adds $ to price
+        timeFormatter: (time) => formatAMPM(time * 1000), // changes hover time to AM/PM
+        priceFormatter: (price) => '$' + price, // adds $ to price
       },
       priceScale: {
         scaleMargins: { bottom: 0.35, top: 0.35 },
         borderColor: '#fff',
       },
       timeScale: {
-        tickMarkFormatter: time => formatAMPM(time * 1000), // changes time ticks to AM/PM
+        tickMarkFormatter: (time) => formatAMPM(time * 1000), // changes time ticks to AM/PM
         borderColor: '#fff',
       },
       grid: {
@@ -68,7 +68,7 @@ class IntradayChart extends Component {
     const { data } = this.props;
 
     if (data.length > 0) {
-      const lineData = data.map(item => {
+      const lineData = data.map((item) => {
         const timestamp = Date.parse(`${item.date} ${item.minute}`) / 1000; // converts date to UNIX timestamp
         return { time: timestamp, value: item.open };
       });

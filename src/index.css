@@ -9,12 +9,26 @@
   font-family: 'Roboto', sans-serif;
 }
 
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
 main {
-  padding-top: 89px;
+  padding-top: 84px;
+  width: 95%;
+  margin: 0 auto;
+  max-width: 1000px;
+  margin-top: 1rem;
+}
+
+footer {
+  margin-top: auto;
 }
 
 .container {
-  max-width: 95%;
+  width: 95%;
   margin: 0 auto;
 }
 
@@ -24,6 +38,6 @@ main {
 
 @media (max-width: 600px) {
   main {
-    padding-top: 44px;
+    padding-top: 109px;
   }
 }

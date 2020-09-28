@@ -7,7 +7,7 @@
   display: flex;
   width: 100%;
   justify-content: space-between;
-  margin-bottom: 0.5rem;
+  margin-bottom: 1rem;
   padding: 1rem;
   background: #eee;
   align-items: center;
@@ -16,6 +16,8 @@
 
 .result-link {
   color: #148eff;
+  text-decoration: none;
+  font-size: 1.2rem;
 }
 
 .result-link:hover {
@@ -28,6 +30,10 @@
 
 .result-desc {
   font-weight: 300;
+}
+
+.view-quote-btn {
+  display: none;
 }
 
 .save-result-btn {
@@ -43,4 +49,37 @@
   background: #006acc;
   cursor: pointer;
   color: white;
+}
+
+@media (max-width: 600px) {
+  .result {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .result-desc {
+    margin-bottom: 1rem;
+  }
+
+  .view-quote-btn {
+    display: inline-block;
+    background: #006acc;
+    border: 1px solid #006acc;
+    padding: 0.75em 1em;
+    color: white;
+    border-radius: 3px;
+    margin-right: 0.5rem;
+  }
+
+  .view-quote-btn:hover {
+    background: #148eff;
+    border: 1px solid #148eff;
+    cursor: pointer;
+  }
+
+  .view-quote-btn,
+  .save-result-btn {
+    margin-bottom: 0.5rem;
+    text-align: center;
+  }
 }

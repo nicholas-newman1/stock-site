@@ -1,13 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import Search from './Search';
 import Nav from './Nav';
 import '../css/header.css';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { HeaderContext } from '../context/HeaderContext';
 
 const Header = () => {
-  const [displayMobileMenu, setDisplayMobileMenu] = useState(false);
+  const { displayMobileMenu, setDisplayMobileMenu } = useContext(HeaderContext);
 
   return (
     <header>
@@ -32,7 +33,11 @@ const Header = () => {
 
         <div className='mobile-header'>
           <div className='header-bar-primary'>
-            <Link className='logo-link' to='/'>
+            <Link
+              className='logo-link'
+              to='/'
+              onClick={() => setDisplayMobileMenu(false)}
+            >
               <h1 className='logo-content'>Finance App</h1>
             </Link>
             <FontAwesomeIcon
@@ -42,17 +47,15 @@ const Header = () => {
             />
           </div>
 
-          {displayMobileMenu && (
-            <div className='header-bar-secondary'>
-              <Search />
+          <div className='header-bar-secondary'>
+            <Search />
+            {displayMobileMenu && (
               <Link className='watchlist-link' to={`/watchlist`}>
-                <button className='watchlist-btn' type='submit'>
-                  Watchlist
-                </button>
+                <button className='watchlist-btn'>Watchlist</button>
               </Link>
-              <Nav />
-            </div>
-          )}
+            )}
+            {displayMobileMenu && <Nav />}
+          </div>
         </div>
       </div>
     </header>

@@ -1,0 +1,28 @@
+.home-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.home-primary-column {
+  margin-right: 1rem;
+}
+
+.home-secondary-column {
+  align-self: flex-start;
+  position: sticky;
+  top: 100px; /*header height (84px) + 1rem (16px) = 100px */
+  min-width: 300px;
+  background: #ccc;
+  flex-shrink: 0;
+}
+
+@media (max-width: 600px) {
+  .home-primary-column {
+    width: 100%;
+    margin-right: 0;
+  }
+
+  .home-secondary-column {
+    display: none;
+  }
+}
