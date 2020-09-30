@@ -73,7 +73,7 @@ export const dummyCryptoData = {
           price: 14408.399419870615,
           volume_24h: 27546149636.640568,
           percent_change_1h: 0.17537161,
-          percent_change_24h: -0.99897782,
+          percent_change_24h: 0.99897782,
           percent_change_7d: 3.00584143,
           market_cap: 266604824486.01593,
           last_updated: '2020-09-29T20:14:00.000Z',
