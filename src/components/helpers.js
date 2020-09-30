@@ -8,9 +8,10 @@ export function truncate(str, n, useWordBoundary) {
 
 export const getTimeAgoString = (date) => {
   const timeAgo = new Date(Date.now() - Date.parse(date));
-  return timeAgo.getHours() > 1
-    ? `${timeAgo.getHours()} hours ago`
-    : `${timeAgo.getHours()} hour ago`;
+  if (timeAgo.getMinutes() < 1) return `less than a minute ago`;
+  if (timeAgo.getHours() < 1) return `${timeAgo.getMinutes()} minutes ago`;
+  if (timeAgo.getHours() === 1) return `An hour ago`;
+  if (timeAgo.getHours() > 1) return `${timeAgo.getHours()} hours ago`;
 };
 
 export const wait = (ms) => {

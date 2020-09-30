@@ -33,6 +33,10 @@ header {
   text-transform: uppercase;
 }
 
+.logo-content:hover {
+  color: #148eff;
+}
+
 .watchlist-link {
   text-decoration: none;
 }

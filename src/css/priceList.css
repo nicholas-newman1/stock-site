@@ -1,0 +1,51 @@
+.pricelist {
+  list-style: none;
+  padding: 1rem 0.5rem;
+}
+
+.pricelist-item + .pricelist-item {
+  margin-top: 2rem;
+}
+
+.pricelist-heading {
+  margin-bottom: 0.25rem;
+}
+
+.pricelist-link {
+  color: #006acc;
+  text-decoration: none;
+}
+
+.pricelist-link:hover {
+  color: #148eff;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  border-top: 1px solid #ccc;
+}
+
+th {
+  font-weight: 300;
+}
+
+th,
+td {
+  border-bottom: 1px solid #ccc;
+  padding: 0.5rem 0;
+}
+
+th + th,
+td + td {
+  padding-left: 1.5rem;
+}
+
+.symbol-link {
+  color: #006acc;
+  text-decoration: none;
+}
+
+.symbol-link:hover {
+  text-decoration: underline;
+}

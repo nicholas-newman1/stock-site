@@ -26,6 +26,7 @@
 }
 
 .search-btn:hover {
+  background: #006acc;
   cursor: pointer;
 }
 

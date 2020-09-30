@@ -9,10 +9,8 @@
 
 .home-secondary-column {
   align-self: flex-start;
-  position: sticky;
-  top: 100px; /*header height (84px) + 1rem (16px) = 100px */
   min-width: 300px;
-  background: #ccc;
+  background: rgba(224, 230, 255, 0.5);
   flex-shrink: 0;
 }
 
