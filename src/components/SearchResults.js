@@ -29,7 +29,7 @@ const SearchResults = ({ match }) => {
         <li className='result' key={symbol}>
           <div className='result-content'>
             <h2 className='result-heading'>
-              <Link className='result-link' to={`/stocks/${symbol}`}>
+              <Link className='result-link' to={`/quote/stocks/${symbol}`}>
                 {symbol} ({exchange})
               </Link>
             </h2>

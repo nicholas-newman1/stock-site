@@ -1,9 +1,9 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
-import '../css/search.css';
+import '../../css/search.css';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { HeaderContext } from '../context/HeaderContext';
+import { HeaderContext } from '../../context/HeaderContext';
 
 const Search = () => {
   const { text, setText, setDisplayMobileMenu } = useContext(HeaderContext);

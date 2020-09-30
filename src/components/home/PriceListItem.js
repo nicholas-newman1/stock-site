@@ -9,7 +9,7 @@ const PriceListItem = ({
       <td>
         <Link
           className='symbol-link'
-          to={`/${category}/${symbol.replace('/', '')}`}
+          to={`/quote/${category}/${symbol.replace('/', '')}`}
         >
           {symbol}
         </Link>
