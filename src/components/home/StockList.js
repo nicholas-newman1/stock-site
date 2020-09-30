@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { Link } from 'react-router-dom';
 import { APIKeyContext } from '../../context/APIKeyContext';
+import PriceListItem from './PriceListItem';
 import '../../css/priceList.css';
 
 const StockList = () => {
@@ -16,14 +16,17 @@ const StockList = () => {
   const fetchStockQuotes = (symbols) => {
     symbols.forEach((symbol, i) => {
       setTimeout(async () => {
-        let quote = await fetchStockQuote(symbol);
+        let stock = await fetchStockQuote(symbol);
         setStockData((prevData) => [
           ...prevData,
           {
             symbol,
-            price: quote.latestPrice,
-            change: quote.change,
-            percentChange: (quote.changePercent * 100).toFixed(2),
+            price: stock.latestPrice,
+            change: stock.change,
+            percentChange: (stock.changePercent * 100).toFixed(2),
+            color: stock.change > 0 ? 'green' : 'red',
+            isPositive: stock.change > 0,
+            category: 'stocks',
           },
         ]);
       }, i * 150); // delay to avoid too many simultaneous fetch calls (API LIMITATION)
@@ -46,23 +49,8 @@ const StockList = () => {
       </thead>
 
       <tbody>
-        {stockData.map(({ symbol, price, change, percentChange }) => (
-          <tr key={symbol}>
-            <td>
-              <Link className='symbol-link' to={`/stocks/${symbol}`}>
-                {symbol}
-              </Link>
-            </td>
-            <td>${price}</td>
-            <td style={change < 0 ? { color: 'red' } : { color: 'green' }}>
-              {change}
-            </td>
-            <td
-              style={percentChange < 0 ? { color: 'red' } : { color: 'green' }}
-            >
-              {percentChange}%
-            </td>
-          </tr>
+        {stockData.map((stock) => (
+          <PriceListItem key={stock.symbol} data={stock} />
         ))}
       </tbody>
     </table>

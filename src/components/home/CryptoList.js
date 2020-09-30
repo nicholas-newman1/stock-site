@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
-import CryptoItem from './CryptoItem';
+import PriceListItem from './PriceListItem';
 import { APIKeyContext } from '../../context/APIKeyContext';
 import { dummyCryptoData } from './dummyData';
 
@@ -7,7 +7,17 @@ const CryptoList = () => {
   const [cryptoData, setCryptoData] = useState([]);
   const { cmcKey } = useContext(APIKeyContext);
 
-  const fetchCryptoQuotes = async currencies => {
+  const getChange = (price, percentChange) => {
+    if (percentChange < 0) {
+      return (price * ((percentChange - 100) / 100) + price).toFixed(2);
+    } else if (percentChange > 0) {
+      return (price * ((percentChange + 100) / 100) - price).toFixed(2);
+    } else {
+      return 0;
+    }
+  };
+
+  const fetchCryptoQuotes = async (currencies) => {
     // const res = await fetch(
     //   `https://pro-api.coinmarketcap.com/v1/cryptocurrency/quotes/latest?convert=CAD&symbol=${currencies.join()}&CMC_PRO_API_KEY=${cmcKey}`
     // );
@@ -15,7 +25,24 @@ const CryptoList = () => {
     const data = dummyCryptoData;
     for (let key in data.data) {
       // Convert object into an array
-      setCryptoData(prevData => [...prevData, data.data[key]]);
+      setCryptoData((prevData) => {
+        const price = data.data[key].quote['CAD'].price;
+        const percentChange = data.data[key].quote['CAD'].percent_change_24h;
+        const change = getChange(price, percentChange);
+        return [
+          ...prevData,
+          {
+            id: data.data[key].id,
+            symbol: data.data[key].symbol,
+            price: price.toFixed(2),
+            change,
+            percentChange: percentChange.toFixed(2),
+            color: change > 0 ? 'green' : 'red',
+            isPositive: change > 0,
+            category: 'cryptocurrencies',
+          },
+        ];
+      });
     }
   };
 
@@ -34,20 +61,9 @@ const CryptoList = () => {
       </thead>
 
       <tbody>
-        {cryptoData.map(
-          ({
-            id,
-            symbol,
-            quote: {
-              CAD: { price, percent_change_24h },
-            },
-          }) => (
-            <CryptoItem
-              key={id}
-              data={{ symbol, price, percentChange: percent_change_24h }}
-            />
-          )
-        )}
+        {cryptoData.map((currency) => (
+          <PriceListItem key={currency.id} data={currency} />
+        ))}
       </tbody>
     </table>
   );
