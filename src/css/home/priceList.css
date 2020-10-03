@@ -9,6 +9,7 @@
 }
 
 .pricelist-heading {
+  font-size: 1.2rem;
   margin-bottom: 0.25rem;
 }
 
@@ -24,11 +25,15 @@
 table {
   border-collapse: collapse;
   width: 100%;
-  border-top: 1px solid #ccc;
 }
 
 th {
+  font-size: 0.85rem;
   font-weight: 300;
+}
+
+td {
+  font-size: 1rem;
 }
 
 th,
@@ -51,11 +56,20 @@ td + td {
   text-decoration: underline;
 }
 
+.loading-pricelist-td {
+}
+
+.loading-pricelist-td-content {
+  padding: 0.5rem 0;
+  background: #ddd;
+  border-radius: 5px;
+}
+
 @media (max-width: 1000px) {
   .pricelist {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-gap: 1rem;
+    grid-gap: 2rem;
   }
 
   .pricelist-item + .pricelist-item {
@@ -74,7 +88,6 @@ td + td {
 }
 
 @media (max-width: 425px) {
-  th,
   td {
     font-size: 0.87rem;
   }

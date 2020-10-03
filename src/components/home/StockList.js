@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import PriceListItem from './PriceListItem';
+import LoadingPriceList from './LoadingPriceList';
 import '../../css/home/priceList.css';
 
 const StockList = () => {
   const [stockData, setStockData] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   const fetchStockQuote = (symbol) => {
     return fetch(
@@ -19,8 +21,8 @@ const StockList = () => {
           ...prevData,
           {
             symbol,
-            price: stock.latestPrice,
-            change: stock.change,
+            price: stock.latestPrice.toFixed(2),
+            change: stock.change.toFixed(2),
             percentChange: (stock.changePercent * 100).toFixed(2),
             color: stock.change > 0 ? 'green' : 'red',
             isPositive: stock.change > 0,
@@ -36,6 +38,10 @@ const StockList = () => {
     // eslint-disable-next-line
   }, []);
 
+  useEffect(() => {
+    stockData.length < 4 ? setLoading(true) : setLoading(false);
+  }, [stockData.length]);
+
   return (
     <table>
       <thead>
@@ -48,9 +54,13 @@ const StockList = () => {
       </thead>
 
       <tbody>
-        {stockData.map((stock) => (
-          <PriceListItem key={stock.symbol} data={stock} />
-        ))}
+        {loading ? (
+          <LoadingPriceList />
+        ) : (
+          stockData.map((stock) => (
+            <PriceListItem key={stock.symbol} data={stock} />
+          ))
+        )}
       </tbody>
     </table>
   );

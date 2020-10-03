@@ -17,7 +17,11 @@ const MainNewsItem = () => {
 
   return (
     <div className='main-news-item'>
-      <img className='main-news-image' src={image} alt='' />
+      <div
+        className='main-news-image'
+        style={{ backgroundImage: `url(${image})` }}
+      />
+
       <div className='main-news-content'>
         <h1 className='main-news-heading'>
           <a href={url}>{title}</a>
