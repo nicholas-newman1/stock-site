@@ -1,11 +1,11 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect } from 'react';
 import PriceListItem from './PriceListItem';
-import { APIKeyContext } from '../../context/APIKeyContext';
-import { dummyCryptoData } from './dummyData';
+//import { APIKeyContext } from '../../context/APIKeyContext';
+//import { dummyCryptoData } from './dummyData';
 
 const CryptoList = () => {
   const [cryptoData, setCryptoData] = useState([]);
-  const { cmcKey } = useContext(APIKeyContext);
+  //const { cmcKey } = useContext(APIKeyContext);
 
   const getChange = (price, percentChange) => {
     if (percentChange < 0) {

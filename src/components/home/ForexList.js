@@ -1,11 +1,11 @@
-import React, { useState, useEffect, useContext } from 'react';
-import { APIKeyContext } from '../../context/APIKeyContext';
+import React, { useState, useEffect } from 'react';
+//import { APIKeyContext } from '../../context/APIKeyContext';
 import { dummyForexData } from './dummyData';
 import PriceListItem from './PriceListItem';
 
 const ForexList = () => {
   const [forexData, setForexData] = useState([]);
-  const { fcsKey } = useContext(APIKeyContext);
+  //const { fcsKey } = useContext(APIKeyContext);
 
   const fetchForexPrices = async (pairs) => {
     //const res = await fetch(`https://fcsapi.com/api-v2/forex/latest?symbol=${pairs.join}&access_key=${fcsKey}`);
