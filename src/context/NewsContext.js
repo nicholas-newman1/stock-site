@@ -9,13 +9,13 @@ export const NewsProvider = (props) => {
 
   const fetchNewsArticles = async () => {
     setLoading(true);
-    // const res = await fetch(
-    //   `https://gnews.io/api/v4/top-headlines?topic=business&country=ca&token=${process.env.REACT_APP_GNEWS_KEY}`
-    // );
-    // const data = await res.json();
-    // setMainNewsArticle(data.articles.shift());
-    // setNewsList(data.articles);
-    // setLoading(false);
+    const res = await fetch(
+      `https://gnews.io/api/v4/top-headlines?topic=business&country=ca&token=${process.env.REACT_APP_GNEWS_KEY}`
+    );
+    const data = await res.json();
+    setMainNewsArticle(data.articles.shift());
+    setNewsList(data.articles);
+    setLoading(false);
   };
 
   return (
