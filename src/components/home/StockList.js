@@ -1,15 +1,13 @@
-import React, { useState, useEffect, useContext } from 'react';
-import { APIKeyContext } from '../../context/APIKeyContext';
+import React, { useState, useEffect } from 'react';
 import PriceListItem from './PriceListItem';
 import '../../css/priceList.css';
 
 const StockList = () => {
   const [stockData, setStockData] = useState([]);
-  const { iexSandboxKey } = useContext(APIKeyContext);
 
   const fetchStockQuote = (symbol) => {
     return fetch(
-      `https://sandbox.iexapis.com/v1/stock/${symbol}/quote?filter=symbol,latestPrice,change,changePercent&token=${iexSandboxKey}`
+      `https://sandbox.iexapis.com/v1/stock/${symbol}/quote?filter=symbol,latestPrice,change,changePercent&token=${process.env.REACT_APP_IEX_SANDBOX_KEY}`
     ).then((res) => res.json());
   };
 

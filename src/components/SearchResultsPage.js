@@ -1,26 +1,19 @@
-import React, { useEffect, useState, useContext } from 'react';
-import { APIKeyContext } from '../context/APIKeyContext';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Spinner from './Spinner';
 import '../css/searchResults.css';
 
 const SearchResults = ({ match }) => {
-  const { iexSandboxKey } = useContext(APIKeyContext);
   const [searchResults, setSearchResults] = useState([]);
   const [loading, setLoading] = useState(false);
 
   const fetchSearchResults = async () => {
     setLoading(true);
-    try {
-      const res = await fetch(
-        `https://sandbox.iexapis.com/v1/search/${match.params.query}?token=${iexSandboxKey}`
-      );
-      const data = await res.json();
-      setSearchResults(data);
-    } catch (err) {
-      console.log(err);
-    }
-
+    const res = await fetch(
+      `https://sandbox.iexapis.com/v1/search/${match.params.query}?token=${process.env.REACT_APP_IEX_SANDBOX_KEY}`
+    );
+    const data = await res.json();
+    setSearchResults(data);
     setLoading(false);
   };
 

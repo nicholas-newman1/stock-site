@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import PriceListItem from './PriceListItem';
-//import { APIKeyContext } from '../../context/APIKeyContext';
 import { dummyCryptoData } from './dummyData';
 
 const CryptoList = () => {

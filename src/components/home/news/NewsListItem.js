@@ -3,7 +3,7 @@ import '../../../css/newsli.css';
 import { getTimeAgoString, truncate } from '../../helpers';
 
 const NewsListItem = ({ article }) => {
-  const { author, title, description, publishedAt, url, image } = article;
+  const { source, title, description, publishedAt, url, image } = article;
 
   return (
     <li className='newsli-item' key={url}>
@@ -18,7 +18,7 @@ const NewsListItem = ({ article }) => {
           </a>
         </h2>
         <p className='newsli-meta'>
-          {author} - <em>{getTimeAgoString(publishedAt)}</em>
+          {source.name} - <em>{getTimeAgoString(publishedAt)}</em>
         </p>
         {description.length > 150 ? (
           <>{truncate(description, 150)}&hellip;</>

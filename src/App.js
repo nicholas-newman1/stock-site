@@ -6,35 +6,28 @@ import StockPage from './components/StockPage';
 import SearchResultsPage from './components/SearchResultsPage';
 import Footer from './components/Footer';
 import { HeaderProvider } from './context/HeaderContext';
-import { APIKeyProvider } from './context/APIKeyContext';
 import { NewsProvider } from './context/NewsContext';
 
 const App = () => {
   return (
     <HeaderProvider>
-      <APIKeyProvider>
-        <NewsProvider>
-          <Router>
-            <Header />
-            <main>
-              <Switch>
-                <Route exact path='/' component={HomePage} />
-                <Route
-                  exact
-                  path='/search/:query'
-                  component={SearchResultsPage}
-                />
-                <Route
-                  exact
-                  path='/quote/stocks/:ticker'
-                  component={StockPage}
-                />
-              </Switch>
-            </main>
-            <Footer />
-          </Router>
-        </NewsProvider>
-      </APIKeyProvider>
+      <NewsProvider>
+        <Router>
+          <Header />
+          <main>
+            <Switch>
+              <Route exact path='/' component={HomePage} />
+              <Route
+                exact
+                path='/search/:query'
+                component={SearchResultsPage}
+              />
+              <Route exact path='/quote/stocks/:ticker' component={StockPage} />
+            </Switch>
+          </main>
+          <Footer />
+        </Router>
+      </NewsProvider>
     </HeaderProvider>
   );
 };
