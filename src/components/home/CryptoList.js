@@ -18,10 +18,15 @@ const CryptoList = () => {
   };
 
   const fetchCryptoQuotes = async (currencies) => {
-    // const res = await fetch(
-    //   `https://cors-anywhere.herokuapp.com/https://pro-api.coinmarketcap.com/v1/cryptocurrency/quotes/latest?convert=CAD&symbol=BTC,ETH,XRP&CMC_PRO_API_KEY=${process.env.REACT_APP_CMC_KEY}`
-    // );
-    // const data = await res.json(); // The API returns an object of objects
+    const res = await fetch(
+      `https://cors-anywhere.herokuapp.com/https://pro-api.coinmarketcap.com/v1/cryptocurrency/quotes/latest?convert=CAD&symbol=BTC,ETH,XRP`,
+      {
+        headers: {
+          'X-CMC_PRO_API_KEY': process.env.REACT_APP_CMC_KEY,
+        },
+      }
+    );
+    const data = await res.json(); // The API returns an object of objects
     const data = dummyCryptoData;
     for (let key in data.data) {
       // Convert object into an array

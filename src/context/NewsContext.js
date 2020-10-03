@@ -12,7 +12,13 @@ export const NewsProvider = (props) => {
   const fetchNewsArticles = async () => {
     setLoading(true);
     const res = await fetch(
-      `https://cors-anywhere.herokuapp.com/https://newsapi.org/v2/top-headlines?country=ca&category=business&apiKey=${process.env.REACT_APP_NEWSAPI_KEY}`
+      `https://cors-anywhere.herokuapp.com/https://newsapi.org/v2/top-headlines?country=ca&category=business`,
+      {
+        headers: {
+          'X-Api-Key': process.env.REACT_APP_NEWSAPI_KEY,
+          'X-Requested-With': 'xxx',
+        },
+      }
     );
     const data = await res.json();
     const newData = [];
