@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import PriceListItem from './PriceListItem';
 //import { APIKeyContext } from '../../context/APIKeyContext';
-//import { dummyCryptoData } from './dummyData';
+import { dummyCryptoData } from './dummyData';
 
 const CryptoList = () => {
   const [cryptoData, setCryptoData] = useState([]);
@@ -18,12 +18,11 @@ const CryptoList = () => {
   };
 
   const fetchCryptoQuotes = async (currencies) => {
-    const res = await fetch(
-      //`https://pro-api.coinmarketcap.com/v1/cryptocurrency/quotes/latest?convert=CAD&symbol=${currencies.join()}&CMC_PRO_API_KEY=${cmcKey}`
-      `https://cors-anywhere.herokuapp.com/https://pro-api.coinmarketcap.com/v1/cryptocurrency/quotes/latest?convert=CAD&symbol=BTC,ETH,XRP&CMC_PRO_API_KEY=${process.env.REACT_APP_CMC_KEY}`
-    );
-    const data = await res.json(); // The API returns an object of objects
-    //const data = dummyCryptoData;
+    // const res = await fetch(
+    //   `https://cors-anywhere.herokuapp.com/https://pro-api.coinmarketcap.com/v1/cryptocurrency/quotes/latest?convert=CAD&symbol=BTC,ETH,XRP&CMC_PRO_API_KEY=${process.env.REACT_APP_CMC_KEY}`
+    // );
+    // const data = await res.json(); // The API returns an object of objects
+    const data = dummyCryptoData;
     for (let key in data.data) {
       // Convert object into an array
       setCryptoData((prevData) => {
