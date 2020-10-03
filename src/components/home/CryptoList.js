@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import PriceListItem from './PriceListItem';
 //import { APIKeyContext } from '../../context/APIKeyContext';
-import { dummyCryptoData } from './dummyData';
+//import { dummyCryptoData } from './dummyData';
 
 const CryptoList = () => {
   const [cryptoData, setCryptoData] = useState([]);
@@ -27,7 +27,7 @@ const CryptoList = () => {
       }
     );
     const data = await res.json(); // The API returns an object of objects
-    const data = dummyCryptoData;
+    //const data = dummyCryptoData;
     for (let key in data.data) {
       // Convert object into an array
       setCryptoData((prevData) => {
