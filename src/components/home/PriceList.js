@@ -10,6 +10,13 @@ const PriceList = () => {
     <ul className='pricelist'>
       <li className='pricelist-item'>
         <h2 className='pricelist-heading'>
+          <Link className='pricelist-link' to='/watchlist'>
+            Watchlist
+          </Link>
+        </h2>
+      </li>
+      <li className='pricelist-item'>
+        <h2 className='pricelist-heading'>
           <Link className='pricelist-link' to='/stocks'>
             Stocks
           </Link>

@@ -9,17 +9,25 @@ const SearchResults = ({ match }) => {
   const [searchResults, setSearchResults] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  useEffect(() => {
+  const fetchSearchResults = async () => {
     setLoading(true);
-    fetch(
-      `https://sandbox.iexapis.com/v1/search/${match.params.query}?token=${iexSandboxKey}`
-    )
-      .then((res) => res.json())
-      .then((data) => {
-        setSearchResults(data);
-        setLoading(false);
-      });
-  }, [match.params.query, iexSandboxKey]);
+    try {
+      const res = await fetch(
+        `https://sandbox.iexapis.com/v1/search/${match.params.query}?token=${iexSandboxKey}`
+      );
+      const data = await res.json();
+      setSearchResults(data);
+    } catch (err) {
+      console.log(err);
+    }
+
+    setLoading(false);
+  };
+
+  useEffect(() => {
+    fetchSearchResults();
+    // eslint-disable-next-line
+  }, []);
 
   return loading ? (
     <Spinner />

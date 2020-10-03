@@ -29,12 +29,13 @@ const StockList = () => {
             category: 'stocks',
           },
         ]);
-      }, i * 150); // delay to avoid too many simultaneous fetch calls (API LIMITATION)
+      }, i * 200); // delay to avoid too many simultaneous fetch calls (API LIMITATION)
     });
   };
 
   useEffect(() => {
     fetchStockQuotes(['DIA', 'SPY', 'IWM', 'AMZN']);
+    // eslint-disable-next-line
   }, []);
 
   return (

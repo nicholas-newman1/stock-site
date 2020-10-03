@@ -1,6 +1,6 @@
 import React from 'react';
-import '../../css/newsli.css';
-import { getTimeAgoString, truncate } from '../helpers';
+import '../../../css/newsli.css';
+import { getTimeAgoString, truncate } from '../../helpers';
 
 const NewsListItem = ({ article }) => {
   const { author, title, description, publishedAt, url, urlToImage } = article;

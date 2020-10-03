@@ -1,8 +1,9 @@
 .main-news-item {
-  padding-top: 50%;
-  display: flex;
-  background-repeat: no-repeat;
-  background-size: cover;
+}
+
+.main-news-image {
+  display: block;
+  width: 100%;
 }
 
 .main-news-content {
@@ -21,10 +22,6 @@
   text-decoration: none;
 }
 
-.main-news-image {
-  display: none;
-}
-
 .main-news-meta {
   color: #ccc;
   font-size: 0.9rem;
@@ -38,10 +35,5 @@
 
   .main-news-item {
     all: unset !important;
-  }
-
-  .main-news-image {
-    display: block;
-    width: 100%;
   }
 }

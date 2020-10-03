@@ -1,6 +1,7 @@
 .pricelist {
   list-style: none;
   padding: 1rem 0.5rem;
+  background: rgba(224, 230, 255, 0.5);
 }
 
 .pricelist-item + .pricelist-item {
@@ -48,4 +49,33 @@ td + td {
 
 .symbol-link:hover {
   text-decoration: underline;
+}
+
+@media (max-width: 1000px) {
+  .pricelist {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 1rem;
+  }
+
+  .pricelist-item + .pricelist-item {
+    margin-top: 0rem;
+  }
+}
+
+@media (max-width: 830px) {
+  .pricelist {
+    display: block;
+  }
+
+  .pricelist-item + .pricelist-item {
+    margin-top: 2rem;
+  }
+}
+
+@media (max-width: 425px) {
+  th,
+  td {
+    font-size: 0.87rem;
+  }
 }
