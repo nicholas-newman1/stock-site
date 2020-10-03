@@ -18,7 +18,6 @@ const CryptoList = () => {
   };
 
   const fetchCryptoQuotes = async (currencies) => {
-    console.log(process.env.REACT_APP_CMC_KEY);
     const res = await fetch(
       //`https://pro-api.coinmarketcap.com/v1/cryptocurrency/quotes/latest?convert=CAD&symbol=${currencies.join()}&CMC_PRO_API_KEY=${cmcKey}`
       `https://pro-api.coinmarketcap.com/v1/cryptocurrency/quotes/latest?convert=CAD&symbol=BTC,ETH,XRP`,

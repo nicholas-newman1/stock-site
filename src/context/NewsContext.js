@@ -1,18 +1,24 @@
-import React, { createContext, useState, useContext } from 'react';
-import { APIKeyContext } from './APIKeyContext';
+import React, { createContext, useState } from 'react';
+//import { APIKeyContext } from './APIKeyContext';
 
 export const NewsContext = createContext();
 
 export const NewsProvider = (props) => {
-  const { newsapiKey } = useContext(APIKeyContext);
+  //const { newsapiKey } = useContext(APIKeyContext);
   const [mainNewsArticle, setMainNewsArticle] = useState({});
   const [newsList, setNewsList] = useState([]);
   const [loading, setLoading] = useState(true);
 
   const fetchNewsArticles = async () => {
+    console.log(process.env.REACT_APP_NEWSAPI_KEY);
     setLoading(true);
     const res = await fetch(
-      `https://newsapi.org/v2/top-headlines?country=ca&category=business&apiKey=${newsapiKey}`
+      `https://newsapi.org/v2/top-headlines?country=ca&category=business`,
+      {
+        headers: {
+          'X-Api-Key': process.env.REACT_APP_NEWSAPI_KEY,
+        },
+      }
     );
     const data = await res.json();
     const newData = [];
