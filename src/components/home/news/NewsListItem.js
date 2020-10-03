@@ -3,12 +3,12 @@ import '../../../css/newsli.css';
 import { getTimeAgoString, truncate } from '../../helpers';
 
 const NewsListItem = ({ article }) => {
-  const { author, title, description, publishedAt, url, urlToImage } = article;
+  const { author, title, description, publishedAt, url, image } = article;
 
   return (
     <li className='newsli-item' key={url}>
       <div className='newsli-image-container'>
-        <img className='newsli-image' src={urlToImage} alt='' />
+        <img className='newsli-image' src={image} alt='' />
       </div>
 
       <div className='newsli-content'>

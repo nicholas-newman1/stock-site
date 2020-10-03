@@ -7,23 +7,23 @@ const MainNewsItem = () => {
   const { mainNewsArticle } = useContext(NewsContext);
 
   const {
-    author,
+    source,
     title,
     description,
     publishedAt,
     url,
-    urlToImage,
+    image,
   } = mainNewsArticle;
 
   return (
     <div className='main-news-item'>
-      <img className='main-news-image' src={urlToImage} alt='' />
+      <img className='main-news-image' src={image} alt='' />
       <div className='main-news-content'>
         <h1 className='main-news-heading'>
           <a href={url}>{title}</a>
         </h1>
         <p className='main-news-meta'>
-          {author} - <em>{getTimeAgoString(publishedAt)}</em>
+          {source.name} - <em>{getTimeAgoString(publishedAt)}</em>
         </p>
         <p className='main-news-description'>
           {description.length > 150 ? (
