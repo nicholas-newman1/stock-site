@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { dummyForexData } from './dummyData';
+//import { dummyForexData } from './dummyData';
 import PriceListItem from './PriceListItem';
 
 const ForexList = () => {
