@@ -16,6 +16,10 @@ export const NewsProvider = (props) => {
       `https://newsapi.org/v2/top-headlines?country=ca&category=business`,
       {
         headers: {
+          'Access-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Methods': 'DELETE, POST, GET, OPTIONS',
+          'Access-Control-Allow-Headers':
+            'Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With',
           'X-Api-Key': process.env.REACT_APP_NEWSAPI_KEY,
         },
       }

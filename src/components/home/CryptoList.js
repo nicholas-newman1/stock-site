@@ -18,12 +18,16 @@ const CryptoList = () => {
   };
 
   const fetchCryptoQuotes = async (currencies) => {
+    console.log(process.env.REACT_APP_CMC_KEY);
     const res = await fetch(
       //`https://pro-api.coinmarketcap.com/v1/cryptocurrency/quotes/latest?convert=CAD&symbol=${currencies.join()}&CMC_PRO_API_KEY=${cmcKey}`
       `https://pro-api.coinmarketcap.com/v1/cryptocurrency/quotes/latest?convert=CAD&symbol=BTC,ETH,XRP`,
       {
         headers: {
-          'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Methods': 'DELETE, POST, GET, OPTIONS',
+          'Access-Control-Allow-Headers':
+            'Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With',
           'X-CMC_PRO_API_KEY': process.env.REACT_APP_CMC_KEY,
         },
       }
