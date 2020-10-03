@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import NewsListItem from './NewsListItem';
-import '../../../css/newsList.css';
+import '../../../css/home/news/newsList.css';
 import { NewsContext } from '../../../context/NewsContext';
 
 const NewsList = () => {

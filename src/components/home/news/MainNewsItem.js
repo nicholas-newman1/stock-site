@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import '../../../css/mainNewsItem.css';
+import '../../../css/home/news/mainNewsItem.css';
 import { getTimeAgoString, truncate } from '../../helpers';
 import { NewsContext } from '../../../context/NewsContext';
 

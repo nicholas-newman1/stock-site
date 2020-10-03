@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { HeaderContext } from '../../context/HeaderContext';
-import '../../css/nav.css';
+import '../../css/header/nav.css';
 
 const Nav = () => {
   const { setDisplayMobileMenu } = useContext(HeaderContext);

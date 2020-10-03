@@ -1,18 +1,18 @@
 import React, { useState, useEffect } from 'react';
-//import { dummyForexData } from './dummyData';
+import { dummyForexData } from './dummyData';
 import PriceListItem from './PriceListItem';
 
 const ForexList = () => {
   const [forexData, setForexData] = useState([]);
 
   const fetchForexPrices = async (pairs) => {
-    const res = await fetch(
-      `https://fcsapi.com/api-v2/forex/latest?symbol=${pairs.join()}&access_key=${
-        process.env.REACT_APP_FCS_KEY
-      }`
-    );
-    const data = await res.json();
-    data.response.forEach((pair) => {
+    // const res = await fetch(
+    //   `https://fcsapi.com/api-v2/forex/latest?symbol=${pairs.join()}&access_key=${
+    //     process.env.REACT_APP_FCS_KEY
+    //   }`
+    // );
+    // const data = await res.json();
+    dummyForexData.response.forEach((pair) => {
       setForexData((prevData) => [
         ...prevData,
         {

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import StockList from './StockList';
 import ForexList from './ForexList';
 import CryptoList from './CryptoList';
-import '../../css/priceList.css';
+import '../../css/home/priceList.css';
 
 const PriceList = () => {
   return (

@@ -1,5 +1,5 @@
 import React from 'react';
-import '../../../css/newsli.css';
+import '../../../css/home/news/newsli.css';
 import { getTimeAgoString, truncate } from '../../helpers';
 
 const NewsListItem = ({ article }) => {

@@ -5,7 +5,7 @@ import MainNewsItem from './news/MainNewsItem';
 import LoadingMainNewsItem from './news/LoadingMainNewsItem';
 import LoadingNewsList from './news/LoadingNewsList';
 import { NewsContext } from '../../context/NewsContext';
-import '../../css/home.css';
+import '../../css/home/home.css';
 
 const Home = () => {
   const { fetchNewsArticles, loading } = useContext(NewsContext);

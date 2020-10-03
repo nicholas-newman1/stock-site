@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import Search from './Search';
 import Nav from './Nav';
-import '../../css/header.css';
+import '../../css/header/header.css';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { HeaderContext } from '../../context/HeaderContext';

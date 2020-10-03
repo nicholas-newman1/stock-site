@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import PriceListItem from './PriceListItem';
-import '../../css/priceList.css';
+import '../../css/home/priceList.css';
 
 const StockList = () => {
   const [stockData, setStockData] = useState([]);
