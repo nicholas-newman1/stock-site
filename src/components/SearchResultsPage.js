@@ -19,7 +19,7 @@ const SearchResults = ({ match }) => {
     setSearchResults(
       data.filter(
         (stock) =>
-          supportedSymbols.findIndex((symbol) => stock.symbol === symbol) != -1
+          supportedSymbols.findIndex((symbol) => stock.symbol === symbol) !== -1
       )
     );
     setLoading(false);

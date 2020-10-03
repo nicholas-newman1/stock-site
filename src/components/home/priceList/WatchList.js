@@ -6,6 +6,16 @@ const WatchList = () => {
   const [watchListData, setWatchListData] = useState([]);
   const [loading, setLoading] = useState(false);
 
+  const fetchWatchListData = async () => {
+    setLoading(true);
+    setWatchListData([]);
+    setLoading(false);
+  };
+
+  useEffect(() => {
+    fetchWatchListData();
+  }, []);
+
   return (
     <table>
       <thead>

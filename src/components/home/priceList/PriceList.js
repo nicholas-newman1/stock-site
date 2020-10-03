@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import WatchList from './WatchList';
+//import WatchList from './WatchList';
 import StockList from './StockList';
 import ForexList from './ForexList';
 import CryptoList from './CryptoList';
