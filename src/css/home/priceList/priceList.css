@@ -65,6 +65,12 @@ td + td {
   border-radius: 5px;
 }
 
+.watchlist-empty-msg {
+  text-align: center;
+  position: relative;
+  top: 40%;
+}
+
 @media (max-width: 1000px) {
   .pricelist {
     display: grid;

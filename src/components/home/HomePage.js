@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from 'react';
 import NewsList from './news/NewsList';
-import PriceList from './PriceList';
+import PriceList from './priceList/PriceList';
 import MainNewsItem from './news/MainNewsItem';
 import LoadingMainNewsItem from './news/LoadingMainNewsItem';
 import LoadingNewsList from './news/LoadingNewsList';

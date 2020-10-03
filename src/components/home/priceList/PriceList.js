@@ -1,20 +1,22 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import WatchList from './WatchList';
 import StockList from './StockList';
 import ForexList from './ForexList';
 import CryptoList from './CryptoList';
-import '../../css/home/priceList.css';
+import '../../../css/home/priceList/priceList.css';
 
 const PriceList = () => {
   return (
     <ul className='pricelist'>
-      <li className='pricelist-item'>
+      {/* <li className='pricelist-item'>
         <h2 className='pricelist-heading'>
           <Link className='pricelist-link' to='/watchlist'>
             Watchlist
           </Link>
         </h2>
-      </li>
+        <WatchList />
+      </li> */}
       <li className='pricelist-item'>
         <h2 className='pricelist-heading'>
           <Link className='pricelist-link' to='/stocks'>

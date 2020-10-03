@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import PriceListItem from './PriceListItem';
-import { dummyCryptoData } from './dummyData';
+import { dummyCryptoData } from '../dummyData';
 import LoadingPriceList from './LoadingPriceList';
 
 const CryptoList = () => {
