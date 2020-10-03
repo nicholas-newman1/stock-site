@@ -10,19 +10,9 @@ export const NewsProvider = (props) => {
   const [loading, setLoading] = useState(true);
 
   const fetchNewsArticles = async () => {
-    console.log(process.env.REACT_APP_NEWSAPI_KEY);
     setLoading(true);
     const res = await fetch(
-      `https://newsapi.org/v2/top-headlines?country=ca&category=business`,
-      {
-        headers: {
-          'Access-Control-Allow-Origin': '*',
-          'Access-Control-Allow-Methods': 'DELETE, POST, GET, OPTIONS',
-          'Access-Control-Allow-Headers':
-            'Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With',
-          'X-Api-Key': process.env.REACT_APP_NEWSAPI_KEY,
-        },
-      }
+      `https://cors-anywhere.herokuapp.com/https://newsapi.org/v2/top-headlines?country=ca&category=business&apiKey=${process.env.REACT_APP_NEWSAPI_KEY}`
     );
     const data = await res.json();
     const newData = [];
