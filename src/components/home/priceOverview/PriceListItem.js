@@ -5,21 +5,18 @@ const PriceListItem = ({
   data: { symbol, price, change, percentChange, color, isPositive, category },
 }) => {
   return (
-    <tr>
-      <td>
-        <Link
-          className='symbol-link'
-          to={`/quote/${category}/${symbol.replace('/', '')}`}
-        >
+    <tr className='pricelist-tr'>
+      <td className='pricelist-td'>
+        <Link className='symbol-link' to={`/quote/${symbol}/summary`}>
           {symbol}
         </Link>
       </td>
-      <td>${price}</td>
-      <td style={{ color }}>
+      <td className='pricelist-td'>${price}</td>
+      <td className='pricelist-td' style={{ color }}>
         {isPositive && '+'}
         {change}
       </td>
-      <td style={{ color }}>
+      <td className='pricelist-td' style={{ color }}>
         {isPositive && '+'}
         {percentChange}%
       </td>

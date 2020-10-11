@@ -1,0 +1,19 @@
+.chart-timeframe {
+  margin-top: 0.5rem;
+}
+
+.chart-timeframe-btn {
+  background: none;
+  border: 1px solid grey;
+  padding: 0.25rem 0.5rem;
+}
+
+.chart-timeframe-btn + .chart-timeframe-btn {
+  border-left: none;
+}
+
+.chart-timeframe-btn:disabled {
+  color: white;
+  background: #148eff;
+  border: 1px solid #148eff;
+}

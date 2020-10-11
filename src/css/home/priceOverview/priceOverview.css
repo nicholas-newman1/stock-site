@@ -14,36 +14,36 @@
 }
 
 .pricelist-link {
-  color: #006acc;
+  color: #003487;
   text-decoration: none;
 }
 
 .pricelist-link:hover {
-  color: #148eff;
+  color: #006acc;
 }
 
-table {
+.pricelist-table {
   border-collapse: collapse;
   width: 100%;
 }
 
-th {
+.pricelist-th {
   font-size: 0.85rem;
   font-weight: 300;
 }
 
-td {
+.pricelist-td {
   font-size: 1rem;
 }
 
-th,
-td {
+.pricelist-th,
+.pricelist-td {
   border-bottom: 1px solid #ccc;
   padding: 0.5rem 0;
 }
 
-th + th,
-td + td {
+.pricelist-th + .pricelist-th,
+.pricelist-td + .pricelist-td {
   padding-left: 1.5rem;
 }
 
@@ -94,7 +94,7 @@ td + td {
 }
 
 @media (max-width: 425px) {
-  td {
+  .pricelist-td {
     font-size: 0.87rem;
   }
 }

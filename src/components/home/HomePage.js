@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from 'react';
 import NewsList from './news/NewsList';
-import PriceList from './priceList/PriceList';
+import PriceOverview from './priceOverview/PriceOverview';
 import MainNewsItem from './news/MainNewsItem';
 import LoadingMainNewsItem from './news/LoadingMainNewsItem';
 import LoadingNewsList from './news/LoadingNewsList';
@@ -21,7 +21,7 @@ const Home = () => {
         {loading ? <LoadingMainNewsItem /> : <MainNewsItem />}
       </div>
       <div className='home-section-two'>
-        <PriceList />
+        <PriceOverview />
       </div>
       <div className='home-section-three'>
         {loading ? <LoadingNewsList /> : <NewsList />}

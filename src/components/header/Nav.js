@@ -5,53 +5,29 @@ import '../../css/header/nav.css';
 
 const Nav = () => {
   const { setDisplayMobileMenu } = useContext(HeaderContext);
+
+  const linkText = [
+    'Home',
+    'News',
+    'Stocks',
+    'Forex',
+    'Cryptocurrencies',
+    'Commodities',
+  ];
+
   return (
     <ul className='nav-list'>
-      <li className='nav-item'>
-        <Link
-          className='nav-link'
-          to='/'
-          onClick={() => setDisplayMobileMenu(false)}
-        >
-          Home
-        </Link>
-      </li>
-      <li className='nav-item'>
-        <Link
-          className='nav-link'
-          to='/news'
-          onClick={() => setDisplayMobileMenu(false)}
-        >
-          News
-        </Link>
-      </li>
-      <li className='nav-item'>
-        <Link
-          className='nav-link'
-          to='/stocks'
-          onClick={() => setDisplayMobileMenu(false)}
-        >
-          Stocks
-        </Link>
-      </li>
-      <li className='nav-item'>
-        <Link
-          className='nav-link'
-          to='/forex'
-          onClick={() => setDisplayMobileMenu(false)}
-        >
-          Forex
-        </Link>
-      </li>
-      <li className='nav-item'>
-        <Link
-          className='nav-link'
-          to='/cryptocurrencies'
-          onClick={() => setDisplayMobileMenu(false)}
-        >
-          Cryptocurrencies
-        </Link>
-      </li>
+      {linkText.map((text, i) => (
+        <li key={i} className='nav-item'>
+          <Link
+            className='nav-link'
+            to={text === 'Home' ? '/' : text.toLowerCase()}
+            onClick={() => setDisplayMobileMenu(false)}
+          >
+            {text}
+          </Link>
+        </li>
+      ))}
     </ul>
   );
 };

@@ -1,0 +1,41 @@
+.quote-news-item {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  background: #eee;
+}
+
+.quote-news-item-image-container {
+  width: 30%;
+}
+
+.quote-news-item-image {
+  width: 100%;
+  object-fit: cover;
+  height: 100%;
+}
+
+.quote-news-item-content {
+  width: 69%;
+  padding: 0.5rem;
+}
+
+.quote-news-item-heading {
+  font-size: 1rem;
+  margin-bottom: 0.25rem;
+}
+
+.quote-news-item-link {
+  color: #003487;
+  text-decoration: none;
+}
+
+.quote-news-item-link:hover {
+  color: #006acc;
+}
+
+.quote-news-item-meta {
+  color: #555;
+  font-size: 0.9rem;
+  margin-bottom: 0.75rem;
+}

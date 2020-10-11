@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Spinner from './Spinner';
-import supportedSymbols from '../symbols.js';
 import '../css/searchResults.css';
 
 const SearchResults = ({ match }) => {
@@ -12,16 +11,9 @@ const SearchResults = ({ match }) => {
     setLoading(true);
     const res = await fetch(
       `https://financialmodelingprep.com/api/v3/search?query=${match.params.query}&limit=10&apikey=${process.env.REACT_APP_FMP_KEY}`
-      //`https://sandbox.iexapis.com/v1/search/${match.params.query}?token=${process.env.REACT_APP_IEX_SANDBOX_KEY}`
     );
     const data = await res.json();
-    console.log(data);
-    setSearchResults(
-      data.filter(
-        (stock) =>
-          supportedSymbols.findIndex((symbol) => stock.symbol === symbol) !== -1
-      )
-    );
+    setSearchResults(data);
     setLoading(false);
   };
 
@@ -38,7 +30,7 @@ const SearchResults = ({ match }) => {
         <li className='result' key={symbol}>
           <div className='result-content'>
             <h2 className='result-heading'>
-              <Link className='result-link' to={`/quote/stocks/${symbol}`}>
+              <Link className='result-link' to={`/quote/${symbol}/summary`}>
                 {symbol} ({exchangeShortName})
               </Link>
             </h2>

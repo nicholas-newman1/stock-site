@@ -6,7 +6,7 @@ const NewsListItem = ({ article }) => {
   const { source, title, description, publishedAt, url, image } = article;
 
   return (
-    <li className='newsli-item' key={url}>
+    <li className='newsli-item'>
       <div className='newsli-image-container'>
         <img className='newsli-image' src={image} alt='' />
       </div>

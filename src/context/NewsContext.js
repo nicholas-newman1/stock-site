@@ -1,5 +1,5 @@
 import React, { createContext, useState } from 'react';
-import { dummyNewsData } from '../components/home/dummyData';
+import { dummyNewsData } from '../components/dummyData';
 
 export const NewsContext = createContext();
 

@@ -1,0 +1,71 @@
+.quote {
+  display: flex;
+}
+
+.quote-column-1 {
+  padding-right: 2rem;
+  width: 100%;
+}
+
+.quote-column-2 {
+  width: 100%;
+}
+
+.quote-name-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.quote-name {
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.quote-exchange {
+  margin-left: 0.5rem;
+}
+
+.quote-price-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.quote-price {
+  font-size: 2rem;
+  font-weight: 900;
+}
+
+.quote-change,
+.quote-percent-change {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-left: 0.5rem;
+}
+
+@media (max-width: 1000px) {
+  .quote {
+    flex-direction: column;
+  }
+
+  .quote-column-1 {
+    padding-right: 0;
+  }
+
+  .quote-column-2 {
+    margin-top: 1rem;
+    width: 100%;
+  }
+}
+
+@media (max-width: 350px) {
+  .quote-price {
+    font-size: 1.7rem;
+  }
+
+  .quote-change,
+  .quote-percent-change {
+    font-size: 1.3rem;
+  }
+}
