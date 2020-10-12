@@ -246,7 +246,8 @@ export const ChartProvider = (props) => {
 
       // resize chart based on window width
       let resizer = new ResizeObserver((entries) => {
-        let width = window.innerWidth;
+        let width = window.screen.width;
+        console.log(width);
         if (width <= 340) {
           chart.resize(230, 200);
         } else if (width <= 370) {
