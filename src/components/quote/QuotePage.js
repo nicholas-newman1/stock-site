@@ -22,7 +22,6 @@ const QuotePage = ({ match }) => {
 
         <div className='quote-content'>
           <QuoteDetails symbol={symbol} />
-          {/* <QuoteChart symbol={symbol} /> */}
           <QuoteChart symbol={symbol} />
         </div>
       </div>

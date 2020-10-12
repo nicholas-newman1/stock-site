@@ -1,4 +1,5 @@
 .chart-timeframe {
+  display: flex;
   margin-top: 0.5rem;
 }
 
@@ -16,4 +17,19 @@
   color: white;
   background: #148eff;
   border: 1px solid #148eff;
+}
+
+@media (max-width: 440px) {
+  .chart {
+    display: flex;
+  }
+  .chart-timeframe {
+    margin-top: 0;
+    margin-left: 0.5rem;
+    flex-direction: column;
+  }
+  .chart-timeframe-btn + .chart-timeframe-btn {
+    border-left: 1px solid grey;
+    border-top: none;
+  }
 }

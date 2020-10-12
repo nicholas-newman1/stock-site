@@ -1,16 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import IntradayChart from './charts/IntradayChart';
-import FiveDayChart from './charts/FiveDayChart';
-import OneMonthChart from './charts/OneMonthChart';
-import SixMonthChart from './charts/SixMonthChart';
-import YTDChart from './charts/YTDChart';
-import OneYearChart from './charts/OneYearChart';
-import FiveYearChart from './charts/FiveYearChart';
-import MaxChart from './charts/MaxChart';
+import React, { useEffect, useContext } from 'react';
+import { ChartContext } from '../../context/ChartContext';
 import '../../css/quote/quoteChart.css';
 
 const QuoteChart = ({ symbol }) => {
-  const [timeframe, setTimeframe] = useState('1D');
+  const { setSymbol, initializeChart, setTimeframe } = useContext(ChartContext);
 
   const changeTimeframe = (e) => {
     // change disabled button to the one that was clicked
@@ -22,19 +15,16 @@ const QuoteChart = ({ symbol }) => {
   };
 
   useEffect(() => {
+    setSymbol(symbol);
+    initializeChart(document.querySelector('#chart-container'));
+    setTimeframe('1D');
     document.querySelector('.chart-timeframe').firstChild.disabled = true;
+    //eslint-disable-next-line
   }, []);
 
   return (
-    <>
-      {timeframe === '1D' && <IntradayChart symbol={symbol} />}
-      {timeframe === '5D' && <FiveDayChart symbol={symbol} />}
-      {timeframe === '1M' && <OneMonthChart symbol={symbol} />}
-      {timeframe === '6M' && <SixMonthChart symbol={symbol} />}
-      {timeframe === 'YTD' && <YTDChart symbol={symbol} />}
-      {timeframe === '1Y' && <OneYearChart symbol={symbol} />}
-      {timeframe === '5Y' && <FiveYearChart symbol={symbol} />}
-      {timeframe === 'MAX' && <MaxChart symbol={symbol} />}
+    <div className='chart'>
+      <div id='chart-container'></div>
 
       <nav className='chart-timeframe'>
         <button className='chart-timeframe-btn' onClick={changeTimeframe}>
@@ -62,7 +52,7 @@ const QuoteChart = ({ symbol }) => {
           MAX
         </button>
       </nav>
-    </>
+    </div>
   );
 };
 
