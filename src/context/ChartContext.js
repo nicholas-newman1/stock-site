@@ -282,30 +282,6 @@ export const ChartProvider = (props) => {
     if (chart && lineSeries && chartData.length > 0) {
       lineSeries.setData(chartData); // inject data into chart
       chart.timeScale().fitContent(); // fit all data points on the chart
-      let width = window.innerWidth;
-      if (width <= 340) {
-        chart.resize(230, 200);
-      } else if (width <= 370) {
-        chart.resize(250, 200);
-      } else if (width <= 390) {
-        chart.resize(280, 200);
-      } else if (width <= 420) {
-        chart.resize(300, 200);
-      } else if (width <= 440) {
-        chart.resize(330, 200);
-      } else if (width < 520) {
-        chart.resize(400, 300);
-      } else if (width < 705) {
-        chart.resize(475, 400);
-      } else if (width < 830) {
-        chart.resize(650, 400);
-      } else if (width <= 1000) {
-        chart.resize(768, 400);
-      } else if (width < 1135) {
-        chart.resize(505, 400);
-      } else {
-        chart.resize(650, 400);
-      }
     }
   }, [chart, lineSeries, chartData]);
 
