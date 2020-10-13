@@ -24,8 +24,6 @@ const QuoteChart = ({ symbol }) => {
 
   return (
     <div className='chart'>
-      <div id='chart-container'></div>
-
       <nav className='chart-timeframe'>
         <button className='chart-timeframe-btn' onClick={changeTimeframe}>
           1D
@@ -52,6 +50,7 @@ const QuoteChart = ({ symbol }) => {
           MAX
         </button>
       </nav>
+      <div id='chart-container'></div>
     </div>
   );
 };

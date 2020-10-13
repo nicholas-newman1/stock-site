@@ -234,6 +234,8 @@ export const ChartProvider = (props) => {
         },
         handleScale: false, // no zooming in/out
         handleScroll: false, // no scrolling left/right
+        horzTouchDrag: false,
+        vertTouchDrag: false,
       })
     );
   };
@@ -247,26 +249,25 @@ export const ChartProvider = (props) => {
       // resize chart based on window width
       let resizer = new ResizeObserver((entries) => {
         let width = window.screen.width;
-        console.log(width);
-        if (width <= 340) {
+        if (window.innerWidth <= 340 || window.screen.width <= 340) {
           chart.resize(230, 200);
-        } else if (width <= 370) {
+        } else if (window.innerWidth <= 370 || window.screen.width <= 370) {
           chart.resize(250, 200);
-        } else if (width <= 390) {
+        } else if (window.innerWidth <= 390 || window.screen.width <= 390) {
           chart.resize(280, 200);
-        } else if (width <= 420) {
+        } else if (window.innerWidth <= 420 || window.screen.width <= 420) {
           chart.resize(300, 200);
-        } else if (width <= 440) {
+        } else if (window.innerWidth <= 440 || window.screen.width <= 440) {
           chart.resize(330, 200);
-        } else if (width < 520) {
+        } else if (window.innerWidth < 520 || window.screen.width <= 520) {
           chart.resize(400, 300);
-        } else if (width < 705) {
+        } else if (window.innerWidth < 705 || window.screen.width <= 705) {
           chart.resize(475, 400);
-        } else if (width < 830) {
+        } else if (window.innerWidth < 830 || window.screen.width <= 830) {
           chart.resize(650, 400);
-        } else if (width <= 1000) {
+        } else if (window.innerWidth <= 1000 || window.screen.width <= 1000) {
           chart.resize(768, 400);
-        } else if (width < 1135) {
+        } else if (window.innerWidth < 1135 || window.screen.width <= 1135) {
           chart.resize(505, 400);
         } else {
           chart.resize(650, 400);

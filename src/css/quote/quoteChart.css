@@ -1,9 +1,10 @@
 .chart-timeframe {
   display: flex;
-  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
 }
 
 .chart-timeframe-btn {
+  cursor: pointer;
   background: none;
   border: 1px solid grey;
   padding: 0.25rem 0.5rem;
@@ -14,6 +15,7 @@
 }
 
 .chart-timeframe-btn:disabled {
+  cursor: default;
   color: white;
   background: #148eff;
   border: 1px solid #148eff;
@@ -24,9 +26,12 @@
     display: flex;
   }
   .chart-timeframe {
-    margin-top: 0;
-    margin-left: 0.5rem;
+    margin-bottom: 0;
+    margin-right: 0.5rem;
     flex-direction: column;
+  }
+  .chart-timeframe-btn {
+    border-bottom: 1px solid grey;
   }
   .chart-timeframe-btn + .chart-timeframe-btn {
     border-left: 1px solid grey;
