@@ -30,7 +30,7 @@ const SearchResults = ({ match }) => {
         <li className='result' key={symbol}>
           <div className='result-content'>
             <h2 className='result-heading'>
-              <Link className='result-link' to={`/quote/${symbol}`}>
+              <Link className='result-link' to={`/quote/${symbol}/summary`}>
                 {symbol} ({exchangeShortName})
               </Link>
             </h2>

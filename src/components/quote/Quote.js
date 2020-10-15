@@ -1,10 +1,11 @@
 import React, { useContext } from 'react';
 import { QuoteContext } from '../../context/QuoteContext';
+import '../../css/quote/quote.css';
 
 const Quote = ({ symbol }) => {
   const { quote } = useContext(QuoteContext);
   return (
-    <>
+    <div className='quote-container'>
       <div className='quote-price-container'>
         <div className='quote-price'>${quote.price}</div>
         <div className='quote-change' style={{ color: quote.color }}>
@@ -25,7 +26,7 @@ const Quote = ({ symbol }) => {
         </h1>
         <div className='quote-exchange'>{`(${quote.exchange})`}</div>
       </div>
-    </>
+    </div>
   );
 };
 

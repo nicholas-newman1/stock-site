@@ -1,0 +1,48 @@
+.financials-nav-container {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.75rem;
+}
+
+.financials-nav-btn {
+  cursor: pointer;
+  background: none;
+  border: 1px solid grey;
+  padding: 0.25rem 0.5rem;
+}
+
+.financials-nav-btn:hover {
+  background: #eee;
+}
+
+.financials-nav-btn + .financials-nav-btn {
+  border-left: none;
+}
+
+.financials-nav-btn:disabled {
+  cursor: default;
+  color: white;
+  background: #148eff;
+  border: 1px solid #148eff;
+}
+
+@media (max-width: 600px) {
+  .financials-nav-container {
+    flex-direction: column;
+  }
+  .financials-statement-nav {
+    margin-bottom: 0.5rem;
+  }
+}
+
+@media (max-width: 375px) {
+  .financials-statement-nav,
+  .financials-period-nav {
+    display: flex;
+    flex-direction: column;
+  }
+  .financials-nav-btn + .financials-nav-btn {
+    border: 1px solid grey;
+    margin-top: -1px;
+  }
+}

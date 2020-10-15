@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import QuoteNewsItem from './QuoteNewsItem';
 import QuoteNewsLoading from './QuoteNewsLoading';
 import { dummyStockNews } from '../dummyData';
+import '../../css/quote/quoteNews.css';
 
 const QuoteNews = ({ symbol }) => {
   const [newsData, setNewsData] = useState([]);
@@ -25,7 +26,7 @@ const QuoteNews = ({ symbol }) => {
   return loading ? (
     <QuoteNewsLoading />
   ) : (
-    <ul>
+    <ul className='quote-news-ul'>
       {newsData.map((newsItem, i) => (
         <QuoteNewsItem key={i} newsItem={newsItem} />
       ))}

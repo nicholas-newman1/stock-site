@@ -36,7 +36,8 @@ export const ChartProvider = (props) => {
       data = dummyDailyData;
     }
 
-    console.log(url);
+    //REMOVE THIS IN PRODUCTION
+    url ? (url = 1) : (url = 2);
 
     // const res = await fetch(url);
     // let data = await res.json();
@@ -247,30 +248,16 @@ export const ChartProvider = (props) => {
       setLineSeries(chart.addLineSeries());
 
       // resize chart based on window width
-      let resizer = new ResizeObserver((entries) => {
-        let width = window.screen.width;
-        if (window.innerWidth <= 340 || window.screen.width <= 340) {
-          chart.resize(230, 200);
-        } else if (window.innerWidth <= 370 || window.screen.width <= 370) {
-          chart.resize(250, 200);
-        } else if (window.innerWidth <= 390 || window.screen.width <= 390) {
-          chart.resize(280, 200);
-        } else if (window.innerWidth <= 420 || window.screen.width <= 420) {
-          chart.resize(300, 200);
-        } else if (window.innerWidth <= 440 || window.screen.width <= 440) {
-          chart.resize(330, 200);
-        } else if (window.innerWidth < 520 || window.screen.width <= 520) {
-          chart.resize(400, 300);
-        } else if (window.innerWidth < 705 || window.screen.width <= 705) {
-          chart.resize(475, 400);
-        } else if (window.innerWidth < 830 || window.screen.width <= 830) {
-          chart.resize(650, 400);
-        } else if (window.innerWidth <= 1000 || window.screen.width <= 1000) {
-          chart.resize(768, 400);
-        } else if (window.innerWidth < 1135 || window.screen.width <= 1135) {
-          chart.resize(505, 400);
+      let resizer = new ResizeObserver(() => {
+        if (window.innerWidth > 440) {
+          //window.screen.width
+          chart.resize(document.querySelector('.quote-page').clientWidth, 400);
         } else {
-          chart.resize(650, 400);
+          const containerWidth = document.querySelector('.quote-page')
+            .clientWidth;
+          const timeframeWidth = document.querySelector('.chart-timeframe')
+            .clientWidth;
+          chart.resize(containerWidth - timeframeWidth, 200);
         }
       });
 

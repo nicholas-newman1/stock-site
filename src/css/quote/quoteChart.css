@@ -10,6 +10,10 @@
   padding: 0.25rem 0.5rem;
 }
 
+.chart-timeframe-btn:hover {
+  background: #eee;
+}
+
 .chart-timeframe-btn + .chart-timeframe-btn {
   border-left: none;
 }
@@ -27,7 +31,6 @@
   }
   .chart-timeframe {
     margin-bottom: 0;
-    margin-right: 0.5rem;
     flex-direction: column;
   }
   .chart-timeframe-btn {
