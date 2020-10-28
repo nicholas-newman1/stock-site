@@ -15,13 +15,13 @@
 }
 
 .result-link {
-  color: #148eff;
+  color: #006acc;
   text-decoration: none;
   font-size: 1.2rem;
 }
 
 .result-link:hover {
-  color: #006acc;
+  color: #148eff;
 }
 
 .result-heading {
@@ -34,6 +34,25 @@
 
 .view-quote-btn {
   display: none;
+  background: #006acc;
+  border: 1px solid #006acc;
+  padding: 0.75em 1em;
+  border-radius: 3px;
+  margin-right: 0.5rem;
+}
+
+.view-quote-btn:hover {
+  background: #148eff;
+  border: 1px solid #148eff;
+  cursor: pointer;
+}
+
+.view-quote-link {
+  display: inline-block;
+  color: white;
+  text-decoration: none;
+  width: 100%;
+  height: 100%;
 }
 
 .save-result-btn {
@@ -63,18 +82,6 @@
 
   .view-quote-btn {
     display: inline-block;
-    background: #006acc;
-    border: 1px solid #006acc;
-    padding: 0.75em 1em;
-    color: white;
-    border-radius: 3px;
-    margin-right: 0.5rem;
-  }
-
-  .view-quote-btn:hover {
-    background: #148eff;
-    border: 1px solid #148eff;
-    cursor: pointer;
   }
 
   .view-quote-btn,

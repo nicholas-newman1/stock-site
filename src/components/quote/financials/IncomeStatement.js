@@ -1,102 +1,99 @@
-import React from 'react';
-import StatementRow from './StatementRow';
-import '../../../css/quote/statement.css';
+import React, { useEffect } from 'react';
+import QuoteTableHead from './QuoteTableHead';
+import QuoteTableRow from './QuoteTableRow';
+import '../../../css/quote/quoteTable.css';
 
 const IncomeStatement = ({ statementData }) => {
+  // scroll to the left when rendering table
+  useEffect(() => {
+    document.querySelector('.quote-table').scrollLeft = 0;
+  });
+
   return (
     <div>
       <h3 className='statement-heading'>Income Statement</h3>
-      <table className='statement-table'>
-        <thead className='statement-thead'>
-          <tr className='statement-tr'>
-            <th className='statement-th-sticky'></th>
-            {statementData.map((item) => (
-              <th className='statement-th' key={item.date}>
-                {item.date}
-              </th>
-            ))}
-          </tr>
-        </thead>
-        <tbody className='statement-tbody'>
-          <StatementRow
+      <table className='quote-table'>
+        <QuoteTableHead tableData={statementData} />
+        <tbody className='quote-tbody'>
+          <QuoteTableRow
             label={'Revenue'}
             objectKey={'revenue'}
-            statementData={statementData}
+            tableData={statementData}
           />
-          <StatementRow
+          <QuoteTableRow
             label={'Cost of Revenue'}
             objectKey={'costOfRevenue'}
-            statementData={statementData}
+            tableData={statementData}
           />
-          <StatementRow
+          <QuoteTableRow
             label={'Gross Profit'}
             objectKey={'grossProfit'}
-            statementData={statementData}
+            tableData={statementData}
           />
-          <StatementRow
+          <QuoteTableRow
             label={'Operating Expense'}
             objectKey={'operatingExpenses'}
-            statementData={statementData}
+            tableData={statementData}
           />
-          <StatementRow
+          <QuoteTableRow
             label={'Operating Income'}
             objectKey={'operatingIncome'}
-            statementData={statementData}
+            tableData={statementData}
           />
-          <StatementRow
+          <QuoteTableRow
             label={'Interest Expense'}
             objectKey={'interestExpense'}
-            statementData={statementData}
+            tableData={statementData}
           />
-          <StatementRow
+          <QuoteTableRow
             label={'Other Income Expense'}
             objectKey={'totalOtherIncomeExpensesNet'}
-            statementData={statementData}
+            tableData={statementData}
           />
-          <StatementRow
+          <QuoteTableRow
             label={'Pretax Income'}
             objectKey={'incomeBeforeTax'}
-            statementData={statementData}
+            tableData={statementData}
           />
-          <StatementRow
+          <QuoteTableRow
             label={'Income Tax Expense'}
             objectKey={'incomeTaxExpense'}
-            statementData={statementData}
+            tableData={statementData}
           />
-          <StatementRow
+          <QuoteTableRow
             label={'Net Income'}
             objectKey={'netIncome'}
-            statementData={statementData}
+            tableData={statementData}
           />
-          <StatementRow
+          <QuoteTableRow
             label={'EPS'}
             objectKey={'eps'}
-            statementData={statementData}
+            tableData={statementData}
           />
-          <StatementRow
+          <QuoteTableRow
             label={'Diluted EPS'}
             objectKey={'epsdiluted'}
-            statementData={statementData}
+            tableData={statementData}
           />
-          <StatementRow
+          <QuoteTableRow
             label={'Diluted Average Shares'}
             objectKey={'weightedAverageShsOutDil'}
-            statementData={statementData}
+            tableData={statementData}
           />
-          <StatementRow
+          <QuoteTableRow
             label={'Total Expenses'}
             objectKey={'costAndExpenses'}
-            statementData={statementData}
+            tableData={statementData}
           />
-          <StatementRow
+          <QuoteTableRow
             label={'EBITDA'}
             objectKey={'ebitda'}
-            statementData={statementData}
+            tableData={statementData}
           />
-          <StatementRow
+          <QuoteTableRow
             label={'Depreciation'}
             objectKey={'depreciationAndAmortization'}
-            statementData={statementData}
+            tableData={statementData}
           />
         </tbody>
       </table>

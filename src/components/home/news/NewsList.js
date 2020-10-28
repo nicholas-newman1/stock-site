@@ -7,13 +7,11 @@ const NewsList = () => {
   const { newsList } = useContext(NewsContext);
 
   return (
-    <div>
-      <ul className='news-list'>
-        {newsList.map((article) => (
-          <NewsListItem key={article.url} article={article} />
-        ))}
-      </ul>
-    </div>
+    <ul className='news-list'>
+      {newsList.map((article) => (
+        <NewsListItem key={article.url} article={article} />
+      ))}
+    </ul>
   );
 };
 

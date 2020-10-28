@@ -37,7 +37,11 @@ const SearchResults = ({ match }) => {
             <p className='result-desc'>{name}</p>
           </div>
           <div>
-            <button className='view-quote-btn'>View Quote</button>
+            <button className='view-quote-btn'>
+              <Link className='view-quote-link' to={`/quote/${symbol}/summary`}>
+                View Quote
+              </Link>{' '}
+            </button>
             <button className='save-result-btn'>Add to Watchlist</button>
           </div>
         </li>

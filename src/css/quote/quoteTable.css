@@ -1,26 +1,29 @@
-.statement-table {
+.quote-table {
   display: block;
   overflow-x: auto;
   border-spacing: 0;
   width: 100%;
-  border-collapse: collapse;
+  font-size: 0.875rem;
 }
 
-.statement-thead {
+.quote-th {
+  border-bottom: 1px solid #ccc;
+  border-right: 1px solid #ccc;
   border-top: 1px solid #ccc;
 }
 
-.statement-th {
+.quote-td {
+  text-align: center;
   border-bottom: 1px solid #ccc;
   border-right: 1px solid #ccc;
+  font-size: 0.875rem;
 }
 
-.statement-td {
-  border-bottom: 1px solid #ccc;
-  border-right: 1px solid #ccc;
+.quote-thead .quote-th-sticky {
+  border-top: 1px solid #ccc;
 }
 
-.statement-th-sticky {
+.quote-th-sticky {
   border-left: 1px solid #ccc;
   border-bottom: 1px solid #ccc;
   border-right: 1px solid #ccc;
@@ -31,7 +34,7 @@
   text-align: left;
 }
 
-.statement-th-sticky:after {
+.quote-th-sticky:after {
   content: ' ';
   height: 100%;
   position: absolute;
@@ -39,30 +42,30 @@
   width: 10px;
 }
 
-.statement-th-sticky:after {
+.quote-th-sticky:after {
   box-shadow: 10px 0 10px -10px rgba(0, 0, 0, 0.4) inset;
   right: -10px;
 }
 
-.statement-th,
-.statement-th-sticky,
-.statement-td {
-  padding: 0.5em 1em;
+.quote-th,
+.quote-th-sticky,
+.quote-td {
+  padding: 0.6em 1em;
   white-space: nowrap;
 }
 
 @media (max-width: 500px) {
-  .statement-th,
-  .statement-th-sticky,
-  .statement-td {
+  .quote-th,
+  .quote-th-sticky,
+  .quote-td {
     font-size: 0.9rem;
   }
 }
 
 @media (max-width: 400px) {
-  .statement-th,
-  .statement-th-sticky,
-  .statement-td {
+  .quote-th,
+  .quote-th-sticky,
+  .quote-td {
     font-size: 0.8rem;
   }
 }

@@ -26,7 +26,7 @@ export const formatAMPM = (timestamp) => {
   return strTime;
 };
 
-export const shortenNumber = (number) => {
+export const shortenNumber = (number, decimals = 2) => {
   // if value is not a number, return it unaltered
   if (typeof number !== 'number') return number;
 
@@ -34,13 +34,56 @@ export const shortenNumber = (number) => {
   // toFixed to round to 4 decimals
   // parseFloat to remove any trailing 0's that toFixed might add
   // if the number is between +million and -million, toLocaleString will add commas where appropriate
+
+  let newNumber;
   if (number >= 1000000000000 || number <= -1000000000000) {
-    return `${parseFloat((number / 1000000000000).toFixed(2))}T`;
+    newNumber = `${(number / 1000000000000).toLocaleString(undefined, {
+      minimumSignificantDigits: decimals,
+      maximumSignificantDigits: decimals,
+    })}T`;
   } else if (number >= 1000000000 || number <= -1000000000) {
-    return `${parseFloat((number / 1000000000).toFixed(2))}B`;
+    newNumber = `${(number / 1000000000).toLocaleString(undefined, {
+      minimumSignificantDigits: decimals,
+      maximumSignificantDigits: decimals,
+    })}B`;
   } else if (number >= 1000000 || number <= -1000000) {
-    return `${parseFloat((number / 1000000).toFixed(2))}M`;
+    newNumber = `${(number / 1000000).toLocaleString(undefined, {
+      minimumSignificantDigits: decimals,
+      maximumSignificantDigits: decimals,
+    })}M`;
   } else {
-    return Number(number).toFixed(2).toLocaleString();
+    newNumber = number.toLocaleString(undefined, {
+      maximumFractionDigits: decimals,
+      minimumFractionDigits: decimals,
+    });
   }
+
+  return newNumber;
+};
+
+export const formatPhoneNumber = (phoneNumberString) => {
+  var cleaned = ('' + phoneNumberString).replace(/\D/g, '');
+  var match = cleaned.match(/^(1|)?(\d{3})(\d{3})(\d{4})$/);
+  if (match) {
+    var intlCode = match[1] ? '+1 ' : '';
+    return [intlCode, '(', match[2], ') ', match[3], '-', match[4]].join('');
+  }
+  return phoneNumberString;
+};
+
+export const formatData = (data) => {
+  for (let key in data) {
+    // replace null values with 'N/A'
+    data = {
+      ...data,
+      [key]: data[key] === null ? 'N/A' : data[key],
+    };
+
+    // replace long numbers with a shortned version
+    data = {
+      ...data,
+      [key]: shortenNumber(data[key]),
+    };
+  }
+  return data;
 };

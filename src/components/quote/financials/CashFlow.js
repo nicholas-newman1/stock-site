@@ -1,77 +1,74 @@
-import React from 'react';
-import StatementRow from './StatementRow';
-import '../../../css/quote/statement.css';
+import React, { useEffect } from 'react';
+import QuoteTableHead from './QuoteTableHead';
+import QuoteTableRow from './QuoteTableRow';
+import '../../../css/quote/quoteTable.css';
 
 const CashFlow = ({ statementData }) => {
+  // scroll to the left when rendering table
+  useEffect(() => {
+    document.querySelector('.quote-table').scrollLeft = 0;
+  });
+
   return (
     <div>
       <h3 className='statement-heading'>Cash Flow</h3>
-      <table className='statement-table'>
-        <thead>
-          <tr className='statement-tr'>
-            <th className='statement-th-sticky'></th>
-            {statementData.map((item) => (
-              <th className='statement-th' key={item.date}>
-                {item.date}
-              </th>
-            ))}
-          </tr>
-        </thead>
-        <tbody>
-          <StatementRow
+      <table className='quote-table'>
+        <QuoteTableHead tableData={statementData} />
+        <tbody className='quote-tbody'>
+          <QuoteTableRow
             label={'Operating Cash Flow'}
             objectKey={'operatingCashFlow'}
-            statementData={statementData}
+            tableData={statementData}
           />
-          <StatementRow
+          <QuoteTableRow
             label={'Investing Cash Flow'}
             objectKey={'netCashUsedForInvestingActivites'}
-            statementData={statementData}
+            tableData={statementData}
           />
-          <StatementRow
+          <QuoteTableRow
             label={'Financing Cash Flow'}
             objectKey={'netCashUsedProvidedByFinancingActivities'}
-            statementData={statementData}
+            tableData={statementData}
           />
-          <StatementRow
+          <QuoteTableRow
             label={'Beginning Cash Position'}
             objectKey={'cashAtBeginningOfPeriod'}
-            statementData={statementData}
+            tableData={statementData}
           />
-          <StatementRow
+          <QuoteTableRow
             label={'Change in Cash'}
             objectKey={'netChangeInCash'}
-            statementData={statementData}
+            tableData={statementData}
           />
-          <StatementRow
+          <QuoteTableRow
             label={'End Cash Position'}
             objectKey={'cashAtEndOfPeriod'}
-            statementData={statementData}
+            tableData={statementData}
           />
-          <StatementRow
+          <QuoteTableRow
             label={'Capital Expenditure'}
             objectKey={'capitalExpenditure'}
-            statementData={statementData}
+            tableData={statementData}
           />
-          <StatementRow
+          <QuoteTableRow
             label={'Common Stock Issued'}
             objectKey={'commonStockIssued'}
-            statementData={statementData}
+            tableData={statementData}
           />
-          <StatementRow
+          <QuoteTableRow
             label={'Common Stock Repurchased'}
             objectKey={'commonStockRepurchased'}
-            statementData={statementData}
+            tableData={statementData}
           />
-          <StatementRow
+          <QuoteTableRow
             label={'Debt Repayment'}
             objectKey={'debtRepayment'}
-            statementData={statementData}
+            tableData={statementData}
           />
-          <StatementRow
+          <QuoteTableRow
             label={'Free Cash Flow'}
             objectKey={'freeCashFlow'}
-            statementData={statementData}
+            tableData={statementData}
           />
         </tbody>
       </table>

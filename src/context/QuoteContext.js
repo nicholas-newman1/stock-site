@@ -1,10 +1,13 @@
-import React, { createContext, useState } from 'react';
+import React, { createContext, useState, useContext } from 'react';
 import { dummyQuoteData } from '../components/dummyData';
 import { shortenNumber } from '../components/helpers';
+import { RealDataContext } from './RealDataContext';
+import { Helmet } from 'react-helmet-async';
 
 export const QuoteContext = createContext();
 
 export const QuoteProvider = (props) => {
+  const { realData } = useContext(RealDataContext);
   const [quote, setQuote] = useState({
     // set default values to be displayed until data is returned from fetch request
     price: '----',
@@ -28,30 +31,44 @@ export const QuoteProvider = (props) => {
   });
 
   const fetchQuote = async (symbol) => {
-    // const res = await fetch(
-    //   `https://financialmodelingprep.com/api/v3/quote/${symbol}?apikey=${process.env.REACT_APP_FMP_KEY}`
-    // );
-    // let data = await res.json();
-    // data = data[0];
+    let data;
+    if (realData) {
+      const res = await fetch(
+        `https://financialmodelingprep.com/api/v3/quote/${symbol}?apikey=${process.env.REACT_APP_FMP_KEY}`
+      );
+      data = await res.json();
+      data = data[0];
+    } else {
+      data = { ...dummyQuoteData[0] };
+    }
 
-    let data = dummyQuoteData[0];
-
-    // The following code alters the returned data to make it prettier for rendering
+    // Alter the returned data to make it prettier for rendering
 
     const { price, change, changesPercentage } = data;
+    let decimals = 2;
+    while (
+      change !== 0 &&
+      change.toLocaleString(undefined, {
+        maximumFractionDigits: decimals,
+      }) === '0'
+    ) {
+      decimals++;
+    }
 
     data = {
       ...data,
 
       // round to 2 or 4 decimals depending on magnitude of the price
-      price: Number(
-        -1 < price && price < 1 ? price.toFixed(4) : price.toFixed(2)
-      ).toLocaleString(),
+      price: price.toLocaleString(undefined, {
+        maximumFractionDigits: decimals,
+        minimumFractionDigits: decimals,
+      }),
 
       // round to 2 or 4 decimals depending on magnitude of the change
-      change: Number(
-        -1 < change && change < 1 ? change.toFixed(4) : change.toFixed(2)
-      ).toLocaleString(),
+      change: change.toLocaleString(undefined, {
+        maximumFractionDigits: decimals,
+        minimumFractionDigits: decimals,
+      }),
 
       percentChange: Number(changesPercentage).toLocaleString(),
 
@@ -70,7 +87,7 @@ export const QuoteProvider = (props) => {
       // replace long numbers with a shortned version
       data = {
         ...data,
-        [key]: shortenNumber(data[key]),
+        [key]: shortenNumber(data[key], decimals),
       };
     }
 
@@ -84,6 +101,9 @@ export const QuoteProvider = (props) => {
         fetchQuote,
       }}
     >
+      <Helmet>
+        <title>{`${quote.symbol} | ${quote.name} | Free Quote | Finance App`}</title>
+      </Helmet>
       {props.children}
     </QuoteContext.Provider>
   );

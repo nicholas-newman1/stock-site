@@ -1,44 +1,43 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import LoadingPriceList from './LoadingPriceList';
 import PriceListItem from './PriceListItem';
 import { Link } from 'react-router-dom';
 import { dummyIndexData } from '../../dummyData';
+import { RealDataContext } from '../../../context/RealDataContext';
 
 const PriceList = ({ heading, symbols }) => {
   const [quoteData, setQuoteData] = useState([]);
   const [loading, setLoading] = useState(false);
+  const { realData } = useContext(RealDataContext);
 
   const fetchQuotes = async () => {
     setLoading(true);
-    // const res = await fetch(
-    //   `https://financialmodelingprep.com/api/v3/quote/${symbols.join()}?apikey=${
-    //     process.env.REACT_APP_FMP_KEY
-    //   }`
-    // );
-    // const data = await res.json();
+    let data;
+    if (realData) {
+      const res = await fetch(
+        `https://financialmodelingprep.com/api/v3/quote/${symbols.join()}?apikey=${
+          process.env.REACT_APP_FMP_KEY
+        }`
+      );
+      data = await res.json();
+    } else {
+      data = [...dummyIndexData];
+    }
 
-    const data = dummyIndexData;
-    data.forEach(({ symbol, price, change, changesPercentage }) => {
-      setQuoteData((prevData) => [
-        ...prevData,
-        {
-          symbol,
-          price: -1 < price && price < 1 ? price.toFixed(4) : price.toFixed(2),
-          change:
-            -1 < change && change < 1 ? change.toFixed(4) : change.toFixed(2),
-          percentChange: changesPercentage,
-          color: change > 0 ? 'green' : 'red',
-          isPositive: change > 0,
-        },
-      ]);
-    });
+    // Check for error message
+    if (data['Error Message']) {
+      console.log(new Error('API OUT OF CALLS'));
+      data = [...dummyIndexData];
+    }
+
+    setQuoteData(data);
     setLoading(false);
   };
 
   useEffect(() => {
     fetchQuotes();
     //eslint-disable-next-line
-  }, []);
+  }, [realData]);
 
   return (
     <li className='pricelist-item'>
@@ -48,26 +47,28 @@ const PriceList = ({ heading, symbols }) => {
         </Link>
       </h2>
 
-      <table className='pricelist-table'>
-        <thead className='pricelist-thead'>
-          <tr className='pricelist-tr'>
-            <th className='pricelist-th'>Symbol</th>
-            <th className='pricelist-th'>Price</th>
-            <th className='pricelist-th'>Change</th>
-            <th className='pricelist-th'>Percent Change</th>
-          </tr>
-        </thead>
+      <div className='pricelist-table-container'>
+        <table className='pricelist-table'>
+          <thead className='pricelist-thead'>
+            <tr className='pricelist-tr'>
+              <th className='pricelist-th'>Symbol</th>
+              <th className='pricelist-th'>Price</th>
+              <th className='pricelist-th'>Change ($)</th>
+              <th className='pricelist-th'>Change (%)</th>
+            </tr>
+          </thead>
 
-        <tbody className='pricelist-tbody'>
-          {loading ? (
-            <LoadingPriceList />
-          ) : (
-            quoteData.map((quote) => (
-              <PriceListItem key={quote.symbol} data={quote} />
-            ))
-          )}
-        </tbody>
-      </table>
+          <tbody className='pricelist-tbody'>
+            {loading ? (
+              <LoadingPriceList />
+            ) : (
+              quoteData.map((quote) => (
+                <PriceListItem key={quote.symbol} data={quote} />
+              ))
+            )}
+          </tbody>
+        </table>
+      </div>
     </li>
   );
 };

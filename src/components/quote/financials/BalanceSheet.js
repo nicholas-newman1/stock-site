@@ -1,82 +1,90 @@
-import React from 'react';
-import StatementRow from './StatementRow';
-import '../../../css/quote/statement.css';
+import React, { useEffect } from 'react';
+import QuoteTableHead from './QuoteTableHead';
+import QuoteTableRow from './QuoteTableRow';
+import '../../../css/quote/quoteTable.css';
 
 const BalanceSheet = ({ statementData }) => {
+  // scroll to the left when rendering table
+  useEffect(() => {
+    document.querySelector('.quote-table').scrollLeft = 0;
+  });
+
+  useEffect(() => {
+    statementData.map((item) => {
+      item.totalCapitalization =
+        item.longTermDebt + item.totalStockholdersEquity;
+      item.bookValue =
+        item.totalStockholdersEquity - item.goodwillAndIntangibleAssets;
+      return item;
+    });
+    //eslint-disable-next-line
+  }, []);
+
   return (
     <div>
       <h3 className='statement-heading'>Balance Sheet</h3>
-      <table className='statement-table'>
-        <thead className='statement-thead'>
-          <tr className='statement-tr'>
-            <th className='statement-th-sticky'></th>
-            {statementData.map((item) => (
-              <th className='statement-th' key={item.date}>
-                {item.date}
-              </th>
-            ))}
-          </tr>
-        </thead>
-        <tbody className='statement-tbody'>
-          <StatementRow
+      <table className='quote-table'>
+        <QuoteTableHead tableData={statementData} />
+        <tbody className='quote-tbody'>
+          <QuoteTableRow
             label={'Total Assets'}
             objectKey={'totalAssets'}
-            statementData={statementData}
+            tableData={statementData}
           />
-          <StatementRow
+          <QuoteTableRow
             label={'Current Assets'}
             objectKey={'totalCurrentAssets'}
-            statementData={statementData}
+            tableData={statementData}
           />
-          <StatementRow
+          <QuoteTableRow
             label={'Non-Current Assets'}
             objectKey={'totalNonCurrentAssets'}
-            statementData={statementData}
+            tableData={statementData}
           />
-          <StatementRow
+          <QuoteTableRow
             label={'Total Liabilities'}
             objectKey={'totalLiabilities'}
-            statementData={statementData}
+            tableData={statementData}
           />
-          <StatementRow
+          <QuoteTableRow
             label={'Current Liabilities'}
             objectKey={'totalCurrentLiabilities'}
-            statementData={statementData}
+            tableData={statementData}
           />
-          <StatementRow
+          <QuoteTableRow
             label={'Non-Current Liabilities'}
             objectKey={'totalNonCurrentLiabilities'}
-            statementData={statementData}
+            tableData={statementData}
           />
-          <StatementRow
+          <QuoteTableRow
             label={'Total Stockholders Equity'}
             objectKey={'totalStockholdersEquity'}
-            statementData={statementData}
+            tableData={statementData}
           />
-          <StatementRow
+          <QuoteTableRow
             label={'Total Capitalization'}
             objectKey={'totalCapitalization'}
-            statementData={statementData}
+            tableData={statementData}
           />
-          <StatementRow
+          <QuoteTableRow
             label={'Book Value'}
             objectKey={'bookValue'}
-            statementData={statementData}
+            tableData={statementData}
           />
-          <StatementRow
+          <QuoteTableRow
             label={'Total Debt'}
             objectKey={'totalDebt'}
-            statementData={statementData}
+            tableData={statementData}
           />
-          <StatementRow
+          <QuoteTableRow
             label={'Long Term Debt'}
             objectKey={'longTermDebt'}
-            statementData={statementData}
+            tableData={statementData}
           />
-          <StatementRow
+          <QuoteTableRow
             label={'Short Term Debt'}
             objectKey={'shortTermDebt'}
-            statementData={statementData}
+            tableData={statementData}
           />
         </tbody>
       </table>

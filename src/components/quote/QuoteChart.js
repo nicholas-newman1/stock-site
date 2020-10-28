@@ -3,7 +3,26 @@ import { ChartContext } from '../../context/ChartContext';
 import '../../css/quote/quoteChart.css';
 
 const QuoteChart = ({ symbol }) => {
-  const { setSymbol, initializeChart, setTimeframe } = useContext(ChartContext);
+  const { setSymbol, initializeChart, setTimeframe, resizer } = useContext(
+    ChartContext
+  );
+
+  useEffect(() => {
+    setSymbol(symbol);
+    initializeChart(document.querySelector('#chart-container'));
+    setTimeframe('1D');
+    document.querySelector('.chart-timeframe').firstChild.disabled = true;
+    //eslint-disable-next-line
+  }, []);
+
+  useEffect(() => {
+    // unobserve width (for chart resizing) when component unmounts
+    if (resizer) {
+      return () => {
+        resizer.unobserve(document.querySelector('html'));
+      };
+    }
+  }, [resizer]);
 
   const changeTimeframe = (e) => {
     // change disabled button to the one that was clicked
@@ -13,14 +32,6 @@ const QuoteChart = ({ symbol }) => {
     // set new timeframe
     setTimeframe(e.target.innerText);
   };
-
-  useEffect(() => {
-    setSymbol(symbol);
-    initializeChart(document.querySelector('#chart-container'));
-    setTimeframe('1D');
-    document.querySelector('.chart-timeframe').firstChild.disabled = true;
-    //eslint-disable-next-line
-  }, []);
 
   return (
     <div className='chart'>

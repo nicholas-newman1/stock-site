@@ -1,27 +1,26 @@
-.quote-table-container {
+.quote-summary-table-container {
   display: flex;
   width: 100%;
 }
 
-.quote-table + .quote-table {
+.quote-summary-table + .quote-summary-table {
   margin-left: 1rem;
 }
 
-.quote-table {
+.quote-summary-table {
   display: flex;
   width: 100%;
 }
 
-.quote-tbody,
-.quote-thead,
-.quote-tr {
+.quote-summary-tbody,
+.quote-summary-thead,
+.quote-summary-tr {
   display: block;
   width: 100%;
 }
 
-.quote-th,
-.quote-td {
-  display: block;
+.quote-summary-th,
+.quote-summary-td {
   height: 2rem;
   background: #eee;
   padding: 0.5rem;
@@ -29,29 +28,29 @@
   align-items: center;
 }
 
-.quote-th + .quote-th,
-.quote-td + .quote-td {
+.quote-summary-th + .quote-summary-th,
+.quote-summary-td + .quote-summary-td {
   margin-top: 0.5rem;
 }
 
-.quote-th {
+.quote-summary-th {
   text-align: left;
   font-weight: 300;
   font-size: 0.9rem;
   border-radius: 5px 0 0 5px;
 }
 
-.quote-td {
+.quote-summary-td {
   justify-content: flex-end;
   border-radius: 0 5px 5px 0;
 }
 
 @media (max-width: 430px) {
-  .quote-table-container {
+  .quote-summary-table-container {
     flex-direction: column;
   }
 
-  .quote-table + .quote-table {
+  .quote-summary-table + .quote-summary-table {
     margin-left: 0rem;
   }
 }

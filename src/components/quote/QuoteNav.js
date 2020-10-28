@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import '../../css/quote/quoteNav.css';
 
 const QuoteNav = ({ page }) => {
-  const navItems = ['Summary', 'Chart', 'Financials'];
+  let navItems = ['Summary', 'Chart', 'Financials', 'Profile', 'Valuation'];
   return (
     <nav className='quote-nav-container'>
       <ul className='quote-nav-ul'>

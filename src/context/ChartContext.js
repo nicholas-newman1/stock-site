@@ -1,4 +1,4 @@
-import React, { useState, createContext, useEffect } from 'react';
+import React, { useState, createContext, useEffect, useContext } from 'react';
 import { createChart } from 'lightweight-charts';
 import { formatAMPM } from '../components/helpers';
 import {
@@ -7,6 +7,8 @@ import {
   dummyOneMonthData,
   dummyDailyData,
 } from '../components/dummyData';
+import { RealDataContext } from './RealDataContext';
+import { QuoteContext } from './QuoteContext';
 
 export const ChartContext = createContext();
 
@@ -16,10 +18,11 @@ export const ChartProvider = (props) => {
   const [chart, setChart] = useState(null);
   const [lineSeries, setLineSeries] = useState(null);
   const [chartData, setChartData] = useState([]);
+  const [resizer, setResizer] = useState(null);
+  const { realData } = useContext(RealDataContext);
+  const { quote } = useContext(QuoteContext);
 
   const fetchData = async () => {
-    // GET RID OF THE FOLLOWING LINE
-    // let symbol = 'AAPL';
     let url;
     let data;
     if (timeframe === '1D') {
@@ -36,11 +39,10 @@ export const ChartProvider = (props) => {
       data = dummyDailyData;
     }
 
-    //REMOVE THIS IN PRODUCTION
-    url ? (url = 1) : (url = 2);
-
-    // const res = await fetch(url);
-    // let data = await res.json();
+    if (realData) {
+      const res = await fetch(url);
+      data = await res.json();
+    }
 
     // data for 6M timeframe and onwards returns an object with a "historical" property
     if (
@@ -51,17 +53,17 @@ export const ChartProvider = (props) => {
       timeframe === 'MAX'
     ) {
       data = [...data.historical];
-    } else {
-      // Most recent price fetched from 'historical-chart' endpoint differs from most recent price fetched from 'historical-price-full' or 'quote' endpoints
-      // Discrepency gets resolved by replacing last data point with the most recent price from the 'quote' endpoint
-      // const res = await fetch(
-      //   `https://financialmodelingprep.com/api/v3/quote/${symbol}?apikey=${process.env.REACT_APP_FMP_KEY}`
-      // );
-      // const quote = await res.json();
-      // data.unshift({
-      //   date: data.shift().date,
-      //   close: quote[0].price,
-      // });
+    } else if (realData) {
+      // Most recent price fetched from 'historical-chart' endpoint differs from most recent price fetched from 'quote' endpoint
+      // Resolved by replacing last data point with the most recent price from the 'quote' endpoint
+      const res = await fetch(
+        `https://financialmodelingprep.com/api/v3/quote/${symbol}?apikey=${process.env.REACT_APP_FMP_KEY}`
+      );
+      const quote = await res.json();
+      data.unshift({
+        date: data.shift().date,
+        close: quote[0].price,
+      });
     }
 
     // data returned from API is backwards
@@ -131,9 +133,11 @@ export const ChartProvider = (props) => {
     // format the data for lightweight-charts
     data = data.map((item) => {
       const timestamp = Date.parse(`${item.date}`) / 1000; // converts date to UNIX timestamp
-      return { time: timestamp, value: item.close.toFixed(2) };
+      return {
+        time: timestamp,
+        value: item.close,
+      };
     });
-
     // store the data in state
     setChartData(data);
   };
@@ -213,7 +217,7 @@ export const ChartProvider = (props) => {
           border: '1px solid white',
         },
         localization: {
-          priceFormatter: (price) => '$' + price, // adds $ to price
+          priceFormatter: (price) => '$' + price.toFixed(2), // adds $ to price
         },
         priceScale: {
           scaleMargins: { bottom: 0.1, top: 0.3 }, // line will be relatively centered vertically
@@ -223,7 +227,6 @@ export const ChartProvider = (props) => {
         timeScale: {
           borderColor: '#fff',
           fixLeftEdge: true, // data starts from the left edge of the chart
-          lockVisibleTimeRangeOnResize: true,
         },
         grid: {
           vertLines: {
@@ -248,23 +251,30 @@ export const ChartProvider = (props) => {
       setLineSeries(chart.addLineSeries());
 
       // resize chart based on window width
-      let resizer = new ResizeObserver(() => {
-        if (window.innerWidth > 440) {
-          //window.screen.width
-          chart.resize(document.querySelector('.quote-page').clientWidth, 400);
-        } else {
-          const containerWidth = document.querySelector('.quote-page')
-            .clientWidth;
-          const timeframeWidth = document.querySelector('.chart-timeframe')
-            .clientWidth;
-          chart.resize(containerWidth - timeframeWidth, 200);
-        }
-      });
-
-      // observe html element for resize events
-      resizer.observe(document.querySelector('html'));
+      setResizer(
+        new ResizeObserver(() => {
+          if (window.innerWidth > 440) {
+            //window.screen.width
+            chart.resize(
+              document.querySelector('.quote-page').clientWidth,
+              400
+            );
+          } else {
+            const containerWidth = document.querySelector('.quote-page')
+              .clientWidth;
+            const timeframeWidth = 57;
+            chart.resize(containerWidth - timeframeWidth, 200);
+          }
+          chart.timeScale().fitContent(); // fit all data points on the chart
+        })
+      );
     }
   }, [chart]);
+
+  useEffect(() => {
+    // once resizer is set, observe html element for resize events
+    if (resizer) resizer.observe(document.querySelector('html'));
+  }, [resizer]);
 
   // once chart and lineSeries have been defined and chartData has been fetched, inject the data into the chart's lineSeries
   useEffect(() => {
@@ -281,7 +291,7 @@ export const ChartProvider = (props) => {
       fetchData();
     }
     //eslint-disable-next-line
-  }, [timeframe, chart]);
+  }, [timeframe, chart, realData]);
 
   // once data is fetched, update the chart options
   useEffect(() => {
@@ -289,7 +299,35 @@ export const ChartProvider = (props) => {
       updateChartOptions();
     }
     //eslint-disable-next-line
-  }, [chartData, chart]);
+  }, [chartData]);
+
+  useEffect(() => {
+    // IS THIS CODE WORTH IT?
+    // SMALL CHANGES LIKE FOR XRP HAVE INVISIBLE PRICE SCALE
+    if (chart) {
+      let { change } = quote;
+      change = parseFloat(change);
+      let decimals = 1;
+      while (
+        change !== 0 &&
+        (change.toLocaleString(undefined, {
+          maximumFractionDigits: decimals,
+        }) === '0' ||
+          change.toLocaleString(undefined, {
+            maximumFractionDigits: decimals,
+          }) === '-0')
+      ) {
+        decimals++;
+      }
+      decimals++;
+
+      chart.applyOptions({
+        localization: {
+          priceFormatter: (price) => '$' + price.toFixed(decimals), // adds $ to price
+        },
+      });
+    }
+  }, [quote, chart]);
 
   return (
     <ChartContext.Provider
@@ -297,6 +335,7 @@ export const ChartProvider = (props) => {
         setSymbol,
         setTimeframe,
         initializeChart,
+        resizer,
       }}
     >
       {props.children}

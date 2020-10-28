@@ -6,7 +6,7 @@ import '../../css/header/nav.css';
 const Nav = () => {
   const { setDisplayMobileMenu } = useContext(HeaderContext);
 
-  const linkText = [
+  const links = [
     'Home',
     'News',
     'Stocks',
@@ -17,11 +17,11 @@ const Nav = () => {
 
   return (
     <ul className='nav-list'>
-      {linkText.map((text, i) => (
+      {links.map((text, i) => (
         <li key={i} className='nav-item'>
           <Link
             className='nav-link'
-            to={text === 'Home' ? '/' : text.toLowerCase()}
+            to={text === 'Home' ? '/' : `/${text.toLowerCase()}`}
             onClick={() => setDisplayMobileMenu(false)}
           >
             {text}

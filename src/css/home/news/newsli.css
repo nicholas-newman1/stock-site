@@ -3,6 +3,7 @@
   justify-content: space-between;
   margin-bottom: 1rem;
   background: #eee;
+  border-radius: 0 5px 5px 0;
 }
 
 .newsli-image-container {
@@ -13,6 +14,7 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+  border-radius: 5px 0 0 5px;
 }
 
 .newsli-content {
@@ -40,9 +42,10 @@
   margin-bottom: 0.75rem;
 }
 
-@media (max-width: 800px) {
+@media (max-width: 500px) {
   .newsli-item {
     flex-direction: column;
+    border-radius: 0 0 5px 5px;
   }
 
   .newsli-image-container {
@@ -52,5 +55,9 @@
 
   .newsli-content {
     width: 100%;
+  }
+
+  .newsli-image {
+    border-radius: 5px 5px 0 0;
   }
 }

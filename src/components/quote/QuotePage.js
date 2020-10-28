@@ -1,48 +1,86 @@
-import React, { useEffect, useContext } from 'react';
+import React, { useEffect, useContext, useState } from 'react';
 import Quote from './Quote';
-import QuoteDetails from './QuoteDetails';
-import QuoteNews from './QuoteNews';
+import QuoteSummary from './QuoteSummary';
+import QuoteNews from './news/QuoteNews';
 import QuoteChart from './QuoteChart';
 import QuoteFinancials from './financials/QuoteFinancials';
+import QuoteProfile from './QuoteProfile';
+import QuoteValuation from './QuoteValuation';
 import QuoteNav from './QuoteNav';
+import QuoteGeneralNews from './news/QuoteGeneralNews.js';
 import '../../css/quote/quotePage.css';
 import { QuoteContext } from '../../context/QuoteContext';
 import { Route, Switch } from 'react-router-dom';
+import { RealDataContext } from '../../context/RealDataContext';
 
 const QuotePage = ({ match }) => {
   const symbol = match.params.symbol;
   const page = match.params.page;
-  const { fetchQuote } = useContext(QuoteContext);
+  const { quote, fetchQuote } = useContext(QuoteContext);
+  const { realData } = useContext(RealDataContext);
+  const [isStock, setIsStock] = useState();
+
+  useEffect(() => {
+    document.querySelector('html').scrollTop = 0;
+    //eslint-disable-next-line
+  }, []);
 
   useEffect(() => {
     fetchQuote(symbol);
+    setIsStock(
+      ['INDEX', 'ETF', 'MUTUAL_FUND', 'FOREX', 'CRYPTO'].findIndex(
+        (item) => item === quote.exchange
+      ) === -1
+    );
     //eslint-disable-next-line
-  }, []);
+  }, [realData]);
 
   return (
     <div className='quote-page'>
       <Quote symbol={symbol} />
-      <QuoteNav page={page} />
+      {isStock && <QuoteNav page={page} />}
       <Switch>
         <Route exat path='/quote/:symbol/summary'>
           <h2 className='quote-sub-heading'>Summary</h2>
-          <QuoteDetails symbol={symbol} />
+          <QuoteSummary symbol={symbol} />
+          {!isStock && (
+            <>
+              <h2 className='quote-sub-heading' style={{ marginTop: '1rem' }}>
+                Chart
+              </h2>
+              <QuoteChart symbol={symbol} />
+            </>
+          )}
         </Route>
 
-        <Route exat path='/quote/:symbol/chart'>
-          <h2 className='quote-sub-heading'>Chart</h2>
-          <QuoteChart symbol={symbol} />
-        </Route>
+        {isStock && (
+          <>
+            <Route exat path='/quote/:symbol/chart'>
+              <h2 className='quote-sub-heading'>Chart</h2>
+              <QuoteChart symbol={symbol} />
+            </Route>
 
-        <Route exat path='/quote/:symbol/financials'>
-          <h2 className='quote-sub-heading'>Financials</h2>
-          <QuoteFinancials symbol={symbol} />
-        </Route>
+            <Route exat path='/quote/:symbol/financials'>
+              <h2 className='quote-sub-heading'>Financials</h2>
+              <QuoteFinancials symbol={symbol} />
+            </Route>
+
+            <Route exact path='/quote/:symbol/profile'>
+              <h2 className='quote-sub-heading'>Profile</h2>
+              <QuoteProfile symbol={symbol} />
+            </Route>
+
+            <Route exact path='/quote/:symbol/valuation'>
+              <h2 className='quote-sub-heading'>Valuation</h2>
+              <QuoteValuation symbol={symbol} />
+            </Route>
+          </>
+        )}
       </Switch>
 
       <div className='quote-news-container'>
         <h2 className='quote-sub-heading'>Breaking News</h2>
-        <QuoteNews symbol={symbol} />
+        {isStock ? <QuoteNews symbol={symbol} /> : <QuoteGeneralNews />}
       </div>
     </div>
   );

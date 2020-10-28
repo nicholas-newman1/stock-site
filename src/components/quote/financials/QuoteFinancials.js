@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import IncomeStatement from './IncomeStatement';
 import BalanceSheet from './BalanceSheet';
 import CashFlow from './CashFlow';
@@ -12,29 +12,36 @@ import {
   dummyAnnualCashFlow,
   dummyQuarterlyCashFlow,
 } from '../../dummyData';
+import { RealDataContext } from '../../../context/RealDataContext';
+import '../../../css/quote/quoteFinancials.css';
 
 const QuoteFinancials = ({ symbol }) => {
   const [statement, setStatement] = useState('income-statement');
   const [period, setPeriod] = useState('');
   const [statementData, setStatementData] = useState([]);
+  const { realData } = useContext(RealDataContext);
 
   const fetchStatement = async () => {
-    // const res = await fetch(
-    //   `https://financialmodelingprep.com/api/v3/${statement}/${symbol}?period=${period}&limit=400&apikey=${process.env.REACT_APP_FMP_KEY}`
-    // );
-    // let data = await res.json();
-
     let data;
-    if (statement === 'income-statement') {
-      period
-        ? (data = dummyQuarterlyIncomeStatement)
-        : (data = dummyAnnualIncomeStatement);
-    } else if (statement === 'balance-sheet-statement') {
-      period
-        ? (data = dummyQuarterlyBalanceSheet)
-        : (data = dummyAnnualBalanceSheet);
-    } else if (statement === 'cash-flow-statement') {
-      period ? (data = dummyQuarterlyCashFlow) : (data = dummyAnnualCashFlow);
+    if (realData) {
+      const res = await fetch(
+        `https://financialmodelingprep.com/api/v3/${statement}/${symbol}?period=${period}&limit=400&apikey=${process.env.REACT_APP_FMP_KEY}`
+      );
+      data = await res.json();
+    } else {
+      if (statement === 'income-statement') {
+        period
+          ? (data = [...dummyQuarterlyIncomeStatement])
+          : (data = [...dummyAnnualIncomeStatement]);
+      } else if (statement === 'balance-sheet-statement') {
+        period
+          ? (data = [...dummyQuarterlyBalanceSheet])
+          : (data = [...dummyAnnualBalanceSheet]);
+      } else if (statement === 'cash-flow-statement') {
+        period
+          ? (data = [...dummyQuarterlyCashFlow])
+          : (data = [...dummyAnnualCashFlow]);
+      }
     }
 
     data = data.map((item) => {
@@ -53,14 +60,13 @@ const QuoteFinancials = ({ symbol }) => {
       return formatted;
     });
 
-    console.log(data);
-
     setStatementData(data);
   };
 
   useEffect(() => {
     fetchStatement();
-  }, [statement, period]);
+    //eslint-disable-next-line
+  }, [statement, period, realData]);
 
   return (
     // have a download option for each financial statement

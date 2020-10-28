@@ -1,0 +1,36 @@
+.quote-profile-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.quote-profile-section {
+  display: inline-block;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  background: #eee;
+  border-radius: 5px;
+}
+
+.quote-profile-div {
+  margin-bottom: 0.5rem;
+}
+
+.quote-profile-heading {
+  margin-bottom: 0.5rem;
+}
+
+.quote-profile-p {
+  font-size: 0.9rem;
+  text-transform: capitalize;
+}
+
+.quote-profile-link {
+  font-size: 0.9rem;
+  display: block;
+  text-decoration: none;
+}
+
+.quote-profile-link:hover {
+  text-decoration: underline;
+}

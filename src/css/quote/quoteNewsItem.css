@@ -5,36 +5,36 @@
   background: #eee;
 }
 
-.quote-news-item-image-container {
+.quote-news-image-container {
   width: 30%;
 }
 
-.quote-news-item-image {
+.quote-news-image {
   width: 100%;
   object-fit: cover;
   height: 100%;
 }
 
-.quote-news-item-content {
+.quote-news-content {
   width: 69%;
   padding: 0.5rem;
 }
 
-.quote-news-item-heading {
+.quote-news-heading {
   font-size: 1rem;
   margin-bottom: 0.25rem;
 }
 
-.quote-news-item-link {
+.quote-news-link {
   color: #003487;
   text-decoration: none;
 }
 
-.quote-news-item-link:hover {
+.quote-news-link:hover {
   color: #006acc;
 }
 
-.quote-news-item-meta {
+.quote-news-meta {
   color: #555;
   font-size: 0.9rem;
   margin-bottom: 0.75rem;
