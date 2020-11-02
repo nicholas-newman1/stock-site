@@ -195,9 +195,9 @@ const QuoteChart = ({ symbol }) => {
       mode: 'index',
       intersect: false,
       callbacks: {
-        // label: (tooltipItem, data) => {
-        //   console.log(tooltipItem);
-        // },
+        label: ({ xLabel, yLabel }) => {
+          return `${xLabel} | $${yLabel}`;
+        },
       },
     },
     legend: { display: false },
