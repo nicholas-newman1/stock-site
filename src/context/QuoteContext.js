@@ -44,7 +44,7 @@ export const QuoteProvider = (props) => {
 
     // Alter the returned data to make it prettier for rendering
 
-    const { price, change, changesPercentage } = data;
+    const { price, change, changesPercentage, exchange } = data;
     let decimals = 2;
     while (
       change !== 0 &&
@@ -75,6 +75,15 @@ export const QuoteProvider = (props) => {
       // added properties to make rendering easier
       color: change > 0 ? 'green' : 'red',
       isPositive: change > 0,
+      isStock:
+        [
+          'INDEX',
+          'ETF',
+          'MUTUAL_FUND',
+          'FOREX',
+          'CRYPTO',
+          '- - - - - - -',
+        ].findIndex((item) => item === exchange) === -1,
     };
 
     for (let key in data) {

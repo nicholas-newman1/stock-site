@@ -10,7 +10,7 @@ import QuoteNav from './QuoteNav';
 import QuoteGeneralNews from './news/QuoteGeneralNews.js';
 import '../../css/quote/quotePage.css';
 import { QuoteContext } from '../../context/QuoteContext';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, Redirect } from 'react-router-dom';
 import { RealDataContext } from '../../context/RealDataContext';
 
 const QuotePage = ({ match }) => {
@@ -18,32 +18,29 @@ const QuotePage = ({ match }) => {
   const page = match.params.page;
   const { quote, fetchQuote } = useContext(QuoteContext);
   const { realData } = useContext(RealDataContext);
-  const [isStock, setIsStock] = useState();
 
   useEffect(() => {
     document.querySelector('html').scrollTop = 0;
-    //eslint-disable-next-line
   }, []);
 
   useEffect(() => {
     fetchQuote(symbol);
-    setIsStock(
-      ['INDEX', 'ETF', 'MUTUAL_FUND', 'FOREX', 'CRYPTO'].findIndex(
-        (item) => item === quote.exchange
-      ) === -1
-    );
     //eslint-disable-next-line
   }, [realData]);
+
+  useEffect(() => {
+    console.log(quote.isStock);
+  }, [quote]);
 
   return (
     <div className='quote-page'>
       <Quote symbol={symbol} />
-      {isStock && <QuoteNav page={page} />}
+      {quote.isStock && <QuoteNav page={page} />}
       <Switch>
-        <Route exat path='/quote/:symbol/summary'>
+        <Route exact path='/quote/:symbol/summary'>
           <h2 className='quote-sub-heading'>Summary</h2>
           <QuoteSummary symbol={symbol} />
-          {!isStock && (
+          {!quote.isStock && (
             <>
               <h2 className='quote-sub-heading' style={{ marginTop: '1rem' }}>
                 Chart
@@ -53,14 +50,14 @@ const QuotePage = ({ match }) => {
           )}
         </Route>
 
-        {isStock && (
+        {quote.isStock && (
           <>
-            <Route exat path='/quote/:symbol/chart'>
+            <Route exact path='/quote/:symbol/chart'>
               <h2 className='quote-sub-heading'>Chart</h2>
               <QuoteChart symbol={symbol} />
             </Route>
 
-            <Route exat path='/quote/:symbol/financials'>
+            <Route exact path='/quote/:symbol/financials'>
               <h2 className='quote-sub-heading'>Financials</h2>
               <QuoteFinancials symbol={symbol} />
             </Route>
@@ -76,11 +73,13 @@ const QuotePage = ({ match }) => {
             </Route>
           </>
         )}
+
+        <Redirect to='/quote/:symbol/summary' />
       </Switch>
 
       <div className='quote-news-container'>
         <h2 className='quote-sub-heading'>Breaking News</h2>
-        {isStock ? <QuoteNews symbol={symbol} /> : <QuoteGeneralNews />}
+        {quote.isStock ? <QuoteNews symbol={symbol} /> : <QuoteGeneralNews />}
       </div>
     </div>
   );
