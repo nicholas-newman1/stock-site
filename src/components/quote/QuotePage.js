@@ -10,7 +10,7 @@ import QuoteNav from './QuoteNav';
 import QuoteGeneralNews from './news/QuoteGeneralNews.js';
 import '../../css/quote/quotePage.css';
 import { QuoteContext } from '../../context/QuoteContext';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, Redirect } from 'react-router-dom';
 import { RealDataContext } from '../../context/RealDataContext';
 
 const QuotePage = ({ match }) => {
@@ -50,7 +50,7 @@ const QuotePage = ({ match }) => {
       <Quote symbol={symbol} />
       {isStock && <QuoteNav page={page} />}
       <Switch>
-        <Route exat path='/quote/:symbol/summary'>
+        <Route exact path='/quote/:symbol/summary'>
           <h2 className='quote-sub-heading'>Summary</h2>
           <QuoteSummary symbol={symbol} />
           {!isStock && (
@@ -86,6 +86,8 @@ const QuotePage = ({ match }) => {
             </Route>
           </>
         )}
+
+        <Redirect to='/quote/:symbol/summary' />
       </Switch>
 
       <div className='quote-news-container'>
