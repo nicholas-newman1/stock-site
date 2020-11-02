@@ -16,15 +16,21 @@ const QuoteChart = ({ symbol }) => {
   const [dataAvailable, setDataAvailable] = useState(true);
   const [timeframe, setTimeframe] = useState('1D');
   const [chartData, setChartData] = useState([]);
-  const [unit, setUnit] = useState('minute');
+  const [timeScaleFormat, setTimeScaleFormat] = useState('minute');
+  const [tooltipFormat, setTooltipFormat] = useState('h:mm a');
   const { realData } = useContext(RealDataContext);
 
   useEffect(() => {
-    if (timeframe === '1D') setUnit('minute');
-    if (timeframe === '5D' || timeframe === '1M') setUnit('day');
-    if (timeframe === '6M' || timeframe === 'YTD' || timeframe === '1Y')
-      setUnit('month');
-    if (timeframe === '5Y' || timeframe === 'MAX') setUnit('month');
+    if (timeframe === '1D') {
+      setTimeScaleFormat('minute');
+      setTooltipFormat('h:mm a');
+    } else if (timeframe === '5D' || timeframe === '1M') {
+      setTimeScaleFormat('day');
+      setTooltipFormat('MMM D h:mm a');
+    } else {
+      setTimeScaleFormat('month');
+      setTooltipFormat('MMM D, YYYY');
+    }
   }, [timeframe]);
 
   const fetchData = async () => {
@@ -45,7 +51,7 @@ const QuoteChart = ({ symbol }) => {
       if (endpoint === 'historical-price-full') data = [...data.historical]; // data from 'historical-price-full endpoint returns an object with a 'historical' property
       setLoading(false);
     } else {
-      data = dummyDailyData; // acts as an else for the following if statements
+      data = dummyDailyData.historical; // acts as an else for the following if statements
       if (timeframe === '1D') data = [...dummyIntradayData];
       if (timeframe === '5D') data = [...dummyFiveDayData];
       if (timeframe === '1M') data = [...dummyOneMonthData];
@@ -167,8 +173,9 @@ const QuoteChart = ({ symbol }) => {
               dayAndTime: 'MMM D h:mm: a',
             },
             // dynamic display format
-            unit,
+            unit: timeScaleFormat,
             stepSize: 10,
+            tooltipFormat,
           },
           ticks: {
             maxTicksLimit: 3,
@@ -184,7 +191,15 @@ const QuoteChart = ({ symbol }) => {
     elements: { point: { radius: 0 } },
     // show closest point on hover
     hover: { mode: 'index', intersect: false },
-    tooltips: { mode: 'index', intersect: false },
+    tooltips: {
+      mode: 'index',
+      intersect: false,
+      callbacks: {
+        // label: (tooltipItem, data) => {
+        //   console.log(tooltipItem);
+        // },
+      },
+    },
     legend: { display: false },
   };
 
