@@ -18,7 +18,6 @@ const QuotePage = ({ match }) => {
   const page = match.params.page;
   const { quote, fetchQuote } = useContext(QuoteContext);
   const { realData } = useContext(RealDataContext);
-  const [isStock, setIsStock] = useState(false);
 
   useEffect(() => {
     document.querySelector('html').scrollTop = 0;
@@ -30,30 +29,18 @@ const QuotePage = ({ match }) => {
   }, [realData]);
 
   useEffect(() => {
-    console.log('run');
-    console.log(quote.exchange);
-    setIsStock(
-      [
-        'INDEX',
-        'ETF',
-        'MUTUAL_FUND',
-        'FOREX',
-        'CRYPTO',
-        '- - - - - - -',
-      ].findIndex((item) => item === quote.exchange) === -1
-    );
+    console.log(quote.isStock);
   }, [quote]);
 
   return (
     <div className='quote-page'>
-      {console.log(isStock)}
       <Quote symbol={symbol} />
-      {isStock && <QuoteNav page={page} />}
+      {quote.isStock && <QuoteNav page={page} />}
       <Switch>
         <Route exact path='/quote/:symbol/summary'>
           <h2 className='quote-sub-heading'>Summary</h2>
           <QuoteSummary symbol={symbol} />
-          {!isStock && (
+          {!quote.isStock && (
             <>
               <h2 className='quote-sub-heading' style={{ marginTop: '1rem' }}>
                 Chart
@@ -63,7 +50,7 @@ const QuotePage = ({ match }) => {
           )}
         </Route>
 
-        {isStock && (
+        {quote.isStock && (
           <>
             <Route exact path='/quote/:symbol/chart'>
               <h2 className='quote-sub-heading'>Chart</h2>
@@ -92,13 +79,7 @@ const QuotePage = ({ match }) => {
 
       <div className='quote-news-container'>
         <h2 className='quote-sub-heading'>Breaking News</h2>
-        {['INDEX', 'ETF', 'MUTUAL_FUND', 'FOREX', 'CRYPTO'].findIndex(
-          (item) => item === quote.exchange
-        ) === -1 ? (
-          <QuoteNews symbol={symbol} />
-        ) : (
-          <QuoteGeneralNews />
-        )}
+        {quote.isStock ? <QuoteNews symbol={symbol} /> : <QuoteGeneralNews />}
       </div>
     </div>
   );
