@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Search from './Search';
 import Nav from './Nav';
@@ -10,6 +10,16 @@ import { HeaderContext } from '../../context/HeaderContext';
 
 const Header = () => {
   const { displayMobileMenu, setDisplayMobileMenu } = useContext(HeaderContext);
+
+  useEffect(() => {
+    const main = document.querySelector('main');
+    const header = document.querySelector('header');
+
+    const resizer = new ResizeObserver(() => {
+      main.style.paddingTop = `${header.getBoundingClientRect().height + 16}px`;
+    });
+    resizer.observe(header);
+  }, []);
 
   return (
     <header>

@@ -2,22 +2,30 @@ import React, { useEffect, useState, useContext } from 'react';
 import { dummyProfileData } from '../dummyData';
 import { formatPhoneNumber } from '../helpers';
 import { RealDataContext } from '../../context/RealDataContext';
+import Spinner from '../Spinner';
 import '../../css/quote/quoteProfile.css';
 
 const QuoteProfile = ({ symbol }) => {
   const [profileData, setProfileData] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [dataAvailable, setDataAvailable] = useState(false);
   const { realData } = useContext(RealDataContext);
 
   const fetchProfile = async () => {
     let data;
     if (realData) {
+      setLoading(true);
       const res = await fetch(
         `https://financialmodelingprep.com/api/v3/profile/${symbol}?apikey=${process.env.REACT_APP_FMP_KEY}`
       );
       data = await res.json();
+
+      setLoading(false);
     } else {
       data = dummyProfileData;
     }
+
+    data.length > 0 ? setDataAvailable(true) : setDataAvailable(false);
     setProfileData(data[0]);
   };
 
@@ -26,9 +34,10 @@ const QuoteProfile = ({ symbol }) => {
     //eslint-disable-next-line
   }, [realData]);
 
-  if (profileData.length === 0) {
-    return <div>Loading...</div>;
-  } else {
+  if (loading) {
+    return <Spinner />;
+  } else if (dataAvailable) {
+    console.log(profileData);
     const {
       address,
       city,
@@ -94,6 +103,8 @@ const QuoteProfile = ({ symbol }) => {
         </section>
       </div>
     );
+  } else {
+    return <h3>No Data Available</h3>;
   }
 };
 

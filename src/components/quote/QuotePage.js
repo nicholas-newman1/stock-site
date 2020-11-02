@@ -18,25 +18,35 @@ const QuotePage = ({ match }) => {
   const page = match.params.page;
   const { quote, fetchQuote } = useContext(QuoteContext);
   const { realData } = useContext(RealDataContext);
-  const [isStock, setIsStock] = useState();
+  const [isStock, setIsStock] = useState(false);
 
   useEffect(() => {
     document.querySelector('html').scrollTop = 0;
-    //eslint-disable-next-line
   }, []);
 
   useEffect(() => {
     fetchQuote(symbol);
-    setIsStock(
-      ['INDEX', 'ETF', 'MUTUAL_FUND', 'FOREX', 'CRYPTO'].findIndex(
-        (item) => item === quote.exchange
-      ) === -1
-    );
     //eslint-disable-next-line
   }, [realData]);
 
+  useEffect(() => {
+    console.log('run');
+    console.log(quote.exchange);
+    setIsStock(
+      [
+        'INDEX',
+        'ETF',
+        'MUTUAL_FUND',
+        'FOREX',
+        'CRYPTO',
+        '- - - - - - -',
+      ].findIndex((item) => item === quote.exchange) === -1
+    );
+  }, [quote]);
+
   return (
     <div className='quote-page'>
+      {console.log(isStock)}
       <Quote symbol={symbol} />
       {isStock && <QuoteNav page={page} />}
       <Switch>
@@ -55,12 +65,12 @@ const QuotePage = ({ match }) => {
 
         {isStock && (
           <>
-            <Route exat path='/quote/:symbol/chart'>
+            <Route exact path='/quote/:symbol/chart'>
               <h2 className='quote-sub-heading'>Chart</h2>
               <QuoteChart symbol={symbol} />
             </Route>
 
-            <Route exat path='/quote/:symbol/financials'>
+            <Route exact path='/quote/:symbol/financials'>
               <h2 className='quote-sub-heading'>Financials</h2>
               <QuoteFinancials symbol={symbol} />
             </Route>
@@ -80,7 +90,13 @@ const QuotePage = ({ match }) => {
 
       <div className='quote-news-container'>
         <h2 className='quote-sub-heading'>Breaking News</h2>
-        {isStock ? <QuoteNews symbol={symbol} /> : <QuoteGeneralNews />}
+        {['INDEX', 'ETF', 'MUTUAL_FUND', 'FOREX', 'CRYPTO'].findIndex(
+          (item) => item === quote.exchange
+        ) === -1 ? (
+          <QuoteNews symbol={symbol} />
+        ) : (
+          <QuoteGeneralNews />
+        )}
       </div>
     </div>
   );

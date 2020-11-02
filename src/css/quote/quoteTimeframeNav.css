@@ -1,29 +1,24 @@
-.chart-container {
-  height: 400px;
-  width: 100%;
-}
-
-.chart-timeframe {
+.timeframe {
   display: flex;
   margin-bottom: 0.5rem;
 }
 
-.chart-timeframe-btn {
+.timeframe-btn {
   cursor: pointer;
   background: none;
   border: 1px solid grey;
   padding: 0.25rem 0.5rem;
 }
 
-.chart-timeframe-btn:hover {
+.timeframe-btn:hover {
   background: #eee;
 }
 
-.chart-timeframe-btn + .chart-timeframe-btn {
+.timeframe-btn + .timeframe-btn {
   border-left: none;
 }
 
-.chart-timeframe-btn:disabled {
+.timeframe-btn:disabled {
   cursor: default;
   color: white;
   background: #148eff;
