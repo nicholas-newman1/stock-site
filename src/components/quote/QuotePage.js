@@ -4,7 +4,6 @@ import QuoteSummary from './QuoteSummary';
 import QuoteNews from './news/QuoteNews';
 import QuoteChart from './QuoteChart';
 import QuoteNav from './QuoteNav';
-import QuoteGeneralNews from './news/QuoteGeneralNews.js';
 import '../../css/quote/quotePage.css';
 import { QuoteContext } from '../../context/QuoteContext';
 import { Route, Switch, Redirect } from 'react-router-dom';
@@ -14,13 +13,9 @@ import StockRoutes from './StockRoutes';
 const QuotePage = ({ match }) => {
   const symbol = match.params.symbol;
   const page = match.params.page;
-  const {
-    fetchQuote,
-    isStock,
-    setIsStock,
-    quoteFetched,
-    setQuoteFetched,
-  } = useContext(QuoteContext);
+  const { fetchQuote, isStock, quoteFetched, setQuoteFetched } = useContext(
+    QuoteContext
+  );
   const { realData } = useContext(RealDataContext);
 
   useEffect(() => {

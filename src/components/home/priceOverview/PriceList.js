@@ -24,12 +24,6 @@ const PriceList = ({ heading, symbols }) => {
       data = [...dummyIndexData];
     }
 
-    // Check for error message
-    if (data['Error Message']) {
-      console.log(new Error('API OUT OF CALLS'));
-      data = [...dummyIndexData];
-    }
-
     setQuoteData(data);
     setLoading(false);
   };
