@@ -19,7 +19,7 @@ export const NewsProvider = (props) => {
       );
       data = await res.json();
     } else {
-      data = [...dummyNewsData.articles];
+      data = [...dummyNewsData];
     }
     setMainNewsArticle(data.shift());
     setNewsList(data);

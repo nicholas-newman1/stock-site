@@ -21279,178 +21279,125 @@ export const dummyCryptoData = {
   },
 };
 
-export const dummyNewsData = {
-  totalArticles: 1367,
-  articles: [
-    {
-      title:
-        'Applying for new COVID-19 benefits? Why you might wait a bit longer this time',
-      description:
-        'Added screening measures are being implemented in hopes of weeding out anyone who applies for the federal government’s three new COVID-19 benefits but isn’t actually eligible, a measure that comes after concerns that some individuals may have previously tried scamming the system.',
-      content:
-        'TORONTO -- Added screening measures are being implemented in hopes of weeding out anyone who applies for the federal government’s three new COVID-19 benefits but isn’t actually eligible, a measure that comes after concerns that some individuals may h... [5404 chars]',
-      url:
-        'https://www.ctvnews.ca/politics/applying-for-new-covid-19-benefits-why-you-might-wait-a-bit-longer-this-time-1.5130937',
-      image:
-        'https://www.ctvnews.ca/polopoly_fs/1.5122343.1601238172!/httpImage/image.jpg_gen/derivatives/landscape_620/image.jpg',
-      publishedAt: '2020-10-02T22:39:00Z',
-      source: {
-        name: 'CTV News',
-        url: 'https://www.ctvnews.ca',
-      },
-    },
-    {
-      title:
-        'Province imposes new COVID-19 limits on restaurants and gyms in Mississauga, Brampton and Caledon',
-      description:
-        'Ontario Premier Doug Ford announced new restrictions on restaurants, bars, banquet halls and fitness centres on Friday (Oct. 2) in three COVID-19 hot spots in the province – including Peel Region.',
-      content:
-        'Ontario Premier Doug Ford announced new restrictions on restaurants, bars, banquet halls and fitness centres on Friday (Oct. 2) in three COVID-19 hot spots in the province – including Peel Region.\nAs of 12:01 a.m. on Oct. 3, maximum occupancy at rest... [2072 chars]',
-      url:
-        'https://www.bramptonguardian.com/news-story/10215131-province-imposes-new-covid-19-limits-on-restaurants-and-gyms-in-mississauga-brampton-and-caledon/',
-      image:
-        'https://dynamicmedia.zuza.com/zz/m/original_/d/9/d921025d-9d91-4c8e-a2bf-fac81112b7fa/ET TCDSB funding2_Super_Portrait.jpg',
-      publishedAt: '2020-10-02T22:13:47Z',
-      source: {
-        name: 'Brampton Guardian',
-        url: 'https://www.bramptonguardian.com',
-      },
-    },
-    {
-      title:
-        'Flight attendant shares a tearful message on her last flight before being furloughed',
-      description:
-        '40,000 airline employees have been furloughed because of the coronavirus.',
-      content:
-        'This website uses cookies in order to enhance your experience. Please review our Privacy Policy to learn how we may use cookies and how you can change your browser settings to disable cookies. By continuing to use this website without changing your s... [43 chars]',
-      url:
-        'https://www.upworthy.com/flight-attendant-tearful-message-passengers-furlough',
-      image:
-        'https://assets.rebelmouse.io/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpbWFnZSI6Imh0dHBzOi8vYXNzZXRzLnJibC5tcy8yNDQ1NjM1MC9vcmlnaW4uanBnIiwiZXhwaXJlc19hdCI6MTYzMDQ5NDUzMH0.RXGLVTHBlPXpM_lI6OJL0PeFgD4LYvhoutB6EJRtFUI/img.jpg?width=1200&coordinates=0%2C15%2C0%2C15&height=600',
-      publishedAt: '2020-10-02T21:45:00Z',
-      source: {
-        name: 'Upworthy',
-        url: 'https://www.upworthy.com',
-      },
-    },
-    {
-      title:
-        'Crush it: Bank of Canada Governor Tiff Macklem says a crisis is no time for half measures',
-      description:
-        'In an exclusive interview, the 59-year-old discusses what he learned from tackling previous financial crises and how his career prepared him for running the central bank at this moment',
-      content:
-        'Get full access to globeandmail.com\nJust $1.99 per week for the first 24 weeks\nJust $1.99 per week for the first 24 weeks...',
-      url:
-        'https://www.theglobeandmail.com/business/article-crushing-it-bank-of-canada-governor-tiff-macklem-says-a-crisis-is-no/',
-      image:
-        'https://www.theglobeandmail.com/resizer/zl9MlWY0mozxASpjpFcfEQrEdug=/1200x0/filters:quality(80)/cloudfront-us-east-1.images.arcpublishing.com/tgam/ZV5W7ZI22ZG3VJVHLR6TZS5FPI.jpg',
-      publishedAt: '2020-10-02T21:19:17Z',
-      source: {
-        name: 'The Globe and Mail',
-        url: 'https://www.theglobeandmail.com',
-      },
-    },
-    {
-      title:
-        'North American stock markets partially recover from uncertainty over Trump COVID test',
-      description:
-        'North American stock markets partially recovered from deep early losses caused by uncertainty after U.S. President Donald Trump said he tested positive for the coronavirus.',
-      content:
-        'TORONTO -- North American stock markets partially recovered on Friday from deep early losses caused by uncertainty after U.S. President Donald Trump said he had tested positive for the coronavirus.\nMarkets nosedived after Trump tweeted that he and hi... [3273 chars]',
-      url:
-        'https://www.ctvnews.ca/business/north-american-stock-markets-partially-recover-from-uncertainty-over-trump-covid-test-1.5129640',
-      image:
-        'https://www.ctvnews.ca/polopoly_fs/1.4996181.1592925513!/httpImage/image.jpg_gen/derivatives/landscape_620/image.jpg',
-      publishedAt: '2020-10-02T20:54:00Z',
-      source: {
-        name: 'CTV News',
-        url: 'https://www.ctvnews.ca',
-      },
-    },
-    {
-      title: 'COVID-19 Cases up in Midwestern Ontario',
-      description:
-        'Your Local News Network serving London, Windsor, Chatham, Sarnia and Midwestern Ontario',
-      content:
-        'Nasal swabs in test tubes. File photo courtesy of © Can Stock Photo / ayo88.\nShare via: Facebook\nTwitter\nLinkedIn\nMore\nOn Friday, the Grey Bruce Public Health Unit reported three new cases of COVID-19 confirmed in the past 24 hours, with another case... [284 chars]',
-      url:
-        'https://blackburnnews.com/coronavirus/2020/10/02/covid-19-cases-midwestern-ontario/',
-      image:
-        'https://blackburnnews.com/wp-content/uploads/2020/06/canstockphoto81456790-400x250.jpg',
-      publishedAt: '2020-10-02T20:37:00Z',
-      source: {
-        name: 'BlackburnNews.com',
-        url: 'https://blackburnnews.com',
-      },
-    },
-    {
-      title: 'OC Transpo bus driver tests positive for COVID-19',
-      description:
-        'In a memo, Transportation Services General Manager John Manconi says the employee last worked on Sept. 24 and has been self-isolating at home since.',
-      content:
-        'OTTAWA -- An OC Transpo bus driver has tested positive for COVID-19.\nIn a memo, Transportation Services General Manager John Manconi says the employee last worked on Sept. 24 and has been self-isolating at home since.\nOC Transpo is working directly w... [409 chars]',
-      url:
-        'https://ottawa.ctvnews.ca/oc-transpo-bus-driver-tests-positive-for-covid-19-1.5130667',
-      image:
-        'https://www.ctvnews.ca/polopoly_fs/1.4463842.1560378451!/httpImage/image.jpg_gen/derivatives/landscape_620/image.jpg',
-      publishedAt: '2020-10-02T20:11:00Z',
-      source: {
-        name: 'CTV News Ottawa',
-        url: 'https://ottawa.ctvnews.ca',
-      },
-    },
-    {
-      title: 'Hudson’s Bay is closing its Downtown Winnipeg store',
-      description:
-        "The Hudson’s Bay will be closing its 'landmark' Downtown Winnipeg location in February 2021.",
-      content:
-        "WINNIPEG -- The Hudson’s Bay Company will be closing its 'landmark' Downtown Winnipeg location in February 2021.\nAccording to a statement from a spokesperson for HBC, this decision comes amid shifting consumer behaviours and changes to how and where ... [1466 chars]",
-      url:
-        'https://winnipeg.ctvnews.ca/hudson-s-bay-is-closing-its-downtown-winnipeg-store-1.5130596',
-      image:
-        'https://www.ctvnews.ca/polopoly_fs/1.5130597.1601667615!/httpImage/image.jpg_gen/derivatives/landscape_620/image.jpg',
-      publishedAt: '2020-10-02T19:30:00Z',
-      source: {
-        name: 'CTV News Winnipeg',
-        url: 'https://winnipeg.ctvnews.ca',
-      },
-    },
-    {
-      title:
-        'Masks, gloves go in the garbage, not recycling, cities tell residents',
-      description:
-        'Several Ontario cities are reminding residents to throw their disposable masks, gloves and wipes in the garbage, not the recycling bin.',
-      content:
-        'Denise Paglinawan, The Canadian Press\nSeveral Ontario cities are reminding residents to throw their disposable masks, gloves and wipes in the garbage, not the recycling bin.\nYork Region - which includes Markham, Richmond Hill and Vaughan - said resid... [2092 chars]',
-      url:
-        'https://www.cp24.com/news/masks-gloves-go-in-the-garbage-not-recycling-cities-tell-residents-1.5130594',
-      image:
-        'https://www.cp24.com/polopoly_fs/1.5130598.1601666708!/httpImage/image.jpg_gen/derivatives/landscape_620/image.jpg',
-      publishedAt: '2020-10-02T19:25:00Z',
-      source: {
-        name: "CP24 Toronto's Breaking News",
-        url: 'https://www.cp24.com',
-      },
-    },
-    {
-      title:
-        'Feds top up relief fund with $600 million to help small- and medium-sized businesses',
-      description:
-        'The federal government is adding $600 million to a fund to help small- and medium-sized businesses weather the COVID-19 pandemic, Economic Development Minister Melanie Joly said Friday.',
-      content:
-        'Jim Bronskill, The Canadian Press\nOTTAWA - The federal government is adding $600 million to a fund to help small- and medium-sized businesses weather the COVID-19 pandemic, Economic Development Minister Melanie Joly said Friday.\nThe announcement brin... [2583 chars]',
-      url:
-        'https://www.cp24.com/news/feds-top-up-relief-fund-with-600-million-to-help-small-and-medium-sized-businesses-1.5130536',
-      image:
-        'https://www.cp24.com/polopoly_fs/1.5130543.1601664679!/httpImage/image.jpg_gen/derivatives/landscape_620/image.jpg',
-      publishedAt: '2020-10-02T18:51:00Z',
-      source: {
-        name: "CP24 Toronto's Breaking News",
-        url: 'https://www.cp24.com',
-      },
-    },
-  ],
-};
+export const dummyNewsData = [
+  {
+    symbol: 'SE',
+    publishedDate: '2020-11-30 06:00:38',
+    title: 'Why You Should Buy Sea Limited Now',
+    image: 'https://cdn.snapi.dev/images/v1/u/v/free1.jpg',
+    site: 'The Dog of Wall Street',
+    text:
+      'Sea Limited or South East Asia Limited, is a well-diversified company that has its hands in many of the hottest sectors that investors are gushing over.',
+    url: 'https://thedogofwallstreet.com/se/why-you-should-buy-sea-limited-now',
+  },
+  {
+    symbol: 'TNAV',
+    publishedDate: '2020-11-03 15:44:00',
+    title:
+      'SHAREHOLDER ALERT: Levi & Korsinsky, LLP Notifies Investors of an Investigation into the Fairness of the Sale of Telenav, Inc. to V99, Inc.',
+    image: 'https://cdn.snapi.dev/images/v1/h/c/press5---l93oowtyam.jpg',
+    site: 'Newsfile Corp',
+    text:
+      'New York, New York--(Newsfile Corp. - November 3, 2020) - The following statement is being issued by Levi & Korsinsky, LLP:To: All Persons or Entities who purchased Telenav, Inc. (NASDAQ: TNAV) ("Telenav" or the "Company") stock prior to November 3, 2020.You are hereby notified that Levi & Korsinsky, LLP has commenced an investigation into the fairness of the',
+    url:
+      'https://www.newsfilecorp.com/release/67422/SHAREHOLDER-ALERT-Levi-Korsinsky-LLP-Notifies-Investors-of-an-Investigation-into-the-Fairness-of-the-Sale-of-Telenav-Inc.-to-V99-Inc.',
+  },
+  {
+    symbol: 'BLNK',
+    publishedDate: '2020-11-03 15:41:57',
+    title: 'Why Blink Charging Stock Jumped Today',
+    image:
+      'https://cdn.snapi.dev/images/v1/w/l/urlhttps3a2f2fgfoolcdncom2feditorial2fimages2f5985092fblink-lifestyle-2-scaledjpgw700opresize.jpg',
+    site: 'The Motley Fool',
+    text:
+      'The electric vehicle charging network would likely benefit if Joe Biden wins the presidency.',
+    url:
+      'https://www.fool.com/investing/2020/11/03/why-blink-charging-stock-jumped-today/',
+  },
+  {
+    symbol: 'DIA',
+    publishedDate: '2020-11-03 15:41:43',
+    title: 'U.S. Stock ETFs Rally on Hopes of an End to Political Uncertainty',
+    image:
+      'https://cdn.snapi.dev/images/v1/m/s/us-stock-etfs-rally-on-hopes-of-an-end-to-political-uncertainty-440x250.jpg',
+    site: 'ETF Trends',
+    text:
+      'U.S. markets and stock exchange traded funds jumped Tuesday as investors look to an end to a divisive presidential race, along with a robust fiscal stimulus package to follow. On Tuesday, the Invesco QQQ Trust (NASDAQ: QQQ) rose 2.0%, SPDR Dow Jones Industrial Average ETF (NYSEArca: DIA) was up 1.9%, and iShares Core S&P 500 [.',
+    url:
+      'https://www.etftrends.com/equity-etf-channel/u-s-stock-etfs-rally-hopes-of-end-to-political-uncertainty/',
+  },
+  {
+    symbol: 'BBGI',
+    publishedDate: '2020-11-03 15:41:12',
+    title:
+      'Beasley Broadcast Group, Inc. (BBGI) CEO Caroline Beasley on Q3 2020 Results - Earnings Call Transcript',
+    image: 'https://cdn.snapi.dev/images/v1/3/o/transcript26.jpg',
+    site: 'Seeking Alpha',
+    text:
+      'Beasley Broadcast Group, Inc. (BBGI) CEO Caroline Beasley on Q3 2020 Results - Earnings Call Transcript',
+    url:
+      'https://seekingalpha.com/article/4384638-beasley-broadcast-group-inc-bbgi-ceo-caroline-beasley-on-q3-2020-results-earnings-call',
+  },
+  {
+    symbol: 'CTLT',
+    publishedDate: '2020-11-03 15:41:01',
+    title:
+      'Catalent, Inc. (CTLT) CEO John Chiminski on Q1 2021 Results - Earnings Call Transcript',
+    image: 'https://cdn.snapi.dev/images/v1/s/n/transcript27.jpg',
+    site: 'Seeking Alpha',
+    text:
+      'Catalent, Inc. (CTLT) CEO John Chiminski on Q1 2021 Results - Earnings Call Transcript',
+    url:
+      'https://seekingalpha.com/article/4384637-catalent-inc-ctlt-ceo-john-chiminski-on-q1-2021-results-earnings-call-transcript',
+  },
+  {
+    symbol: 'BA',
+    publishedDate: '2020-11-03 15:40:00',
+    title: 'Boeing Reportedly Sells Yacht as Part of Cost-Cutting Campaign',
+    image:
+      'https://cdn.snapi.dev/images/v1/s/p/105830303-1554292084349rts2f2ql530x298.jpg',
+    site: 'The Motley Fool',
+    text:
+      'The vessel was used to entertain aircraft buyers and other corporate clients.',
+    url:
+      'https://www.fool.com/investing/2020/11/03/boeing-reportedly-sells-yacht-as-part-of-cost-cutt/',
+  },
+  {
+    symbol: 'VHC',
+    publishedDate: '2020-11-03 15:39:59',
+    title: 'VirnetX Takes $503M Bite Out Of Apple For Patent Infringement',
+    image:
+      'https://cdn.snapi.dev/images/v1/s/h/shutterstock-498778423-457x274.jpg',
+    site: 'PYMNTS',
+    text:
+      "There's a new development in a decades old lawsuit after a jury in Tyler, Texas, ordered Apple to pay $502.8 million in royalties for infringing on VirnetX's patented virtual private network (VPN), according to a Cult of Mac report. The original lawsuit, filed Aug. 11, 2010, alleged that Apple's FaceTime and VPN On Demand features were […]",
+    url:
+      'https://www.pymnts.com/apple/2020/virnetx-takes-503-million-dollar-apple-patent-infringement/',
+  },
+  {
+    symbol: 'OKE',
+    publishedDate: '2020-11-03 15:38:00',
+    title: 'Why ONEOK Stock Rallied More Than 11% in October',
+    image:
+      'https://cdn.snapi.dev/images/v1/q/0/urlhttps3a2f2fgfoolcdncom2feditorial2fimages2f5985162fa-twist-of-pipelines-with-a-bright-sun-shining-throughjpgw700opresize.jpg',
+    site: 'The Motley Fool',
+    text: 'A couple of factors helped fuel the pipeline stock last month.',
+    url:
+      'https://www.fool.com/investing/2020/11/03/why-oneok-stock-rallied-more-than-11-in-october/',
+  },
+  {
+    symbol: 'TSLA',
+    publishedDate: '2020-11-03 15:37:26',
+    title:
+      'Stock Market Tips: What and Where to Follow Election Results Tonight',
+    image: 'https://cdn.snapi.dev/images/v1/k/z/business-services5.jpg',
+    site: 'InvestorPlace',
+    text:
+      "Want to be an informed investor? Here is how you can follow tonight's election results and analyze the stock market impacts in real time.",
+    url:
+      'https://investorplace.com/2020/11/stock-market-tips-what-and-where-to-follow-election-results-tonight/',
+  },
+];
 
 export const dummyIndexData = [
   {
