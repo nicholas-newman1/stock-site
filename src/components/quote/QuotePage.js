@@ -1,11 +1,8 @@
-import React, { useEffect, useContext, useState } from 'react';
+import React, { useEffect, useContext } from 'react';
 import Quote from './Quote';
 import QuoteSummary from './QuoteSummary';
 import QuoteNews from './news/QuoteNews';
 import QuoteChart from './QuoteChart';
-import QuoteFinancials from './financials/QuoteFinancials';
-import QuoteProfile from './QuoteProfile';
-import QuoteValuation from './QuoteValuation';
 import QuoteNav from './QuoteNav';
 import QuoteGeneralNews from './news/QuoteGeneralNews.js';
 import '../../css/quote/quotePage.css';
@@ -17,7 +14,7 @@ import StockRoutes from './StockRoutes';
 const QuotePage = ({ match }) => {
   const symbol = match.params.symbol;
   const page = match.params.page;
-  const { quote, fetchQuote, isStock, setIsStock } = useContext(QuoteContext);
+  const { fetchQuote, isStock, setIsStock } = useContext(QuoteContext);
   const { realData } = useContext(RealDataContext);
 
   useEffect(() => {
@@ -25,6 +22,7 @@ const QuotePage = ({ match }) => {
     return () => {
       setIsStock(false);
     };
+    //eslint-disable-next-line
   }, []);
 
   useEffect(() => {
@@ -32,11 +30,8 @@ const QuotePage = ({ match }) => {
     //eslint-disable-next-line
   }, [realData]);
 
-  useEffect(() => {}, [quote]);
-
   return (
     <div className='quote-page'>
-      {console.log(quote.exchange, isStock)}
       <Quote symbol={symbol} />
       {isStock && <QuoteNav page={page} />}
       <Switch>
@@ -55,7 +50,7 @@ const QuotePage = ({ match }) => {
 
         {isStock && <StockRoutes symbol={symbol} />}
 
-        <Redirect to='/quote/:symbol/summary' />
+        {!isStock && <Redirect to='/quote/:symbol/summary' />}
       </Switch>
 
       <div className='quote-news-container'>

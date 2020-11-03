@@ -158,6 +158,7 @@ const QuoteChart = ({ symbol }) => {
 
   useEffect(() => {
     fetchData();
+    //eslint-disable-next-line
   }, [timeframe, realData]);
 
   const options = {
