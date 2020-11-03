@@ -28,11 +28,7 @@ const App = () => {
                       path='/search/:query'
                       component={SearchResultsPage}
                     />
-                    <Route
-                      exact
-                      path='/quote/:symbol/:page'
-                      component={QuotePage}
-                    />
+                    <Route exact path='/quote/:symbol' component={QuotePage} />
                   </Switch>
                 </main>
                 <Footer />

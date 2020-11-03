@@ -50,7 +50,7 @@ const PriceListItem = ({ data }) => {
   return (
     <tr className='pricelist-tr'>
       <td className='pricelist-td'>
-        <Link className='symbol-link' to={`/quote/${symbol}/summary`}>
+        <Link className='symbol-link' to={`/quote/${symbol}`}>
           {symbolText}
         </Link>
       </td>

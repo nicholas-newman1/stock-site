@@ -30,7 +30,7 @@ const SearchResults = ({ match }) => {
         <li className='result' key={symbol}>
           <div className='result-content'>
             <h2 className='result-heading'>
-              <Link className='result-link' to={`/quote/${symbol}/summary`}>
+              <Link className='result-link' to={`/quote/${symbol}`}>
                 {symbol} ({exchangeShortName})
               </Link>
             </h2>
@@ -38,7 +38,7 @@ const SearchResults = ({ match }) => {
           </div>
           <div>
             <button className='view-quote-btn'>
-              <Link className='view-quote-link' to={`/quote/${symbol}/summary`}>
+              <Link className='view-quote-link' to={`/quote/${symbol}`}>
                 View Quote
               </Link>{' '}
             </button>

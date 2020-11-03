@@ -1,24 +1,21 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import '../../css/quote/quoteNav.css';
 
-const QuoteNav = ({ page }) => {
+const QuoteNav = ({ tab, setTab }) => {
   let navItems = ['Summary', 'Chart', 'Financials', 'Profile', 'Valuation'];
   return (
     <nav className='quote-nav-container'>
       <ul className='quote-nav-ul'>
         {navItems.map((item) => (
           <li key={item} className='quote-nav-li'>
-            <Link
+            <button
               className={
-                page === item.toLowerCase()
-                  ? 'quote-nav-link active'
-                  : 'quote-nav-link'
+                tab === item ? 'quote-nav-btn active' : 'quote-nav-btn inactive'
               }
-              to={item.toLowerCase()}
+              onClick={() => setTab(item)}
             >
               {item}
-            </Link>
+            </button>
           </li>
         ))}
       </ul>
