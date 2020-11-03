@@ -8,6 +8,7 @@ export const QuoteContext = createContext();
 
 export const QuoteProvider = (props) => {
   const { realData } = useContext(RealDataContext);
+  const [isStock, setIsStock] = useState(undefined);
   const [quote, setQuote] = useState({
     // set default values to be displayed until data is returned from fetch request
     price: '----',
@@ -45,6 +46,17 @@ export const QuoteProvider = (props) => {
     // Alter the returned data to make it prettier for rendering
 
     const { price, change, changesPercentage, exchange } = data;
+    setIsStock(
+      [
+        'INDEX',
+        'ETF',
+        'MUTUAL_FUND',
+        'FOREX',
+        'CRYPTO',
+        '- - - - - - -',
+      ].findIndex((item) => item === exchange) === -1
+    );
+
     let decimals = 2;
     while (
       change !== 0 &&
@@ -75,15 +87,6 @@ export const QuoteProvider = (props) => {
       // added properties to make rendering easier
       color: change > 0 ? 'green' : 'red',
       isPositive: change > 0,
-      isStock:
-        [
-          'INDEX',
-          'ETF',
-          'MUTUAL_FUND',
-          'FOREX',
-          'CRYPTO',
-          '- - - - - - -',
-        ].findIndex((item) => item === exchange) === -1,
     };
 
     for (let key in data) {
@@ -108,6 +111,8 @@ export const QuoteProvider = (props) => {
       value={{
         quote,
         fetchQuote,
+        isStock,
+        setIsStock,
       }}
     >
       <Helmet>
