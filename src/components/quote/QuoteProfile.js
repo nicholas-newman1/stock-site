@@ -8,7 +8,6 @@ import '../../css/quote/quoteProfile.css';
 const QuoteProfile = ({ symbol }) => {
   const [profileData, setProfileData] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [dataAvailable, setDataAvailable] = useState(false);
   const { realData } = useContext(RealDataContext);
 
   const fetchProfile = async () => {
@@ -24,9 +23,7 @@ const QuoteProfile = ({ symbol }) => {
     } else {
       data = dummyProfileData;
     }
-
-    data.length > 0 ? setDataAvailable(true) : setDataAvailable(false);
-    setProfileData(data[0]);
+    setProfileData(data);
   };
 
   useEffect(() => {
@@ -36,8 +33,7 @@ const QuoteProfile = ({ symbol }) => {
 
   if (loading) {
     return <Spinner />;
-  } else if (dataAvailable) {
-    console.log(profileData);
+  } else if (profileData.length > 0) {
     const {
       address,
       city,
@@ -51,7 +47,7 @@ const QuoteProfile = ({ symbol }) => {
       fullTimeEmployees,
       description,
       ceo,
-    } = profileData;
+    } = profileData[0];
 
     return (
       <div className='quote-profile-container'>
