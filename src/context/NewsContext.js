@@ -15,10 +15,9 @@ export const NewsProvider = (props) => {
     let data;
     if (realData) {
       const res = await fetch(
-        `https://gnews.io/api/v4/top-headlines?topic=business&country=ca&lang=en&token=${process.env.REACT_APP_GNEWS_KEY}`
+        `https://financialmodelingprep.com/api/v3/stock_news?limit=10&apikey=${process.env.REACT_APP_FMP_KEY}`
       );
       data = await res.json();
-      data = data.articles;
     } else {
       data = [...dummyNewsData.articles];
     }

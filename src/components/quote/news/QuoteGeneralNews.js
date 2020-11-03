@@ -5,7 +5,7 @@ import { dummyNewsData } from '../../dummyData';
 import '../../../css/quote/quoteNews.css';
 import { RealDataContext } from '../../../context/RealDataContext';
 
-const QuoteGeneralNews = ({ symbol }) => {
+const QuoteGeneralNews = () => {
   const [newsData, setNewsData] = useState([]);
   const [loading, setLoading] = useState([]);
   const { realData } = useContext(RealDataContext);
@@ -24,6 +24,11 @@ const QuoteGeneralNews = ({ symbol }) => {
     setNewsData(data.articles);
     setLoading(false);
   };
+
+  useEffect(() => {
+    console.log('mounted news');
+    return () => console.log('unmounted news');
+  }, []);
 
   useEffect(() => {
     fetchNewsData();

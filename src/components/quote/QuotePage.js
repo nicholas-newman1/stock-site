@@ -14,13 +14,19 @@ import StockRoutes from './StockRoutes';
 const QuotePage = ({ match }) => {
   const symbol = match.params.symbol;
   const page = match.params.page;
-  const { fetchQuote, isStock, setIsStock } = useContext(QuoteContext);
+  const {
+    fetchQuote,
+    isStock,
+    setIsStock,
+    quoteFetched,
+    setQuoteFetched,
+  } = useContext(QuoteContext);
   const { realData } = useContext(RealDataContext);
 
   useEffect(() => {
     document.querySelector('html').scrollTop = 0;
     return () => {
-      setIsStock(false);
+      setQuoteFetched(false);
     };
     //eslint-disable-next-line
   }, []);
@@ -38,7 +44,7 @@ const QuotePage = ({ match }) => {
         <Route exact path='/quote/:symbol/summary'>
           <h2 className='quote-sub-heading'>Summary</h2>
           <QuoteSummary symbol={symbol} />
-          {!isStock && (
+          {quoteFetched && !isStock && (
             <>
               <h2 className='quote-sub-heading' style={{ marginTop: '1rem' }}>
                 Chart
@@ -50,12 +56,12 @@ const QuotePage = ({ match }) => {
 
         {isStock && <StockRoutes symbol={symbol} />}
 
-        {!isStock && <Redirect to='/quote/:symbol/summary' />}
+        <Redirect to='/quote/:symbol/summary' />
       </Switch>
 
       <div className='quote-news-container'>
         <h2 className='quote-sub-heading'>Breaking News</h2>
-        {isStock ? <QuoteNews symbol={symbol} /> : <QuoteGeneralNews />}
+        {quoteFetched && <QuoteNews symbol={isStock ? symbol : ''} />}
       </div>
     </div>
   );

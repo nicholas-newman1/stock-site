@@ -8,7 +8,8 @@ export const QuoteContext = createContext();
 
 export const QuoteProvider = (props) => {
   const { realData } = useContext(RealDataContext);
-  const [isStock, setIsStock] = useState(undefined);
+  const [isStock, setIsStock] = useState(false);
+  const [quoteFetched, setQuoteFetched] = useState(false);
   const [quote, setQuote] = useState({
     // set default values to be displayed until data is returned from fetch request
     price: '----',
@@ -43,9 +44,8 @@ export const QuoteProvider = (props) => {
       data = { ...dummyQuoteData[0] };
     }
 
-    // Alter the returned data to make it prettier for rendering
-
     const { price, change, changesPercentage, exchange } = data;
+
     setIsStock(
       [
         'INDEX',
@@ -56,6 +56,8 @@ export const QuoteProvider = (props) => {
         '- - - - - - -',
       ].findIndex((item) => item === exchange) === -1
     );
+
+    // Alter the returned data to make it prettier for rendering
 
     let decimals = 2;
     while (
@@ -104,6 +106,7 @@ export const QuoteProvider = (props) => {
     }
 
     setQuote(data);
+    setQuoteFetched(true);
   };
 
   return (
@@ -113,6 +116,8 @@ export const QuoteProvider = (props) => {
         fetchQuote,
         isStock,
         setIsStock,
+        quoteFetched,
+        setQuoteFetched,
       }}
     >
       <Helmet>

@@ -6,14 +6,7 @@ import { NewsContext } from '../../../context/NewsContext';
 const MainNewsItem = () => {
   const { mainNewsArticle } = useContext(NewsContext);
 
-  const {
-    source,
-    title,
-    description,
-    publishedAt,
-    url,
-    image,
-  } = mainNewsArticle;
+  const { site, title, text, publishedDate, url, image } = mainNewsArticle;
 
   return (
     <div className='main-news-item'>
@@ -27,14 +20,10 @@ const MainNewsItem = () => {
           <a href={url}>{title}</a>
         </h1>
         <p className='main-news-meta'>
-          {source.name} - <em>{getTimeAgoString(publishedAt)}</em>
+          {site} - <em>{getTimeAgoString(publishedDate)}</em>
         </p>
         <p className='main-news-description'>
-          {description.length > 150 ? (
-            <>{truncate(description, 150)}&hellip;</>
-          ) : (
-            description
-          )}
+          {text.length > 150 ? <>{truncate(text, 150)}&hellip;</> : text}
         </p>
       </div>
     </div>
