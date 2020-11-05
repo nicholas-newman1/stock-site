@@ -1,9 +1,13 @@
+.main-news-item {
+  margin-bottom: 1rem;
+}
+
 .main-news-image {
   width: 100%;
   padding-top: 50%;
   background-repeat: no-repeat;
   background-size: cover;
-  border-radius: 5px 5px 0 0;
+  //border-radius: 5px 5px 0 0;
 }
 
 .main-news-content {
@@ -11,7 +15,7 @@
   background: rgba(0, 2, 69, 0.8);
   color: white;
   padding: 1rem;
-  border-radius: 0 0 5px 5px;
+  //border-radius: 0 0 5px 5px;
 }
 
 .main-news-heading {
@@ -34,12 +38,14 @@
   margin-bottom: 0.5rem;
 }
 
-@media (max-width: 800px) {
+@media (max-width: 600px) {
   .main-news-heading {
     font-size: 1.5rem;
   }
+}
 
-  .main-news-item {
-    all: unset !important;
+@media (max-width: 400px) {
+  .main-news-heading {
+    font-size: 1.3rem;
   }
 }

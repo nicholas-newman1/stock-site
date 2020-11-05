@@ -31,12 +31,10 @@ const Home = () => {
       </Helmet>
       <div className='home-section-one'>
         {loading ? <LoadingMainNewsItem /> : <MainNewsItem />}
+        {loading ? <LoadingNewsList /> : <NewsList />}
       </div>
       <div className='home-section-two'>
         <PriceOverview />
-      </div>
-      <div className='home-section-three'>
-        {loading ? <LoadingNewsList /> : <NewsList />}
       </div>
     </div>
   );

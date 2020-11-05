@@ -21281,6 +21281,18 @@ export const dummyCryptoData = {
 
 export const dummyNewsData = [
   {
+    symbol: 'TNAV',
+    publishedDate: '2020-11-03 15:44:00',
+    title:
+      'SHAREHOLDER ALERT: Levi & Korsinsky, LLP Notifies Investors of an Investigation into the Fairness of the Sale of Telenav, Inc. to V99, Inc. Notifies Investors of an Investigation into the.',
+    image: 'https://cdn.snapi.dev/images/v1/h/c/press5---l93oowtyam.jpg',
+    site: 'Newsfile Corp',
+    text:
+      'New York, New York--(Newsfile Corp. - November 3, 2020) - The following statement is being issued by Levi & Korsinsky, LLP:To: All Persons or Entities who purchased Telenav, Inc. (NASDAQ: TNAV) ("Telenav" or the "Company") stock prior to November 3, 2020.You are hereby notified that Levi & Korsinsky, LLP has commenced an investigation into the fairness of the',
+    url:
+      'https://www.newsfilecorp.com/release/67422/SHAREHOLDER-ALERT-Levi-Korsinsky-LLP-Notifies-Investors-of-an-Investigation-into-the-Fairness-of-the-Sale-of-Telenav-Inc.-to-V99-Inc.',
+  },
+  {
     symbol: 'SE',
     publishedDate: '2020-11-30 06:00:38',
     title: 'Why You Should Buy Sea Limited Now',
@@ -21290,18 +21302,7 @@ export const dummyNewsData = [
       'Sea Limited or South East Asia Limited, is a well-diversified company that has its hands in many of the hottest sectors that investors are gushing over.',
     url: 'https://thedogofwallstreet.com/se/why-you-should-buy-sea-limited-now',
   },
-  {
-    symbol: 'TNAV',
-    publishedDate: '2020-11-03 15:44:00',
-    title:
-      'SHAREHOLDER ALERT: Levi & Korsinsky, LLP Notifies Investors of an Investigation into the Fairness of the Sale of Telenav, Inc. to V99, Inc.',
-    image: 'https://cdn.snapi.dev/images/v1/h/c/press5---l93oowtyam.jpg',
-    site: 'Newsfile Corp',
-    text:
-      'New York, New York--(Newsfile Corp. - November 3, 2020) - The following statement is being issued by Levi & Korsinsky, LLP:To: All Persons or Entities who purchased Telenav, Inc. (NASDAQ: TNAV) ("Telenav" or the "Company") stock prior to November 3, 2020.You are hereby notified that Levi & Korsinsky, LLP has commenced an investigation into the fairness of the',
-    url:
-      'https://www.newsfilecorp.com/release/67422/SHAREHOLDER-ALERT-Levi-Korsinsky-LLP-Notifies-Investors-of-an-Investigation-into-the-Fairness-of-the-Sale-of-Telenav-Inc.-to-V99-Inc.',
-  },
+
   {
     symbol: 'BLNK',
     publishedDate: '2020-11-03 15:41:57',

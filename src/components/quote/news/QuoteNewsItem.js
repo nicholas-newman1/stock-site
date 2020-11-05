@@ -10,9 +10,9 @@ const QuoteNewsItem = ({ newsItem }) => {
     let resizer = new ResizeObserver(() => {
       if (window.innerWidth <= 400 || window.screen.width <= 400) {
         setTruncateLength(50);
-      } else if (window.innerWidth <= 600 || window.screen.width <= 900) {
+      } else if (window.innerWidth <= 600 || window.screen.width <= 600) {
         setTruncateLength(100);
-      } else if (window.innerWidth <= 1000 || window.screen.width <= 900) {
+      } else if (window.innerWidth <= 1000 || window.screen.width <= 1000) {
         setTruncateLength(200);
       } else {
         setTruncateLength(150);
