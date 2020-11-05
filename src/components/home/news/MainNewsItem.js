@@ -4,10 +4,6 @@ import { getTimeAgoString, truncate } from '../../helpers';
 import { NewsContext } from '../../../context/NewsContext';
 
 const MainNewsItem = () => {
-  const { mainNewsArticle } = useContext(NewsContext);
-
-  const { site, title, text, publishedDate, url, image } = mainNewsArticle;
-
   const [descriptionLength, setDescriptionLength] = useState(150);
   const [titleLength, setTitleLength] = useState(120);
 
@@ -39,6 +35,9 @@ const MainNewsItem = () => {
       resizer.unobserve(document.querySelector('html'));
     };
   }, []);
+
+  const { mainNewsArticle } = useContext(NewsContext);
+  const { site, title, text, publishedDate, url, image } = mainNewsArticle;
 
   return (
     <div className='main-news-item'>

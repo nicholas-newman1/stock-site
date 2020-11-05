@@ -3,8 +3,6 @@ import '../../../css/home/news/newsli.css';
 import { getTimeAgoString, truncate } from '../../helpers';
 
 const NewsListItem = ({ article }) => {
-  const { site, title, text, publishedDate, url, image } = article;
-
   const [descriptionLength, setDescriptionLength] = useState(150);
   const [titleLength, setTitleLength] = useState(120);
 
@@ -36,6 +34,8 @@ const NewsListItem = ({ article }) => {
       resizer.unobserve(document.querySelector('html'));
     };
   }, []);
+
+  const { site, title, text, publishedDate, url, image } = article;
 
   return (
     <li className='newsli-item'>

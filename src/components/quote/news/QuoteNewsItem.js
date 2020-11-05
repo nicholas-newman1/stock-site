@@ -4,7 +4,6 @@ import '../../../css/quote/quoteNewsItem.css';
 
 const QuoteNewsItem = ({ newsItem }) => {
   const [truncateLength, setTruncateLength] = useState(150);
-  const { image, url, title, publishedDate, site, text } = newsItem;
 
   useEffect(() => {
     let resizer = new ResizeObserver(() => {
@@ -24,6 +23,8 @@ const QuoteNewsItem = ({ newsItem }) => {
       resizer.unobserve(document.querySelector('html'));
     };
   }, []);
+
+  const { image, url, title, publishedDate, site, text } = newsItem;
 
   return (
     <li className='quote-news-item'>
