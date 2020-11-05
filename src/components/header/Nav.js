@@ -1,11 +1,8 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
-import { HeaderContext } from '../../context/HeaderContext';
 import '../../css/header/nav.css';
 
-const Nav = () => {
-  const { setDisplayMobileMenu } = useContext(HeaderContext);
-
+const Nav = ({ setToggleNav }) => {
   const links = [
     'Home',
     'News',
@@ -22,7 +19,7 @@ const Nav = () => {
           <Link
             className='nav-link'
             to={text === 'Home' ? '/' : `/${text.toLowerCase()}`}
-            onClick={() => setDisplayMobileMenu(false)}
+            onClick={() => setToggleNav(false)}
           >
             {text}
           </Link>

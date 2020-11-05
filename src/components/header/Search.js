@@ -1,12 +1,11 @@
-import React, { useContext } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import '../../css/header/search.css';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { HeaderContext } from '../../context/HeaderContext';
 
-const Search = () => {
-  const { text, setText, setDisplayMobileMenu } = useContext(HeaderContext);
+const Search = ({ setToggleNav }) => {
+  const [text, setText] = useState('');
 
   return (
     <form className='search-form'>
@@ -26,7 +25,7 @@ const Search = () => {
         to={`/search/${text}`}
         onClick={() => {
           setText('');
-          setDisplayMobileMenu(false);
+          setToggleNav(false);
         }}
       >
         <button className='search-btn' type='submit' aria-label='search button'>

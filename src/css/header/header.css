@@ -3,6 +3,7 @@
 }
 
 header {
+  padding-top: 0.5rem;
   position: fixed;
   top: 0;
   width: 100%;
@@ -11,17 +12,9 @@ header {
   z-index: 100;
 }
 
-.header-bar-primary {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0.5rem 0;
-}
-
-.header-bar-secondary {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+.header {
+  display: grid;
+  grid-template-columns: auto auto auto;
 }
 
 .header-logo {
@@ -32,11 +25,21 @@ header {
   text-transform: uppercase;
 }
 
+.header-nav-container {
+  grid-column: 1 / 4;
+}
+
 .header-logo:hover {
   color: #148eff;
 }
 
+.header-watchlist-container {
+  display: flex;
+  justify-content: flex-end;
+}
+
 .header-watchlist-link {
+  display: inline-block;
   text-decoration: none;
   color: #006acc;
   border-radius: 3px;
@@ -52,26 +55,29 @@ header {
   cursor: pointer;
 }
 
+.header-hamburger {
+  display: none;
+}
+
 @media (max-width: 700px) {
-  .mobile-header {
-    display: block;
+  .header-logo {
+    grid-column: 1;
   }
 
-  .desktop-header {
-    display: none;
-  }
-
-  .header-bar-secondary {
-    display: block;
+  .header-search-container {
+    grid-column: 1/4;
   }
 
   .header-hamburger {
+    grid-row: 1;
+    grid-column: 3;
+    display: inline-block;
     cursor: pointer;
     font-size: 1.5rem;
+    margin-left: auto;
   }
 
-  .header-watchlist-link {
+  .header-watchlist-container {
     display: inline-block;
-    margin-bottom: 0.5rem;
   }
 }
