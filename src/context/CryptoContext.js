@@ -8,7 +8,7 @@ export const CryptoProvider = (props) => {
   const { realData } = useContext(RealDataContext);
   const [cryptoData, setCryptoData] = useState([]);
   const [page, setPage] = useState(0);
-  const [resultsPerPage, setResultsPerPage] = useState(20);
+  const [resultsPerPage, setResultsPerPage] = useState(15);
   const [pageBtns, setPageBtns] = useState();
   const [loading, setLoading] = useState(false);
 

@@ -1,5 +1,6 @@
 import React, { useEffect, useContext } from 'react';
 import { CryptoContext } from '../../context/CryptoContext';
+import '../../css/crypto/cryptoTableNav.css';
 
 const CryptoTableNav = () => {
   const {
@@ -34,13 +35,13 @@ const CryptoTableNav = () => {
   const onFirstPage = page !== 0;
 
   return (
-    <>
+    <div className='crypto-table-nav-container'>
       <button
         className='crypto-page-btn'
         onClick={() => setPage((prevPage) => prevPage - 1)}
         disabled={onFirstPage ? '' : 'disabled'}
       >
-        Prev Page
+        {'< '}Prev Page
       </button>
 
       {pageBtns}
@@ -50,9 +51,9 @@ const CryptoTableNav = () => {
         onClick={() => setPage((prevPage) => prevPage + 1)}
         disabled={onLastPage ? '' : 'disabled'}
       >
-        Next Page
+        Next Page {' >'}
       </button>
-    </>
+    </div>
   );
 };
 

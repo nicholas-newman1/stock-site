@@ -101,7 +101,7 @@ export const QuoteProvider = (props) => {
       // replace long numbers with a shortned version
       data = {
         ...data,
-        [key]: shortenNumber(data[key], decimals),
+        [key]: shortenNumber(data[key], decimals, true),
       };
     }
 

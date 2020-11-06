@@ -1,0 +1,19 @@
+.crypto-table-nav-container {
+  margin-bottom: 0.5rem;
+}
+
+.crypto-page-btn {
+  padding: 0.5em 0.75em;
+  cursor: pointer;
+  border: none;
+  background: #ddd;
+}
+
+.crypto-page-btn + .crypto-page-btn {
+  margin-left: 1px;
+}
+
+.crypto-page-btn:disabled {
+  background: #bbb;
+  cursor: default;
+}

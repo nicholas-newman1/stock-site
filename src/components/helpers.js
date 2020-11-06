@@ -26,39 +26,29 @@ export const formatAMPM = (timestamp) => {
   return strTime;
 };
 
-export const shortenNumber = (number, decimals = 2) => {
+export const shortenNumber = (number, decimals = 2, trailingZeros = false) => {
   // if value is not a number, return it unaltered
   if (typeof number !== 'number') return number;
 
   // divide by either a trillion, billion, or million, and add the respective letter (T,B,M)
-  // toFixed to round to 4 decimals
-  // parseFloat to remove any trailing 0's that toFixed might add
-  // if the number is between +million and -million, toLocaleString will add commas where appropriate
+  // toLocaleString formats number to be more readable
 
-  let newNumber;
+  const options = {
+    minimumSignificantDigits: decimals,
+    maximumSignificantDigits: decimals,
+  };
+
   if (number >= 1000000000000 || number <= -1000000000000) {
-    newNumber = `${(number / 1000000000000).toLocaleString(undefined, {
-      minimumSignificantDigits: decimals,
-      maximumSignificantDigits: decimals,
-    })}T`;
+    return `${(number / 1000000000000).toLocaleString(undefined, options)}T`;
   } else if (number >= 1000000000 || number <= -1000000000) {
-    newNumber = `${(number / 1000000000).toLocaleString(undefined, {
-      minimumSignificantDigits: decimals,
-      maximumSignificantDigits: decimals,
-    })}B`;
+    return `${(number / 1000000000).toLocaleString(undefined, options)}B`;
   } else if (number >= 1000000 || number <= -1000000) {
-    newNumber = `${(number / 1000000).toLocaleString(undefined, {
-      minimumSignificantDigits: decimals,
-      maximumSignificantDigits: decimals,
-    })}M`;
+    return `${(number / 1000000).toLocaleString(undefined, options)}M`;
   } else {
-    newNumber = number.toLocaleString(undefined, {
-      maximumFractionDigits: decimals,
-      minimumFractionDigits: decimals,
-    });
+    return trailingZeros
+      ? number.toFixed(decimals)
+      : parseFloat(number.toFixed(decimals)).toLocaleString();
   }
-
-  return newNumber;
 };
 
 export const formatPhoneNumber = (phoneNumberString) => {

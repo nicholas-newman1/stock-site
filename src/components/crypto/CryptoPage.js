@@ -4,6 +4,7 @@ import CryptoTableNav from './CryptoTableNav';
 import CryptoTableOptions from './CryptoTableOptions';
 import { CryptoContext } from '../../context/CryptoContext';
 import Spinner from '../Spinner';
+import '../../css/crypto/cryptoPage.css';
 
 const CryptoPage = () => {
   const { fetchCryptoData, cryptoData, loading } = useContext(CryptoContext);
@@ -18,8 +19,8 @@ const CryptoPage = () => {
   ) : cryptoData.length > 0 ? (
     <>
       <h1 className='crypto-heading'>Cryptocurrencies</h1>
-      <CryptoTable />
       <CryptoTableNav />
+      <CryptoTable />
       <CryptoTableOptions />
     </>
   ) : (
