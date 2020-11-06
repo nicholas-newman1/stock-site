@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import CryptoTableRow from './CryptoTableRow';
 import { CryptoContext } from '../../context/CryptoContext';
 
 const CryptoTable = () => {
@@ -22,24 +23,8 @@ const CryptoTable = () => {
       <tbody>
         {cryptoData.map((item, i) => {
           const itemInRange = i <= offset + resultsPerPage - 1 && i >= offset;
-          const color =
-            item.change > 0 ? 'green' : item.change < 0 ? '#de0e00' : 'black';
           return (
-            itemInRange && (
-              <tr key={item.symbol} className='crypto-tr'>
-                <td className='crypto-td'>{item.symbol}</td>
-                <td className='crypto-td'>{item.name}</td>
-                <td className='crypto-td'>{item.price}</td>
-                <td className='crypto-td' style={{ color }}>
-                  {item.change}
-                </td>
-                <td className='crypto-td' style={{ color }}>
-                  {item.changesPercentage}
-                </td>
-                <td className='crypto-td'>{item.marketCap}</td>
-                <td className='crypto-td'>{item.volume}</td>
-              </tr>
-            )
+            itemInRange && <CryptoTableRow key={item.symbol} item={item} />
           );
         })}
       </tbody>
