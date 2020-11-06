@@ -8,6 +8,7 @@ const CryptoTableOptions = () => {
 
   useEffect(() => {
     if (page !== 0) setPage(0);
+    //eslint-disable-next-line
   }, [resultsPerPage]);
 
   return (

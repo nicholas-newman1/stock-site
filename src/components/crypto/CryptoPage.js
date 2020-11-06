@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from 'react';
+import React, { useEffect, useContext } from 'react';
 import CryptoTable from './CryptoTable';
 import CryptoTableNav from './CryptoTableNav';
 import CryptoTableOptions from './CryptoTableOptions';

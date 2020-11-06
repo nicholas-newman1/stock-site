@@ -27,6 +27,7 @@ const CryptoTableNav = () => {
       );
     }
     setPageBtns(pageBtns);
+    //eslint-disable-next-line
   }, [cryptoData, page, resultsPerPage]);
 
   const onLastPage = cryptoData.length - page * resultsPerPage > resultsPerPage;
