@@ -4,7 +4,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.truncate = truncate;
-exports.formatData = exports.formatPhoneNumber = exports.shortenNumber = exports.formatAMPM = exports.getTimeAgoString = void 0;
+exports.sortData = exports.formatData = exports.formatPhoneNumber = exports.shortenNumber = exports.formatAMPM = exports.getTimeAgoString = void 0;
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
@@ -98,3 +98,16 @@ var formatData = function formatData(data) {
 };
 
 exports.formatData = formatData;
+
+var sortData = function sortData(data, property, reverse) {
+  var compare = function compare(a, b) {
+    var comparison = 0;
+    if (a[property] < b[property]) comparison = 1;
+    if (a[property] > b[property]) comparison = -1;
+    return reverse ? comparison * -1 : comparison;
+  };
+
+  data.sort(compare);
+};
+
+exports.sortData = sortData;

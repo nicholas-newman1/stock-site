@@ -1,6 +1,7 @@
 import React, { createContext, useState, useContext } from 'react';
 import { RealDataContext } from './RealDataContext';
 import { dummyCryptoData } from '../components/dummyData';
+import { sortData } from '../components/helpers';
 
 export const CryptoContext = createContext();
 
@@ -13,17 +14,27 @@ export const CryptoProvider = (props) => {
   const [loading, setLoading] = useState(false);
 
   const fetchCryptoData = async () => {
+    let data;
     if (realData) {
       setLoading(true);
       const res = await fetch(
         `https://financialmodelingprep.com/api/v3/quotes/crypto?apikey=${process.env.REACT_APP_FMP_KEY}`
       );
-      const data = await res.json();
-      setCryptoData(data);
+      data = await res.json();
       setLoading(false);
     } else {
-      setCryptoData(dummyCryptoData);
+      data = dummyCryptoData;
     }
+    sortData(data, 'marketCap');
+    setCryptoData(data);
+  };
+
+  const sortCryptoData = (property, reverse) => {
+    setCryptoData((prevData) => {
+      const sortedData = [...prevData];
+      sortData(sortedData, property, reverse);
+      return sortedData;
+    });
   };
 
   return (
@@ -31,6 +42,7 @@ export const CryptoProvider = (props) => {
       value={{
         fetchCryptoData,
         cryptoData,
+        sortCryptoData,
         page,
         setPage,
         resultsPerPage,
