@@ -1,8 +1,8 @@
 import React, { useEffect, useState, useContext } from 'react';
-import QuoteNewsItem from './QuoteNewsItem';
-import QuoteNewsLoading from './QuoteNewsLoading';
-import { dummyStockNews } from '../../dummyData';
-import '../../../css/quote/quoteNews.css';
+import QuoteNewsItem from './BottomNewsItem';
+import QuoteNewsLoading from './BottomNewsLoading';
+import { dummyStockNews } from '../../../dummyData';
+import '../../../css/global/bottomNews/bottomNews.css';
 import { RealDataContext } from '../../../context/RealDataContext';
 
 const QuoteNews = ({ symbol }) => {
@@ -15,7 +15,9 @@ const QuoteNews = ({ symbol }) => {
     let data;
     if (realData) {
       const res = await fetch(
-        `https://financialmodelingprep.com/api/v3/stock_news?tickers=${symbol}&limit=10&apikey=${process.env.REACT_APP_FMP_KEY}`
+        `https://financialmodelingprep.com/api/v3/stock_news?tickers=${
+          symbol ? symbol : ''
+        }&limit=10&apikey=${process.env.REACT_APP_FMP_KEY}`
       );
       data = await res.json();
     } else {
@@ -30,14 +32,18 @@ const QuoteNews = ({ symbol }) => {
     //eslint-disable-next-line
   }, [realData]);
 
-  return loading ? (
-    <QuoteNewsLoading />
-  ) : (
-    <ul className='quote-news-ul'>
-      {newsData.map((newsItem, i) => (
-        <QuoteNewsItem key={i} newsItem={newsItem} />
-      ))}
-    </ul>
+  return (
+    <div className='bottom-news-container'>
+      {loading ? (
+        <QuoteNewsLoading />
+      ) : (
+        <ul className='bottom-news-ul'>
+          {newsData.map((newsItem, i) => (
+            <QuoteNewsItem key={i} newsItem={newsItem} />
+          ))}
+        </ul>
+      )}
+    </div>
   );
 };
 

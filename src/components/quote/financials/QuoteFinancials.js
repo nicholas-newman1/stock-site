@@ -3,8 +3,8 @@ import IncomeStatement from './IncomeStatement';
 import BalanceSheet from './BalanceSheet';
 import CashFlow from './CashFlow';
 import QuoteFinancialsNav from './QuoteFinancialsNav';
-import Spinner from '../../Spinner';
-import { shortenNumber } from '../../helpers';
+import Spinner from '../../global/Spinner';
+import { shortenNumber } from '../../../helpers';
 import {
   dummyAnnualIncomeStatement,
   dummyQuarterlyIncomeStatement,
@@ -12,7 +12,7 @@ import {
   dummyQuarterlyBalanceSheet,
   dummyAnnualCashFlow,
   dummyQuarterlyCashFlow,
-} from '../../dummyData';
+} from '../../../dummyData';
 import { RealDataContext } from '../../../context/RealDataContext';
 import '../../../css/quote/quoteFinancials.css';
 

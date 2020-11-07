@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import LoadingPriceList from './LoadingPriceList';
 import PriceListItem from './PriceListItem';
 import { Link } from 'react-router-dom';
-import { dummyIndexData } from '../../dummyData';
+import { dummyIndexData } from '../../../dummyData';
 import { RealDataContext } from '../../../context/RealDataContext';
 
 const PriceList = ({ heading, symbols }) => {

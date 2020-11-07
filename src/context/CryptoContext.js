@@ -1,7 +1,7 @@
 import React, { createContext, useState, useContext } from 'react';
 import { RealDataContext } from './RealDataContext';
-import { dummyCryptoData } from '../components/dummyData';
-import { sortData } from '../components/helpers';
+import { dummyCryptoData } from '../dummyData';
+import { sortData } from '../helpers';
 
 export const CryptoContext = createContext();
 

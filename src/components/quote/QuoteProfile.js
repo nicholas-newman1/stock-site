@@ -1,8 +1,8 @@
 import React, { useEffect, useState, useContext } from 'react';
-import { dummyProfileData } from '../dummyData';
-import { formatPhoneNumber } from '../helpers';
+import { dummyProfileData } from '../../dummyData';
+import { formatPhoneNumber } from '../../helpers';
 import { RealDataContext } from '../../context/RealDataContext';
-import Spinner from '../Spinner';
+import Spinner from '../global/Spinner';
 import '../../css/quote/quoteProfile.css';
 
 const QuoteProfile = ({ symbol }) => {

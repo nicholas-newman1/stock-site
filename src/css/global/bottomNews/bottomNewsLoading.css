@@ -1,0 +1,14 @@
+.bottom-news-loading-container {
+  margin-top: 1rem;
+  width: 100%;
+  background: #ddd;
+  padding: 1rem;
+  border-radius: 10px;
+}
+
+.bottom-news-loading-div {
+  width: 30%;
+  padding-top: 25%;
+  background: #eee;
+  border-radius: 10px;
+}

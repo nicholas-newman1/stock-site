@@ -1,5 +1,5 @@
 import React from 'react';
-import { shortenNumber } from '../helpers';
+import { shortenNumber } from '../../helpers';
 
 const CryptoTableRow = ({ item, index }) => {
   let {

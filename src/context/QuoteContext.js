@@ -1,6 +1,6 @@
 import React, { createContext, useState, useContext } from 'react';
-import { dummyQuoteData } from '../components/dummyData';
-import { shortenNumber } from '../components/helpers';
+import { dummyQuoteData } from '../dummyData';
+import { shortenNumber } from '../helpers';
 import { RealDataContext } from './RealDataContext';
 import { Helmet } from 'react-helmet-async';
 

@@ -7,9 +7,9 @@ import {
   dummyFiveDayData,
   dummyOneMonthData,
   dummyDailyData,
-} from '../dummyData';
+} from '../../dummyData';
 import { RealDataContext } from '../../context/RealDataContext';
-import Spinner from '../Spinner';
+import Spinner from '../global/Spinner';
 
 const QuoteChart = ({ symbol }) => {
   const [loading, setLoading] = useState(false);

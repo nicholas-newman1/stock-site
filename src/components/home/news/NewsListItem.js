@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import '../../../css/home/news/newsli.css';
-import { getTimeAgoString, truncate } from '../../helpers';
+import { getTimeAgoString, truncate } from '../../../helpers';
 
 const NewsListItem = ({ article }) => {
   const [descriptionLength, setDescriptionLength] = useState(150);

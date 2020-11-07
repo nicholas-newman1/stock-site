@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import Spinner from './Spinner';
+import Spinner from './global/Spinner';
 import '../css/searchResults.css';
 
 const SearchResults = ({ match }) => {

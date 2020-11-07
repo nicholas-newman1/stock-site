@@ -1,12 +1,11 @@
 import React, { useEffect, useContext, useState } from 'react';
 import Quote from './Quote';
 import QuoteSummary from './QuoteSummary';
-import QuoteNews from './news/QuoteNews';
+import QuoteNews from '../global/bottomNews/BottomNews';
 import QuoteChart from './QuoteChart';
 import QuoteProfile from './QuoteProfile';
 import QuoteValuation from './QuoteValuation';
 import QuoteNav from './QuoteNav';
-import '../../css/quote/quotePage.css';
 import { QuoteContext } from '../../context/QuoteContext';
 import { RealDataContext } from '../../context/RealDataContext';
 import QuoteFinancials from './financials/QuoteFinancials';
@@ -48,9 +47,7 @@ const QuotePage = ({ match }) => {
         </>
       )}
 
-      <div className='quote-news-container'>
-        {quoteFetched && <QuoteNews symbol={isStock ? symbol : ''} />}
-      </div>
+      {quoteFetched && <QuoteNews symbol={isStock ? symbol : ''} />}
     </div>
   );
 };

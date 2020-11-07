@@ -6,9 +6,9 @@ import {
   dummyAnnualValuationData,
   dummyQuarterlyValuationData,
   dummyTTMValuationData,
-} from '../dummyData';
+} from '../../dummyData';
 import { RealDataContext } from '../../context/RealDataContext';
-import { formatData } from '../helpers';
+import { formatData } from '../../helpers';
 
 const QuoteValuation = ({ symbol }) => {
   const { realData } = useContext(RealDataContext);

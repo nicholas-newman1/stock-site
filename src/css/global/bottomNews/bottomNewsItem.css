@@ -1,40 +1,40 @@
-.quote-news-item {
+.bottom-news-item {
   display: flex;
   justify-content: space-between;
   margin-bottom: 1rem;
   background: #eee;
 }
 
-.quote-news-image-container {
+.bottom-news-image-container {
   width: 30%;
 }
 
-.quote-news-image {
+.bottom-news-image {
   width: 100%;
   object-fit: cover;
   height: 100%;
 }
 
-.quote-news-content {
+.bottom-news-content {
   width: 69%;
   padding: 0.5rem;
 }
 
-.quote-news-heading {
+.bottom-news-heading {
   font-size: 1rem;
   margin-bottom: 0.25rem;
 }
 
-.quote-news-link {
+.bottom-news-link {
   color: #003487;
   text-decoration: none;
 }
 
-.quote-news-link:hover {
+.bottom-news-link:hover {
   color: #006acc;
 }
 
-.quote-news-meta {
+.bottom-news-meta {
   color: #555;
   font-size: 0.9rem;
   margin-bottom: 0.75rem;

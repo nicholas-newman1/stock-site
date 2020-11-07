@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { getTimeAgoString, truncate } from '../../helpers';
-import '../../../css/quote/quoteNewsItem.css';
+import { getTimeAgoString, truncate } from '../../../helpers';
+import '../../../css/global/bottomNews/bottomNewsItem.css';
 
 const QuoteNewsItem = ({ newsItem }) => {
   const [truncateLength, setTruncateLength] = useState(150);
@@ -27,19 +27,19 @@ const QuoteNewsItem = ({ newsItem }) => {
   const { image, url, title, publishedDate, site, text } = newsItem;
 
   return (
-    <li className='quote-news-item'>
-      <div className='quote-news-image-container'>
-        <img className='quote-news-image' src={image} alt='' />
+    <li className='bottom-news-item'>
+      <div className='bottom-news-image-container'>
+        <img className='bottom-news-image' src={image} alt='' />
       </div>
 
-      <div className='quote-news-content'>
-        <h2 className='quote-news-heading'>
-          <a className='quote-news-link' href={url}>
+      <div className='bottom-news-content'>
+        <h2 className='bottom-news-heading'>
+          <a className='bottom-news-link' href={url}>
             {title}
           </a>
         </h2>
 
-        <p className='quote-news-meta'>
+        <p className='bottom-news-meta'>
           {site.replace(/(^\w+:|^)\/\//, '').replace(/www./, '')} -{' '}
           <em>{getTimeAgoString(publishedDate)}</em>
         </p>

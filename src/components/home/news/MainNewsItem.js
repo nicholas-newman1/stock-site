@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import '../../../css/home/news/mainNewsItem.css';
-import { getTimeAgoString, truncate } from '../../helpers';
+import { getTimeAgoString, truncate } from '../../../helpers';
 import { NewsContext } from '../../../context/NewsContext';
 
 const MainNewsItem = () => {
