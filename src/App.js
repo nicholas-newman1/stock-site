@@ -5,6 +5,8 @@ import HomePage from './components/home/HomePage';
 import QuotePage from './components/quote/QuotePage';
 import SearchResultsPage from './components/SearchResultsPage';
 import CryptoPage from './components/crypto/CryptoPage';
+import TablePage from './components/global/tablePage/TablePage';
+import NotFound from './components/NotFound';
 import Footer from './components/Footer';
 import { NewsProvider } from './context/NewsContext';
 import { QuoteProvider } from './context/QuoteContext';
@@ -35,6 +37,8 @@ const App = () => {
                       path='/cryptocurrencies'
                       component={CryptoPage}
                     />
+                    <Route exact path='/forex' component={TablePage} />
+                    <Route component={NotFound} />
                   </Switch>
                 </main>
                 <Footer />

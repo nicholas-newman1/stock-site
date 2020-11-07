@@ -1,6 +1,6 @@
 import React, { createContext, useState, useContext } from 'react';
 import { RealDataContext } from './RealDataContext';
-import { dummyCryptoData } from '../dummyData';
+import { dummyCryptoData, dummyForexData } from '../dummyData';
 import { sortData } from '../helpers';
 
 export const CryptoContext = createContext();
@@ -10,7 +10,6 @@ export const CryptoProvider = (props) => {
   const [cryptoData, setCryptoData] = useState([]);
   const [page, setPage] = useState(0);
   const [resultsPerPage, setResultsPerPage] = useState(15);
-  const [pageBtns, setPageBtns] = useState();
   const [loading, setLoading] = useState(false);
 
   const fetchCryptoData = async () => {
@@ -47,8 +46,6 @@ export const CryptoProvider = (props) => {
         setPage,
         resultsPerPage,
         setResultsPerPage,
-        pageBtns,
-        setPageBtns,
         loading,
       }}
     >

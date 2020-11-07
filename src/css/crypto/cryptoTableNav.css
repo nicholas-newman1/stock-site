@@ -17,3 +17,7 @@
   background: #bbb;
   cursor: default;
 }
+
+.crypto-page-btn:hover {
+  background: #ccc;
+}
