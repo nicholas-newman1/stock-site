@@ -1,9 +1,9 @@
 import React from 'react';
 
-const CryptoSortArrow = ({ style }) => {
+const TableSortArrow = ({ style }) => {
   return (
     <svg
-      className='crypto-sort-arrow'
+      className='table-sort-arrow'
       style={style}
       xmlns='http://www.w3.org/2000/svg'
       viewBox='0 0 24 24'
@@ -13,4 +13,4 @@ const CryptoSortArrow = ({ style }) => {
   );
 };
 
-export default CryptoSortArrow;
+export default TableSortArrow;

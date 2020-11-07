@@ -1,4 +1,5 @@
-.crypto-heading {
+.table-heading {
+  text-transform: capitalize;
   position: relative;
   font-size: 2rem;
   font-weight: 400;
@@ -6,7 +7,7 @@
   margin-bottom: 1rem;
 }
 
-.crypto-heading::after {
+.table-heading::after {
   content: '';
   position: absolute;
   top: 100%;
@@ -14,10 +15,4 @@
   background: #006acc;
   height: 0.15em;
   width: 70%;
-}
-
-.crypto-news-container {
-  margin-top: 1rem;
-  border-top: 1px solid #ccc;
-  padding-top: 1rem;
 }

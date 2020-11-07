@@ -1,4 +1,4 @@
-.crypto-table {
+.table {
   display: block;
   overflow-x: auto;
   border-spacing: 0;
@@ -6,49 +6,48 @@
   font-size: 0.875rem;
 }
 
-.crypto-sort-arrow {
+.table-sort-arrow {
   width: 10px;
   height: 10px;
   margin-left: 4px;
 }
 
-.crypto-th {
+.table-th {
   border-bottom: 1px solid #ccc;
   border-right: 1px solid #ccc;
   border-top: 1px solid #ccc;
 }
 
-.crypto-th-btn {
+.table-th-btn {
   background: none;
   border: none;
   font-weight: 700;
   cursor: pointer;
 }
 
-.crypto-th-btn:focus {
+.table-th-btn:focus {
   border: none;
   outline: none;
   text-decoration: underline;
 }
 
-.crypto-th-btn:hover {
+.table-th-btn:hover {
   text-decoration: underline;
 }
 
-.crypto-td {
-  text-align: center;
+.table-td {
   border-bottom: 1px solid #ccc;
   border-right: 1px solid #ccc;
   font-size: 0.875rem;
 }
 
-.crypto-thead .crypto-td-sticky,
-.crypto-th-sticky {
+.table-thead .table-td-sticky,
+.table-th-sticky {
   border-top: 1px solid #ccc;
 }
 
-.crypto-td-sticky,
-.crypto-th-sticky {
+.table-td-sticky,
+.table-th-sticky {
   border-left: 1px solid #ccc;
   border-bottom: 1px solid #ccc;
   border-right: 1px solid #ccc;
@@ -57,13 +56,12 @@
   background: white;
 }
 
-.crypto-td-sticky {
+.table-td-sticky {
   font-weight: 400;
-  text-align: left;
 }
 
-.crypto-td-sticky:after,
-.crypto-th-sticky:after {
+.table-td-sticky:after,
+.table-th-sticky:after {
   content: '';
   height: 100%;
   position: absolute;
@@ -73,25 +71,28 @@
   right: -10px;
 }
 
-.crypto-th,
-.crypto-td-sticky,
-.crypto-td {
+.table-th,
+.table-th-sticky,
+.table-td-sticky,
+.table-td {
   padding: 0.6em 1em;
   white-space: nowrap;
+  text-align: left;
+  width: 2000px;
 }
 
 @media (max-width: 500px) {
-  .crypto-th,
-  .crypto-td-sticky,
-  .crypto-td {
+  .table-th,
+  .table-td-sticky,
+  .table-td {
     font-size: 0.9rem;
   }
 }
 
 @media (max-width: 400px) {
-  .crypto-th,
-  .crypto-td-sticky,
-  .crypto-td {
+  .table-th,
+  .table-td-sticky,
+  .table-td {
     font-size: 0.8rem;
   }
 }

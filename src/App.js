@@ -4,14 +4,13 @@ import Header from './components/header/Header';
 import HomePage from './components/home/HomePage';
 import QuotePage from './components/quote/QuotePage';
 import SearchResultsPage from './components/SearchResultsPage';
-import CryptoPage from './components/crypto/CryptoPage';
 import TablePage from './components/global/tablePage/TablePage';
 import NotFound from './components/NotFound';
 import Footer from './components/Footer';
 import { NewsProvider } from './context/NewsContext';
 import { QuoteProvider } from './context/QuoteContext';
 import { RealDataProvider } from './context/RealDataContext';
-import { CryptoProvider } from './context/CryptoContext';
+import { TableProvider } from './context/TableContext';
 import { HelmetProvider } from 'react-helmet-async';
 
 const App = () => {
@@ -20,7 +19,7 @@ const App = () => {
       <RealDataProvider>
         <NewsProvider>
           <QuoteProvider>
-            <CryptoProvider>
+            <TableProvider>
               <Router>
                 <Header />
                 <main>
@@ -35,15 +34,16 @@ const App = () => {
                     <Route
                       exact
                       path='/cryptocurrencies'
-                      component={CryptoPage}
+                      component={TablePage}
                     />
                     <Route exact path='/forex' component={TablePage} />
+                    <Route exact path='/commodities' component={TablePage} />
                     <Route component={NotFound} />
                   </Switch>
                 </main>
                 <Footer />
               </Router>
-            </CryptoProvider>
+            </TableProvider>
           </QuoteProvider>
         </NewsProvider>
       </RealDataProvider>

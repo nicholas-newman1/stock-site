@@ -1,23 +1,23 @@
 import React, { useEffect, useContext } from 'react';
-import { CryptoContext } from '../../context/CryptoContext';
-import '../../css/crypto/cryptoTableOptions.css';
+import { TableContext } from '../../../context/TableContext';
+import '../../../css/global/tablePage/tableOptions.css';
 
-const CryptoTableOptions = () => {
-  const { page, setPage, resultsPerPage, setResultsPerPage } = useContext(
-    CryptoContext
+const TableOptions = () => {
+  const { page, setPage, resultsPerPage, setResultsPerPage, path } = useContext(
+    TableContext
   );
 
   useEffect(() => {
     if (page !== 0) setPage(0);
     //eslint-disable-next-line
-  }, [resultsPerPage]);
+  }, [resultsPerPage, path]);
 
   return (
-    <div className='crypto-options-container'>
-      <label className='crypto-options-label'>
+    <div className='table-options-container'>
+      <label className='table-options-label'>
         Results Per Page:
         <select
-          className='crypto-select'
+          className='table-select'
           value={resultsPerPage}
           onChange={(e) => setResultsPerPage(parseInt(e.target.value))}
         >
@@ -32,4 +32,4 @@ const CryptoTableOptions = () => {
   );
 };
 
-export default CryptoTableOptions;
+export default TableOptions;
