@@ -20,8 +20,8 @@ const CryptoPage = () => {
     <>
       <h1 className='crypto-heading'>Cryptocurrencies</h1>
       <CryptoTableNav />
-      <CryptoTable />
       <CryptoTableOptions />
+      <CryptoTable />
     </>
   ) : (
     <h2 className='crypto-no-data'>No Data Available</h2>

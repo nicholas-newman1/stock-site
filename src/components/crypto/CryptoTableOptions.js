@@ -1,5 +1,6 @@
 import React, { useEffect, useContext } from 'react';
 import { CryptoContext } from '../../context/CryptoContext';
+import '../../css/crypto/cryptoTableOptions.css';
 
 const CryptoTableOptions = () => {
   const { page, setPage, resultsPerPage, setResultsPerPage } = useContext(
@@ -12,16 +13,22 @@ const CryptoTableOptions = () => {
   }, [resultsPerPage]);
 
   return (
-    <select
-      value={resultsPerPage}
-      onChange={(e) => setResultsPerPage(parseInt(e.target.value))}
-    >
-      <option value='5'>5</option>
-      <option value='10'>10</option>
-      <option value='15'>15</option>
-      <option value='20'>20</option>
-      <option value='50'>50</option>
-    </select>
+    <div className='crypto-options-container'>
+      <label className='crypto-options-label'>
+        Results Per Page:
+        <select
+          className='crypto-select'
+          value={resultsPerPage}
+          onChange={(e) => setResultsPerPage(parseInt(e.target.value))}
+        >
+          <option value='5'>5</option>
+          <option value='10'>10</option>
+          <option value='15'>15</option>
+          <option value='20'>20</option>
+          <option value='50'>50</option>
+        </select>
+      </label>
+    </div>
   );
 };
 

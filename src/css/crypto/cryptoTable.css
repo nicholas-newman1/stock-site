@@ -31,6 +31,10 @@
   text-decoration: underline;
 }
 
+.crypto-th-btn:hover {
+  text-decoration: underline;
+}
+
 .crypto-td {
   text-align: center;
   border-bottom: 1px solid #ccc;
