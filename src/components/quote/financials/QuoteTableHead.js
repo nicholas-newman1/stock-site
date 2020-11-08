@@ -5,8 +5,12 @@ const QuoteTableHead = ({ tableData }) => {
     <thead className='quote-thead'>
       <tr className='quote-tr'>
         <th className='quote-th-sticky'></th>
-        {tableData.map((item) => (
-          <th className='quote-th' key={item.date}>
+        {tableData.map((item, i) => (
+          <th
+            className='quote-th'
+            key={item.date}
+            style={i % 2 === 0 ? { background: '#eee' } : {}}
+          >
             {item.date}
           </th>
         ))}
