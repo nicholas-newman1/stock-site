@@ -1,5 +1,10 @@
 import React from 'react';
-import { Route, Switch, BrowserRouter as Router } from 'react-router-dom';
+import {
+  Route,
+  Switch,
+  BrowserRouter as Router,
+  Redirect,
+} from 'react-router-dom';
 import Header from './components/header/Header';
 import HomePage from './components/home/HomePage';
 import QuotePage from './components/quote/QuotePage';
@@ -38,6 +43,8 @@ const App = () => {
                     />
                     <Route exact path='/forex' component={TablePage} />
                     <Route exact path='/commodities' component={TablePage} />
+                    <Redirect from='/quote/:symbol/**' to='/quote/:symbol' />
+                    <Redirect from='/:page/**' to='/:page' />
                     <Route component={NotFound} />
                   </Switch>
                 </main>
