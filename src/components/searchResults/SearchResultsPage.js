@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import Spinner from '../global/Spinner';
 import SearchResultsFilter from './SearchResultsFilter';
 import '../../css/searchResults/searchResults.css';
+import SearchResultsItem from './SearchResultsItem';
 
 const SearchResults = ({ match }) => {
   const [searchResults, setSearchResults] = useState([]);
@@ -16,7 +16,7 @@ const SearchResults = ({ match }) => {
     const res = await fetch(
       `https://financialmodelingprep.com/api/v3/search?query=${query}${
         exchange && '&exchange=' + exchange
-      }&limit=10&apikey=${process.env.REACT_APP_FMP_KEY}`
+      }&apikey=${process.env.REACT_APP_FMP_KEY}`
     );
     const data = await res.json();
     setSearchResults(data);
@@ -43,30 +43,8 @@ const SearchResults = ({ match }) => {
       ) : searchResults.length > 0 ? (
         <>
           <ul className='results-container'>
-            {searchResults.map(({ symbol, name, exchangeShortName }) => (
-              <li className='result' key={symbol}>
-                <div className='results-content'>
-                  <h2 className='results-heading'>
-                    <Link className='results-link' to={`/quote/${symbol}`}>
-                      {symbol} ({exchangeShortName})
-                    </Link>
-                  </h2>
-                  <p className='results-desc'>{name}</p>
-                </div>
-                <div className='results-btns-container'>
-                  <button className='results-quote-btn'>
-                    <Link
-                      className='results-quote-link'
-                      to={`/quote/${symbol}`}
-                    >
-                      View Quote
-                    </Link>{' '}
-                  </button>
-                  <button className='results-watchlist-btn'>
-                    Add to Watchlist
-                  </button>
-                </div>
-              </li>
+            {searchResults.map((result) => (
+              <SearchResultsItem result={result} key={result.symbol} />
             ))}
           </ul>
         </>

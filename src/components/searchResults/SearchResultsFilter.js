@@ -5,15 +5,15 @@ const SearchResultsFilter = ({ setExchange }) => {
   const [checked, setChecked] = useState('');
 
   const exchanges = [
-    'ETF',
-    'MUTUAL_FUND',
-    'COMMODITY',
     'INDEX',
+    'MUTUAL_FUND',
+    'NASDAQ',
+    'ETF',
+    'COMMODITY',
     'CRYPTO',
     'FOREX',
     'TSX',
     'AMEX',
-    'NASDAQ',
     'NYSE',
     'EURONEXT',
   ];
