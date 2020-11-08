@@ -7,7 +7,7 @@ const TableRow = ({ item, index }) => {
   let { symbol, name, price, change, changesPercentage, marketCap } = item;
 
   const color = change > 0 ? 'green' : change < 0 ? '#de0e00' : 'black';
-  const background = index % 2 === 0 ? 'white' : '#eee';
+  const background = index % 2 === 1 ? 'white' : '#eee';
 
   // Determine number of decimals to round to based on the maginitude of the price change
   let decimals = 2;
