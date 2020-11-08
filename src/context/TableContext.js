@@ -50,7 +50,7 @@ export const TableProvider = (props) => {
   useEffect(() => {
     if (sortProperty) fetchTableData();
     //eslint-disable-next-line
-  }, [sortProperty, path]);
+  }, [path]);
 
   const sortTableData = (property, reverse) => {
     setTableData((prevData) => {
