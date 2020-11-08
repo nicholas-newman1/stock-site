@@ -42,24 +42,29 @@ const SearchResults = ({ match }) => {
         <Spinner />
       ) : searchResults.length > 0 ? (
         <>
-          <ul className='results'>
+          <ul className='results-container'>
             {searchResults.map(({ symbol, name, exchangeShortName }) => (
               <li className='result' key={symbol}>
-                <div className='result-content'>
-                  <h2 className='result-heading'>
-                    <Link className='result-link' to={`/quote/${symbol}`}>
+                <div className='results-content'>
+                  <h2 className='results-heading'>
+                    <Link className='results-link' to={`/quote/${symbol}`}>
                       {symbol} ({exchangeShortName})
                     </Link>
                   </h2>
-                  <p className='result-desc'>{name}</p>
+                  <p className='results-desc'>{name}</p>
                 </div>
-                <div>
-                  <button className='view-quote-btn'>
-                    <Link className='view-quote-link' to={`/quote/${symbol}`}>
+                <div className='results-btns-container'>
+                  <button className='results-quote-btn'>
+                    <Link
+                      className='results-quote-link'
+                      to={`/quote/${symbol}`}
+                    >
                       View Quote
                     </Link>{' '}
                   </button>
-                  <button className='save-result-btn'>Add to Watchlist</button>
+                  <button className='results-watchlist-btn'>
+                    Add to Watchlist
+                  </button>
                 </div>
               </li>
             ))}

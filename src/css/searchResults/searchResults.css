@@ -1,53 +1,64 @@
-.results {
+.results-container {
   margin: 1rem 0;
   list-style: none;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  column-gap: 1rem;
 }
 
 .result {
   display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
   width: 100%;
   justify-content: space-between;
   margin-bottom: 1rem;
   padding: 1rem;
   background: #eee;
-  align-items: center;
   border-radius: 3px;
 }
 
-.result-link {
+.results-link {
   color: #006acc;
   text-decoration: none;
   font-size: 1.2rem;
 }
 
-.result-link:hover {
+.results-link:hover {
   color: #148eff;
 }
 
-.result-heading {
+.results-heading {
   margin-bottom: 0.5rem;
 }
 
-.result-desc {
+.results-desc {
   font-weight: 300;
+  margin-bottom: 1rem;
 }
 
-.view-quote-btn {
-  display: none;
+.results-btns-container {
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+  column-gap: 1rem;
+}
+
+.results-quote-btn {
+  display: inline-block;
   background: #006acc;
   border: 1px solid #006acc;
   padding: 0.75em 1em;
   border-radius: 3px;
-  margin-right: 0.5rem;
 }
 
-.view-quote-btn:hover {
+.results-quote-btn:hover {
   background: #148eff;
   border: 1px solid #148eff;
   cursor: pointer;
 }
 
-.view-quote-link {
+.results-quote-link {
   display: inline-block;
   color: white;
   text-decoration: none;
@@ -55,8 +66,9 @@
   height: 100%;
 }
 
-.save-result-btn {
+.results-watchlist-btn {
   flex-shrink: 0;
+  width: 126.5px;
   border: 1px solid #006acc;
   padding: 0.75em 1em;
   background: none;
@@ -64,29 +76,21 @@
   border-radius: 3px;
 }
 
-.save-result-btn:hover {
+.results-watchlist-btn:hover {
   background: #006acc;
   cursor: pointer;
   color: white;
 }
 
-@media (max-width: 600px) {
-  .result {
-    flex-direction: column;
-    text-align: center;
+@media (max-width: 700px) {
+  .results-container {
+    grid-template-columns: auto;
   }
+}
 
-  .result-desc {
-    margin-bottom: 1rem;
-  }
-
-  .view-quote-btn {
-    display: inline-block;
-  }
-
-  .view-quote-btn,
-  .save-result-btn {
-    margin-bottom: 0.5rem;
-    text-align: center;
+@media (max-width: 300px) {
+  .result-btns-container {
+    grid-template-columns: auto;
+    row-gap: 0.5rem;
   }
 }
