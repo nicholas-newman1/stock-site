@@ -53,6 +53,7 @@ export const QuoteProvider = (props) => {
         'MUTUAL_FUND',
         'FOREX',
         'CRYPTO',
+        'COMMODITY',
         '- - - - - - -',
       ].findIndex((item) => item === exchange) === -1
     );
