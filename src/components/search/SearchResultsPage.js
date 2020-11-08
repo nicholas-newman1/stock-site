@@ -1,14 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import Spinner from '../global/Spinner';
-import SearchResultsFilter from './SearchResultsFilter';
-import '../../css/searchResults/searchResults.css';
-import SearchResultsItem from './SearchResultsItem';
+import SearchResultsFilter from './SearchFilter';
+import '../../css/search/searchResults.css';
+import SearchResultsItem from './SearchItem';
+import SearchResultsNav from './searchNav';
 
 const SearchResults = ({ match }) => {
   const [searchResults, setSearchResults] = useState([]);
   const [loading, setLoading] = useState(false);
   const [exchange, setExchange] = useState('');
+  const [page, setPage] = useState(0);
+  const [resultsPerPage, setResultsPerPage] = useState(10);
+  const offset = page * resultsPerPage;
   const query = match.params.query;
 
   const fetchSearchResults = async () => {
@@ -43,10 +47,22 @@ const SearchResults = ({ match }) => {
       ) : searchResults.length > 0 ? (
         <>
           <ul className='results-container'>
-            {searchResults.map((result) => (
-              <SearchResultsItem result={result} key={result.symbol} />
-            ))}
+            {searchResults.map((result, i) => {
+              const itemInRange =
+                i <= offset + resultsPerPage - 1 && i >= offset;
+              return (
+                itemInRange && (
+                  <SearchResultsItem result={result} key={result.symbol} />
+                )
+              );
+            })}
           </ul>
+          <SearchResultsNav
+            searchResults={searchResults}
+            page={page}
+            setPage={setPage}
+            resultsPerPage={resultsPerPage}
+          />
         </>
       ) : (
         <h2>No Data Available</h2>

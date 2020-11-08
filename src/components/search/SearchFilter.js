@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import '../../css/searchResults/searchFilter.css';
+import '../../css/search/searchFilter.css';
 
 const SearchResultsFilter = ({ setExchange }) => {
   const [checked, setChecked] = useState('');

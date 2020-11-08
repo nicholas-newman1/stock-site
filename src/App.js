@@ -8,7 +8,7 @@ import {
 import Header from './components/header/Header';
 import HomePage from './components/home/HomePage';
 import QuotePage from './components/quote/QuotePage';
-import SearchResultsPage from './components/searchResults/SearchResultsPage';
+import SearchResultsPage from './components/search/SearchResultsPage';
 import TablePage from './components/global/tablePage/TablePage';
 import NotFound from './components/NotFound';
 import Footer from './components/Footer';
