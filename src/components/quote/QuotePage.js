@@ -9,13 +9,18 @@ import QuoteNav from './QuoteNav';
 import { QuoteContext } from '../../context/QuoteContext';
 import { RealDataContext } from '../../context/RealDataContext';
 import QuoteFinancials from './financials/QuoteFinancials';
+import { Helmet } from 'react-helmet-async';
 
 const QuotePage = ({ match }) => {
   const symbol = match.params.symbol;
   const [tab, setTab] = useState('Summary');
-  const { fetchQuote, isStock, quoteFetched, setQuoteFetched } = useContext(
-    QuoteContext
-  );
+  const {
+    fetchQuote,
+    isStock,
+    quoteFetched,
+    setQuoteFetched,
+    quote,
+  } = useContext(QuoteContext);
   const { realData } = useContext(RealDataContext);
 
   useEffect(() => {
@@ -32,23 +37,32 @@ const QuotePage = ({ match }) => {
   }, [realData]);
 
   return (
-    <div className='quote-page'>
-      <Quote symbol={symbol} />
-      {isStock && <QuoteNav tab={tab} setTab={setTab} />}
-      {tab === 'Summary' && <QuoteSummary symbol={symbol} />}
-      {tab === 'Chart' && <QuoteChart symbol={symbol} />}
-      {tab === 'Financials' && <QuoteFinancials symbol={symbol} />}
-      {tab === 'Profile' && <QuoteProfile symbol={symbol} />}
-      {tab === 'Valuation' && <QuoteValuation symbol={symbol} />}
-      {quoteFetched && !isStock && (
-        <>
-          <br />
-          <QuoteChart symbol={symbol} />
-        </>
-      )}
+    <>
+      <Helmet>
+        <title>{`${quote.symbol} | ${quote.name} | Free Quote | Finance App`}</title>
+        <meta
+          name='description'
+          content={`${quote.symbol} free quote. ${quote.name} quote. Free stock quotes, forex exchange rates, cryptocurrency rates, and more.`}
+        />
+      </Helmet>
+      <div className='quote-page'>
+        <Quote symbol={symbol} />
+        {isStock && <QuoteNav tab={tab} setTab={setTab} />}
+        {tab === 'Summary' && <QuoteSummary symbol={symbol} />}
+        {tab === 'Chart' && <QuoteChart symbol={symbol} />}
+        {tab === 'Financials' && <QuoteFinancials symbol={symbol} />}
+        {tab === 'Profile' && <QuoteProfile symbol={symbol} />}
+        {tab === 'Valuation' && <QuoteValuation symbol={symbol} />}
+        {quoteFetched && !isStock && (
+          <>
+            <br />
+            <QuoteChart symbol={symbol} />
+          </>
+        )}
 
-      {quoteFetched && <QuoteNews symbol={isStock ? symbol : ''} />}
-    </div>
+        {quoteFetched && <QuoteNews symbol={isStock ? symbol : ''} />}
+      </div>
+    </>
   );
 };
 

@@ -2,7 +2,6 @@ import React, { createContext, useState, useContext } from 'react';
 import { dummyQuoteData } from '../dummyData';
 import { shortenNumber } from '../helpers';
 import { RealDataContext } from './RealDataContext';
-import { Helmet } from 'react-helmet-async';
 
 export const QuoteContext = createContext();
 
@@ -121,9 +120,6 @@ export const QuoteProvider = (props) => {
         setQuoteFetched,
       }}
     >
-      <Helmet>
-        <title>{`${quote.symbol} | ${quote.name} | Free Quote | Finance App`}</title>
-      </Helmet>
       {props.children}
     </QuoteContext.Provider>
   );

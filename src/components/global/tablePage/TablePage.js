@@ -37,6 +37,10 @@ const TablePage = () => {
     <>
       <Helmet>
         <title>{title} | Finance App</title>
+        <meta
+          name='description'
+          content={`Free ${title}. Find free stock quotes, forex exchange rates, cryptocurrency rates, and more.`}
+        />
       </Helmet>
       {loading ? (
         <Spinner />
