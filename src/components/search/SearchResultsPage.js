@@ -11,7 +11,7 @@ const SearchResults = ({ match }) => {
   const [loading, setLoading] = useState(false);
   const [exchange, setExchange] = useState('');
   const [page, setPage] = useState(0);
-  const [resultsPerPage, setResultsPerPage] = useState(10);
+  const [resultsPerPage] = useState(10);
   const offset = page * resultsPerPage;
   const query = match.params.query;
 
