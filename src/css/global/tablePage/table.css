@@ -3,7 +3,6 @@
   overflow-x: auto;
   border-spacing: 0;
   width: 100%;
-  font-size: 0.875rem;
 }
 
 .table-sort-arrow {
@@ -38,7 +37,18 @@
 .table-td {
   border-bottom: 1px solid #ccc;
   border-right: 1px solid #ccc;
-  font-size: 0.875rem;
+  font-size: 0.9rem;
+}
+
+.table-td-link {
+  color: #006acc;
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.table-td-link:hover {
+  color: #148eff;
 }
 
 .table-thead .table-td-sticky,

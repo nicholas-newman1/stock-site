@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { shortenNumber } from '../../../helpers';
 import { TableContext } from '../../../context/TableContext';
+import { Link } from 'react-router-dom';
 
 const TableRow = ({ item, index }) => {
   const { path } = useContext(TableContext);
@@ -39,61 +40,28 @@ const TableRow = ({ item, index }) => {
   changesPercentage = changesPercentage.toLocaleString(undefined, {
     maximumFractionDigits: decimals,
   });
-  if (path === 'cryptocurrencies') {
-    return (
-      <tr className='table-tr' style={{ background }}>
-        <td className='table-td-sticky' style={{ background }}>
+
+  return (
+    <tr className='table-tr' style={{ background }}>
+      <td className='table-td-sticky' style={{ background }}>
+        <Link className='table-td-link' to={`/quote/${symbol}`}>
           {symbol}
-        </td>
-        <td className='table-td'>{name}</td>
-        <td className='table-td'>${price}</td>
-        <td className='table-td' style={{ color }}>
-          {change > 0 && '+'}
-          {change}
-        </td>
-        <td className='table-td' style={{ color }}>
-          {changesPercentage}%
-        </td>
+        </Link>
+      </td>
+      <td className='table-td'>{name}</td>
+      <td className='table-td'>${price}</td>
+      <td className='table-td' style={{ color }}>
+        {change > 0 && '+'}
+        {change}
+      </td>
+      <td className='table-td' style={{ color }}>
+        {changesPercentage}%
+      </td>
+      {path === 'cryptocurrencies' && (
         <td className='table-td'>{shortenNumber(marketCap)}</td>
-      </tr>
-    );
-  } else if (path === 'forex') {
-    return (
-      <tr className='table-tr' style={{ background }}>
-        <td className='table-td-sticky' style={{ background }}>
-          {symbol}
-        </td>
-        <td className='table-td'>{name}</td>
-        <td className='table-td'>${price}</td>
-        <td className='table-td' style={{ color }}>
-          {change > 0 && '+'}
-          {change}
-        </td>
-        <td className='table-td' style={{ color }}>
-          {changesPercentage}%
-        </td>
-      </tr>
-    );
-  } else if (path === 'commodities') {
-    return (
-      <tr className='table-tr' style={{ background }}>
-        <td className='table-td-sticky' style={{ background }}>
-          {symbol}
-        </td>
-        <td className='table-td'>{name}</td>
-        <td className='table-td'>${price}</td>
-        <td className='table-td' style={{ color }}>
-          {change > 0 && '+'}
-          {change}
-        </td>
-        <td className='table-td' style={{ color }}>
-          {changesPercentage}%
-        </td>
-      </tr>
-    );
-  } else {
-    return null;
-  }
+      )}
+    </tr>
+  );
 };
 
 export default TableRow;

@@ -2,12 +2,6 @@
   list-style: none;
 }
 
-.pricelist-item {
-  //background: #e4e4e4;
-  //border-radius: 5px;
-  //padding: 1rem;
-}
-
 .pricelist-item + .pricelist-item {
   margin-top: 1rem;
 }
