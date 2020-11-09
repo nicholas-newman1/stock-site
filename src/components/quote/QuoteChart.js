@@ -38,17 +38,34 @@ const QuoteChart = ({ symbol }) => {
 
     if (realData) {
       setLoading(true);
+
+      // build fetch url
       let interval = '';
       let endpoint = 'historical-chart';
       if (timeframe === '1D') interval = '1min';
       if (timeframe === '5D') interval = '5min';
       if (timeframe === '1M') interval = '1hour';
       if (interval === '') endpoint = 'historical-price-full'; // interval === '' equivalent to timeframe === 6M or YTD or 1Y or 5Y or MAX
-      const res = await fetch(
+
+      // fetch data
+      const dataRes = await fetch(
         `https://financialmodelingprep.com/api/v3/${endpoint}/${interval}/${symbol}?apikey=${process.env.REACT_APP_FMP_KEY}`
       );
-      data = await res.json();
+      data = await dataRes.json();
       if (endpoint === 'historical-price-full') data = [...data.historical]; // data from 'historical-price-full endpoint returns an object with a 'historical' property
+
+      // fetch quote (to append the most recent price to the end of the chart)
+      const quoteRes = await fetch(
+        `https://financialmodelingprep.com/api/v3/quote/${symbol}?apikey=${process.env.REACT_APP_FMP_KEY}`
+      );
+      const quote = await quoteRes.json();
+
+      // append data to chart
+      data.unshift({
+        date: new Date(quote[0].timestamp * 1000),
+        close: quote[0].price,
+      });
+
       setLoading(false);
     } else {
       data = dummyDailyData.historical; // acts as an else for the following if statements
@@ -63,22 +80,6 @@ const QuoteChart = ({ symbol }) => {
       return;
     } else {
       setDataAvailable(true);
-    }
-
-    if (
-      (timeframe === '1D' || timeframe === '5D' || timeframe === '1M') &&
-      realData
-    ) {
-      // Most recent price fetched from 'historical-chart' endpoint differs from most recent price fetched from 'quote' endpoint
-      // Resolved by replacing last data point with the most recent price from the 'quote' endpoint
-      const res = await fetch(
-        `https://financialmodelingprep.com/api/v3/quote/${symbol}?apikey=${process.env.REACT_APP_FMP_KEY}`
-      );
-      const quote = await res.json();
-      data.unshift({
-        date: data.shift().date,
-        close: quote[0].price,
-      });
     }
 
     // data returned from API is backwards
