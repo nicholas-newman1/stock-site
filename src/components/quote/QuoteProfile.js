@@ -18,7 +18,6 @@ const QuoteProfile = ({ symbol }) => {
         `https://financialmodelingprep.com/api/v3/profile/${symbol}?apikey=${process.env.REACT_APP_FMP_KEY}`
       );
       data = await res.json();
-
       setLoading(false);
     } else {
       data = dummyProfileData;
@@ -49,55 +48,90 @@ const QuoteProfile = ({ symbol }) => {
       ceo,
     } = profileData[0];
 
-    return (
+    return address ||
+      city ||
+      zip ||
+      phone ||
+      website ||
+      ceo ||
+      sector ||
+      industry ||
+      fullTimeEmployees ||
+      description ? (
       <div className='quote-profile-container'>
-        <section className='quote-profile-section'>
-          <h3 className='quote-profile-heading'>Address</h3>
-          <div className='quote-profile-div'>
-            <p className='quote-profile-p'>{address}</p>
-            <p className='quote-profile-p'>
-              {city}, {state.toLowerCase()}, {country}
-            </p>
-            <p className='quote-profile-p'>{zip}</p>
-          </div>
+        {(address || city || zip || phone || website) && (
+          <section className='quote-profile-section'>
+            <h3 className='quote-profile-heading'>Address</h3>
+            {(address || city || zip) && (
+              <div className='quote-profile-div'>
+                {address && <p className='quote-profile-p'>{address}</p>}
+                {city && state && country && (
+                  <p className='quote-profile-p'>
+                    {city}, {state.toLowerCase()}, {country}
+                  </p>
+                )}
+                {zip && <p className='quote-profile-p'>{zip}</p>}
+              </div>
+            )}
 
-          <div className='quote-profile-div'>
-            <a className='quote-profile-link' href={`tel: ${phone}`}>
-              {formatPhoneNumber(phone)}
-            </a>
-            <a className='quote-profile-link' href={website}>
-              {website}
-            </a>
-          </div>
-        </section>
+            {(phone || website) && (
+              <div className='quote-profile-div'>
+                {phone && (
+                  <a className='quote-profile-link' href={`tel: ${phone}`}>
+                    {formatPhoneNumber(phone)}
+                  </a>
+                )}
+                {website && (
+                  <a className='quote-profile-link' href={website}>
+                    {website}
+                  </a>
+                )}
+              </div>
+            )}
+          </section>
+        )}
 
-        <section className='quote-profile-section'>
-          <h3 className='quote-profile-heading'>Information</h3>
-          <div className='quote-profile-div'>
-            <p className='quote-profile-p'>
-              <strong>CEO: </strong>
-              {ceo}
-            </p>
-            <p className='quote-profile-p'>
-              <strong>Sector: </strong>
-              {sector}
-            </p>
-            <p className='quote-profile-p'>
-              <strong>Industry: </strong>
-              {industry}
-            </p>
-            <p className='quote-profile-p'>
-              <strong>Full-Time Employees: </strong>
-              {Number(fullTimeEmployees).toLocaleString()}
-            </p>
-          </div>
-        </section>
+        {(ceo || sector || industry || fullTimeEmployees) && (
+          <section className='quote-profile-section'>
+            <h3 className='quote-profile-heading'>Information</h3>
+            <div className='quote-profile-div'>
+              {ceo && (
+                <p className='quote-profile-p'>
+                  <strong>CEO: </strong>
+                  {ceo}
+                </p>
+              )}
+              {sector && (
+                <p className='quote-profile-p'>
+                  <strong>Sector: </strong>
+                  {sector}
+                </p>
+              )}
+              {industry && (
+                <p className='quote-profile-p'>
+                  <strong>Industry: </strong>
+                  {industry}
+                </p>
+              )}
+              {fullTimeEmployees && (
+                <p className='quote-profile-p'>
+                  <strong>Full-Time Employees: </strong>
+                  {Number(fullTimeEmployees).toLocaleString()}
+                </p>
+              )}
+            </div>
+          </section>
+        )}
 
-        <section className='quote-profile-section'>
-          <h3 className='quote-profile-heading'>Description</h3>
-          <p className='quote-profile-p'>{description}</p>
-        </section>
+        {description && (
+          <section className='quote-profile-section'>
+            <h3 className='quote-profile-heading'>Description</h3>
+            <p className='quote-profile-p'>{description}</p>
+          </section>
+        )}
       </div>
+    ) : (
+      <h3>No Data Available</h3>
     );
   } else {
     return <h3>No Data Available</h3>;
