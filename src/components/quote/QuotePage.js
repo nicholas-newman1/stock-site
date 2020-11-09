@@ -1,7 +1,7 @@
 import React, { useEffect, useContext, useState } from 'react';
 import Quote from './Quote';
 import QuoteSummary from './QuoteSummary';
-import QuoteNews from '../global/bottomNews/BottomNews';
+import BottomNews from '../global/bottomNews/BottomNews';
 import QuoteChart from './QuoteChart';
 import QuoteProfile from './QuoteProfile';
 import QuoteValuation from './QuoteValuation';
@@ -60,7 +60,7 @@ const QuotePage = ({ match }) => {
           </>
         )}
 
-        {quoteFetched && <QuoteNews symbol={isStock ? symbol : ''} />}
+        {quoteFetched && <BottomNews symbol={isStock ? symbol : ''} />}
       </div>
     </>
   );

@@ -14,12 +14,18 @@ const QuoteNews = ({ symbol }) => {
     setLoading(true);
     let data;
     if (realData) {
-      const res = await fetch(
+      let res = await fetch(
         `https://financialmodelingprep.com/api/v3/stock_news?tickers=${
           symbol ? symbol : ''
         }&limit=10&apikey=${process.env.REACT_APP_FMP_KEY}`
       );
       data = await res.json();
+      if (!data.length > 0) {
+        res = await fetch(
+          `https://financialmodelingprep.com/api/v3/stock_news?limit=10&apikey=${process.env.REACT_APP_FMP_KEY}`
+        );
+        data = await res.json();
+      }
     } else {
       data = dummyStockNews;
     }
