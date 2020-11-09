@@ -7,19 +7,6 @@
   display: flex;
   position: relative;
   overflow: auto;
-  scrollbar-width: 20px !important;
-}
-
-.quote-nav-ul::-webkit-scrollbar {
-  height: 8px; /* width of the entire scrollbar */
-}
-.quote-nav-ul::-webkit-scrollbar-track {
-  background: white; /* color of the tracking area */
-}
-.quote-nav-ul::-webkit-scrollbar-thumb {
-  background-color: #ccc; /* color of the scroll thumb */
-  border-radius: 200px; /* roundness of the scroll thumb */
-  border: 1px solid white; /* creates padding around scroll thumb */
 }
 
 .quote-nav-li {
