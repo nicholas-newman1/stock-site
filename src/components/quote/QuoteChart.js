@@ -13,7 +13,6 @@ import Spinner from '../global/Spinner';
 
 const QuoteChart = ({ symbol }) => {
   const [loading, setLoading] = useState(false);
-  const [dataAvailable, setDataAvailable] = useState(true);
   const [timeframe, setTimeframe] = useState('1D');
   const [chartData, setChartData] = useState([]);
   const [timeScaleFormat, setTimeScaleFormat] = useState('minute');
@@ -72,14 +71,6 @@ const QuoteChart = ({ symbol }) => {
       if (timeframe === '1D') data = [...dummyIntradayData];
       if (timeframe === '5D') data = [...dummyFiveDayData];
       if (timeframe === '1M') data = [...dummyOneMonthData];
-    }
-
-    // exit the function if no chart data is available
-    if (!data.length > 0) {
-      setDataAvailable(false);
-      return;
-    } else {
-      setDataAvailable(true);
     }
 
     // data returned from API is backwards
@@ -219,7 +210,7 @@ const QuoteChart = ({ symbol }) => {
       <QuoteTimeframeNav setTimeframe={setTimeframe} />
       {loading ? (
         <Spinner />
-      ) : dataAvailable ? (
+      ) : chartData.length > 0 ? (
         <div className='chart-container'>
           <Scatter
             data={{ datasets: [dataset1] }}
