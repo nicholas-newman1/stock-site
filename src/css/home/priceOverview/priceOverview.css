@@ -56,7 +56,7 @@
 .pricelist-th,
 .pricelist-td {
   padding: 0.5rem;
-  background: #f4f4f4;
+  background: #eee;
 }
 
 .pricelist-th + .pricelist-th,
