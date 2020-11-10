@@ -8,15 +8,17 @@ const Quote = ({ symbol }) => {
     <div className='quote-container'>
       <div className='quote-price-container'>
         <div className='quote-price'>${quote.price}</div>
-        <div className='quote-change' style={{ color: quote.color }}>
-          {quote.isPositive && '+'}
-          {quote.change}
-        </div>
-        <div className='quote-percent-change' style={{ color: quote.color }}>
-          {'('}
-          {quote.isPositive && '+'}
-          {quote.percentChange}
-          {'%)'}
+        <div className='quote-change-container'>
+          <div className='quote-change' style={{ color: quote.color }}>
+            {quote.isPositive && '+'}
+            {quote.change}
+          </div>
+          <div className='quote-percent-change' style={{ color: quote.color }}>
+            {'('}
+            {quote.isPositive && '+'}
+            {quote.percentChange}
+            {'%)'}
+          </div>
         </div>
       </div>
 

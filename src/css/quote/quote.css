@@ -13,6 +13,10 @@
   font-weight: 900;
 }
 
+.quote-change-container {
+  display: flex;
+}
+
 .quote-change,
 .quote-percent-change {
   font-size: 1.5rem;
@@ -31,10 +35,11 @@
 }
 
 .quote-exchange {
+  font-size: 0.9rem;
   margin-left: 0.5rem;
 }
 
-@media (max-width: 350px) {
+@media (max-width: 450px) {
   .quote-price {
     font-size: 1.7rem;
   }
@@ -42,5 +47,25 @@
   .quote-change,
   .quote-percent-change {
     font-size: 1.3rem;
+  }
+}
+
+@media (max-width: 380px) {
+  .quote-price-container {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .quote-change {
+    margin-left: 0;
+  }
+
+  .quote-name-container {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .quote-exchange {
+    margin-left: 0;
   }
 }

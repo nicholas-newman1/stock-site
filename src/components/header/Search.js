@@ -8,7 +8,7 @@ const Search = ({ setToggleNav }) => {
   const [text, setText] = useState('');
 
   return (
-    <form className='search-form'>
+    <form className='search-form' onSubmit={(e) => console.log('submit')}>
       <input
         className='search-input'
         aria-label='search input'
@@ -23,9 +23,10 @@ const Search = ({ setToggleNav }) => {
       <Link
         className='search-link'
         to={`/search/${text}`}
-        onClick={() => {
+        onClick={(e) => {
           setText('');
           setToggleNav(false);
+          e.target.focus();
         }}
       >
         <button className='search-btn' type='submit' aria-label='search button'>

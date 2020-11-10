@@ -52,5 +52,6 @@
 
   .quote-summary-table + .quote-summary-table {
     margin-left: 0rem;
+    margin-top: 0.5rem;
   }
 }

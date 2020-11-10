@@ -218,7 +218,10 @@ const QuoteChart = ({ symbol }) => {
       intersect: false,
       callbacks: {
         label: ({ xLabel, yLabel }) => {
-          return `${xLabel} | $${yLabel.toFixed(decimals)}`;
+          return `${xLabel} | $${yLabel.toLocaleString(undefined, {
+            maximumFractionDigits: decimals,
+            minimumFractionDigits: decimals,
+          })}`;
         },
       },
     },
