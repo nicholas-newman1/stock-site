@@ -17,16 +17,21 @@ const BottomNews = ({ symbol, shift = false }) => {
       let res = await fetch(
         `https://financialmodelingprep.com/api/v3/stock_news?tickers=${
           symbol ? symbol : ''
-        }&limit=10&apikey=${process.env.REACT_APP_FMP_KEY}`
+        }&limit=${shift ? '11' : '10'}&apikey=${process.env.REACT_APP_FMP_KEY}`
       );
       data = await res.json();
 
-      // if no news for specific stock, fetch general news
-      if (!data.length > 0) {
+      // if less than 10 news articles returned, push general news into data until it reaches 10
+      if (data.length < 10) {
         res = await fetch(
-          `https://financialmodelingprep.com/api/v3/stock_news?limit=10&apikey=${process.env.REACT_APP_FMP_KEY}`
+          `https://financialmodelingprep.com/api/v3/stock_news?limit=11&apikey=${process.env.REACT_APP_FMP_KEY}`
         );
-        data = await res.json();
+        const generalData = await res.json();
+        let i = 0;
+        while (data.length < 10) {
+          data.push(generalData[i]);
+          i++;
+        }
       }
     } else {
       data = dummyStockNews;
