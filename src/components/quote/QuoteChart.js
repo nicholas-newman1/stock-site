@@ -60,30 +60,26 @@ const QuoteChart = ({ symbol }) => {
       );
       const quote = await quoteRes.json();
 
-      //determine number of decimals to round to
-      //console.log(quote[0].change);
-      let decimals = 2;
-      console.log(
-        quote[0].change.toLocaleString(undefined, {
-          maximumFractionDigits: decimals,
-        })
-      );
-      while (
-        quote[0].change !== 0 &&
-        quote[0].change.toLocaleString(undefined, {
-          maximumFractionDigits: decimals,
-        }) == 0
-      ) {
-        decimals++;
-      }
-      //console.log(decimals);
-      setDecimals(decimals);
-
       // append data to chart
       data.unshift({
         date: new Date(quote[0].timestamp * 1000),
         close: quote[0].price,
       });
+
+      //determine number of decimals to round to
+      let decimals = 2;
+      while (
+        quote[0].change !== 0 &&
+        (quote[0].change.toLocaleString(undefined, {
+          maximumFractionDigits: decimals,
+        }) === '0' ||
+          quote[0].change.toLocaleString(undefined, {
+            maximumFractionDigits: decimals,
+          }) === '-0')
+      ) {
+        decimals++;
+      }
+      setDecimals(decimals);
 
       setLoading(false);
     } else {

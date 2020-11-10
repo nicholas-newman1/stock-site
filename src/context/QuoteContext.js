@@ -62,9 +62,12 @@ export const QuoteProvider = (props) => {
     let decimals = 2;
     while (
       change !== 0 &&
-      change.toLocaleString(undefined, {
+      (change.toLocaleString(undefined, {
         maximumFractionDigits: decimals,
-      }) === '0'
+      }) === '0' ||
+        change.toLocaleString(undefined, {
+          maximumFractionDigits: decimals,
+        }) === '-0')
     ) {
       decimals++;
     }
