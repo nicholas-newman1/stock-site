@@ -24,6 +24,38 @@ const Header = () => {
       }
     });
     resizer.observe(header);
+
+    // shrink/grow header based on scroll direction
+    let lastScroll = 0;
+    const headerLogo = document.querySelector('.header-logo');
+    const headerHamburger = document.querySelector('.header-hamburger');
+    window.addEventListener('scroll', () => {
+      const currentScroll = window.pageYOffset;
+      if (currentScroll <= 0) {
+        headerLogo.classList.remove('scroll-up');
+        headerHamburger.classList.remove('scroll-up');
+        return;
+      }
+
+      if (
+        currentScroll > lastScroll &&
+        !headerLogo.classList.contains('scroll-down')
+      ) {
+        headerLogo.classList.remove('scroll-up');
+        headerHamburger.classList.remove('scroll-up');
+        headerLogo.classList.add('scroll-down');
+        headerHamburger.classList.add('scroll-down');
+      } else if (
+        currentScroll < lastScroll &&
+        headerLogo.classList.contains('scroll-down')
+      ) {
+        headerLogo.classList.remove('scroll-down');
+        headerHamburger.classList.remove('scroll-down');
+        headerLogo.classList.add('scroll-up');
+        headerHamburger.classList.add('scroll-up');
+      }
+      lastScroll = currentScroll;
+    });
   }, []);
 
   return (
@@ -44,17 +76,16 @@ const Header = () => {
         />
 
         {(toggleNav || displayNav) && (
-          <div className='header-watchlist-container'>
-            <Link className='header-watchlist-link' to={`/watchlist`}>
-              Watchlist
-            </Link>
-          </div>
-        )}
-
-        {(toggleNav || displayNav) && (
-          <div className='header-nav-container'>
-            <Nav setToggleNav={setToggleNav} />
-          </div>
+          <>
+            <div className='header-watchlist-container'>
+              <Link className='header-watchlist-link' to={`/watchlist`}>
+                Watchlist
+              </Link>
+            </div>
+            <div className='header-nav-container'>
+              <Nav setToggleNav={setToggleNav} />
+            </div>
+          </>
         )}
       </div>
     </header>
