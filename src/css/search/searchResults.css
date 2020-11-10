@@ -1,5 +1,5 @@
 .results-container {
-  margin: 1rem 0;
+  margin-bottom: 1rem;
   list-style: none;
   display: grid;
   grid-template-columns: repeat(2, 1fr);

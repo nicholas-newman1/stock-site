@@ -1,11 +1,25 @@
 .search-filter-container {
-  border: 4px solid #ddd;
-  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+.search-filter-toggle {
+  margin-bottom: 1rem;
+}
+
+.search-filter-hr {
+  margin-bottom: 1rem;
+  background-color: #ccc;
+  height: 1px;
+  border: none;
 }
 
 .search-filter-header {
   margin-bottom: 0.5rem;
   font-size: 1.2rem;
+}
+
+.search-filter-form {
+  margin-bottom: 1rem;
 }
 
 .search-filter-label {
@@ -30,8 +44,17 @@
   background: #ddd;
 }
 
+.search-filter-btn.submit {
+  background: #006acc;
+  color: white;
+}
+
 .search-filter-btn:hover {
   background: #ccc;
+}
+
+.search-filter-btn.submit:hover {
+  background: #148eff;
 }
 
 @media (max-width: 700px) {
