@@ -46,7 +46,10 @@ export const shortenNumber = (number, decimals = 2, trailingZeros = false) => {
     return `${(number / 1000000).toLocaleString(undefined, options)}M`;
   } else {
     return trailingZeros
-      ? number.toFixed(decimals)
+      ? number.toLocaleString(undefined, {
+          minimumFractionDigits: decimals,
+          maximumFractionDigits: decimals,
+        })
       : parseFloat(number.toFixed(decimals)).toLocaleString();
   }
 };
