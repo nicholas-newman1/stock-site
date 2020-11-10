@@ -30,7 +30,7 @@ const SearchResultsFilter = ({ setExchange }) => {
       <hr className='search-filter-hr' />
       {displayFilter && (
         <div className='search-filter-container'>
-          <h2 className='search-filter-header'>Filter Results</h2>
+          <h2 className='search-filter-header'>Filter Exchange</h2>
           <form
             className='search-filter-form'
             onSubmit={(e) => {
