@@ -17,6 +17,7 @@ const QuoteChart = ({ symbol }) => {
   const [chartData, setChartData] = useState([]);
   const [timeScaleFormat, setTimeScaleFormat] = useState('minute');
   const [tooltipFormat, setTooltipFormat] = useState('h:mm a');
+  const [decimals, setDecimals] = useState(4);
   const { realData } = useContext(RealDataContext);
 
   useEffect(() => {
@@ -58,6 +59,25 @@ const QuoteChart = ({ symbol }) => {
         `https://financialmodelingprep.com/api/v3/quote/${symbol}?apikey=${process.env.REACT_APP_FMP_KEY}`
       );
       const quote = await quoteRes.json();
+
+      //determine number of decimals to round to
+      //console.log(quote[0].change);
+      let decimals = 2;
+      console.log(
+        quote[0].change.toLocaleString(undefined, {
+          maximumFractionDigits: decimals,
+        })
+      );
+      while (
+        quote[0].change !== 0 &&
+        quote[0].change.toLocaleString(undefined, {
+          maximumFractionDigits: decimals,
+        }) == 0
+      ) {
+        decimals++;
+      }
+      //console.log(decimals);
+      setDecimals(decimals);
 
       // append data to chart
       data.unshift({
@@ -154,7 +174,8 @@ const QuoteChart = ({ symbol }) => {
   }, [timeframe, realData]);
 
   const options = {
-    maintainAspectRatio: false,
+    maintainAspectRatio: true,
+
     scales: {
       xAxes: [
         {
@@ -178,7 +199,19 @@ const QuoteChart = ({ symbol }) => {
           },
         },
       ],
-      yAxes: [{ ticks: {} }],
+      yAxes: [
+        {
+          ticks: {
+            precision: decimals,
+            callback: (value) =>
+              '$' +
+              value.toLocaleString(undefined, {
+                maximumFractionDigits: decimals,
+                minimumFractionDigits: decimals,
+              }),
+          },
+        },
+      ],
     },
     // hide points
     elements: { point: { radius: 0 } },
@@ -189,7 +222,7 @@ const QuoteChart = ({ symbol }) => {
       intersect: false,
       callbacks: {
         label: ({ xLabel, yLabel }) => {
-          return `${xLabel} | $${yLabel}`;
+          return `${xLabel} | $${yLabel.toFixed(decimals)}`;
         },
       },
     },
@@ -198,11 +231,12 @@ const QuoteChart = ({ symbol }) => {
 
   const dataset1 = {
     data: chartData,
+    lineTension: 0,
     showLine: true,
     pointHoverBackgroundColor: 'rgba(0, 105, 196, 0.7)',
     pointHoverBorderColor: 'rgba(0, 105, 196, 0.7)',
-    borderColor: 'rgba(0,0,0,0)',
-    backgroundColor: 'rgba(0, 105, 196, 0.5)',
+    borderColor: 'rgba(0, 105, 196, 0.7)',
+    fill: false,
   };
 
   return (
@@ -212,11 +246,7 @@ const QuoteChart = ({ symbol }) => {
         <Spinner />
       ) : chartData.length > 0 ? (
         <div className='chart-container'>
-          <Scatter
-            data={{ datasets: [dataset1] }}
-            options={options}
-            height={400}
-          />
+          <Scatter data={{ datasets: [dataset1] }} options={options} />
         </div>
       ) : (
         <h3>No Data Available</h3>
