@@ -37,5 +37,8 @@
 .bottom-news-meta {
   color: #555;
   font-size: 0.9rem;
-  margin-bottom: 0.75rem;
+}
+
+.bottom-news-text {
+  margin-top: 0.5rem;
 }

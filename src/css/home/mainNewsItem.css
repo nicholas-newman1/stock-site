@@ -1,3 +1,20 @@
+.loading-main-news-container {
+  width: 100%;
+  background: #ddd;
+  padding: 1rem;
+  padding-top: 50%;
+
+  border-radius: 10px;
+}
+
+.loading-main-news-div {
+  width: 100%;
+  margin: 0 auto;
+  background: #eee;
+  padding-top: 30%;
+  border-radius: 10px;
+}
+
 .main-news-item {
   margin-bottom: 1rem;
 }
@@ -7,7 +24,6 @@
   padding-top: 50%;
   background-repeat: no-repeat;
   background-size: cover;
-  //border-radius: 5px 5px 0 0;
 }
 
 .main-news-content {
@@ -15,7 +31,6 @@
   background: rgba(0, 2, 69, 0.8);
   color: white;
   padding: 1rem;
-  //border-radius: 0 0 5px 5px;
 }
 
 .main-news-heading {

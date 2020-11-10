@@ -1,11 +1,15 @@
 import React, { useContext, useEffect, useState } from 'react';
-import '../../../css/home/news/mainNewsItem.css';
-import { getTimeAgoString, truncate } from '../../../helpers';
-import { NewsContext } from '../../../context/NewsContext';
+import '../../css/home/mainNewsItem.css';
+import { getTimeAgoString, truncate } from '../../helpers';
+import { RealDataContext } from '../../context/RealDataContext';
+import { dummyNewsData } from '../../dummyData';
 
 const MainNewsItem = () => {
   const [descriptionLength, setDescriptionLength] = useState(150);
   const [titleLength, setTitleLength] = useState(120);
+  const [mainNewsArticle, setMainNewsArticle] = useState({});
+  const [loading, setLoading] = useState(true);
+  const { realData } = useContext(RealDataContext);
 
   useEffect(() => {
     let resizer = new ResizeObserver(() => {
@@ -36,10 +40,34 @@ const MainNewsItem = () => {
     };
   }, []);
 
-  const { mainNewsArticle } = useContext(NewsContext);
+  const fetchMainNewsArticle = async () => {
+    setLoading(true);
+    let data;
+    if (realData) {
+      const res = await fetch(
+        `https://financialmodelingprep.com/api/v3/stock_news?limit=1&apikey=${process.env.REACT_APP_FMP_KEY}`
+      );
+      data = await res.json();
+    } else {
+      data = [...dummyNewsData];
+    }
+    setMainNewsArticle(data[0]);
+    setLoading(false);
+  };
+
+  useEffect(() => {
+    fetchMainNewsArticle();
+    //eslint-disable-next-line
+  }, [realData]);
+
+  // const { mainNewsArticle } = useContext(NewsContext);
   const { site, title, text, publishedDate, url, image } = mainNewsArticle;
 
-  return (
+  return loading ? (
+    <div className='loading-main-news-container'>
+      <div className='loading-main-news-div' />
+    </div>
+  ) : (
     <div className='main-news-item'>
       <div
         className='main-news-image'

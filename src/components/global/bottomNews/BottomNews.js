@@ -1,11 +1,11 @@
 import React, { useEffect, useState, useContext } from 'react';
-import QuoteNewsItem from './BottomNewsItem';
-import QuoteNewsLoading from './BottomNewsLoading';
+import BottomNewsItem from './BottomNewsItem';
+import BottomNewsLoading from './BottomNewsLoading';
 import { dummyStockNews } from '../../../dummyData';
 import '../../../css/global/bottomNews/bottomNews.css';
 import { RealDataContext } from '../../../context/RealDataContext';
 
-const QuoteNews = ({ symbol }) => {
+const BottomNews = ({ symbol, shift = false }) => {
   const [newsData, setNewsData] = useState([]);
   const [loading, setLoading] = useState(true);
   const { realData } = useContext(RealDataContext);
@@ -20,6 +20,8 @@ const QuoteNews = ({ symbol }) => {
         }&limit=10&apikey=${process.env.REACT_APP_FMP_KEY}`
       );
       data = await res.json();
+
+      // if no news for specific stock, fetch general news
       if (!data.length > 0) {
         res = await fetch(
           `https://financialmodelingprep.com/api/v3/stock_news?limit=10&apikey=${process.env.REACT_APP_FMP_KEY}`
@@ -29,6 +31,7 @@ const QuoteNews = ({ symbol }) => {
     } else {
       data = dummyStockNews;
     }
+    if (shift) data.shift();
     setNewsData(data);
     setLoading(false);
   };
@@ -41,11 +44,11 @@ const QuoteNews = ({ symbol }) => {
   return (
     <div className='bottom-news-container'>
       {loading ? (
-        <QuoteNewsLoading />
+        <BottomNewsLoading />
       ) : (
         <ul className='bottom-news-ul'>
           {newsData.map((newsItem, i) => (
-            <QuoteNewsItem key={i} newsItem={newsItem} />
+            <BottomNewsItem key={i} newsItem={newsItem} />
           ))}
         </ul>
       )}
@@ -53,4 +56,4 @@ const QuoteNews = ({ symbol }) => {
   );
 };
 
-export default QuoteNews;
+export default BottomNews;
