@@ -57,7 +57,7 @@ const Header = () => {
     <header>
       <div className='header container'>
         <Link className='header-logo' to='/'>
-          Finance App
+          Stock Site
         </Link>
 
         <div className='header-search-container'>

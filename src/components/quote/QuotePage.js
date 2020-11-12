@@ -39,7 +39,7 @@ const QuotePage = ({ match }) => {
   return (
     <>
       <Helmet>
-        <title>{`${quote.symbol} | ${quote.name} | Free Quote | Finance App`}</title>
+        <title>{`${quote.symbol} | ${quote.name} | Free Quote | Stock Site`}</title>
         <meta
           name='description'
           content={`${quote.symbol} free quote. ${quote.name} quote. Free stock quotes, forex exchange rates, cryptocurrency rates, and more.`}

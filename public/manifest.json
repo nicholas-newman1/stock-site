@@ -1,6 +1,6 @@
 {
-  "short_name": "Finanace App",
-  "name": "Get finance information from Alpha Vantage API",
+  "short_name": "Stock Site",
+  "name": "Free Stock Quotes, Forex Rates, and Cryptocurrency Prices",
   "icons": [
     {
       "src": "favicon.ico",

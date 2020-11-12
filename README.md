@@ -1,1 +1,1 @@
-This is a finance application built with React (https://reactjs.org/). It uses the Alpha Vantage API (https://www.alphavantage.co/) to retrieve information about the stock market, individual businesses, foreign currency, and cryptocurrencies.
+This is a website to search up the lates stock, forex, cryptocurrency, and commodity prices. It uses React and the Financial Modeling Prep API (https://financialmodelingprep.com/).
