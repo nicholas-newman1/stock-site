@@ -10,6 +10,7 @@ import { QuoteContext } from '../../context/QuoteContext';
 import { RealDataContext } from '../../context/RealDataContext';
 import QuoteFinancials from './financials/QuoteFinancials';
 import { Helmet } from 'react-helmet-async';
+import { Redirect } from 'react-router-dom';
 
 const QuotePage = ({ match }) => {
   const symbol = match.params.symbol;
@@ -64,10 +65,7 @@ const QuotePage = ({ match }) => {
       </div>
     </>
   ) : (
-    <>
-      <br />
-      <h3>No Data Available</h3>
-    </>
+    <Redirect to='/' />
   );
 };
 

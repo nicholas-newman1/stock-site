@@ -35,7 +35,9 @@ export const QuoteProvider = (props) => {
     let data;
     if (realData) {
       const res = await fetch(
-        `https://financialmodelingprep.com/api/v3/quote/${symbol}?apikey=${process.env.REACT_APP_FMP_KEY}`
+        `https://financialmodelingprep.com/api/v3/quote/${symbol.toUpperCase()}?apikey=${
+          process.env.REACT_APP_FMP_KEY
+        }`
       );
       data = await res.json();
       data = data[0];

@@ -13,7 +13,6 @@ const Header = () => {
   useEffect(() => {
     const main = document.querySelector('main');
     const header = document.querySelector('header');
-    const html = document.querySelector('html');
 
     // Hide/display nav part of header depending on window size
     const resizer = new ResizeObserver((e) => {
@@ -26,7 +25,7 @@ const Header = () => {
         setDisplayNav(false);
       }
     });
-    resizer.observe(html);
+    resizer.observe(main);
 
     // shrink/grow header based on scroll direction
 
