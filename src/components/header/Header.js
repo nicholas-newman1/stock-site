@@ -14,8 +14,11 @@ const Header = () => {
     const main = document.querySelector('main');
     const header = document.querySelector('header');
 
-    const resizer = new ResizeObserver(() => {
-      main.style.paddingTop = `${header.getBoundingClientRect().height + 16}px`;
+    // Move main down into view
+    main.style.paddingTop = `${header.getBoundingClientRect().height + 16}px`;
+
+    // Hide/display nav part of header depending on window size
+    const resizer = new ResizeObserver((e) => {
       if (window.innerWidth > 700) {
         setDisplayNav(true);
         setToggleNav(false);
