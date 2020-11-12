@@ -13,12 +13,12 @@ const Header = () => {
   useEffect(() => {
     const main = document.querySelector('main');
     const header = document.querySelector('header');
-
-    // Move main down into view
-    main.style.paddingTop = `${header.getBoundingClientRect().height + 16}px`;
+    const html = document.querySelector('html');
 
     // Hide/display nav part of header depending on window size
     const resizer = new ResizeObserver((e) => {
+      // Move main down into view
+      main.style.paddingTop = `${header.getBoundingClientRect().height + 16}px`;
       if (window.innerWidth > 700) {
         setDisplayNav(true);
         setToggleNav(false);
@@ -26,7 +26,7 @@ const Header = () => {
         setDisplayNav(false);
       }
     });
-    resizer.observe(header);
+    resizer.observe(html);
 
     // shrink/grow header based on scroll direction
 

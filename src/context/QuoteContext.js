@@ -43,6 +43,12 @@ export const QuoteProvider = (props) => {
       data = { ...dummyQuoteData[0] };
     }
 
+    if (data === undefined) {
+      setQuote(null);
+      setQuoteFetched(true);
+      return;
+    }
+
     const { price, change, changesPercentage, exchange } = data;
 
     setIsStock(

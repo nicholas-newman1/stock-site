@@ -36,7 +36,7 @@ const QuotePage = ({ match }) => {
     //eslint-disable-next-line
   }, [realData]);
 
-  return (
+  return quote !== null ? (
     <>
       <Helmet>
         <title>{`${quote.symbol} | ${quote.name} | Free Quote | Stock Site`}</title>
@@ -62,6 +62,11 @@ const QuotePage = ({ match }) => {
 
         {quoteFetched && <BottomNews symbol={isStock ? symbol : ''} />}
       </div>
+    </>
+  ) : (
+    <>
+      <br />
+      <h3>No Data Available</h3>
     </>
   );
 };
