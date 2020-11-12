@@ -43,6 +43,12 @@ export const TableProvider = (props) => {
       if (path === 'forex') data = dummyForexData;
       if (path === 'commodities') data = dummyCommodityData;
     }
+    data = data.filter(
+      (currency) =>
+        currency.price !== null &&
+        currency.change !== null &&
+        currency.changesPercentage !== null
+    );
     sortData(data, sortProperty, reverse);
     setTableData(data);
   };

@@ -13,7 +13,7 @@ const TableRow = ({ item, index }) => {
   // Determine number of decimals to round to based on the maginitude of the price change
   let decimals = 2;
   while (
-    change !== 0 &&
+    change &&
     (change.toLocaleString(undefined, {
       maximumFractionDigits: decimals,
     }) === '0' ||
@@ -25,21 +25,27 @@ const TableRow = ({ item, index }) => {
   }
 
   // limit change decimal places
-  change = change.toLocaleString(undefined, {
-    maximumFractionDigits: decimals,
-    minimumFractionDigits: decimals,
-  });
+  if (change) {
+    change = change.toLocaleString(undefined, {
+      maximumFractionDigits: decimals,
+      minimumFractionDigits: decimals,
+    });
+  }
 
   // limit price decimal places
-  price = price.toLocaleString(undefined, {
-    maximumFractionDigits: decimals,
-    minimumFractionDigits: decimals,
-  });
+  if (price) {
+    price = price.toLocaleString(undefined, {
+      maximumFractionDigits: decimals,
+      minimumFractionDigits: decimals,
+    });
+  }
 
   // limit changesPercentage decimal places
-  changesPercentage = changesPercentage.toLocaleString(undefined, {
-    maximumFractionDigits: decimals,
-  });
+  if (changesPercentage) {
+    changesPercentage = changesPercentage.toLocaleString(undefined, {
+      maximumFractionDigits: decimals,
+    });
+  }
 
   return (
     <tr className='table-tr' style={{ background }}>

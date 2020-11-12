@@ -19,7 +19,7 @@ const PriceListItem = ({ data }) => {
 
   // determine number of decimal places to display, depending on the maginitude of the change
   while (
-    change !== 0 &&
+    change &&
     (change.toLocaleString(undefined, {
       maximumFractionDigits: decimals,
     }) === '0' ||
@@ -31,21 +31,27 @@ const PriceListItem = ({ data }) => {
   }
 
   // limit change decimal places
-  change = change.toLocaleString(undefined, {
-    maximumFractionDigits: decimals,
-    minimumFractionDigits: decimals,
-  });
+  if (change) {
+    change = change.toLocaleString(undefined, {
+      maximumFractionDigits: decimals,
+      minimumFractionDigits: decimals,
+    });
+  }
 
   // limit price decimal places
-  price = price.toLocaleString(undefined, {
-    maximumFractionDigits: decimals,
-    minimumFractionDigits: decimals,
-  });
+  if (price) {
+    price = price.toLocaleString(undefined, {
+      maximumFractionDigits: decimals,
+      minimumFractionDigits: decimals,
+    });
+  }
 
   // limit changesPercentage decimal places
-  changesPercentage = changesPercentage.toLocaleString(undefined, {
-    maximumFractionDigits: decimals,
-  });
+  if (changesPercentage) {
+    changesPercentage = changesPercentage.toLocaleString(undefined, {
+      maximumFractionDigits: decimals,
+    });
+  }
 
   return (
     <tr className='pricelist-tr'>
