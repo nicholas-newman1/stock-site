@@ -57,12 +57,14 @@ const SearchResults = ({ match }) => {
               );
             })}
           </ul>
-          <SearchResultsNav
-            searchResults={searchResults}
-            page={page}
-            setPage={setPage}
-            resultsPerPage={resultsPerPage}
-          />
+          {searchResults.length > resultsPerPage && (
+            <SearchResultsNav
+              searchResults={searchResults}
+              page={page}
+              setPage={setPage}
+              resultsPerPage={resultsPerPage}
+            />
+          )}
         </>
       ) : (
         <h2>No Data Available</h2>

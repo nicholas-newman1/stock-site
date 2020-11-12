@@ -6,7 +6,7 @@ const TableNav = () => {
   const { tableData, page, setPage, resultsPerPage } = useContext(TableContext);
   const onLastPage = tableData.length - page * resultsPerPage <= resultsPerPage;
   const onFirstPage = page === 0;
-  return (
+  return tableData.length > resultsPerPage ? (
     <div className='table-nav-container'>
       <button
         className='table-btn'
@@ -24,7 +24,7 @@ const TableNav = () => {
         Next Page {' >'}
       </button>
     </div>
-  );
+  ) : null;
 };
 
 export default TableNav;
