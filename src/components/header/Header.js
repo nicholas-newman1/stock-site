@@ -26,26 +26,17 @@ const Header = () => {
     resizer.observe(header);
 
     // shrink/grow header based on scroll direction
-    let lastScroll = 0;
+
     const headerLogo = document.querySelector('.header-logo');
     const headerHamburger = document.querySelector('.header-hamburger');
+
+    let lastScroll = 0;
     window.addEventListener('scroll', () => {
       const currentScroll = window.pageYOffset;
-      if (currentScroll <= 0) {
-        headerLogo.classList.remove('scroll-up');
-        return;
-      }
-
-      if (
-        currentScroll > lastScroll &&
-        !headerLogo.classList.contains('scroll-down')
-      ) {
+      if (currentScroll > lastScroll) {
         headerLogo.classList.add('scroll-down');
         headerHamburger.classList.add('scroll-down');
-      } else if (
-        currentScroll < lastScroll &&
-        headerLogo.classList.contains('scroll-down')
-      ) {
+      } else if (currentScroll < lastScroll) {
         headerLogo.classList.remove('scroll-down');
         headerHamburger.classList.remove('scroll-down');
       }
