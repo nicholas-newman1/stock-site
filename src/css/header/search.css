@@ -37,7 +37,7 @@
 @media (max-width: 700px) {
   .search-form {
     align-self: start;
-    margin: 1rem 0;
+    margin-bottom: 0.5rem;
     width: 100%;
   }
 }

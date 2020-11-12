@@ -33,7 +33,6 @@ const Header = () => {
       const currentScroll = window.pageYOffset;
       if (currentScroll <= 0) {
         headerLogo.classList.remove('scroll-up');
-        headerHamburger.classList.remove('scroll-up');
         return;
       }
 
@@ -41,8 +40,6 @@ const Header = () => {
         currentScroll > lastScroll &&
         !headerLogo.classList.contains('scroll-down')
       ) {
-        headerLogo.classList.remove('scroll-up');
-        headerHamburger.classList.remove('scroll-up');
         headerLogo.classList.add('scroll-down');
         headerHamburger.classList.add('scroll-down');
       } else if (
@@ -51,8 +48,6 @@ const Header = () => {
       ) {
         headerLogo.classList.remove('scroll-down');
         headerHamburger.classList.remove('scroll-down');
-        headerLogo.classList.add('scroll-up');
-        headerHamburger.classList.add('scroll-up');
       }
       lastScroll = currentScroll;
     });
