@@ -1,9 +1,12 @@
 .bottom-news-loading-container {
-  margin-top: 1rem;
   width: 100%;
   background: #ddd;
   padding: 1rem;
   border-radius: 10px;
+}
+
+.bottom-news-loading-container + .bottom-news-loading-container {
+  margin-top: 1rem;
 }
 
 .bottom-news-loading-div {
