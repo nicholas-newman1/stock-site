@@ -30,6 +30,7 @@ export const QuoteProvider = (props) => {
     volume: '- -',
     avgVolume: '- -',
   });
+  const [decimals, setDecimals] = useState(2);
 
   const fetchQuote = async (symbol) => {
     let data;
@@ -80,6 +81,8 @@ export const QuoteProvider = (props) => {
       decimals++;
     }
 
+    setDecimals(decimals); // used for rounding in QuoteChart
+
     data = {
       ...data,
 
@@ -129,6 +132,8 @@ export const QuoteProvider = (props) => {
         setIsStock,
         quoteFetched,
         setQuoteFetched,
+        decimals,
+        setDecimals,
       }}
     >
       {props.children}

@@ -9,6 +9,7 @@ import {
   dummyDailyData,
 } from '../../dummyData';
 import { RealDataContext } from '../../context/RealDataContext';
+import { QuoteContext } from '../../context/QuoteContext';
 import Spinner from '../global/Spinner';
 
 const QuoteChart = ({ symbol }) => {
@@ -17,8 +18,8 @@ const QuoteChart = ({ symbol }) => {
   const [chartData, setChartData] = useState([]);
   const [timeScaleFormat, setTimeScaleFormat] = useState('minute');
   const [tooltipFormat, setTooltipFormat] = useState('h:mm a');
-  const [decimals, setDecimals] = useState(4);
   const { realData } = useContext(RealDataContext);
+  const { decimals } = useContext(QuoteContext);
 
   useEffect(() => {
     if (timeframe === '1D') {
@@ -48,38 +49,11 @@ const QuoteChart = ({ symbol }) => {
       if (interval === '') endpoint = 'historical-price-full'; // interval === '' equivalent to timeframe === 6M or YTD or 1Y or 5Y or MAX
 
       // fetch data
-      const dataRes = await fetch(
+      const res = await fetch(
         `https://financialmodelingprep.com/api/v3/${endpoint}/${interval}/${symbol}?apikey=${process.env.REACT_APP_FMP_KEY}`
       );
-      data = await dataRes.json();
+      data = await res.json();
       if (endpoint === 'historical-price-full') data = [...data.historical]; // data from 'historical-price-full endpoint returns an object with a 'historical' property
-
-      // fetch quote (to append the most recent price to the end of the chart)
-      const quoteRes = await fetch(
-        `https://financialmodelingprep.com/api/v3/quote/${symbol}?apikey=${process.env.REACT_APP_FMP_KEY}`
-      );
-      const quote = await quoteRes.json();
-
-      // append data to chart
-      data.unshift({
-        date: new Date(quote[0].timestamp * 1000),
-        close: quote[0].price,
-      });
-
-      //determine number of decimals to round to
-      let decimals = 2;
-      while (
-        quote[0].change !== 0 &&
-        (quote[0].change.toLocaleString(undefined, {
-          maximumFractionDigits: decimals,
-        }) === '0' ||
-          quote[0].change.toLocaleString(undefined, {
-            maximumFractionDigits: decimals,
-          }) === '-0')
-      ) {
-        decimals++;
-      }
-      setDecimals(decimals);
 
       setLoading(false);
     } else {
@@ -89,36 +63,31 @@ const QuoteChart = ({ symbol }) => {
       if (timeframe === '1M') data = [...dummyOneMonthData];
     }
 
-    // data returned from API is backwards
-    data.reverse();
-
     // filter out data that is not within the timeframe
     if (timeframe === '1D') {
       data = data.filter((item) => {
-        const latestDate = new Date(
-          data[data.length - 1].date
-        ).toLocaleDateString();
+        const latestDate = new Date(data[0].date).toLocaleDateString();
         const itemDate = new Date(item.date).toLocaleDateString();
         return latestDate === itemDate;
       });
     } else if (timeframe === '5D') {
       data = data.filter((item) => {
         const fiveDaysInMS = 1000 * 60 * 60 * 24 * 5;
-        const latestDate = Date.parse(data[data.length - 1].date);
+        const latestDate = Date.parse(data[0].date);
         const itemDate = Date.parse(item.date);
         return latestDate - itemDate < fiveDaysInMS;
       });
     } else if (timeframe === '1M') {
       data = data.filter((item) => {
         const thirtyDaysInMS = 1000 * 60 * 60 * 24 * 30;
-        const latestDate = Date.parse(data[data.length - 1].date);
+        const latestDate = Date.parse(data[0].date);
         const itemDate = Date.parse(item.date);
         return latestDate - itemDate < thirtyDaysInMS;
       });
     } else if (timeframe === '6M') {
       data = data.filter((item) => {
         const sixMonthsInMS = 1000 * 60 * 60 * 24 * 30 * 6;
-        const latestDate = Date.parse(data[data.length - 1].date);
+        const latestDate = Date.parse(data[0].date);
         const itemDate = Date.parse(item.date);
         return latestDate - itemDate < sixMonthsInMS;
       });
@@ -133,14 +102,14 @@ const QuoteChart = ({ symbol }) => {
     } else if (timeframe === '1Y') {
       data = data.filter((item) => {
         const oneYearInMS = 1000 * 60 * 60 * 24 * 365;
-        const latestDate = Date.parse(data[data.length - 1].date);
+        const latestDate = Date.parse(data[0].date);
         const itemDate = Date.parse(item.date);
         return latestDate - itemDate < oneYearInMS;
       });
     } else if (timeframe === '5Y') {
       data = data.filter((item) => {
         const fiveYearsInMS = 1000 * 60 * 60 * 24 * 365 * 5;
-        const latestDate = Date.parse(data[data.length - 1].date);
+        const latestDate = Date.parse(data[0].date);
         const itemDate = Date.parse(item.date);
         return latestDate - itemDate < fiveYearsInMS;
       });
@@ -171,7 +140,6 @@ const QuoteChart = ({ symbol }) => {
 
   const options = {
     maintainAspectRatio: true,
-
     scales: {
       xAxes: [
         {
@@ -243,7 +211,7 @@ const QuoteChart = ({ symbol }) => {
       <QuoteTimeframeNav setTimeframe={setTimeframe} />
       {loading ? (
         <Spinner />
-      ) : chartData.length > 0 ? (
+      ) : chartData.length > 1 ? (
         <div className='chart-container'>
           <Scatter data={{ datasets: [dataset1] }} options={options} />
         </div>
