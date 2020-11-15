@@ -81,12 +81,12 @@ export const formatData = (data) => {
   return data;
 };
 
-export const sortData = (data, property, reverse) => {
+export const sortData = (data, property, reverseOrder = false) => {
   const compare = (a, b) => {
     let comparison = 0;
     if (a[property] < b[property]) comparison = 1;
     if (a[property] > b[property]) comparison = -1;
-    return reverse ? comparison * -1 : comparison;
+    return reverseOrder ? comparison * -1 : comparison;
   };
   data.sort(compare);
 };

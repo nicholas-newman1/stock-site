@@ -10,6 +10,7 @@ import HomePage from './components/home/HomePage';
 import QuotePage from './components/quote/QuotePage';
 import SearchResultsPage from './components/search/SearchResultsPage';
 import TablePage from './components/global/tablePage/TablePage';
+import ForexPage from './components/ForexPage';
 import NotFound from './components/NotFound';
 import Footer from './components/Footer';
 import { QuoteProvider } from './context/QuoteContext';
@@ -35,7 +36,7 @@ const App = () => {
                   />
                   <Route exact path='/quote/:symbol' component={QuotePage} />
                   <Route exact path='/cryptocurrencies' component={TablePage} />
-                  <Route exact path='/forex' component={TablePage} />
+                  <Route exact path='/forex' component={ForexPage} />
                   <Route exact path='/commodities' component={TablePage} />
                   <Redirect from='/quote/:symbol/**' to='/quote/:symbol' />
                   <Redirect from='/:page/**' to='/:page' />
