@@ -1,10 +1,7 @@
-import React, { useContext } from 'react';
-import { shortenNumber } from '../../../helpers';
-import { TableContext } from '../../../context/TableContext';
+import React from 'react';
 import { Link } from 'react-router-dom';
 
 const TableRow = ({ item, index }) => {
-  const { path } = useContext(TableContext);
   let { symbol, name, price, change, changesPercentage, marketCap } = item;
 
   const color = change > 0 ? 'green' : change < 0 ? '#de0e00' : 'black';
@@ -63,9 +60,6 @@ const TableRow = ({ item, index }) => {
       <td className='table-td' style={{ color }}>
         {changesPercentage}%
       </td>
-      {path === 'cryptocurrencies' && (
-        <td className='table-td'>{shortenNumber(marketCap)}</td>
-      )}
     </tr>
   );
 };
