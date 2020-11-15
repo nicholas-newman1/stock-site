@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const TableRow = ({ item, index }) => {
-  let { symbol, name, price, change, changesPercentage, marketCap } = item;
+  let { symbol, name, price, change, changesPercentage } = item;
 
   const color = change > 0 ? 'green' : change < 0 ? '#de0e00' : 'black';
   const background = index % 2 === 1 ? 'white' : '#eee';

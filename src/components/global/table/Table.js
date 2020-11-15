@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import TableNav from './TableNav';
 import TableTable from './TableTable';
 import TableOptions from './TableOptions';
@@ -6,14 +6,7 @@ import Spinner from '../Spinner';
 import '../../../css/global/tablePage/tablePage.css';
 import { sortData } from '../../../helpers';
 
-const Table = ({
-  heading,
-  loading,
-  tableData,
-  setTableData,
-  initialSortProperty,
-  headings,
-}) => {
+const Table = ({ heading, loading, tableData, setTableData }) => {
   const [page, setPage] = useState(0);
   const [resultsPerPage, setResultsPerPage] = useState(15);
 
@@ -24,29 +17,11 @@ const Table = ({
       return sortedData;
     });
   };
-  // const path = window.location.pathname.replace('/', '');
-  // const { initializeTable, tableData, loading } = useContext(TableContext);
-  // const [title, setTitle] = useState('');
 
-  // useEffect(() => {
-  //   let sortProperty;
-  //   let reverse;
-  //   if (path === 'cryptocurrencies') {
-  //     sortProperty = 'marketCap';
-  //     reverse = false;
-  //     setTitle('Cryptocurrency Quotes');
-  //   } else if (path === 'forex') {
-  //     sortProperty = 'name';
-  //     reverse = true;
-  //     setTitle('Forex Quotes');
-  //   } else if (path === 'commodities') {
-  //     sortProperty = 'name';
-  //     reverse = true;
-  //     setTitle('Commodity Quotes');
-  //   }
-  //   initializeTable(path, sortProperty, reverse);
-  //   //eslint-disable-next-line
-  // }, [path]);
+  useEffect(() => {
+    if (tableData.length > 0) sortTableData('name');
+    //eslint-disable-next-line
+  }, [loading]);
 
   return (
     <>
@@ -65,9 +40,7 @@ const Table = ({
             tableData={tableData}
             page={page}
             resultsPerPage={resultsPerPage}
-            headings={headings}
             sortTableData={sortTableData}
-            initialSortProperty={initialSortProperty}
           />
           <TableOptions
             page={page}

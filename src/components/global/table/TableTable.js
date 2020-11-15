@@ -3,22 +3,11 @@ import TableHead from './TableHead';
 import TableRow from './TableRow';
 import '../../../css/global/tablePage/table.css';
 
-const TableTable = ({
-  tableData,
-  page,
-  resultsPerPage,
-  headings,
-  sortTableData,
-  initialSortProperty,
-}) => {
+const TableTable = ({ tableData, page, resultsPerPage, sortTableData }) => {
   const offset = page * resultsPerPage;
   return (
     <table className='table'>
-      <TableHead
-        headings={headings}
-        sortTableData={sortTableData}
-        initialSortProperty={initialSortProperty}
-      />
+      <TableHead sortTableData={sortTableData} />
       <tbody>
         {tableData.map((item, i) => {
           const itemInRange = i <= offset + resultsPerPage - 1 && i >= offset;

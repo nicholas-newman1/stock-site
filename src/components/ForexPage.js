@@ -1,6 +1,5 @@
 import React, { useEffect, useState, useContext } from 'react';
 import { Helmet } from 'react-helmet-async';
-import { sortData } from '../helpers';
 import Table from './global/table/Table';
 import BottomNews from './global/bottomNews/BottomNews';
 import { RealDataContext } from '../context/RealDataContext';
@@ -12,34 +11,24 @@ const ForexPage = () => {
   const { realData } = useContext(RealDataContext);
 
   const fetchForexData = async () => {
+    setLoading(true);
     let data;
     if (realData) {
-      setLoading(true);
       const res = await fetch(
         `https://financialmodelingprep.com/api/v3/quotes/forex?apikey=${process.env.REACT_APP_FMP_KEY}`
       );
       data = await res.json();
-      setLoading(false);
     } else {
       data = [...dummyForexData];
     }
-
-    sortData(data, 'name');
     setData(data);
+    setLoading(false);
   };
 
   useEffect(() => {
     fetchForexData();
     //eslint-disable-next-line
   }, []);
-
-  const forexHeadings = [
-    { property: 'symbol', label: 'Symbol' },
-    { property: 'name', label: 'Name' },
-    { property: 'price', label: 'Price' },
-    { property: 'change', label: 'Change' },
-    { property: 'changesPercentage', label: 'Percent Change' },
-  ];
 
   return (
     <div>
@@ -54,9 +43,7 @@ const ForexPage = () => {
         heading='forex'
         loading={loading}
         tableData={data}
-        headings={forexHeadings}
         setTableData={setData}
-        initialSortProperty='name'
       />
       <BottomNews />
     </div>

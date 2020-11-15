@@ -1,20 +1,11 @@
 import React, { useState } from 'react';
 import TableSortArrow from './TableSortArrow';
 
-const TableHead = ({ headings, sortTableData, initialSortProperty }) => {
+const TableHead = ({ sortTableData }) => {
   const [reverse, setReverse] = useState(false);
-  const [sortProperty, setSortProperty] = useState(initialSortProperty);
+  const [sortProperty, setSortProperty] = useState('name');
 
-  const cryptoHeadings = [
-    { property: 'symbol', label: 'Symbol' },
-    { property: 'name', label: 'Name' },
-    { property: 'price', label: 'Price' },
-    { property: 'change', label: 'Change' },
-    { property: 'changesPercentage', label: 'Percent Change' },
-    { property: 'marketCap', label: 'Market Cap' },
-  ];
-
-  const commodityHeadings = [
+  const headings = [
     { property: 'symbol', label: 'Symbol' },
     { property: 'name', label: 'Name' },
     { property: 'price', label: 'Price' },
