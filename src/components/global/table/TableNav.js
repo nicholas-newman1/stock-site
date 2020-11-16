@@ -1,5 +1,5 @@
 import React from 'react';
-import '../../../css/global/tablePage/tableNav.css';
+import '../../../css/global/table/tableNav.css';
 
 const TableNav = ({ tableData, page, setPage, resultsPerPage }) => {
   const onLastPage = tableData.length - page * resultsPerPage <= resultsPerPage;

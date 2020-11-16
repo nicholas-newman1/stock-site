@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import '../../../css/global/tablePage/tableOptions.css';
+import '../../../css/global/table/tableOptions.css';
 
 const TableOptions = ({ page, setPage, resultsPerPage, setResultsPerPage }) => {
   useEffect(() => {

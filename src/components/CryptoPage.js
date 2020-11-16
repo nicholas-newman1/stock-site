@@ -3,44 +3,44 @@ import { Helmet } from 'react-helmet-async';
 import Table from './global/table/Table';
 import BottomNews from './global/bottomNews/BottomNews';
 import { RealDataContext } from '../context/RealDataContext';
-import { dummyForexData } from '../dummyData';
+import { dummyCryptoData } from '../dummyData';
 
-const ForexPage = () => {
+const CryptoPage = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
   const { realData } = useContext(RealDataContext);
 
-  const fetchForexData = async () => {
+  const fetchCryptoData = async () => {
     setLoading(true);
     let data;
     if (realData) {
       const res = await fetch(
-        `https://financialmodelingprep.com/api/v3/quotes/forex?apikey=${process.env.REACT_APP_FMP_KEY}`
+        `https://financialmodelingprep.com/api/v3/quotes/crypto?apikey=${process.env.REACT_APP_FMP_KEY}`
       );
       data = await res.json();
     } else {
-      data = [...dummyForexData];
+      data = [...dummyCryptoData];
     }
     setData(data);
     setLoading(false);
   };
 
   useEffect(() => {
-    fetchForexData();
+    fetchCryptoData();
     //eslint-disable-next-line
   }, []);
 
   return (
     <div>
       <Helmet>
-        <title>Forex Quotes | Finance App</title>
+        <title>Cryptocurrency Quotes | Finance App</title>
         <meta
           name='description'
-          content='Free forex quotes. Find free stock quotes, forex rates, cryptocurrency prices, and more.'
+          content='Free cryptocurrency quotes. Find free stock quotes, forex rates, cryptocurrency prices, and more.'
         />
       </Helmet>
       <Table
-        heading='forex'
+        heading='cryptocurrencies'
         loading={loading}
         tableData={data}
         setTableData={setData}
@@ -50,4 +50,4 @@ const ForexPage = () => {
   );
 };
 
-export default ForexPage;
+export default CryptoPage;
