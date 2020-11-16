@@ -2,7 +2,6 @@
   display: flex;
   justify-content: space-between;
   margin-bottom: 1rem;
-  background: #eee;
 }
 
 .bottom-news-image-container {
@@ -17,7 +16,7 @@
 
 .bottom-news-content {
   width: 69%;
-  padding: 0.5rem;
+  margin-left: 0.5rem;
 }
 
 .bottom-news-heading {
