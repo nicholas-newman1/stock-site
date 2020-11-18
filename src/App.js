@@ -9,7 +9,8 @@ import Header from './components/header/Header';
 import HomePage from './components/pages/home/HomePage';
 import QuotePage from './components/pages/quote/QuotePage';
 import SearchResultsPage from './components/pages/search/SearchResultsPage';
-import StockPage from './components/pages/StockPage';
+import IndexPage from './components/pages/IndexPage';
+import StockPage from './components/pages/stockPage/StockPage';
 import CryptoPage from './components/pages/CryptoPage';
 import CommodityPage from './components/pages/CommodityPage';
 import ForexPage from './components/pages/ForexPage';
@@ -35,6 +36,7 @@ const App = () => {
                   component={SearchResultsPage}
                 />
                 <Route exact path='/quote/:symbol' component={QuotePage} />
+                <Route exact path='/indexes' component={IndexPage} />
                 <Route exact path='/stocks' component={StockPage} />
                 <Route exact path='/cryptocurrencies' component={CryptoPage} />
                 <Route exact path='/forex' component={ForexPage} />

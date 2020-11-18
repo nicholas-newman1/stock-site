@@ -1,13 +1,15 @@
 import React, { useEffect, useState, useContext } from 'react';
 import { Helmet } from 'react-helmet-async';
-import Table from '../global/table/Table';
-import BottomNews from '../global/bottomNews/BottomNews';
-import { RealDataContext } from '../../context/RealDataContext';
+import BottomNews from '../../global/bottomNews/BottomNews';
+import { RealDataContext } from '../../../context/RealDataContext';
 import {
   dummyActivesData,
   dummyGainersData,
   dummyLosersData,
-} from '../../dummyData';
+} from '../../../dummyData';
+import StockTable from './StockTable';
+import Sectors from './Sectors';
+import './stockPage.css';
 
 const StockPage = () => {
   const [activesData, setActivesData] = useState([]);
@@ -79,6 +81,29 @@ const StockPage = () => {
           content='Free stock quotes. Find free stock quotes, forex rates, cryptocurrency prices, and more.'
         />
       </Helmet>
+
+      <div className='stocklists'>
+        <div className='stocklist'>
+          <h2 className='stockpage__sub-heading'>Losers</h2>
+          <StockTable data={activesData} loading={activesLoading} />
+        </div>
+
+        <div className='stocklist'>
+          <h2 className='stockpage__sub-heading'>Losers</h2>
+          <StockTable data={gainersData} loading={gainersLoading} />
+        </div>
+
+        <div className='stocklist'>
+          <h2 className='stockpage__sub-heading'>Losers</h2>
+          <StockTable data={losersData} loading={losersLoading} />
+        </div>
+      </div>
+
+      <div>
+        <h2 className='stockpage__sub-heading'>Sectors</h2>
+        <Sectors />
+      </div>
+
       <BottomNews />
     </div>
   );

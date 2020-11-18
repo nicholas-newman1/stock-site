@@ -1,0 +1,50 @@
+.stocklists {
+  display: flex;
+  justify-content: space-between;
+}
+
+.stocklist {
+  width: 32%;
+  overflow-x: auto;
+  display: grid;
+}
+
+.stockpage__sub-heading {
+  text-transform: capitalize;
+  margin: 0 auto;
+  margin-bottom: 0.5rem;
+  font-weight: 400;
+  display: inline-block;
+  position: relative;
+}
+
+.stockpage__sub-heading::after {
+  content: '';
+  height: 3px;
+  width: 50px;
+  position: absolute;
+  bottom: -3px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #006acc;
+}
+
+@media (max-width: 1200px) and (min-width: 1000px) {
+  .stocklist {
+    width: 32.5%;
+  }
+}
+
+@media (max-width: 1000px) {
+  .stocklists {
+    flex-direction: column;
+  }
+
+  .stocklist {
+    width: 100%;
+  }
+
+  .stocklist + .stocklist {
+    margin-top: 1rem;
+  }
+}

@@ -3,7 +3,14 @@ import { Link } from 'react-router-dom';
 import './nav.css';
 
 const Nav = ({ setToggleNav }) => {
-  const links = ['Home', 'Stocks', 'Forex', 'Cryptocurrencies', 'Commodities'];
+  const links = [
+    'Home',
+    'Indexes',
+    'Stocks',
+    'Forex',
+    'Cryptocurrencies',
+    'Commodities',
+  ];
 
   return (
     <ul className='nav-list'>
