@@ -10,6 +10,8 @@ const Table = ({ heading, loading, tableData, setTableData }) => {
   const [page, setPage] = useState(0);
   const [resultsPerPage, setResultsPerPage] = useState(15);
 
+  tableData = tableData.filter((item) => item.price || item.change); // remove any items that don't have a value for price or change
+
   const sortTableData = (property, reverse) => {
     setTableData((prevData) => {
       const sortedData = [...prevData];
