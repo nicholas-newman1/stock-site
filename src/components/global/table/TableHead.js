@@ -28,13 +28,8 @@ const TableHead = ({ sortTableData }) => {
                 className='table-th-btn'
                 style={isSelected ? { textDecoration: 'underline' } : {}}
                 onClick={() => {
-                  if (isSelected) {
-                    sortTableData(property, !reverse);
-                    setReverse((prevReverse) => !prevReverse);
-                  } else {
-                    sortTableData(property, false);
-                    setReverse(false);
-                  }
+                  sortTableData(property, !reverse);
+                  setReverse((prevReverse) => !prevReverse);
                   setSortProperty(property);
                 }}
               >
