@@ -1,4 +1,4 @@
-.stocklists {
+.stock-page__stocklists {
   display: flex;
   justify-content: space-between;
   margin-bottom: 1rem;
@@ -41,7 +41,7 @@
 }
 
 @media (max-width: 1000px) {
-  .stocklists {
+  .stock-page__stocklists {
     flex-direction: column;
   }
 

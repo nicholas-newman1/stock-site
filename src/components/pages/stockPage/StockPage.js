@@ -82,7 +82,7 @@ const StockPage = () => {
         />
       </Helmet>
 
-      <div className='stocklists'>
+      <div className='stock-page__stocklists'>
         <div className='stock-page__stock-table'>
           <h2 className='stockpage__sub-heading'>Actives</h2>
           <StockTable data={activesData} loading={activesLoading} />

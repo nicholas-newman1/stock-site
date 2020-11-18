@@ -39,18 +39,18 @@ const PriceListItem = ({ data }) => {
   }
 
   return (
-    <tr className='stocktable__tr'>
-      <td className='stocktable__td'>
-        <Link className='stocktable__symbol' to={`/quote/${ticker}`}>
+    <tr className='stock-table__tr'>
+      <td className='stock-table__td'>
+        <Link className='stock-table__symbol' to={`/quote/${ticker}`}>
           {ticker}
         </Link>
       </td>
-      <td className='stocktable__td'>${price}</td>
-      <td className='stocktable__td' style={{ color }}>
+      <td className='stock-table__td'>${price}</td>
+      <td className='stock-table__td' style={{ color }}>
         {isPositive && '+'}
         {changes}
       </td>
-      <td className='stocktable__td' style={{ color }}>
+      <td className='stock-table__td' style={{ color }}>
         {changesPercentage}
       </td>
     </tr>
