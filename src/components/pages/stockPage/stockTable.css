@@ -3,6 +3,11 @@
   width: 100%;
 }
 
+.stock-table__tr--loading {
+  height: 2rem;
+  background: #eee;
+}
+
 .stock-table__td:first-child,
 .stock-table__th:first-child {
   border-top-left-radius: 5px;

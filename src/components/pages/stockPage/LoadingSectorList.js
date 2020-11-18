@@ -1,16 +1,14 @@
 import React from 'react';
 
 const LoadingSectorList = () => {
-  const loadingArray = [1, 2, 3, 4];
+  const loadingArray = [1, 2, 3, 4, 5];
 
   return (
     <>
       {loadingArray.map((i) => (
-        <tr className='sectoritem' key={i}>
+        <tr className='sector-table__tr--loading' key={i}>
           {loadingArray.map((i) => (
-            <td key={i}>
-              <div className='sectoritem__loading' />
-            </td>
+            <td className='sector-table__td' key={i}></td>
           ))}
         </tr>
       ))}

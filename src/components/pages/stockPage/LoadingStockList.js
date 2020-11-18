@@ -6,11 +6,9 @@ const LoadingPriceList = () => {
   return (
     <>
       {loadingArray.map((i) => (
-        <tr className='stockitem' key={i}>
+        <tr className='stock-table__tr--loading' key={i}>
           {loadingArray.map((i) => (
-            <td key={i}>
-              <div className='stockitem__loading' />
-            </td>
+            <td className='stock-table__td' key={i}></td>
           ))}
         </tr>
       ))}

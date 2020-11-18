@@ -3,6 +3,11 @@
   width: 100%;
 }
 
+.sector-table__tr--loading {
+  height: 2rem;
+  background: #eee;
+}
+
 .sector-table__td:first-child,
 .sector-table__th:first-child {
   border-top-left-radius: 5px;
