@@ -1,0 +1,62 @@
+.sector-table {
+  border-spacing: 0 12px;
+  width: 100%;
+}
+
+.sector-table__td:first-child,
+.sector-table__th:first-child {
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+.sector-table__td:last-child,
+.sector-table__th:last-child {
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+.sector-table__th {
+  white-space: nowrap;
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.sector-table__td {
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  width: 50%;
+}
+
+.sector-table__th,
+.sector-table__td {
+  text-align: center;
+  padding: 0.5rem;
+  background: #eee;
+}
+
+.sector-table__th + .sector-table__th,
+.sector-table__td + .sector-table__td {
+  padding-left: 1rem;
+}
+
+.sector-table__btn {
+  justify-self: end;
+  background: #ddd;
+  border: none;
+  padding: 0.75em 1.5em;
+  cursor: pointer;
+}
+
+.sector-table__btn:hover {
+  background: #ccc;
+}
+
+@media (max-width: 460px) {
+  .sector-table__th + .sector-table__th,
+  .sector-table__td + .sector-table__td {
+    padding-left: 0.25rem;
+  }
+
+  .sector-table__td {
+    font-size: 0.8rem;
+  }
+}

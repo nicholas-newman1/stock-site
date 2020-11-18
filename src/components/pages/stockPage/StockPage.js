@@ -8,7 +8,7 @@ import {
   dummyLosersData,
 } from '../../../dummyData';
 import StockTable from './StockTable';
-import Sectors from './Sectors';
+import SectorTable from './SectorTable';
 import './stockPage.css';
 
 const StockPage = () => {
@@ -73,7 +73,7 @@ const StockPage = () => {
   }, []);
 
   return (
-    <div>
+    <div className='stock-page'>
       <Helmet>
         <title>Stock Quotes | Finance App</title>
         <meta
@@ -83,25 +83,25 @@ const StockPage = () => {
       </Helmet>
 
       <div className='stocklists'>
-        <div className='stocklist'>
-          <h2 className='stockpage__sub-heading'>Losers</h2>
+        <div className='stock-page__stock-table'>
+          <h2 className='stockpage__sub-heading'>Actives</h2>
           <StockTable data={activesData} loading={activesLoading} />
         </div>
 
-        <div className='stocklist'>
-          <h2 className='stockpage__sub-heading'>Losers</h2>
+        <div className='stock-page__stock-table'>
+          <h2 className='stockpage__sub-heading'>Gainers</h2>
           <StockTable data={gainersData} loading={gainersLoading} />
         </div>
 
-        <div className='stocklist'>
+        <div className='stock-page__stock-table'>
           <h2 className='stockpage__sub-heading'>Losers</h2>
           <StockTable data={losersData} loading={losersLoading} />
         </div>
       </div>
 
-      <div>
+      <div className='stock-page__sector-table'>
         <h2 className='stockpage__sub-heading'>Sectors</h2>
-        <Sectors />
+        <SectorTable />
       </div>
 
       <BottomNews />

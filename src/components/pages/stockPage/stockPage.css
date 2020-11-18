@@ -1,11 +1,16 @@
 .stocklists {
   display: flex;
   justify-content: space-between;
+  margin-bottom: 1rem;
 }
 
-.stocklist {
+.stock-page__stock-table {
   width: 32%;
   overflow-x: auto;
+  display: grid;
+}
+
+.stock-page__sector-table {
   display: grid;
 }
 
@@ -30,7 +35,7 @@
 }
 
 @media (max-width: 1200px) and (min-width: 1000px) {
-  .stocklist {
+  .stock-page__stock-table {
     width: 32.5%;
   }
 }
@@ -40,11 +45,11 @@
     flex-direction: column;
   }
 
-  .stocklist {
+  .stock-page__stock-table {
     width: 100%;
   }
 
-  .stocklist + .stocklist {
+  .stock-page__stock-table + .stock-page__stock-table {
     margin-top: 1rem;
   }
 }
