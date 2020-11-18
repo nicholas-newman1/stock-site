@@ -1,14 +1,15 @@
 import React from 'react';
-import './tableNav.css';
+import './searchNav.css';
 
-const TableNav = ({ tableData, page, setPage, resultsPerPage }) => {
-  const onLastPage = tableData.length - page * resultsPerPage <= resultsPerPage;
+const searchResultsNav = ({ searchResults, page, setPage, resultsPerPage }) => {
+  const onLastPage =
+    searchResults.length - page * resultsPerPage <= resultsPerPage;
   const onFirstPage = page === 0;
 
-  return tableData.length > resultsPerPage ? (
-    <div className='table-nav-container'>
+  return (
+    <div className='results-page-btns'>
       <button
-        className='table-btn'
+        className='results-page-btn'
         onClick={() => setPage((prevPage) => prevPage - 1)}
         disabled={onFirstPage ? 'disabled' : ''}
       >
@@ -16,14 +17,14 @@ const TableNav = ({ tableData, page, setPage, resultsPerPage }) => {
       </button>
 
       <button
-        className='table-btn'
+        className='results-page-btn'
         onClick={() => setPage((prevPage) => prevPage + 1)}
         disabled={onLastPage ? 'disabled' : ''}
       >
-        Next Page {' >'}
+        Next Page{' >'}
       </button>
     </div>
-  ) : null;
+  );
 };
 
-export default TableNav;
+export default searchResultsNav;

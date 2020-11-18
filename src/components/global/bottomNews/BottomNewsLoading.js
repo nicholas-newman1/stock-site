@@ -1,5 +1,5 @@
 import React from 'react';
-import '../../../css/global/bottomNews/bottomNewsLoading.css';
+import './bottomNewsLoading.css';
 
 const QuoteNewsLoading = () => {
   return (

@@ -3,7 +3,7 @@ import TableNav from './TableNav';
 import TableTable from './TableTable';
 import TableOptions from './TableOptions';
 import Spinner from '../Spinner';
-import '../../../css/global/table/table.css';
+import './table.css';
 import { sortData } from '../../../helpers';
 
 const Table = ({ heading, loading, tableData, setTableData }) => {

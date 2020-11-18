@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import '../../css/header/nav.css';
+import './nav.css';
 
 const Nav = ({ setToggleNav }) => {
   const links = ['Home', 'Stocks', 'Forex', 'Cryptocurrencies', 'Commodities'];

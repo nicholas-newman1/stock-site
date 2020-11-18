@@ -2,7 +2,7 @@ import React, { useEffect, useState, useContext } from 'react';
 import BottomNewsItem from './BottomNewsItem';
 import BottomNewsLoading from './BottomNewsLoading';
 import { dummyStockNews } from '../../../dummyData';
-import '../../../css/global/bottomNews/bottomNews.css';
+import './bottomNews.css';
 import { RealDataContext } from '../../../context/RealDataContext';
 
 const BottomNews = ({ symbol, shift = false }) => {

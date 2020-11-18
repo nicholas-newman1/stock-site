@@ -1,7 +1,7 @@
 import React from 'react';
 import TableHead from './TableHead';
 import TableRow from './TableRow';
-import '../../../css/global/table/tabletable.css';
+import './tabletable.css';
 
 const TableTable = ({ tableData, page, resultsPerPage, sortTableData }) => {
   const offset = page * resultsPerPage;
