@@ -21,7 +21,7 @@
 
 @media (max-width: 1000px) {
   .bottom-news-ul,
-  .bottom-new__ul--loading {
-    display: block;
+  .bottom-news__ul--loading {
+    grid-template-columns: 1fr;
   }
 }
