@@ -1,17 +1,19 @@
-.bottom-news-loading-container {
+/* .bottom-news__ul--loading {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.bottom-news__item--loading {
   width: 100%;
   background: #ddd;
   padding: 1rem;
   border-radius: 10px;
 }
 
-.bottom-news-loading-container + .bottom-news-loading-container {
-  margin-top: 1rem;
-}
-
-.bottom-news-loading-div {
+.bottom-news__div--loading {
   width: 30%;
   padding-top: 25%;
   background: #eee;
   border-radius: 10px;
-}
+} */

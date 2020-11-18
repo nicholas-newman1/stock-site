@@ -4,14 +4,24 @@
   padding-top: 1rem;
 }
 
-.bottom-news-ul {
+.bottom-news-ul,
+.bottom-news__ul--loading {
+  list-style: none;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  column-gap: 1rem;
+  gap: 1rem;
+}
+
+.bottom-news__div--loading {
+  width: 30%;
+  padding-top: 25%;
+  background: #ccc;
+  border-radius: 10px;
 }
 
 @media (max-width: 1000px) {
-  .bottom-news-ul {
+  .bottom-news-ul,
+  .bottom-new__ul--loading {
     display: block;
   }
 }

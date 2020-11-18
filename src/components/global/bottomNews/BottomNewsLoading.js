@@ -1,26 +1,16 @@
 import React from 'react';
 import './bottomNewsLoading.css';
 
-const QuoteNewsLoading = () => {
-  return (
-    <div>
-      <div className='bottom-news-loading-container'>
-        <div className='bottom-news-loading-div' />
-      </div>
-      <div className='bottom-news-loading-container'>
-        <div className='bottom-news-loading-div' />
-      </div>
-      <div className='bottom-news-loading-container'>
-        <div className='bottom-news-loading-div' />
-      </div>
-      <div className='bottom-news-loading-container'>
-        <div className='bottom-news-loading-div' />
-      </div>
-      <div className='bottom-news-loading-container'>
-        <div className='bottom-news-loading-div' />
-      </div>
-    </div>
-  );
+const BottomNewsLoading = () => {
+  let loadingItems = [];
+  for (let i = 0; i < 10; i++) {
+    loadingItems.push(
+      <li key={i} className='bottom-news__item--loading'>
+        <div className='bottom-news__div--loading' />
+      </li>
+    );
+  }
+  return <ul className='bottom-news__ul--loading'>{loadingItems}</ul>;
 };
 
-export default QuoteNewsLoading;
+export default BottomNewsLoading;

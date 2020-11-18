@@ -1,7 +1,12 @@
 .bottom-news-item {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 1rem;
+}
+
+.bottom-news__item--loading {
+  width: 100%;
+  background: #ddd;
+  border-radius: 10px;
 }
 
 .bottom-news-image-container {
