@@ -39,12 +39,10 @@ const CommodityPage = () => {
           content='Free commodity quotes. Find free stock quotes, forex rates, cryptocurrency prices, and more.'
         />
       </Helmet>
-      <Table
-        heading='commodities'
-        loading={loading}
-        tableData={data}
-        setTableData={setData}
-      />
+
+      <h1 className='page-heading'>Commodities</h1>
+
+      <Table loading={loading} tableData={data} setTableData={setData} />
       <BottomNews />
     </div>
   );

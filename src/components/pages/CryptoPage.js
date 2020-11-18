@@ -39,12 +39,10 @@ const CryptoPage = () => {
           content='Free cryptocurrency quotes. Find free stock quotes, forex rates, cryptocurrency prices, and more.'
         />
       </Helmet>
-      <Table
-        heading='cryptocurrencies'
-        loading={loading}
-        tableData={data}
-        setTableData={setData}
-      />
+
+      <h1 className='page-heading'>Cryptocurrencies</h1>
+
+      <Table loading={loading} tableData={data} setTableData={setData} />
       <BottomNews />
     </div>
   );

@@ -3,7 +3,6 @@ import TableNav from './TableNav';
 import TableTable from './TableTable';
 import TableOptions from './TableOptions';
 import Spinner from '../Spinner';
-import './table.css';
 import { sortData } from '../../../helpers';
 
 const Table = ({ heading, loading, tableData, setTableData }) => {
@@ -31,7 +30,6 @@ const Table = ({ heading, loading, tableData, setTableData }) => {
         <Spinner />
       ) : tableData.length > 0 ? (
         <div>
-          <h1 className='table-heading'>{heading}</h1>
           <TableNav
             tableData={tableData}
             page={page}

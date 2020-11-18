@@ -15,16 +15,15 @@
 }
 
 .stockpage__sub-heading {
-  text-transform: capitalize;
+  text-transform: uppercase;
   margin: 0 auto;
-  margin-bottom: 0.5rem;
+  font-size: 1rem;
   font-weight: 400;
   display: inline-block;
   position: relative;
 }
 
 .stockpage__sub-heading::after {
-  content: '';
   height: 3px;
   width: 50px;
   position: absolute;

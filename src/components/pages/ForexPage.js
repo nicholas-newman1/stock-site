@@ -39,12 +39,10 @@ const ForexPage = () => {
           content='Free forex quotes. Find free stock quotes, forex rates, cryptocurrency prices, and more.'
         />
       </Helmet>
-      <Table
-        heading='forex'
-        loading={loading}
-        tableData={data}
-        setTableData={setData}
-      />
+
+      <h1 className='page-heading'>Forex</h1>
+
+      <Table loading={loading} tableData={data} setTableData={setData} />
       <BottomNews />
     </div>
   );

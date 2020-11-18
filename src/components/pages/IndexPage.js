@@ -39,12 +39,10 @@ const IndexPage = () => {
           content='Free index quotes. Find free stock quotes, forex rates, cryptocurrency prices, and more.'
         />
       </Helmet>
-      <Table
-        heading='indexes'
-        loading={loading}
-        tableData={data}
-        setTableData={setData}
-      />
+
+      <h1 className='page-heading'>Indexes</h1>
+
+      <Table loading={loading} tableData={data} setTableData={setData} />
       <BottomNews />
     </div>
   );
