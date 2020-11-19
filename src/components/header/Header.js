@@ -53,7 +53,7 @@ const Header = () => {
           Stock Site
         </Link>
 
-        <div className='header-Headersearch-container'>
+        <div className='header-search-container'>
           <HeaderSearch setToggleNav={setToggleNav} />
         </div>
 
