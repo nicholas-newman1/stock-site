@@ -14,14 +14,20 @@ const BottomNews = ({ symbol, shift = false }) => {
     setLoading(true);
     let data;
     if (realData) {
+      /* Depending on the page, sometimes a symbol prop is passed. In that case,
+      the API call should include the ticker paramater. If no symbol is passed,
+      the ticker paramater should not be included so that the API returns
+      general stock news */
+      let tickersParam = '';
+      if (symbol) tickersParam = `tickers=${symbol}`;
       let res = await fetch(
-        `https://financialmodelingprep.com/api/v3/stock_news?tickers=${
-          symbol ? symbol : ''
-        }&limit=${shift ? '11' : '10'}&apikey=${process.env.REACT_APP_FMP_KEY}`
+        `https://financialmodelingprep.com/api/v3/stock_news?${tickersParam}&limit=11&apikey=${process.env.REACT_APP_FMP_KEY}`
       );
       data = await res.json();
 
-      // if less than 10 news articles returned, push general news into data until it reaches 10
+      /* sometimes the API returns less than 10 articles for certain symbols.
+      In that case, general stock news articles are pushed into the array until 
+      it reaches a length of 10 */
       if (data.length < 10) {
         res = await fetch(
           `https://financialmodelingprep.com/api/v3/stock_news?limit=11&apikey=${process.env.REACT_APP_FMP_KEY}`
@@ -36,7 +42,14 @@ const BottomNews = ({ symbol, shift = false }) => {
     } else {
       data = dummyStockNews;
     }
-    if (shift) data.shift();
+
+    /* This component is used on the HomePage. The HomePage displays the first
+    article in a different format at the top of the screen. To avoid repetition,
+    the shift prop is set to true, which will remove the first article. If shift
+    is not set to true, the last news item is popped off to keep the array at an
+    even length of 10 */
+    shift ? data.shift() : data.pop();
+
     setNewsData(data);
     setLoading(false);
   };
