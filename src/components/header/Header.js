@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import Search from './Search';
-import Nav from './Nav';
+import HeaderSearch from './HeaderSearch';
+import HeaderNav from './HeaderNav';
 import './header.css';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -53,8 +53,8 @@ const Header = () => {
           Stock Site
         </Link>
 
-        <div className='header-search-container'>
-          <Search setToggleNav={setToggleNav} />
+        <div className='header-Headersearch-container'>
+          <HeaderSearch setToggleNav={setToggleNav} />
         </div>
 
         <FontAwesomeIcon
@@ -71,7 +71,7 @@ const Header = () => {
               </Link>
             </div>
             <div className='header-nav-container'>
-              <Nav setToggleNav={setToggleNav} />
+              <HeaderNav setToggleNav={setToggleNav} />
             </div>
           </>
         )}
