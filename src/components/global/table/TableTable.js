@@ -12,7 +12,13 @@ const TableTable = ({ tableData, page, resultsPerPage, sortTableData }) => {
         {tableData.map((item, i) => {
           const itemInRange = i <= offset + resultsPerPage - 1 && i >= offset;
           return (
-            itemInRange && <TableRow key={item.symbol} item={item} index={i} />
+            itemInRange && (
+              <TableRow
+                key={item.loadingId ? item.loadingId : item.symbol}
+                item={item}
+                index={i}
+              />
+            )
           );
         })}
       </tbody>

@@ -8,7 +8,8 @@ const Table = ({ loading, tableData, setTableData }) => {
   const [page, setPage] = useState(0);
   const [resultsPerPage, setResultsPerPage] = useState(15);
 
-  tableData = tableData.filter((item) => item.price || item.change); // remove any items that don't have a value for price or change
+  // remove any items that don't have a value for price or change
+  tableData = tableData.filter((item) => item.price || item.change);
 
   const sortTableData = (property, reverse) => {
     setTableData((prevData) => {
@@ -23,9 +24,11 @@ const Table = ({ loading, tableData, setTableData }) => {
     //eslint-disable-next-line
   }, [loading]);
 
+  // loadingData will be used to populate the table until the data arrives from the API
   const loadingData = [];
   for (let i = 0; i <= 15; i++) {
     loadingData.push({
+      loadingId: i, // used as key for table rows
       symbol: '- -',
       name: '- -',
       price: '- -',
