@@ -3,6 +3,7 @@
   overflow-x: auto;
   border-spacing: 0;
   width: 100%;
+  margin-bottom: 0.5rem;
 }
 
 .table-sort-arrow {

@@ -2,10 +2,9 @@ import React, { useState, useEffect } from 'react';
 import TableNav from './TableNav';
 import TableTable from './TableTable';
 import TableOptions from './TableOptions';
-import Spinner from '../Spinner';
 import { sortData } from '../../../helpers';
 
-const Table = ({ heading, loading, tableData, setTableData }) => {
+const Table = ({ loading, tableData, setTableData }) => {
   const [page, setPage] = useState(0);
   const [resultsPerPage, setResultsPerPage] = useState(15);
 
@@ -24,10 +23,46 @@ const Table = ({ heading, loading, tableData, setTableData }) => {
     //eslint-disable-next-line
   }, [loading]);
 
+  const loadingData = [];
+  for (let i = 0; i <= 15; i++) {
+    loadingData.push({
+      symbol: '- -',
+      name: '- -',
+      price: '- -',
+      change: '- -',
+      changesPercentage: '- -',
+    });
+  }
+
   return (
     <>
       {loading ? (
-        <Spinner />
+        <>
+          <TableNav
+            tableData={loadingData}
+            page={page}
+            setPage={setPage}
+            resultsPerPage={resultsPerPage}
+          />
+          <TableTable
+            tableData={loadingData}
+            page={page}
+            resultsPerPage={resultsPerPage}
+            sortTableData={sortTableData}
+          />
+          <TableNav
+            tableData={loadingData}
+            page={page}
+            setPage={setPage}
+            resultsPerPage={resultsPerPage}
+          />
+          <TableOptions
+            page={page}
+            setPage={setPage}
+            resultsPerPage={resultsPerPage}
+            setResultsPerPage={setResultsPerPage}
+          />
+        </>
       ) : tableData.length > 0 ? (
         <div>
           <TableNav
@@ -41,6 +76,12 @@ const Table = ({ heading, loading, tableData, setTableData }) => {
             page={page}
             resultsPerPage={resultsPerPage}
             sortTableData={sortTableData}
+          />
+          <TableNav
+            tableData={tableData}
+            page={page}
+            setPage={setPage}
+            resultsPerPage={resultsPerPage}
           />
           <TableOptions
             page={page}
