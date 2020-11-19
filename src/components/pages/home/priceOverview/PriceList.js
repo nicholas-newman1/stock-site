@@ -1,69 +1,48 @@
-import React, { useState, useEffect, useContext } from 'react';
-import LoadingPriceList from './LoadingPriceList';
-import PriceListItem from './PriceListItem';
+import React from 'react';
+import PriceTable from './PriceTable';
+//import WatchList from './WatchList';
 import { Link } from 'react-router-dom';
-import { dummyIndexData } from '../../../../dummyData';
-import { RealDataContext } from '../../../../context/RealDataContext';
+import './priceList.css';
 
-const PriceList = ({ heading, symbols }) => {
-  const [quoteData, setQuoteData] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const { realData } = useContext(RealDataContext);
-
-  const fetchQuotes = async () => {
-    setLoading(true);
-    let data;
-    if (realData) {
-      const res = await fetch(
-        `https://financialmodelingprep.com/api/v3/quote/${symbols.join()}?apikey=${
-          process.env.REACT_APP_FMP_KEY
-        }`
-      );
-      data = await res.json();
-    } else {
-      data = [...dummyIndexData];
-    }
-
-    setQuoteData(data);
-    setLoading(false);
-  };
-
-  useEffect(() => {
-    fetchQuotes();
-    //eslint-disable-next-line
-  }, [realData]);
-
+const PriceList = () => {
   return (
-    <li className='pricelist-item'>
-      <h2 className='pricelist-heading'>
-        <Link className='pricelist-link' to={`/${heading.toLowerCase()}`}>
-          {heading}
-        </Link>
-      </h2>
+    <ul className='pricelist'>
+      <li className='pricelist-item'>
+        <h2 className='pricelist-heading'>
+          <Link className='pricelist-link' to='/indexes'>
+            Indexes
+          </Link>
+        </h2>
+        <PriceTable symbols={['^DJI', '^GSPC', '^IXIC', '^GSPTSE']} />
+      </li>
 
-      <div className='pricelist-table-container'>
-        <table className='pricelist-table'>
-          <thead className='pricelist-thead'>
-            <tr className='pricelist-tr'>
-              <th className='pricelist-th'>Symbol</th>
-              <th className='pricelist-th'>Price</th>
-              <th className='pricelist-th'>Change ($)</th>
-              <th className='pricelist-th'>Change (%)</th>
-            </tr>
-          </thead>
+      <li className='pricelist-item'>
+        <h2 className='pricelist-heading'>
+          <Link className='pricelist-link' to='/stocks'>
+            Stocks
+          </Link>
+        </h2>
+        <PriceTable symbols={['AMZN', 'AAPL', 'FB', 'TSLA']} />
+      </li>
 
-          <tbody className='pricelist-tbody'>
-            {loading ? (
-              <LoadingPriceList />
-            ) : (
-              quoteData.map((quote) => (
-                <PriceListItem key={quote.symbol} data={quote} />
-              ))
-            )}
-          </tbody>
-        </table>
-      </div>
-    </li>
+      <li className='pricelist-item'>
+        <h2 className='pricelist-heading'>
+          <Link className='pricelist-link' to='/forex'>
+            Forex
+          </Link>
+        </h2>
+        <PriceTable symbols={['CADUSD', 'CADEUR', 'CADGBP', 'CADJPY']} />
+      </li>
+
+      <li className='pricelist-item'>
+        <h2 className='pricelist-heading'>
+          <Link className='pricelist-link' to='/cryptocurrencies'>
+            Cryptocurrencies
+          </Link>
+        </h2>
+        <PriceTable symbols={['BTCUSD', 'ETHUSD', 'XRPUSD', 'USDTUSD']} />
+      </li>
+    </ul>
   );
 };
 

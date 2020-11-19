@@ -1,6 +1,6 @@
 import React from 'react';
 
-const LoadingPriceList = () => {
+const LoadingStockList = () => {
   const loadingArray = [1, 2, 3, 4];
 
   return (
@@ -16,4 +16,4 @@ const LoadingPriceList = () => {
   );
 };
 
-export default LoadingPriceList;
+export default LoadingStockList;

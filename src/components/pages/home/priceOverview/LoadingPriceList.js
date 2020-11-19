@@ -1,21 +1,19 @@
 import React from 'react';
 
 const LoadingPriceList = () => {
-  const loadingArray = [1, 2, 3, 4];
+  const loadingItems = [];
+  for (let i = 0; i < 4; i++) {
+    loadingItems.push(
+      <tr className='pricelist-tr--loading' key={i}>
+        <td className='pricelist-td'></td>
+        <td className='pricelist-td'></td>
+        <td className='pricelist-td'></td>
+        <td className='pricelist-td'></td>
+      </tr>
+    );
+  }
 
-  return (
-    <>
-      {loadingArray.map((i) => (
-        <tr key={i}>
-          {loadingArray.map((i) => (
-            <td key={i}>
-              <div className='loading-pricelist-td-content' />
-            </td>
-          ))}
-        </tr>
-      ))}
-    </>
-  );
+  return <>{loadingItems}</>;
 };
 
 export default LoadingPriceList;

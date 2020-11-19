@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import BottomNews from '../../global/bottomNews/BottomNews';
-import PriceOverview from './priceOverview/PriceOverview';
+import PriceList from './priceOverview/PriceList';
 import MainNewsItem from './MainNewsItem';
 import { Helmet } from 'react-helmet-async';
 import './home.css';
@@ -22,7 +22,7 @@ const Home = () => {
         <BottomNews shift={true} />
       </div>
       <div className='home-section-two'>
-        <PriceOverview />
+        <PriceList />
       </div>
     </div>
   );

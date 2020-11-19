@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const PriceListItem = ({ data }) => {
+const PriceRow = ({ data }) => {
   let { symbol, price, change, changesPercentage } = data;
   const color = change > 0 ? 'green' : '#de0e00';
   const isPositive = change > 0;
@@ -14,8 +14,6 @@ const PriceListItem = ({ data }) => {
 
   // number to represent how many decimals will be displayed
   let decimals = 2;
-
-  // MOVE ALL DATA FORMATTING TO COMPONENT DISPLAYING THE DATA (LIKE DONE HERE)
 
   // determine number of decimal places to display, depending on the maginitude of the change
   while (
@@ -73,4 +71,4 @@ const PriceListItem = ({ data }) => {
   );
 };
 
-export default PriceListItem;
+export default PriceRow;

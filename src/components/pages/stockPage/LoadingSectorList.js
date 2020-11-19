@@ -7,9 +7,8 @@ const LoadingSectorList = () => {
     <>
       {loadingArray.map((i) => (
         <tr className='sector-table__tr--loading' key={i}>
-          {loadingArray.map((i) => (
-            <td className='sector-table__td' key={i}></td>
-          ))}
+          <td className='sector-table__td'></td>
+          <td className='sector-table__td'></td>
         </tr>
       ))}
     </>
