@@ -1,0 +1,38 @@
+.footer-search-form {
+  display: flex;
+  max-width: 500px;
+  margin: 0 auto;
+  margin-bottom: 1rem;
+}
+
+.footer-search-input {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #ddd;
+  border-radius: 3px 0px 0px 3px;
+  outline: none;
+}
+
+.footer-search-link {
+  display: flex;
+  text-decoration: none;
+  width: 20%;
+}
+
+.footer-search-btn {
+  border-radius: 0px 3px 3px 0px;
+  background: #148eff;
+  border: none;
+  width: 100%;
+  display: inline-block;
+}
+
+.footer-search-btn:hover {
+  background: #006acc;
+  cursor: pointer;
+}
+
+.footer-search-icon {
+  color: white;
+  font-size: 1rem;
+}

@@ -15,7 +15,7 @@ import CryptoPage from './components/pages/CryptoPage';
 import CommodityPage from './components/pages/CommodityPage';
 import ForexPage from './components/pages/ForexPage';
 import NotFound from './components/NotFound';
-import Footer from './components/Footer';
+import Footer from './components/footer/Footer';
 import { QuoteProvider } from './context/QuoteContext';
 import { RealDataProvider } from './context/RealDataContext';
 import { HelmetProvider } from 'react-helmet-async';
