@@ -1,36 +1,27 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import Spinner from '../../global/Spinner';
 import SearchResultsFilter from './SearchFilter';
 import './searchResults.css';
 import SearchResultsItem from './SearchItem';
 import SearchResultsNav from './searchNav';
+import { dummySearchResults } from '../../../dummyData';
+import useFetchAndSet from '../../../hooks/useFetchAndSet';
 
 const SearchResults = ({ match }) => {
-  const [searchResults, setSearchResults] = useState([]);
-  const [loading, setLoading] = useState(false);
   const [exchange, setExchange] = useState('');
   const [page, setPage] = useState(0);
   const [resultsPerPage] = useState(10);
   const offset = page * resultsPerPage;
   const query = match.params.query;
 
-  const fetchSearchResults = async () => {
-    setLoading(true);
-    const res = await fetch(
-      `https://financialmodelingprep.com/api/v3/search?query=${query}${
-        exchange && '&exchange=' + exchange
-      }&apikey=${process.env.REACT_APP_FMP_KEY}`
-    );
-    const data = await res.json();
-    setSearchResults(data);
-    setLoading(false);
-  };
-
-  useEffect(() => {
-    fetchSearchResults();
-    // eslint-disable-next-line
-  }, [match.params.query, exchange]);
+  const { data, loading } = useFetchAndSet(
+    [], // initial value
+    'search', // endpoint
+    dummySearchResults, // dummy data
+    `query=${query}${exchange && '&exchange=' + exchange}`, // parameters
+    [match.params.query, exchange] // dependencies
+  );
 
   return (
     <>
@@ -44,10 +35,10 @@ const SearchResults = ({ match }) => {
       <SearchResultsFilter setExchange={setExchange} />
       {loading ? (
         <Spinner />
-      ) : searchResults.length > 0 ? (
+      ) : data.length > 0 ? (
         <>
           <ul className='results-container'>
-            {searchResults.map((result, i) => {
+            {data.map((result, i) => {
               const itemInRange =
                 i <= offset + resultsPerPage - 1 && i >= offset;
               return (
@@ -57,9 +48,9 @@ const SearchResults = ({ match }) => {
               );
             })}
           </ul>
-          {searchResults.length > resultsPerPage && (
+          {data.length > resultsPerPage && (
             <SearchResultsNav
-              searchResults={searchResults}
+              searchResults={data}
               page={page}
               setPage={setPage}
               resultsPerPage={resultsPerPage}

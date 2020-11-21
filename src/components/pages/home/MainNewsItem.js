@@ -84,41 +84,6 @@ const MainNewsItem = () => {
       </div>
     </div>
   );
-
-  return loading ? (
-    <div className='loading-main-news-container'>
-      <div className='loading-main-news-div' />
-    </div>
-  ) : (
-    <div className='main-news-item'>
-      <div
-        className='main-news-image'
-        style={{ backgroundImage: `url(${image})` }}
-      />
-
-      <div className='main-news-content'>
-        <h1 className='main-news-heading'>
-          <a href={url}>
-            {title.length > titleLength ? (
-              <>{truncate(title, titleLength)}&hellip;</>
-            ) : (
-              title
-            )}
-          </a>
-        </h1>
-        <p className='main-news-meta'>
-          {site} - <em>{getTimeAgoString(publishedDate)}</em>
-        </p>
-        <p className='main-news-description'>
-          {text.length > descriptionLength ? (
-            <>{truncate(text, descriptionLength)}&hellip;</>
-          ) : (
-            text
-          )}
-        </p>
-      </div>
-    </div>
-  );
 };
 
 export default MainNewsItem;

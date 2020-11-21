@@ -1,35 +1,18 @@
-import React, { useEffect, useState, useContext } from 'react';
-import { RealDataContext } from '../../../context/RealDataContext';
+import React, { useState } from 'react';
 import { dummySectorsData } from '../../../dummyData';
 import LoadingSectorList from './LoadingSectorList';
 import SectorRow from './SectorRow';
 import './sectorTable.css';
+import useFetchAndSet from '../../../hooks/useFetchAndSet';
 
 const Sectors = () => {
-  const [data, setData] = useState([]);
-  const [loading, setLoading] = useState(false);
   const [showAllSectors, setShowAllSectors] = useState(false);
-  const { realData } = useContext(RealDataContext);
+  const { data, loading } = useFetchAndSet(
+    [],
+    'sectors-performance',
+    dummySectorsData
+  );
 
-  const fetchSectorData = async () => {
-    setLoading(true);
-    let data;
-    if (realData) {
-      const res = await fetch(
-        `https://financialmodelingprep.com/api/v3/sectors-performance?apikey=${process.env.REACT_APP_FMP_KEY}`
-      );
-      data = await res.json();
-    } else {
-      data = [...dummySectorsData];
-    }
-    setData(data);
-    setLoading(false);
-  };
-
-  useEffect(() => {
-    fetchSectorData();
-    //eslint-disable-next-line
-  }, []);
   return (
     <>
       <table className='sector-table'>

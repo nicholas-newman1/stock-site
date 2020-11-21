@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { QuoteContext } from '../../../context/QuoteContext';
 import './quote.css';
 
-const Quote = ({ symbol }) => {
+const Quote = () => {
   const { quote } = useContext(QuoteContext);
   return (
     <div className='quote-container'>

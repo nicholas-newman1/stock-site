@@ -2,10 +2,11 @@ import { useState, useContext, useEffect } from 'react';
 import { RealDataContext } from '../context/RealDataContext';
 
 const useFetchAndSet = (
-  initialValue = undefined,
+  initialValue,
   endpoint,
   dummyData,
-  params = ''
+  params = '',
+  dependencies = []
 ) => {
   const [data, setData] = useState(initialValue);
   const [loading, setLoading] = useState(true);
@@ -30,7 +31,7 @@ const useFetchAndSet = (
     })();
 
     //eslint-disable-next-line
-  }, []);
+  }, dependencies);
 
   return { data, setData, loading };
 };

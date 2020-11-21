@@ -1,38 +1,20 @@
-import React, { useEffect, useState, useContext } from 'react';
+import React from 'react';
 import { dummyProfileData } from '../../../dummyData';
 import { formatPhoneNumber } from '../../../helpers';
-import { RealDataContext } from '../../../context/RealDataContext';
 import Spinner from '../../global/Spinner';
 import './quoteProfile.css';
+import useFetchAndSet from '../../../hooks/useFetchAndSet';
 
 const QuoteProfile = ({ symbol }) => {
-  const [profileData, setProfileData] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const { realData } = useContext(RealDataContext);
-
-  const fetchProfile = async () => {
-    let data;
-    if (realData) {
-      setLoading(true);
-      const res = await fetch(
-        `https://financialmodelingprep.com/api/v3/profile/${symbol}?apikey=${process.env.REACT_APP_FMP_KEY}`
-      );
-      data = await res.json();
-      setLoading(false);
-    } else {
-      data = dummyProfileData;
-    }
-    setProfileData(data);
-  };
-
-  useEffect(() => {
-    fetchProfile();
-    //eslint-disable-next-line
-  }, [realData]);
+  const { data, loading } = useFetchAndSet(
+    [],
+    `profile/${symbol}`,
+    dummyProfileData
+  );
 
   if (loading) {
     return <Spinner />;
-  } else if (profileData.length > 0) {
+  } else if (data.length > 0) {
     const {
       address,
       city,
@@ -46,7 +28,7 @@ const QuoteProfile = ({ symbol }) => {
       fullTimeEmployees,
       description,
       ceo,
-    } = profileData[0];
+    } = data[0];
 
     return address ||
       city ||
