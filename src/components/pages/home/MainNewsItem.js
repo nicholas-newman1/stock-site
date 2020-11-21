@@ -1,15 +1,19 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './mainNewsItem.css';
 import { getTimeAgoString, truncate } from '../../../helpers';
-import { RealDataContext } from '../../../context/RealDataContext';
 import { dummyNewsData } from '../../../dummyData';
+import useFetchAndSet from '../../../hooks/useFetchAndSet';
 
 const MainNewsItem = () => {
   const [descriptionLength, setDescriptionLength] = useState(150);
   const [titleLength, setTitleLength] = useState(120);
-  const [mainNewsArticle, setMainNewsArticle] = useState({});
-  const [loading, setLoading] = useState(true);
-  const { realData } = useContext(RealDataContext);
+
+  const [mainNewsArticle, setMainNewsArticle, loading] = useFetchAndSet(
+    [],
+    'stock_news',
+    dummyNewsData,
+    'limit=1'
+  );
 
   useEffect(() => {
     let resizer = new ResizeObserver(() => {
@@ -40,28 +44,46 @@ const MainNewsItem = () => {
     };
   }, []);
 
-  const fetchMainNewsArticle = async () => {
-    setLoading(true);
-    let data;
-    if (realData) {
-      const res = await fetch(
-        `https://financialmodelingprep.com/api/v3/stock_news?limit=1&apikey=${process.env.REACT_APP_FMP_KEY}`
-      );
-      data = await res.json();
-    } else {
-      data = [...dummyNewsData];
-    }
-    setMainNewsArticle(data[0]);
-    setLoading(false);
-  };
+  if (loading) {
+    return (
+      <div className='loading-main-news-container'>
+        <div className='loading-main-news-div' />
+      </div>
+    );
+  }
 
-  useEffect(() => {
-    fetchMainNewsArticle();
-    //eslint-disable-next-line
-  }, [realData]);
+  const { site, title, text, publishedDate, url, image } = mainNewsArticle[0];
 
-  // const { mainNewsArticle } = useContext(NewsContext);
-  const { site, title, text, publishedDate, url, image } = mainNewsArticle;
+  return (
+    <div className='main-news-item'>
+      <div
+        className='main-news-image'
+        style={{ backgroundImage: `url(${image})` }}
+      />
+
+      <div className='main-news-content'>
+        <h1 className='main-news-heading'>
+          <a href={url}>
+            {title.length > titleLength ? (
+              <>{truncate(title, titleLength)}&hellip;</>
+            ) : (
+              title
+            )}
+          </a>
+        </h1>
+        <p className='main-news-meta'>
+          {site} - <em>{getTimeAgoString(publishedDate)}</em>
+        </p>
+        <p className='main-news-description'>
+          {text.length > descriptionLength ? (
+            <>{truncate(text, descriptionLength)}&hellip;</>
+          ) : (
+            text
+          )}
+        </p>
+      </div>
+    </div>
+  );
 
   return loading ? (
     <div className='loading-main-news-container'>
