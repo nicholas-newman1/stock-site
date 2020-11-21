@@ -1,7 +1,12 @@
 import { useState, useContext, useEffect } from 'react';
 import { RealDataContext } from '../context/RealDataContext';
 
-const useFetchAndSet = (initialValue, endpoint, dummyData, params = '') => {
+const useFetchAndSet = (
+  initialValue = undefined,
+  endpoint,
+  dummyData,
+  params = ''
+) => {
   const [data, setData] = useState(initialValue);
   const [loading, setLoading] = useState(false);
   const { realData } = useContext(RealDataContext);
