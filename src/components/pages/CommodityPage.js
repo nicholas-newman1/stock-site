@@ -7,6 +7,7 @@ import useFetchAndSet from '../../hooks/useFetchAndSet';
 
 const CommodityPage = () => {
   const [data, setData, loading] = useFetchAndSet(
+    [],
     'quotes/commodity',
     dummyCommodityData
   );
