@@ -8,7 +8,7 @@ const Search = ({ setToggleNav }) => {
   const [text, setText] = useState('');
 
   return (
-    <form className='search-form' onSubmit={(e) => console.log('submit')}>
+    <form className='search-form'>
       <input
         className='search-input'
         aria-label='search input'
