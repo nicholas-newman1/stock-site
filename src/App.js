@@ -14,7 +14,7 @@ import StockPage from './components/pages/stockPage/StockPage';
 import CryptoPage from './components/pages/CryptoPage';
 import CommodityPage from './components/pages/CommodityPage';
 import ForexPage from './components/pages/ForexPage';
-import NotFound from './components/NotFound';
+import NotFoundPage from './components/pages/NotFoundPage';
 import Footer from './components/footer/Footer';
 import { QuoteProvider } from './context/QuoteContext';
 import { RealDataProvider } from './context/RealDataContext';
@@ -43,7 +43,7 @@ const App = () => {
                 <Route exact path='/commodities' component={CommodityPage} />
                 <Redirect from='/quote/:symbol/**' to='/quote/:symbol' />
                 <Redirect from='/:page/**' to='/:page' />
-                <Route component={NotFound} />
+                <Route component={NotFoundPage} />
               </Switch>
             </main>
             <Footer />
