@@ -9,22 +9,22 @@ import {
 import StockTable from './StockTable';
 import SectorTable from './SectorTable';
 import './stockPage.css';
-import useFetchAndSet from '../../../hooks/useFetchAndSet';
+import useFetch from '../../../hooks/useFetch';
 
 const StockPage = () => {
-  const { data: activesData, loading: activesLoading } = useFetchAndSet(
+  const { data: activesData, loading: activesLoading } = useFetch(
     [], // initial value
     'actives', // endpoint
     dummyActivesData // dummy data
   );
 
-  const { data: gainersData, loading: gainersLoading } = useFetchAndSet(
+  const { data: gainersData, loading: gainersLoading } = useFetch(
     [],
     'gainers',
     dummyGainersData
   );
 
-  const { data: losersData, loading: losersLoading } = useFetchAndSet(
+  const { data: losersData, loading: losersLoading } = useFetch(
     [],
     'losers',
     dummyLosersData

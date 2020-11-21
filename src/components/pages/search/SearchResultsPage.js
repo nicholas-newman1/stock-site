@@ -6,7 +6,7 @@ import './searchResults.css';
 import SearchResultsItem from './SearchItem';
 import SearchResultsNav from './searchNav';
 import { dummySearchResults } from '../../../dummyData';
-import useFetchAndSet from '../../../hooks/useFetchAndSet';
+import useFetch from '../../../hooks/useFetch';
 
 const SearchResults = ({ match }) => {
   const [exchange, setExchange] = useState('');
@@ -15,7 +15,7 @@ const SearchResults = ({ match }) => {
   const offset = page * resultsPerPage;
   const query = match.params.query;
 
-  const { data, loading } = useFetchAndSet(
+  const { data, loading } = useFetch(
     [], // initial value
     'search', // endpoint
     dummySearchResults, // dummy data

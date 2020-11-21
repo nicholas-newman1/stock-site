@@ -3,13 +3,13 @@ import LoadingPriceList from './LoadingPriceList';
 import PriceRow from './PriceRow';
 import { dummyIndexData } from '../../../../dummyData';
 import './priceTable.css';
-import useFetchAndSet from '../../../../hooks/useFetchAndSet';
+import useFetch from '../../../../hooks/useFetch';
 
 const PriceList = ({ symbols }) => {
-  const { data, loading } = useFetchAndSet(
-    [],
-    `quote/${symbols.join()}`,
-    dummyIndexData
+  const { data, loading } = useFetch(
+    [], // intial value
+    `quote/${symbols.join()}`, //endpoint
+    dummyIndexData // dummy data
   );
 
   return (

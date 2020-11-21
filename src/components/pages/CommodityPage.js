@@ -3,13 +3,13 @@ import { Helmet } from 'react-helmet-async';
 import Table from '../global/table/Table';
 import BottomNews from '../global/bottomNews/BottomNews';
 import { dummyCommodityData } from '../../dummyData';
-import useFetchAndSet from '../../hooks/useFetchAndSet';
+import useFetch from '../../hooks/useFetch';
 
 const CommodityPage = () => {
-  const { data, setData, loading } = useFetchAndSet(
-    [],
-    'quotes/commodity',
-    dummyCommodityData
+  const { data, setData, loading } = useFetch(
+    [], // intial value
+    'quotes/commodity', // endpoint
+    dummyCommodityData // dummy data
   );
 
   return (

@@ -3,13 +3,13 @@ import { Helmet } from 'react-helmet-async';
 import Table from '../global/table/Table';
 import BottomNews from '../global/bottomNews/BottomNews';
 import { dummyForexData } from '../../dummyData';
-import useFetchAndSet from '../../hooks/useFetchAndSet';
+import useFetch from '../../hooks/useFetch';
 
 const ForexPage = () => {
-  const { data, setData, loading } = useFetchAndSet(
-    [],
-    'quotes/forex',
-    dummyForexData
+  const { data, setData, loading } = useFetch(
+    [], // intial value
+    'quotes/forex', // endpoint
+    dummyForexData // dummy data
   );
 
   return (

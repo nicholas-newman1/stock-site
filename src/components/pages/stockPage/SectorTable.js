@@ -3,14 +3,14 @@ import { dummySectorsData } from '../../../dummyData';
 import LoadingSectorList from './LoadingSectorList';
 import SectorRow from './SectorRow';
 import './sectorTable.css';
-import useFetchAndSet from '../../../hooks/useFetchAndSet';
+import useFetch from '../../../hooks/useFetch';
 
 const Sectors = () => {
   const [showAllSectors, setShowAllSectors] = useState(false);
-  const { data, loading } = useFetchAndSet(
-    [],
-    'sectors-performance',
-    dummySectorsData
+  const { data, loading } = useFetch(
+    [], // intial value
+    'sectors-performance', // endpoint
+    dummySectorsData // dummy data
   );
 
   return (

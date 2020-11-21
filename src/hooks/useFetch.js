@@ -1,7 +1,7 @@
 import { useState, useContext, useEffect } from 'react';
 import { RealDataContext } from '../context/RealDataContext';
 
-const useFetchAndSet = (
+const useFetch = (
   initialValue,
   endpoint,
   dummyData,
@@ -36,4 +36,4 @@ const useFetchAndSet = (
   return { data, setData, loading };
 };
 
-export default useFetchAndSet;
+export default useFetch;

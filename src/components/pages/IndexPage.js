@@ -3,13 +3,13 @@ import { Helmet } from 'react-helmet-async';
 import Table from '../global/table/Table';
 import BottomNews from '../global/bottomNews/BottomNews';
 import { dummyIndexPageData } from '../../dummyData';
-import useFetchAndSet from '../../hooks/useFetchAndSet';
+import useFetch from '../../hooks/useFetch';
 
 const IndexPage = () => {
-  const { data, setData, loading } = useFetchAndSet(
-    [],
-    'quotes/index',
-    dummyIndexPageData
+  const { data, setData, loading } = useFetch(
+    [], // intial value
+    'quotes/index', // endpoint
+    dummyIndexPageData // dummy data
   );
 
   return (

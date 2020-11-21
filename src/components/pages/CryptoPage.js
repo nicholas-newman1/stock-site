@@ -3,13 +3,13 @@ import { Helmet } from 'react-helmet-async';
 import Table from '../global/table/Table';
 import BottomNews from '../global/bottomNews/BottomNews';
 import { dummyCryptoData } from '../../dummyData';
-import useFetchAndSet from '../../hooks/useFetchAndSet';
+import useFetch from '../../hooks/useFetch';
 
 const CryptoPage = () => {
-  const { data, setData, loading } = useFetchAndSet(
-    [],
-    'quotes/crypto',
-    dummyCryptoData
+  const { data, setData, loading } = useFetch(
+    [], // intial value
+    'quotes/crypto', // endpoint
+    dummyCryptoData // dummy data
   );
 
   return (

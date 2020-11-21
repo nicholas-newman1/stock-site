@@ -2,17 +2,17 @@ import React, { useEffect, useState } from 'react';
 import './mainNewsItem.css';
 import { getTimeAgoString, truncate } from '../../../helpers';
 import { dummyNewsData } from '../../../dummyData';
-import useFetchAndSet from '../../../hooks/useFetchAndSet';
+import useFetch from '../../../hooks/useFetch';
 
 const MainNewsItem = () => {
   const [descriptionLength, setDescriptionLength] = useState(150);
   const [titleLength, setTitleLength] = useState(120);
 
-  const { data, loading } = useFetchAndSet(
-    [],
-    'stock_news',
-    dummyNewsData,
-    'limit=1'
+  const { data, loading } = useFetch(
+    [], // intial value
+    'stock_news', // endpoint
+    dummyNewsData, // dummy data
+    'limit=1' // params
   );
 
   useEffect(() => {

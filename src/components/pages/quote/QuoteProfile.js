@@ -3,13 +3,13 @@ import { dummyProfileData } from '../../../dummyData';
 import { formatPhoneNumber } from '../../../helpers';
 import Spinner from '../../global/Spinner';
 import './quoteProfile.css';
-import useFetchAndSet from '../../../hooks/useFetchAndSet';
+import useFetch from '../../../hooks/useFetch';
 
 const QuoteProfile = ({ symbol }) => {
-  const { data, loading } = useFetchAndSet(
-    [],
-    `profile/${symbol}`,
-    dummyProfileData
+  const { data, loading } = useFetch(
+    [], // initial value
+    `profile/${symbol}`, // endpoint
+    dummyProfileData // dummy data
   );
 
   if (loading) {
