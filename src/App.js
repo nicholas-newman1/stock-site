@@ -19,6 +19,7 @@ import Footer from './components/footer/Footer';
 import { QuoteProvider } from './context/QuoteContext';
 import { RealDataProvider } from './context/RealDataContext';
 import { HelmetProvider } from 'react-helmet-async';
+import { MainWrapper } from './styles';
 
 const App = () => {
   return (
@@ -27,7 +28,7 @@ const App = () => {
         <QuoteProvider>
           <Router>
             <Header />
-            <main>
+            <MainWrapper>
               <Switch>
                 <Route exact path='/' component={HomePage} />
                 <Route
@@ -45,7 +46,7 @@ const App = () => {
                 <Redirect from='/:page/**' to='/:page' />
                 <Route component={NotFound} />
               </Switch>
-            </main>
+            </MainWrapper>
             <Footer />
           </Router>
         </QuoteProvider>
