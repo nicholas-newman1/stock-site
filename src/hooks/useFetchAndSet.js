@@ -17,7 +17,6 @@ const useFetchAndSet = (endpoint, dummyData, params = '') => {
           }${params && '&' + params}`
         );
         data = await res.json();
-        console.log(data);
       } else {
         data = [...dummyData];
       }
