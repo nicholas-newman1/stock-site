@@ -8,7 +8,7 @@ const useFetchAndSet = (
   params = ''
 ) => {
   const [data, setData] = useState(initialValue);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const { realData } = useContext(RealDataContext);
 
   useEffect(() => {
@@ -32,7 +32,7 @@ const useFetchAndSet = (
     //eslint-disable-next-line
   }, []);
 
-  return [data, setData, loading];
+  return { data, setData, loading };
 };
 
 export default useFetchAndSet;

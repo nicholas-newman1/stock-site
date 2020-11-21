@@ -6,7 +6,7 @@ import { dummyCryptoData } from '../../dummyData';
 import useFetchAndSet from '../../hooks/useFetchAndSet';
 
 const CryptoPage = () => {
-  const [data, setData, loading] = useFetchAndSet(
+  const { data, setData, loading } = useFetchAndSet(
     [],
     'quotes/crypto',
     dummyCryptoData

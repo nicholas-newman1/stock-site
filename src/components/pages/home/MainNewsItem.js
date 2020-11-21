@@ -8,7 +8,7 @@ const MainNewsItem = () => {
   const [descriptionLength, setDescriptionLength] = useState(150);
   const [titleLength, setTitleLength] = useState(120);
 
-  const [mainNewsArticle, setMainNewsArticle, loading] = useFetchAndSet(
+  const { data, loading } = useFetchAndSet(
     [],
     'stock_news',
     dummyNewsData,
@@ -52,7 +52,7 @@ const MainNewsItem = () => {
     );
   }
 
-  const { site, title, text, publishedDate, url, image } = mainNewsArticle[0];
+  const { site, title, text, publishedDate, url, image } = data[0];
 
   return (
     <div className='main-news-item'>

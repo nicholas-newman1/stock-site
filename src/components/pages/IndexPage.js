@@ -6,7 +6,7 @@ import { dummyIndexPageData } from '../../dummyData';
 import useFetchAndSet from '../../hooks/useFetchAndSet';
 
 const IndexPage = () => {
-  const [data, setData, loading] = useFetchAndSet(
+  const { data, setData, loading } = useFetchAndSet(
     [],
     'quotes/index',
     dummyIndexPageData

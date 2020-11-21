@@ -6,7 +6,7 @@ import { dummyForexData } from '../../dummyData';
 import useFetchAndSet from '../../hooks/useFetchAndSet';
 
 const ForexPage = () => {
-  const [data, setData, loading] = useFetchAndSet(
+  const { data, setData, loading } = useFetchAndSet(
     [],
     'quotes/forex',
     dummyForexData
