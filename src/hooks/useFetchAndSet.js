@@ -1,7 +1,7 @@
 import { useState, useContext, useEffect } from 'react';
 import { RealDataContext } from '../context/RealDataContext';
 
-const useFetchAndSet = (url, dummyData) => {
+const useFetchAndSet = (endpoint, dummyData, params = '') => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
   const { realData } = useContext(RealDataContext);
@@ -12,9 +12,9 @@ const useFetchAndSet = (url, dummyData) => {
       let data;
       if (realData) {
         const res = await fetch(
-          `${url}${url.endsWith('?') ? '&' : '?'}apikey=${
+          `https://financialmodelingprep.com/api/v3/${endpoint}?apikey=${
             process.env.REACT_APP_FMP_KEY
-          }`
+          }${params && '&' + params}`
         );
         data = await res.json();
         console.log(data);
