@@ -5,6 +5,7 @@ import SearchResultsFilter from './SearchFilter';
 import './searchResults.css';
 import SearchResultsItem from './SearchItem';
 import SearchResultsNav from './searchNav';
+import Heading from '../../global/heading/Heading';
 import { dummySearchResults } from '../../../dummyData';
 import useFetch from '../../../hooks/useFetch';
 
@@ -32,6 +33,7 @@ const SearchResults = ({ match }) => {
           content={`Search results for ${query}. Free stock quotes, forex exchange rates, cryptocurrency rates, and more.`}
         />
       </Helmet>
+      <Heading text='Search Results' />
       <SearchResultsFilter setExchange={setExchange} />
       {loading ? (
         <Spinner />

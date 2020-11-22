@@ -2,6 +2,7 @@ import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import Table from '../global/table/Table';
 import BottomNews from '../global/bottomNews/BottomNews';
+import Heading from '../global/heading/Heading';
 import { dummyCommodityData } from '../../dummyData';
 import useFetch from '../../hooks/useFetch';
 
@@ -22,7 +23,7 @@ const CommodityPage = () => {
         />
       </Helmet>
 
-      <h1 className='page-heading'>Commodities</h1>
+      <Heading text='Commodities' />
 
       <Table loading={loading} tableData={data} setTableData={setData} />
       <BottomNews />

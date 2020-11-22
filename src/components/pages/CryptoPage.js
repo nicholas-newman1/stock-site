@@ -2,6 +2,7 @@ import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import Table from '../global/table/Table';
 import BottomNews from '../global/bottomNews/BottomNews';
+import Heading from '../global/heading/Heading';
 import { dummyCryptoData } from '../../dummyData';
 import useFetch from '../../hooks/useFetch';
 
@@ -22,7 +23,7 @@ const CryptoPage = () => {
         />
       </Helmet>
 
-      <h1 className='page-heading'>Cryptocurrencies</h1>
+      <Heading text='Cryptocurrencies' />
 
       <Table loading={loading} tableData={data} setTableData={setData} />
       <BottomNews />

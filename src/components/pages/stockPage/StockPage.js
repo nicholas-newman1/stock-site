@@ -1,6 +1,7 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import BottomNews from '../../global/bottomNews/BottomNews';
+import Heading from '../../global/heading/Heading';
 import {
   dummyActivesData,
   dummyGainersData,
@@ -40,7 +41,7 @@ const StockPage = () => {
         />
       </Helmet>
 
-      <h1 className='page-heading'>Stocks</h1>
+      <Heading text='Stocks' />
 
       <div className='stock-page__stocklists'>
         <div className='stock-page__stock-table'>

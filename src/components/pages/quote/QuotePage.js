@@ -46,7 +46,7 @@ const QuotePage = ({ match }) => {
           content={`${quote.symbol} free quote. ${quote.name} quote. Free stock quotes, forex exchange rates, cryptocurrency rates, and more.`}
         />
       </Helmet>
-      <div className='quote-page'>
+      <>
         <Quote symbol={symbol} />
         {isStock && <QuoteNav tab={tab} setTab={setTab} />}
         {tab === 'Summary' && <QuoteSummary symbol={symbol} />}
@@ -62,7 +62,7 @@ const QuotePage = ({ match }) => {
         )}
 
         {quoteFetched && <BottomNews symbol={isStock ? symbol : ''} />}
-      </div>
+      </>
     </>
   ) : (
     <Redirect to='/' />

@@ -1,0 +1,18 @@
+.page-heading {
+  text-transform: capitalize;
+  position: relative;
+  font-size: 2rem;
+  font-weight: 400;
+  display: inline-block;
+  margin-bottom: 1rem;
+}
+
+.page-heading::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: #006acc;
+  height: 0.15em;
+  width: 70%;
+}
