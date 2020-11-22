@@ -1,14 +1,15 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
-import HeaderSearch from './HeaderSearch';
+import SearchBar from '../global/searchBar/SearchBar';
 import HeaderNav from './HeaderNav';
 import './header.css';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { DisplayNavContext } from '../../context/DisplayNavContext';
 
 const Header = () => {
-  const [displayNav, setDisplayNav] = useState(false);
-  const [toggleNav, setToggleNav] = useState(false);
+  const [isLargeView, setIsLargeView] = useState(false);
+  const { displayNav, setDisplayNav } = useContext(DisplayNavContext);
 
   useEffect(() => {
     const main = document.querySelector('main');
@@ -18,12 +19,7 @@ const Header = () => {
     const resizer = new ResizeObserver((e) => {
       // Move main down into view
       main.style.paddingTop = `${header.getBoundingClientRect().height + 16}px`;
-      if (window.innerWidth > 700) {
-        setDisplayNav(true);
-        setToggleNav(false);
-      } else {
-        setDisplayNav(false);
-      }
+      window.innerWidth > 700 ? setIsLargeView(true) : setIsLargeView(false);
     });
     resizer.observe(main);
 
@@ -54,16 +50,16 @@ const Header = () => {
         </Link>
 
         <div className='header-search-container'>
-          <HeaderSearch setToggleNav={setToggleNav} />
+          <SearchBar />
         </div>
 
         <FontAwesomeIcon
           className='header-hamburger'
           icon={faBars}
-          onClick={() => setToggleNav(!toggleNav)}
+          onClick={() => setDisplayNav(!displayNav)}
         />
 
-        {(toggleNav || displayNav) && (
+        {(displayNav || isLargeView) && (
           <>
             <div className='header-watchlist-container'>
               <Link className='header-watchlist-link' to={`/watchlist`}>
@@ -71,7 +67,7 @@ const Header = () => {
               </Link>
             </div>
             <div className='header-nav-container'>
-              <HeaderNav setToggleNav={setToggleNav} />
+              <HeaderNav setDisplayNav={setDisplayNav} />
             </div>
           </>
         )}

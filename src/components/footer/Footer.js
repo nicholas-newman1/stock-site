@@ -1,5 +1,5 @@
 import React from 'react';
-import FooterSearch from './FooterSearch';
+import SearchBar from '../global/searchBar/SearchBar';
 import FooterNav from './FooterNav';
 import { Link } from 'react-router-dom';
 import './footer.css';
@@ -11,8 +11,13 @@ const Footer = () => {
         <Link className='footer-logo' to='/'>
           Stock Site
         </Link>
-        <FooterSearch />
+
+        <div className='footer-search-container'>
+          <SearchBar />
+        </div>
+
         <FooterNav />
+
         <Link className='footer-watchlist-link' to={`/watchlist`}>
           Watchlist
         </Link>

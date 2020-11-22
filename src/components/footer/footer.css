@@ -30,6 +30,12 @@
   color: #148eff;
 }
 
+.footer-search-container {
+  max-width: 500px;
+  margin: 0 auto;
+  margin-bottom: 1rem;
+}
+
 .footer-watchlist-link {
   display: inline-block;
   text-decoration: none;

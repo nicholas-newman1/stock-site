@@ -18,6 +18,7 @@ import NotFoundPage from './components/pages/NotFoundPage';
 import Footer from './components/footer/Footer';
 import { QuoteProvider } from './context/QuoteContext';
 import { RealDataProvider } from './context/RealDataContext';
+import { DisplayNavProvider } from './context/DisplayNavContext';
 import { HelmetProvider } from 'react-helmet-async';
 
 const App = () => {
@@ -25,29 +26,35 @@ const App = () => {
     <HelmetProvider>
       <RealDataProvider>
         <QuoteProvider>
-          <Router>
-            <Header />
-            <main>
-              <Switch>
-                <Route exact path='/' component={HomePage} />
-                <Route
-                  exact
-                  path='/search/:query'
-                  component={SearchResultsPage}
-                />
-                <Route exact path='/quote/:symbol' component={QuotePage} />
-                <Route exact path='/indexes' component={IndexPage} />
-                <Route exact path='/stocks' component={StockPage} />
-                <Route exact path='/cryptocurrencies' component={CryptoPage} />
-                <Route exact path='/forex' component={ForexPage} />
-                <Route exact path='/commodities' component={CommodityPage} />
-                <Redirect from='/quote/:symbol/**' to='/quote/:symbol' />
-                <Redirect from='/:page/**' to='/:page' />
-                <Route component={NotFoundPage} />
-              </Switch>
-            </main>
-            <Footer />
-          </Router>
+          <DisplayNavProvider>
+            <Router>
+              <Header />
+              <main>
+                <Switch>
+                  <Route exact path='/' component={HomePage} />
+                  <Route
+                    exact
+                    path='/search/:query'
+                    component={SearchResultsPage}
+                  />
+                  <Route exact path='/quote/:symbol' component={QuotePage} />
+                  <Route exact path='/indexes' component={IndexPage} />
+                  <Route exact path='/stocks' component={StockPage} />
+                  <Route
+                    exact
+                    path='/cryptocurrencies'
+                    component={CryptoPage}
+                  />
+                  <Route exact path='/forex' component={ForexPage} />
+                  <Route exact path='/commodities' component={CommodityPage} />
+                  <Redirect from='/quote/:symbol/**' to='/quote/:symbol' />
+                  <Redirect from='/:page/**' to='/:page' />
+                  <Route component={NotFoundPage} />
+                </Switch>
+              </main>
+              <Footer />
+            </Router>
+          </DisplayNavProvider>
         </QuoteProvider>
       </RealDataProvider>
     </HelmetProvider>

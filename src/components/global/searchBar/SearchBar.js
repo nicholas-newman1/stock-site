@@ -1,19 +1,18 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
-import './footerSearch.css';
+import './searchBar.css';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { DisplayNavContext } from '../../../context/DisplayNavContext';
 
-const Search = () => {
+const SearchBar = () => {
   const [text, setText] = useState('');
+  const { setDisplayNav } = useContext(DisplayNavContext);
 
   return (
-    <form
-      className='footer-search-form'
-      onSubmit={(e) => console.log('submit')}
-    >
+    <form className='search-bar'>
       <input
-        className='footer-search-input'
+        className='search-bar__input'
         aria-label='search input'
         type='text'
         placeholder='Search...'
@@ -24,23 +23,24 @@ const Search = () => {
       />
 
       <Link
-        className='footer-search-link'
+        className='search-bar__link'
         to={`/search/${text}`}
         onClick={(e) => {
           setText('');
+          setDisplayNav(false);
           e.target.focus();
         }}
       >
         <button
-          className='footer-search-btn'
+          className='search-bar__btn'
           type='submit'
           aria-label='search button'
         >
-          <FontAwesomeIcon className='footer-search-icon' icon={faSearch} />
+          <FontAwesomeIcon className='search-bar__icon' icon={faSearch} />
         </button>
       </Link>
     </form>
   );
 };
 
-export default Search;
+export default SearchBar;

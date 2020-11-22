@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import './headerNav.css';
 
-const Nav = ({ setToggleNav }) => {
+const Nav = ({ setDisplayNav }) => {
   const links = [
     'Home',
     'Indexes',
@@ -19,7 +19,7 @@ const Nav = ({ setToggleNav }) => {
           <Link
             className='nav-link'
             to={text === 'Home' ? '/' : `/${text.toLowerCase()}`}
-            onClick={() => setToggleNav(false)}
+            onClick={() => setDisplayNav(false)}
           >
             {text}
           </Link>
