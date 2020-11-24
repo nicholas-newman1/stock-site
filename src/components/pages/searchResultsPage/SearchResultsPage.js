@@ -5,6 +5,7 @@ import SearchFilter from './SearchFilter';
 import SearchItem from './SearchItem';
 import SearchNav from './searchNav';
 import Heading from '../../global/heading/Heading';
+import BottomNews from '../../global/bottomNews/BottomNews';
 import { dummySearchResults } from '../../../dummyData';
 import useFetch from '../../../hooks/useFetch';
 import './searchResultsPage.css';
@@ -58,6 +59,8 @@ const SearchResults = ({ match }) => {
               resultsPerPage={resultsPerPage}
             />
           )}
+
+          <BottomNews />
         </>
       ) : (
         <h2>No Data Available</h2>
