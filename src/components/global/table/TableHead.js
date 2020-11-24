@@ -15,17 +15,17 @@ const TableHead = ({ sortTableData }) => {
 
   return (
     <thead>
-      <tr className='table-tr'>
+      <tr className='table__tr'>
         {headings.map((item, i) => {
           const { property, label } = item;
           const isSelected = sortProperty === property;
           return (
             <th
               key={property}
-              className={i === 0 ? 'table-th-sticky' : 'table-th'}
+              className={i === 0 ? 'table__th-sticky' : 'table__th'}
             >
               <button
-                className='table-th-btn'
+                className='table__th-btn'
                 style={isSelected ? { textDecoration: 'underline' } : {}}
                 onClick={() => {
                   sortTableData(property, !reverse);

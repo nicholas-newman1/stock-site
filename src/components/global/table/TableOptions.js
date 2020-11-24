@@ -8,11 +8,11 @@ const TableOptions = ({ page, setPage, resultsPerPage, setResultsPerPage }) => {
   }, [resultsPerPage]);
 
   return (
-    <div className='table-options-container'>
-      <label className='table-options-label'>
+    <div className='table__options-container'>
+      <label className='table__options-label'>
         Results Per Page:
         <select
-          className='table-select'
+          className='table__select'
           value={resultsPerPage}
           onChange={(e) => setResultsPerPage(parseInt(e.target.value))}
         >

@@ -1,19 +1,19 @@
-/* .bottom-news__ul--loading {
+.bottom-news__ul--loading {
+  list-style: none;
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1rem;
 }
 
-.bottom-news__item--loading {
-  width: 100%;
-  background: #ddd;
-  padding: 1rem;
-  border-radius: 10px;
-}
-
 .bottom-news__div--loading {
   width: 30%;
   padding-top: 25%;
-  background: #eee;
+  background: #ccc;
   border-radius: 10px;
-} */
+}
+
+@media (max-width: 1000px) {
+  .bottom-news__ul--loading {
+    grid-template-columns: 1fr;
+  }
+}

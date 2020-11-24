@@ -1,11 +1,11 @@
-.table-options-container {
+.table__options-container {
   margin-top: 0.5rem;
 }
 
-.table-options-label {
+.table__options-label {
   font-size: 0.85rem;
 }
 
-.table-select {
+.table__select {
   margin-left: 0.5rem;
 }

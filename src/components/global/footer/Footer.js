@@ -7,23 +7,25 @@ import './footer.css';
 const Footer = () => {
   return (
     <footer className='footer'>
-      <div className='footer-container container'>
-        <Link className='footer-logo' to='/'>
+      <div className='footer__container container'>
+        <Link className='footer__logo' to='/'>
           Stock Site
         </Link>
 
-        <div className='footer-search-container'>
+        <div className='footer__search-container'>
           <SearchBar />
         </div>
 
         <MainNav justifyCenter={true} />
         <br />
 
-        <Link className='footer-watchlist-link' to={`/watchlist`}>
+        <Link className='footer__watchlist-link' to={`/watchlist`}>
           Watchlist
         </Link>
       </div>
-      <div className='footer-credits'>Website Developed By Nicholas Newman</div>
+      <div className='footer__credits'>
+        Website Developed By Nicholas Newman
+      </div>
     </footer>
   );
 };

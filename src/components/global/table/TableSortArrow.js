@@ -3,7 +3,7 @@ import React from 'react';
 const TableSortArrow = ({ style }) => {
   return (
     <svg
-      className='table-sort-arrow'
+      className='table__sort-arrow'
       style={style}
       xmlns='http://www.w3.org/2000/svg'
       viewBox='0 0 24 24'

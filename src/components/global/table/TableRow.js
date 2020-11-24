@@ -45,19 +45,19 @@ const TableRow = ({ item, index }) => {
   }
 
   return (
-    <tr className='table-tr' style={{ background }}>
-      <td className='table-td-sticky' style={{ background }}>
-        <Link className='table-td-link' to={`/quote/${symbol}`}>
+    <tr className='table__tr' style={{ background }}>
+      <td className='table__td-sticky' style={{ background }}>
+        <Link className='table__td-link' to={`/quote/${symbol}`}>
           {symbol}
         </Link>
       </td>
-      <td className='table-td'>{name}</td>
-      <td className='table-td'>${price}</td>
-      <td className='table-td' style={{ color }}>
+      <td className='table__td'>{name}</td>
+      <td className='table__td'>${price}</td>
+      <td className='table__td' style={{ color }}>
         {change > 0 && '+'}
         {change}
       </td>
-      <td className='table-td' style={{ color }}>
+      <td className='table__td' style={{ color }}>
         {changesPercentage}%
       </td>
     </tr>

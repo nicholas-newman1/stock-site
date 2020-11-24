@@ -4,11 +4,11 @@
   text-align: center;
 }
 
-.footer-container {
+.footer__container {
   padding: 3rem 0;
 }
 
-.footer-credits {
+.footer__credits {
   padding: 0.5rem 0;
   background: #ccc;
   text-transform: uppercase;
@@ -16,7 +16,7 @@
   font-weight: 700;
 }
 
-.footer-logo {
+.footer__logo {
   display: inline-block;
   text-decoration: none;
   color: #006acc;
@@ -26,17 +26,17 @@
   margin-bottom: 1rem;
 }
 
-.footer-logo:hover {
+.footer__logo:hover {
   color: #148eff;
 }
 
-.footer-search-container {
+.footer__search-container {
   max-width: 500px;
   margin: 0 auto;
   margin-bottom: 1rem;
 }
 
-.footer-watchlist-link {
+.footer__watchlist-link {
   display: inline-block;
   text-decoration: none;
   color: #006acc;
@@ -47,7 +47,7 @@
   border: 1px solid #006acc;
 }
 
-.footer-watchlist-link:hover {
+.footer__watchlist-link:hover {
   background: #006acc;
   color: white;
   cursor: pointer;

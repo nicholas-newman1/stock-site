@@ -25,8 +25,8 @@ const Header = () => {
 
     // shrink/grow header based on scroll direction
 
-    const headerLogo = document.querySelector('.header-logo');
-    const headerHamburger = document.querySelector('.header-hamburger');
+    const headerLogo = document.querySelector('.header__logo');
+    const headerHamburger = document.querySelector('.header__hamburger');
 
     let lastScroll = 0;
     window.addEventListener('scroll', () => {
@@ -43,30 +43,30 @@ const Header = () => {
   }, []);
 
   return (
-    <header>
-      <div className='header container'>
-        <Link className='header-logo' to='/'>
+    <header className='header'>
+      <div className='header__container container'>
+        <Link className='header__logo' to='/'>
           Stock Site
         </Link>
 
-        <div className='header-search-container'>
+        <div className='header__search-container'>
           <SearchBar />
         </div>
 
         <FontAwesomeIcon
-          className='header-hamburger'
+          className='header__hamburger'
           icon={faBars}
           onClick={() => setDisplayNav(!displayNav)}
         />
 
         {(displayNav || isLargeView) && (
           <>
-            <div className='header-watchlist-container'>
-              <Link className='header-watchlist-link' to={`/watchlist`}>
+            <div className='header__watchlist-container'>
+              <Link className='header__watchlist-link' to={`/watchlist`}>
                 Watchlist
               </Link>
             </div>
-            <div className='header-nav-container'>
+            <div className='header__nav-container'>
               <MainNav />
             </div>
           </>

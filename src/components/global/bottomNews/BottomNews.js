@@ -60,11 +60,11 @@ const BottomNews = ({ symbol, shift = false }) => {
   }, [realData]);
 
   return (
-    <div className='bottom-news-container'>
+    <div className='bottom-news'>
       {loading ? (
         <BottomNewsLoading />
       ) : (
-        <ul className='bottom-news-ul'>
+        <ul className='bottom-news__ul'>
           {newsData.map((newsItem, i) => (
             <BottomNewsItem key={i} newsItem={newsItem} />
           ))}

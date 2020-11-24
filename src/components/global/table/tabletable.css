@@ -6,73 +6,74 @@
   margin-bottom: 0.5rem;
 }
 
-.table-sort-arrow {
+.table__sort-arrow {
   width: 10px;
   height: 10px;
   margin-left: 4px;
 }
 
-.table-th {
+.table__th {
   border-bottom: 1px solid #ccc;
   border-right: 1px solid #ccc;
   border-top: 1px solid #ccc;
 }
 
-.table-th-btn {
+.table__th-btn {
   background: none;
   border: none;
   font-weight: 700;
   cursor: pointer;
 }
 
-.table-th-btn:focus {
+.table__th-btn:focus {
   border: none;
   outline: none;
   text-decoration: underline;
 }
 
-.table-th-btn:hover {
+.table__th-btn:hover {
   text-decoration: underline;
 }
 
-.table-td {
+.table__td {
   border-bottom: 1px solid #ccc;
   border-right: 1px solid #ccc;
   font-size: 0.9rem;
 }
 
-.table-td-link {
+.table__td-link {
   color: #006acc;
   text-decoration: none;
   font-size: 0.85rem;
   font-weight: 700;
 }
 
-.table-td-link:hover {
+.table__td-link:hover {
   color: #148eff;
 }
 
-.table-thead .table-td-sticky,
-.table-th-sticky {
+.table__thead .table__td-sticky,
+.table__th-sticky {
   border-top: 1px solid #ccc;
 }
 
-.table-td-sticky,
-.table-th-sticky {
+.table__td-sticky,
+.table__th-sticky {
   border-left: 1px solid #ccc;
   border-bottom: 1px solid #ccc;
   border-right: 1px solid #ccc;
   position: sticky;
   left: 0;
   background: white;
+  z-index: 1;
 }
 
-.table-td-sticky {
+.table__td-sticky {
   font-weight: 400;
 }
 
-.table-td-sticky:after,
-.table-th-sticky:after {
+.table__td-sticky:after,
+.table__th-sticky:after {
   content: '';
   height: 100%;
   position: absolute;
@@ -82,10 +83,10 @@
   right: -10px;
 }
 
-.table-th,
-.table-th-sticky,
-.table-td-sticky,
-.table-td {
+.table__th,
+.table__th-sticky,
+.table__td-sticky,
+.table__td {
   padding: 0.6em 1em;
   white-space: nowrap;
   text-align: left;
@@ -93,17 +94,17 @@
 }
 
 @media (max-width: 500px) {
-  .table-th,
-  .table-td-sticky,
-  .table-td {
+  .table__th,
+  .table__td-sticky,
+  .table__td {
     font-size: 0.9rem;
   }
 }
 
 @media (max-width: 400px) {
-  .table-th,
-  .table-td-sticky,
-  .table-td {
+  .table__th,
+  .table__td-sticky,
+  .table__td {
     font-size: 0.8rem;
   }
 }

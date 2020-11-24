@@ -94,7 +94,7 @@ const Table = ({ loading, tableData, setTableData }) => {
           />
         </div>
       ) : (
-        <h2 className='table-no-data'>No Data Available</h2>
+        <h2>No Data Available</h2>
       )}
     </>
   );

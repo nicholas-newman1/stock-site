@@ -1,27 +1,18 @@
-.bottom-news-container {
+.bottom-news {
   margin-top: 1rem;
   border-top: 1px solid #ccc;
   padding-top: 1rem;
 }
 
-.bottom-news-ul,
-.bottom-news__ul--loading {
+.bottom-news__ul {
   list-style: none;
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1rem;
 }
 
-.bottom-news__div--loading {
-  width: 30%;
-  padding-top: 25%;
-  background: #ccc;
-  border-radius: 10px;
-}
-
 @media (max-width: 1000px) {
-  .bottom-news-ul,
-  .bottom-news__ul--loading {
+  .bottom-news__ul {
     grid-template-columns: 1fr;
   }
 }

@@ -7,7 +7,7 @@ const QuoteNewsItem = ({ newsItem }) => {
   const [titleLength, setTitleLength] = useState(120);
 
   useEffect(() => {
-    const item = document.querySelector('.bottom-news-item');
+    const item = document.querySelector('.bottom-news__item');
 
     let resizer = new ResizeObserver(() => {
       if (item.clientWidth <= 300) {
@@ -37,14 +37,14 @@ const QuoteNewsItem = ({ newsItem }) => {
   const { image, url, title, publishedDate, site, text } = newsItem;
 
   return (
-    <li className='bottom-news-item'>
-      <div className='bottom-news-image-container'>
-        <img className='bottom-news-image' src={image} alt='' />
+    <li className='bottom-news__item'>
+      <div className='bottom-news__image-container'>
+        <img className='bottom-news__image' src={image} alt='' />
       </div>
 
-      <div className='bottom-news-content'>
-        <h2 className='bottom-news-heading'>
-          <a className='bottom-news-link' href={url}>
+      <div className='bottom-news__content'>
+        <h2 className='bottom-news__heading'>
+          <a className='bottom-news__link' href={url}>
             {title.length > titleLength ? (
               <>{truncate(title, titleLength)}&hellip;</>
             ) : (
@@ -53,13 +53,13 @@ const QuoteNewsItem = ({ newsItem }) => {
           </a>
         </h2>
 
-        <p className='bottom-news-meta'>
+        <p className='bottom-news__meta'>
           {site.replace(/(^\w+:|^)\/\//, '').replace(/www./, '')} -{' '}
           <em>{getTimeAgoString(publishedDate)}</em>
         </p>
         {text.length > descriptionLength
           ? descriptionLength > 0 && (
-              <p className='bottom-news-text'>
+              <p className='bottom-news__text'>
                 {truncate(text, descriptionLength)}&hellip;
               </p>
             )
