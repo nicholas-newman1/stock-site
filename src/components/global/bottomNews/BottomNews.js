@@ -20,6 +20,7 @@ const BottomNews = ({ symbol, shift = false }) => {
       general stock news */
       let tickersParam = '';
       if (symbol) tickersParam = `tickers=${symbol}`;
+      console.log(tickersParam);
       let res = await fetch(
         `https://financialmodelingprep.com/api/v3/stock_news?${tickersParam}&limit=11&apikey=${process.env.REACT_APP_FMP_KEY}`
       );

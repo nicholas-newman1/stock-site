@@ -35,11 +35,12 @@ const SearchResults = ({ match }) => {
         />
       </Helmet>
       <Heading text='Search Results' />
-      <SearchFilter setExchange={setExchange} />
+
       {loading ? (
         <Spinner />
       ) : data.length > 0 ? (
         <>
+          <SearchFilter setExchange={setExchange} />
           <ul className='search-results-page'>
             {data.map((result, i) => {
               const itemInRange =
@@ -59,12 +60,11 @@ const SearchResults = ({ match }) => {
               resultsPerPage={resultsPerPage}
             />
           )}
-
-          <BottomNews />
         </>
       ) : (
-        <h2>No Data Available</h2>
+        <h2>No Results Found For '{query}'</h2>
       )}
+      <BottomNews />
     </>
   );
 };
