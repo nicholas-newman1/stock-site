@@ -1,25 +1,25 @@
-.financials-nav-container {
+.quote-financials-nav__container {
   display: flex;
   justify-content: space-between;
   margin-bottom: 0.75rem;
 }
 
-.financials-nav-btn {
+.quote-financials-nav__btn {
   cursor: pointer;
   background: none;
   border: 1px solid grey;
   padding: 0.25rem 0.5rem;
 }
 
-.financials-nav-btn:hover {
+.quote-financials-nav__btn:hover {
   background: #eee;
 }
 
-.financials-nav-btn + .financials-nav-btn {
+.quote-financials-nav__btn + .quote-financials-nav__btn {
   border-left: none;
 }
 
-.financials-nav-btn:disabled {
+.quote-financials-nav__btn:disabled {
   cursor: default;
   color: white;
   background: #148eff;
@@ -27,21 +27,21 @@
 }
 
 @media (max-width: 600px) {
-  .financials-nav-container {
+  .quote-financials-nav__container {
     flex-direction: column;
   }
-  .financials-statement-nav {
+  .quote-financials-nav__statement-nav {
     margin-bottom: 0.5rem;
   }
 }
 
 @media (max-width: 375px) {
-  .financials-statement-nav,
-  .financials-period-nav {
+  .quote-financials-nav__statement-nav,
+  .quote-financials-nav__period-nav {
     display: flex;
     flex-direction: column;
   }
-  .financials-nav-btn + .financials-nav-btn {
+  .quote-financials-nav__btn + .quote-financials-nav__btn {
     border: 1px solid grey;
     margin-top: -1px;
   }

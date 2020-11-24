@@ -2,12 +2,12 @@ import React from 'react';
 
 const QuoteTableHead = ({ tableData }) => {
   return (
-    <thead className='quote-thead'>
-      <tr className='quote-tr'>
-        <th className='quote-th-sticky'></th>
+    <thead className='statement__thead'>
+      <tr className='statement__tr'>
+        <th className='statement__th-sticky'></th>
         {tableData.map((item, i) => (
           <th
-            className='quote-th'
+            className='statement__th'
             key={item.date}
             style={i % 2 === 0 ? { background: '#eee' } : {}}
           >

@@ -15,16 +15,18 @@ const QuoteFinancialsNav = ({ setStatement, setPeriod }) => {
   useEffect(() => {
     // set disabled buttons on component mount
     document.querySelector(
-      '.financials-statement-nav'
+      '.quote-financials-nav__statement-nav'
     ).firstChild.disabled = true;
-    document.querySelector('.financials-period-nav').firstChild.disabled = true;
+    document.querySelector(
+      '.quote-financials-nav__period-nav'
+    ).firstChild.disabled = true;
   }, []);
 
   return (
-    <div className='financials-nav-container'>
-      <nav className='financials-statement-nav'>
+    <div className='quote-financials-nav__container'>
+      <nav className='quote-financials-nav__statement-nav'>
         <button
-          className='financials-nav-btn'
+          className='quote-financials-nav__btn'
           onClick={(e) => {
             updateDisabled(e);
             setStatement('income-statement');
@@ -33,7 +35,7 @@ const QuoteFinancialsNav = ({ setStatement, setPeriod }) => {
           Income Statement
         </button>
         <button
-          className='financials-nav-btn'
+          className='quote-financials-nav__btn'
           onClick={(e) => {
             updateDisabled(e);
             setStatement('balance-sheet-statement');
@@ -42,7 +44,7 @@ const QuoteFinancialsNav = ({ setStatement, setPeriod }) => {
           Balance Sheet
         </button>
         <button
-          className='financials-nav-btn'
+          className='quote-financials-nav__btn'
           onClick={(e) => {
             updateDisabled(e);
             setStatement('cash-flow-statement');
@@ -52,9 +54,9 @@ const QuoteFinancialsNav = ({ setStatement, setPeriod }) => {
         </button>
       </nav>
 
-      <nav className='financials-period-nav'>
+      <nav className='quote-financials-nav__period-nav'>
         <button
-          className='financials-nav-btn'
+          className='quote-financials-nav__btn'
           onClick={(e) => {
             updateDisabled(e);
             setPeriod('');
@@ -63,7 +65,7 @@ const QuoteFinancialsNav = ({ setStatement, setPeriod }) => {
           Annually
         </button>
         <button
-          className='financials-nav-btn'
+          className='quote-financials-nav__btn'
           onClick={(e) => {
             updateDisabled(e);
             setPeriod('quarter');

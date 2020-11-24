@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useContext } from 'react';
 import QuoteValuationNav from './QuoteValuationNav';
-import QuoteTableHead from './financials/QuoteTableHead';
-import QuoteTableRow from './financials/QuoteTableRow';
+import QuoteTableHead from './financials/statementHead';
+import QuoteTableRow from './financials/statementRow';
 import {
   dummyAnnualValuationData,
   dummyQuarterlyValuationData,

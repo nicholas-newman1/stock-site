@@ -90,3 +90,16 @@ export const sortData = (data, property, reverseOrder = false) => {
   };
   data.sort(compare);
 };
+
+export const formatStatementData = (data) => {
+  return data.map((item) => {
+    let formatted = Object.assign({}, item);
+
+    for (let key in formatted) {
+      formatted[key] = formatted[key] === null ? 'N/A' : formatted[key];
+      formatted[key] = shortenNumber(formatted[key]);
+    }
+
+    return formatted;
+  });
+};
