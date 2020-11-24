@@ -46,8 +46,8 @@ const MainNewsItem = () => {
 
   if (loading) {
     return (
-      <div className='loading-main-news-container'>
-        <div className='loading-main-news-div' />
+      <div className='loading-main-news'>
+        <div className='loading-main-news__div' />
       </div>
     );
   }
@@ -55,14 +55,14 @@ const MainNewsItem = () => {
   const { site, title, text, publishedDate, url, image } = data[0];
 
   return (
-    <div className='main-news-item'>
+    <div className='main-news__item'>
       <div
-        className='main-news-image'
+        className='main-news__image'
         style={{ backgroundImage: `url(${image})` }}
       />
 
-      <div className='main-news-content'>
-        <h1 className='main-news-heading'>
+      <div className='main-news__content'>
+        <h1 className='main-news__heading'>
           <a href={url}>
             {title.length > titleLength ? (
               <>{truncate(title, titleLength)}&hellip;</>
@@ -71,10 +71,10 @@ const MainNewsItem = () => {
             )}
           </a>
         </h1>
-        <p className='main-news-meta'>
+        <p className='main-news__meta'>
           {site} - <em>{getTimeAgoString(publishedDate)}</em>
         </p>
-        <p className='main-news-description'>
+        <p className='main-news__description'>
           {text.length > descriptionLength ? (
             <>{truncate(text, descriptionLength)}&hellip;</>
           ) : (

@@ -1,49 +1,49 @@
-.pricelist-table-container {
+.pricelist__table-container {
   overflow: auto;
 }
 
-.pricelist-table {
+.pricelist__table {
   border-spacing: 0 12px;
   width: 100%;
 }
 
-.pricelist-tr--loading {
+.pricelist__tr--loading {
   height: 2rem;
   background: #eee;
   width: 100%;
 }
 
-.pricelist-td:first-child,
-.pricelist-th:first-child {
+.pricelist__td:first-child,
+.pricelist__th:first-child {
   border-top-left-radius: 5px;
   border-bottom-left-radius: 5px;
 }
-.pricelist-td:last-child,
-.pricelist-th:last-child {
+.pricelist__td:last-child,
+.pricelist__th:last-child {
   border-top-right-radius: 5px;
   border-bottom-right-radius: 5px;
 }
 
-.pricelist-th {
+.pricelist__th {
   white-space: nowrap;
   font-size: 0.85rem;
   font-weight: 700;
 }
 
-.pricelist-td {
+.pricelist__td {
   margin-top: 1rem;
   font-size: 0.9rem;
 }
 
-.pricelist-th,
-.pricelist-td {
+.pricelist__th,
+.pricelist__td {
   text-align: center;
   padding: 0.5rem;
   background: #eee;
 }
 
-.pricelist-th + .pricelist-th,
-.pricelist-td + .pricelist-td {
+.pricelist__th + .pricelist__th,
+.pricelist__td + .pricelist__td {
   padding-left: 1rem;
 }
 
@@ -57,12 +57,12 @@
 }
 
 @media (max-width: 460px) {
-  .pricelist-th + .pricelist-th,
-  .pricelist-td + .pricelist-td {
+  .pricelist__th + .pricelist__th,
+  .pricelist__td + .pricelist__td {
     padding-left: 0.25rem;
   }
 
-  .pricelist-td {
+  .pricelist__td {
     font-size: 0.8rem;
   }
 }

@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import Spinner from '../../global/Spinner';
-import SearchResultsFilter from './SearchFilter';
-import './searchResults.css';
-import SearchResultsItem from './SearchItem';
-import SearchResultsNav from './searchNav';
+import SearchFilter from './SearchFilter';
+import SearchItem from './SearchItem';
+import SearchNav from './searchNav';
 import Heading from '../../global/heading/Heading';
 import { dummySearchResults } from '../../../dummyData';
 import useFetch from '../../../hooks/useFetch';
+import './searchResultsPage.css';
 
 const SearchResults = ({ match }) => {
   const [exchange, setExchange] = useState('');
@@ -34,24 +34,24 @@ const SearchResults = ({ match }) => {
         />
       </Helmet>
       <Heading text='Search Results' />
-      <SearchResultsFilter setExchange={setExchange} />
+      <SearchFilter setExchange={setExchange} />
       {loading ? (
         <Spinner />
       ) : data.length > 0 ? (
         <>
-          <ul className='results-container'>
+          <ul className='search-results-page'>
             {data.map((result, i) => {
               const itemInRange =
                 i <= offset + resultsPerPage - 1 && i >= offset;
               return (
                 itemInRange && (
-                  <SearchResultsItem result={result} key={result.symbol} />
+                  <SearchItem result={result} key={result.symbol} />
                 )
               );
             })}
           </ul>
           {data.length > resultsPerPage && (
-            <SearchResultsNav
+            <SearchNav
               searchResults={data}
               page={page}
               setPage={setPage}

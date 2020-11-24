@@ -13,18 +13,18 @@ const PriceList = ({ symbols }) => {
   );
 
   return (
-    <div className='pricelist-table-container'>
-      <table className='pricelist-table'>
-        <thead className='pricelist-thead'>
-          <tr className='pricelist-tr'>
-            <th className='pricelist-th'>Symbol</th>
-            <th className='pricelist-th'>Price</th>
-            <th className='pricelist-th'>Change ($)</th>
-            <th className='pricelist-th'>Change (%)</th>
+    <div className='pricelist__table-container'>
+      <table className='pricelist__table'>
+        <thead className='pricelist__thead'>
+          <tr className='pricelist__tr'>
+            <th className='pricelist__th'>Symbol</th>
+            <th className='pricelist__th'>Price</th>
+            <th className='pricelist__th'>Change ($)</th>
+            <th className='pricelist__th'>Change (%)</th>
           </tr>
         </thead>
 
-        <tbody className='pricelist-tbody'>
+        <tbody className='pricelist__tbody'>
           {loading ? (
             <LoadingPriceList />
           ) : (

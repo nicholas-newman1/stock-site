@@ -1,15 +1,15 @@
-.home-container {
+.home {
   display: grid;
   grid-template-columns: 1fr 400px;
   gap: 1rem;
 }
 
 @media (max-width: 1000px) {
-  .home-section-two {
+  .home__section-two {
     display: none;
   }
 
-  .home-container {
+  .home {
     display: block;
   }
 }

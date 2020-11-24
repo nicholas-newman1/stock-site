@@ -6,9 +6,9 @@ import {
   Redirect,
 } from 'react-router-dom';
 import Header from './components/global/header/Header';
-import HomePage from './components/pages/home/HomePage';
-import QuotePage from './components/pages/quote/QuotePage';
-import SearchResultsPage from './components/pages/search/SearchResultsPage';
+import HomePage from './components/pages/homePage/HomePage';
+import QuotePage from './components/pages/quotePage/QuotePage';
+import SearchResultsPage from './components/pages/searchResultsPage/SearchResultsPage';
 import IndexPage from './components/pages/IndexPage';
 import StockPage from './components/pages/stockPage/StockPage';
 import CryptoPage from './components/pages/CryptoPage';

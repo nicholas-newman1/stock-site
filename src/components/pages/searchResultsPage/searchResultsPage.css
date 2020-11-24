@@ -1,4 +1,4 @@
-.results-container {
+.search-results-page {
   margin-bottom: 1rem;
   list-style: none;
   display: grid;
@@ -7,7 +7,7 @@
 }
 
 @media (max-width: 700px) {
-  .results-container {
+  .search-results {
     grid-template-columns: auto;
   }
 }

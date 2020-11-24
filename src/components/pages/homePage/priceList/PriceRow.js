@@ -52,18 +52,18 @@ const PriceRow = ({ data }) => {
   }
 
   return (
-    <tr className='pricelist-tr'>
-      <td className='pricelist-td'>
+    <tr className='pricelist__tr'>
+      <td className='pricelist__td'>
         <Link className='symbol-link' to={`/quote/${symbol}`}>
           {symbolText}
         </Link>
       </td>
-      <td className='pricelist-td'>${price}</td>
-      <td className='pricelist-td' style={{ color }}>
+      <td className='pricelist__td'>${price}</td>
+      <td className='pricelist__td' style={{ color }}>
         {isPositive && '+'}
         {change}
       </td>
-      <td className='pricelist-td' style={{ color }}>
+      <td className='pricelist__td' style={{ color }}>
         {isPositive && '+'}
         {changesPercentage}%
       </td>
