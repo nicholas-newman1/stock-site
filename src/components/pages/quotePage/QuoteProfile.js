@@ -46,13 +46,15 @@ const QuoteProfile = ({ symbol }) => {
             <h3 className='quote-profile-heading'>Address</h3>
             {(address || city || zip) && (
               <div className='quote-profile-div'>
-                {address && <p className='quote-profile-p'>{address}</p>}
-                {city && state && country && (
-                  <p className='quote-profile-p'>
-                    {city}, {state.toLowerCase()}, {country}
-                  </p>
-                )}
-                {zip && <p className='quote-profile-p'>{zip}</p>}
+                <address>
+                  {address && <p className='quote-profile-p'>{address}</p>}
+                  {city && state && country && (
+                    <p className='quote-profile-p'>
+                      {city}, {state.toLowerCase()}, {country}
+                    </p>
+                  )}
+                  {zip && <p className='quote-profile-p'>{zip}</p>}
+                </address>
               </div>
             )}
 
