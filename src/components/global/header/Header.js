@@ -1,11 +1,11 @@
 import React, { useEffect, useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
-import SearchBar from '../global/searchBar/SearchBar';
-import MainNav from '../global/mainNav/MainNav';
-import './header.css';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { DisplayNavContext } from '../../context/DisplayNavContext';
+import SearchBar from '../searchBar/SearchBar';
+import MainNav from '../mainNav/MainNav';
+import { DisplayNavContext } from '../../../context/DisplayNavContext';
+import './header.css';
 
 const Header = () => {
   const [isLargeView, setIsLargeView] = useState(false);

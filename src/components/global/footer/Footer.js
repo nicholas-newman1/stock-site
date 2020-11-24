@@ -1,7 +1,7 @@
 import React from 'react';
-import SearchBar from '../global/searchBar/SearchBar';
-import MainNav from '../global/mainNav/MainNav';
 import { Link } from 'react-router-dom';
+import SearchBar from '../../global/searchBar/SearchBar';
+import MainNav from '../../global/mainNav/MainNav';
 import './footer.css';
 
 const Footer = () => {

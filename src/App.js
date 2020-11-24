@@ -5,7 +5,7 @@ import {
   BrowserRouter as Router,
   Redirect,
 } from 'react-router-dom';
-import Header from './components/header/Header';
+import Header from './components/global/header/Header';
 import HomePage from './components/pages/home/HomePage';
 import QuotePage from './components/pages/quote/QuotePage';
 import SearchResultsPage from './components/pages/search/SearchResultsPage';
@@ -15,7 +15,7 @@ import CryptoPage from './components/pages/CryptoPage';
 import CommodityPage from './components/pages/CommodityPage';
 import ForexPage from './components/pages/ForexPage';
 import NotFoundPage from './components/pages/NotFoundPage';
-import Footer from './components/footer/Footer';
+import Footer from './components/global/footer/Footer';
 import { QuoteProvider } from './context/QuoteContext';
 import { RealDataProvider } from './context/RealDataContext';
 import { DisplayNavProvider } from './context/DisplayNavContext';
