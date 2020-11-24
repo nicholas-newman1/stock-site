@@ -1,6 +1,7 @@
 .bottom-news__item {
   display: flex;
   justify-content: space-between;
+  background: #eee;
 }
 
 .bottom-news__item--loading {
@@ -21,7 +22,7 @@
 
 .bottom-news__content {
   width: 69%;
-  margin-left: 0.5rem;
+  padding: 0.5rem;
 }
 
 .bottom-news__heading {
@@ -45,4 +46,5 @@
 
 .bottom-news__text {
   margin-top: 0.5rem;
+  font-size: 0.85rem;
 }

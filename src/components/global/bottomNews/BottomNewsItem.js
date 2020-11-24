@@ -13,15 +13,6 @@ const QuoteNewsItem = ({ newsItem }) => {
       if (item.clientWidth <= 300) {
         setDescriptionLength(0);
         setTitleLength(70);
-      } else if (item.clientWidth <= 500) {
-        setDescriptionLength(80);
-        setTitleLength(80);
-      } else if (item.clientWidth <= 800) {
-        setDescriptionLength(100);
-        setTitleLength(80);
-      } else if (item.clientWidth <= 1000) {
-        setDescriptionLength(200);
-        setTitleLength(125);
       } else {
         setDescriptionLength(150);
         setTitleLength(120);
@@ -57,13 +48,16 @@ const QuoteNewsItem = ({ newsItem }) => {
           {site.replace(/(^\w+:|^)\/\//, '').replace(/www./, '')} -{' '}
           <em>{getTimeAgoString(publishedDate)}</em>
         </p>
-        {text.length > descriptionLength
-          ? descriptionLength > 0 && (
-              <p className='bottom-news__text'>
-                {truncate(text, descriptionLength)}&hellip;
-              </p>
-            )
-          : text}
+
+        {descriptionLength > 0 && (
+          <p className='bottom-news__text'>
+            {text.length > descriptionLength ? (
+              <>{truncate(text, descriptionLength)}&hellip;</>
+            ) : (
+              text
+            )}
+          </p>
+        )}
       </div>
     </li>
   );
