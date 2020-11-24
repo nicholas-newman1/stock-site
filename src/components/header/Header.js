@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import SearchBar from '../global/searchBar/SearchBar';
-import HeaderNav from './HeaderNav';
+import MainNav from '../global/mainNav/MainNav';
 import './header.css';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -67,7 +67,7 @@ const Header = () => {
               </Link>
             </div>
             <div className='header-nav-container'>
-              <HeaderNav setDisplayNav={setDisplayNav} />
+              <MainNav />
             </div>
           </>
         )}

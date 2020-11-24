@@ -1,6 +1,6 @@
 import React from 'react';
 import SearchBar from '../global/searchBar/SearchBar';
-import FooterNav from './FooterNav';
+import MainNav from '../global/mainNav/MainNav';
 import { Link } from 'react-router-dom';
 import './footer.css';
 
@@ -16,7 +16,8 @@ const Footer = () => {
           <SearchBar />
         </div>
 
-        <FooterNav />
+        <MainNav justifyCenter={true} />
+        <br />
 
         <Link className='footer-watchlist-link' to={`/watchlist`}>
           Watchlist
