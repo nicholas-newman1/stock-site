@@ -1,23 +1,23 @@
-.quote-nav-container {
+.quote-nav {
   margin-bottom: 1rem;
 }
 
-.quote-nav-ul {
+.quote-nav__ul {
   list-style: none;
   display: flex;
   position: relative;
   overflow: auto;
 }
 
-.quote-nav-li {
+.quote-nav__li {
   border: 1px solid #ccc;
 }
 
-.quote-nav-li + .quote-nav-li {
+.quote-nav__li + .quote-nav__li {
   border-left: none;
 }
 
-.quote-nav-btn {
+.quote-nav__btn {
   padding: 0.5rem 1.5rem;
   color: black;
   font-weight: 300;
@@ -26,15 +26,15 @@
   border: none;
 }
 
-.quote-nav-btn.active {
-  background: #ccc;
-}
-
-.quote-nav-btn:focus {
+.quote-nav__btn:focus {
   outline: none;
 }
 
-.quote-nav-btn.inactive:hover {
+.quote-nav__btn--active {
+  background: #ccc;
+}
+
+.quote-nav__btn--inactive:hover {
   background: #eee;
   cursor: pointer;
 }

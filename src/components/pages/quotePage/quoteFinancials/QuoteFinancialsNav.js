@@ -23,7 +23,7 @@ const QuoteFinancialsNav = ({ setStatement, setPeriod }) => {
   }, []);
 
   return (
-    <div className='quote-financials-nav__container'>
+    <div className='quote-financials-nav'>
       <nav className='quote-financials-nav__statement-nav'>
         <button
           className='quote-financials-nav__btn'

@@ -1,4 +1,4 @@
-.quote-financials-nav__container {
+.quote-financials-nav {
   display: flex;
   justify-content: space-between;
   margin-bottom: 0.75rem;
@@ -27,7 +27,7 @@
 }
 
 @media (max-width: 600px) {
-  .quote-financials-nav__container {
+  .quote-financials-nav {
     flex-direction: column;
   }
   .quote-financials-nav__statement-nav {

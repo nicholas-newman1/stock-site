@@ -4,14 +4,16 @@ import './quoteNav.css';
 const QuoteNav = ({ tab, setTab }) => {
   let navItems = ['Summary', 'Chart', 'Financials', 'Profile', 'Valuation'];
   return (
-    <nav className='quote-nav-container'>
-      <ul className='quote-nav-ul'>
+    <nav className='quote-nav'>
+      <ul className='quote-nav__ul'>
         {navItems.map((item) => (
-          <li key={item} className='quote-nav-li'>
+          <li key={item} className='quote-nav__li'>
             <button
-              className={
-                tab === item ? 'quote-nav-btn active' : 'quote-nav-btn inactive'
-              }
+              className={`quote-nav__btn ${
+                tab === item
+                  ? 'quote-nav__btn--active'
+                  : 'quote-nav__btn--inactive'
+              }`}
               onClick={() => setTab(item)}
             >
               {item}

@@ -1,24 +1,24 @@
-.timeframe {
+.quote-timeframe {
   display: flex;
   margin-bottom: 0.5rem;
 }
 
-.timeframe-btn {
+.quote-timeframe__btn {
   cursor: pointer;
   background: none;
   border: 1px solid grey;
   padding: 0.25rem 0.5rem;
 }
 
-.timeframe-btn:hover {
+.quote-timeframe__btn:hover {
   background: #eee;
 }
 
-.timeframe-btn + .timeframe-btn {
+.quote-timeframe__btn + .quote-timeframe__btn {
   border-left: none;
 }
 
-.timeframe-btn:disabled {
+.quote-timeframe__btn:disabled {
   cursor: default;
   color: white;
   background: #148eff;

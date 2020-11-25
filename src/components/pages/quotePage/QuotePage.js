@@ -1,14 +1,14 @@
 import React, { useEffect, useContext, useState } from 'react';
-import Quote from './Quote';
-import QuoteSummary from './QuoteSummary';
+import Quote from './quote/Quote';
+import QuoteSummary from './quoteSummary/QuoteSummary';
 import BottomNews from '../../global/bottomNews/BottomNews';
-import QuoteChart from './QuoteChart';
-import QuoteProfile from './QuoteProfile';
+import QuoteChart from './quoteChart/QuoteChart';
+import QuoteProfile from './quoteProfile/QuoteProfile';
 import QuoteValuation from './quoteValuation/QuoteValuation';
-import QuoteNav from './QuoteNav';
+import QuoteNav from './quoteNav/QuoteNav';
 import { QuoteContext } from '../../../context/QuoteContext';
 import { RealDataContext } from '../../../context/RealDataContext';
-import QuoteFinancials from './financials/QuoteFinancials';
+import QuoteFinancials from './quoteFinancials/QuoteFinancials';
 import { Helmet } from 'react-helmet-async';
 import { Redirect } from 'react-router-dom';
 

@@ -139,3 +139,78 @@ export const formatValuationData = (data, period) => {
 
   return data;
 };
+
+export const filterChartData = (data, timeframe) => {
+  if (timeframe === '1D') {
+    data = data.filter((item) => {
+      const latestDate = new Date(data[0].date).toLocaleDateString();
+      const itemDate = new Date(item.date).toLocaleDateString();
+      return latestDate === itemDate;
+    });
+  } else if (timeframe === '5D') {
+    data = data.filter((item) => {
+      const fiveDaysInMS = 1000 * 60 * 60 * 24 * 5;
+      const latestDate = Date.parse(data[0].date);
+      const itemDate = Date.parse(item.date);
+      return latestDate - itemDate < fiveDaysInMS;
+    });
+  } else if (timeframe === '1M') {
+    data = data.filter((item) => {
+      const thirtyDaysInMS = 1000 * 60 * 60 * 24 * 30;
+      const latestDate = Date.parse(data[0].date);
+      const itemDate = Date.parse(item.date);
+      return latestDate - itemDate < thirtyDaysInMS;
+    });
+  } else if (timeframe === '6M') {
+    data = data.filter((item) => {
+      const sixMonthsInMS = 1000 * 60 * 60 * 24 * 30 * 6;
+      const latestDate = Date.parse(data[0].date);
+      const itemDate = Date.parse(item.date);
+      return latestDate - itemDate < sixMonthsInMS;
+    });
+  } else if (timeframe === 'YTD') {
+    data = data.filter((item) => {
+      const yearBeginning = Date.parse(
+        new Date(new Date().getFullYear().toString())
+      );
+      const itemDate = Date.parse(item.date);
+      return itemDate > yearBeginning;
+    });
+  } else if (timeframe === '1Y') {
+    data = data.filter((item) => {
+      const oneYearInMS = 1000 * 60 * 60 * 24 * 365;
+      const latestDate = Date.parse(data[0].date);
+      const itemDate = Date.parse(item.date);
+      return latestDate - itemDate < oneYearInMS;
+    });
+  } else if (timeframe === '5Y') {
+    data = data.filter((item) => {
+      const fiveYearsInMS = 1000 * 60 * 60 * 24 * 365 * 5;
+      const latestDate = Date.parse(data[0].date);
+      const itemDate = Date.parse(item.date);
+      return latestDate - itemDate < fiveYearsInMS;
+    });
+  } else if (timeframe === 'MAX') {
+    while (data.length > 1000) {
+      //eslint-disable-next-line
+      data = data.filter((item, i) => {
+        return i % 2 === 1 || i === data.length - 1;
+      });
+    }
+  }
+
+  return data;
+};
+
+export const formatChartData = (data, timeframe) => {
+  data = filterChartData(data, timeframe);
+
+  data = data.map((item) => {
+    return {
+      x: new Date(item.date),
+      y: item.close,
+    };
+  });
+
+  return data;
+};

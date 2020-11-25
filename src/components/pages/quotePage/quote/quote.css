@@ -1,71 +1,71 @@
-.quote-container {
+.quote {
   margin-bottom: 1rem;
 }
 
-.quote-price-container {
+.quote__price-container {
   display: flex;
   align-items: center;
   margin-bottom: 0.5rem;
 }
 
-.quote-price {
+.quote__price {
   font-size: 2rem;
   font-weight: 900;
 }
 
-.quote-change-container {
+.quote__change-container {
   display: flex;
 }
 
-.quote-change,
-.quote-percent-change {
+.quote__change,
+.quote__percent-change {
   font-size: 1.5rem;
   font-weight: 700;
   margin-left: 0.5rem;
 }
 
-.quote-name-container {
+.quote__name-container {
   display: flex;
   align-items: center;
 }
 
-.quote-name {
+.quote__name {
   font-size: 1rem;
   font-weight: 700;
 }
 
-.quote-exchange {
+.quote__exchange {
   font-size: 0.9rem;
   margin-left: 0.5rem;
 }
 
 @media (max-width: 450px) {
-  .quote-price {
+  .quote__price {
     font-size: 1.7rem;
   }
 
-  .quote-change,
-  .quote-percent-change {
+  .quote__change,
+  .quote__percent-change {
     font-size: 1.3rem;
   }
 }
 
 @media (max-width: 380px) {
-  .quote-price-container {
+  .quote__price-container {
     flex-direction: column;
     align-items: flex-start;
   }
 
-  .quote-change {
+  .quote__change {
     margin-left: 0;
   }
 
-  .quote-name-container {
+  .quote__name-container {
     flex-direction: column;
     align-items: flex-start;
   }
 
-  .quote-exchange {
+  .quote__exchange {
     margin-left: 0;
   }
 }

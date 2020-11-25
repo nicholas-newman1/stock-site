@@ -1,9 +1,9 @@
 import React from 'react';
-import { dummyProfileData } from '../../../dummyData';
-import { formatPhoneNumber } from '../../../helpers';
-import Spinner from '../../global/Spinner';
+import { dummyProfileData } from '../../../../dummyData';
+import { formatPhoneNumber } from '../../../../helpers';
+import Spinner from '../../../global/Spinner';
+import useFetch from '../../../../hooks/useFetch';
 import './quoteProfile.css';
-import useFetch from '../../../hooks/useFetch';
 
 const QuoteProfile = ({ symbol }) => {
   const { data, loading } = useFetch(
@@ -40,33 +40,33 @@ const QuoteProfile = ({ symbol }) => {
       industry ||
       fullTimeEmployees ||
       description ? (
-      <div className='quote-profile-container'>
+      <div className='quote-profile'>
         {(address || city || zip || phone || website) && (
-          <section className='quote-profile-section'>
-            <h3 className='quote-profile-heading'>Address</h3>
+          <section className='quote-profile__section'>
+            <h3 className='quote-profile__heading'>Address</h3>
             {(address || city || zip) && (
-              <div className='quote-profile-div'>
+              <div className='quote-profile__div'>
                 <address>
-                  {address && <p className='quote-profile-p'>{address}</p>}
+                  {address && <p className='quote-profile__p'>{address}</p>}
                   {city && state && country && (
-                    <p className='quote-profile-p'>
+                    <p className='quote-profile__p'>
                       {city}, {state.toLowerCase()}, {country}
                     </p>
                   )}
-                  {zip && <p className='quote-profile-p'>{zip}</p>}
+                  {zip && <p className='quote-profile__p'>{zip}</p>}
                 </address>
               </div>
             )}
 
             {(phone || website) && (
-              <div className='quote-profile-div'>
+              <div className='quote-profile__div'>
                 {phone && (
-                  <a className='quote-profile-link' href={`tel: ${phone}`}>
+                  <a className='quote-profile__link' href={`tel: ${phone}`}>
                     {formatPhoneNumber(phone)}
                   </a>
                 )}
                 {website && (
-                  <a className='quote-profile-link' href={website}>
+                  <a className='quote-profile__link' href={website}>
                     {website}
                   </a>
                 )}
@@ -76,29 +76,29 @@ const QuoteProfile = ({ symbol }) => {
         )}
 
         {(ceo || sector || industry || fullTimeEmployees) && (
-          <section className='quote-profile-section'>
-            <h3 className='quote-profile-heading'>Information</h3>
-            <div className='quote-profile-div'>
+          <section className='quote-profile__section'>
+            <h3 className='quote-profile__heading'>Information</h3>
+            <div className='quote-profile__div'>
               {ceo && (
-                <p className='quote-profile-p'>
+                <p className='quote-profile__p'>
                   <strong>CEO: </strong>
                   {ceo}
                 </p>
               )}
               {sector && (
-                <p className='quote-profile-p'>
+                <p className='quote-profile__p'>
                   <strong>Sector: </strong>
                   {sector}
                 </p>
               )}
               {industry && (
-                <p className='quote-profile-p'>
+                <p className='quote-profile__p'>
                   <strong>Industry: </strong>
                   {industry}
                 </p>
               )}
               {fullTimeEmployees && (
-                <p className='quote-profile-p'>
+                <p className='quote-profile__p'>
                   <strong>Full-Time Employees: </strong>
                   {Number(fullTimeEmployees).toLocaleString()}
                 </p>
@@ -108,9 +108,9 @@ const QuoteProfile = ({ symbol }) => {
         )}
 
         {description && (
-          <section className='quote-profile-section'>
-            <h3 className='quote-profile-heading'>Description</h3>
-            <p className='quote-profile-p'>{description}</p>
+          <section className='quote-profile__section'>
+            <h3 className='quote-profile__heading'>Description</h3>
+            <p className='quote-profile__p'>{description}</p>
           </section>
         )}
       </div>

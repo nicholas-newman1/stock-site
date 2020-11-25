@@ -1,26 +1,26 @@
-.quote-summary-table-container {
+.quote-summary {
   display: flex;
   width: 100%;
 }
 
-.quote-summary-table + .quote-summary-table {
+.quote-summary__table + .quote-summary__table {
   margin-left: 1rem;
 }
 
-.quote-summary-table {
+.quote-summary__table {
   display: flex;
   width: 100%;
 }
 
-.quote-summary-tbody,
-.quote-summary-thead,
-.quote-summary-tr {
+.quote-summary__tbody,
+.quote-summary__thead,
+.quote-summary__tr {
   display: block;
   width: 100%;
 }
 
-.quote-summary-th,
-.quote-summary-td {
+.quote-summary__th,
+.quote-summary__td {
   height: 2rem;
   background: #eee;
   padding: 0.5rem;
@@ -28,29 +28,29 @@
   align-items: center;
 }
 
-.quote-summary-th + .quote-summary-th,
-.quote-summary-td + .quote-summary-td {
+.quote-summary__th + .quote-summary__th,
+.quote-summary__td + .quote-summary__td {
   margin-top: 0.5rem;
 }
 
-.quote-summary-th {
+.quote-summary__th {
   text-align: left;
   font-weight: 300;
   font-size: 0.9rem;
   border-radius: 5px 0 0 5px;
 }
 
-.quote-summary-td {
+.quote-summary__td {
   justify-content: flex-end;
   border-radius: 0 5px 5px 0;
 }
 
 @media (max-width: 430px) {
-  .quote-summary-table-container {
+  .quote-summary {
     flex-direction: column;
   }
 
-  .quote-summary-table + .quote-summary-table {
+  .quote-summary__table + .quote-summary__table {
     margin-left: 0rem;
     margin-top: 0.5rem;
   }

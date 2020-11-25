@@ -14,13 +14,18 @@ const QuoteTimeframeNav = ({ setTimeframe }) => {
   const timeframeBtns = ['1D', '5D', '1M', '6M', 'YTD', '1Y', '5Y', 'MAX'];
 
   useEffect(() => {
-    document.querySelector('.timeframe').firstChild.disabled = true;
+    // disable first timeframe button on mount
+    document.querySelector('.quote-timeframe').firstChild.disabled = true;
   }, []);
 
   return (
-    <nav className='timeframe'>
+    <nav className='quote-timeframe'>
       {timeframeBtns.map((text, i) => (
-        <button className='timeframe-btn' onClick={changeTimeframe} key={i}>
+        <button
+          className='quote-timeframe__btn'
+          onClick={changeTimeframe}
+          key={i}
+        >
           {text}
         </button>
       ))}
