@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import TableNav from './TableNav';
+import PageNav from '../pageNav/PageNav';
 import TableTable from './TableTable';
 import TableOptions from './TableOptions';
 import { sortData } from '../../../helpers';
@@ -41,8 +41,8 @@ const Table = ({ loading, tableData, setTableData }) => {
     <>
       {loading ? (
         <>
-          <TableNav
-            tableData={loadingData}
+          <PageNav
+            data={loadingData}
             page={page}
             setPage={setPage}
             resultsPerPage={resultsPerPage}
@@ -53,8 +53,8 @@ const Table = ({ loading, tableData, setTableData }) => {
             resultsPerPage={resultsPerPage}
             sortTableData={sortTableData}
           />
-          <TableNav
-            tableData={loadingData}
+          <PageNav
+            data={loadingData}
             page={page}
             setPage={setPage}
             resultsPerPage={resultsPerPage}
@@ -68,8 +68,8 @@ const Table = ({ loading, tableData, setTableData }) => {
         </>
       ) : tableData.length > 0 ? (
         <div>
-          <TableNav
-            tableData={tableData}
+          <PageNav
+            data={tableData}
             page={page}
             setPage={setPage}
             resultsPerPage={resultsPerPage}
@@ -80,8 +80,8 @@ const Table = ({ loading, tableData, setTableData }) => {
             resultsPerPage={resultsPerPage}
             sortTableData={sortTableData}
           />
-          <TableNav
-            tableData={tableData}
+          <PageNav
+            data={tableData}
             page={page}
             setPage={setPage}
             resultsPerPage={resultsPerPage}

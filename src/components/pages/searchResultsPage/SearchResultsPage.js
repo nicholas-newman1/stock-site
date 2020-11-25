@@ -3,7 +3,7 @@ import { Helmet } from 'react-helmet-async';
 import Spinner from '../../global/Spinner';
 import SearchFilter from './SearchFilter';
 import SearchItem from './SearchItem';
-import SearchNav from './searchNav';
+import PageNav from '../../global/pageNav/PageNav';
 import Heading from '../../global/heading/Heading';
 import BottomNews from '../../global/bottomNews/BottomNews';
 import { dummySearchResults } from '../../../dummyData';
@@ -34,6 +34,7 @@ const SearchResults = ({ match }) => {
           content={`Search results for ${query}. Free stock quotes, forex exchange rates, cryptocurrency rates, and more.`}
         />
       </Helmet>
+
       <Heading text='Search Results' />
 
       {loading ? (
@@ -41,6 +42,14 @@ const SearchResults = ({ match }) => {
       ) : data.length > 0 ? (
         <>
           <SearchFilter setExchange={setExchange} />
+
+          <PageNav
+            data={data}
+            page={page}
+            setPage={setPage}
+            resultsPerPage={resultsPerPage}
+          />
+
           <ul className='search-results-page'>
             {data.map((result, i) => {
               const itemInRange =
@@ -52,14 +61,13 @@ const SearchResults = ({ match }) => {
               );
             })}
           </ul>
-          {data.length > resultsPerPage && (
-            <SearchNav
-              searchResults={data}
-              page={page}
-              setPage={setPage}
-              resultsPerPage={resultsPerPage}
-            />
-          )}
+
+          <PageNav
+            data={data}
+            page={page}
+            setPage={setPage}
+            resultsPerPage={resultsPerPage}
+          />
         </>
       ) : (
         <h2>No Results Found For '{query}'</h2>
