@@ -4,7 +4,7 @@ import QuoteSummary from './QuoteSummary';
 import BottomNews from '../../global/bottomNews/BottomNews';
 import QuoteChart from './QuoteChart';
 import QuoteProfile from './QuoteProfile';
-import QuoteValuation from './QuoteValuation';
+import QuoteValuation from './quoteValuation/QuoteValuation';
 import QuoteNav from './QuoteNav';
 import { QuoteContext } from '../../../context/QuoteContext';
 import { RealDataContext } from '../../../context/RealDataContext';

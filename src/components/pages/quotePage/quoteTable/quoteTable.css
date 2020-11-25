@@ -1,8 +1,4 @@
-.statement-heading {
-  margin-bottom: 0.5rem;
-}
-
-.statement__table {
+.quote-table {
   display: block;
   overflow-x: auto;
   border-spacing: 0;
@@ -10,24 +6,24 @@
   font-size: 0.875rem;
 }
 
-.statement__th {
+.quote-table__th {
   border-bottom: 1px solid #ccc;
   border-right: 1px solid #ccc;
   border-top: 1px solid #ccc;
 }
 
-.statement__td {
+.quote-table__td {
   text-align: center;
   border-bottom: 1px solid #ccc;
   border-right: 1px solid #ccc;
   font-size: 0.875rem;
 }
 
-.statement__thead .statement__th-sticky {
+.quote-table__thead .quote-table__th-sticky {
   border-top: 1px solid #ccc;
 }
 
-.statement__th-sticky {
+.quote-table__th-sticky {
   border-left: 1px solid #ccc;
   border-bottom: 1px solid #ccc;
   border-right: 1px solid #ccc;
@@ -38,7 +34,7 @@
   text-align: left;
 }
 
-.statement__th-sticky:after {
+.quote-table__th-sticky:after {
   content: ' ';
   height: 100%;
   position: absolute;
@@ -46,30 +42,30 @@
   width: 10px;
 }
 
-.statement__th-sticky:after {
+.quote-table__th-sticky:after {
   box-shadow: 10px 0 10px -10px rgba(0, 0, 0, 0.4) inset;
   right: -10px;
 }
 
-.statement__th,
-.statement__th-sticky,
-.statement__td {
+.quote-table__th,
+.quote-table__th-sticky,
+.quote-table__td {
   padding: 0.6em 1em;
   white-space: nowrap;
 }
 
 @media (max-width: 500px) {
-  .statement__th,
-  .statement__th-sticky,
-  .statement__td {
+  .quote-table__th,
+  .quote-table__th-sticky,
+  .quote-table__td {
     font-size: 0.9rem;
   }
 }
 
 @media (max-width: 400px) {
-  .statement__th,
-  .statement__th-sticky,
-  .statement__td {
+  .quote-table__th,
+  .quote-table__th-sticky,
+  .quote-table__td {
     font-size: 0.8rem;
   }
 }

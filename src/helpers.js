@@ -103,3 +103,39 @@ export const formatStatementData = (data) => {
     return formatted;
   });
 };
+
+export const formatValuationDates = (data, period) => {
+  if (period === 'quarter') {
+    data = data.map((item) => {
+      let date = new Date(item.date);
+      date = date.toLocaleDateString(undefined, {
+        month: 'numeric',
+        year: 'numeric',
+      });
+      return {
+        ...item,
+        date,
+      };
+    });
+  } else {
+    data = data.map((item) => {
+      return {
+        ...item,
+        date: new Date(item.date).getFullYear().toString(),
+      };
+    });
+  }
+
+  return data;
+};
+
+export const formatValuationData = (data, period) => {
+  data = data.map((item) => {
+    item.earningsYield = item.earningsYield * 100;
+    return formatData(item);
+  });
+
+  data = formatValuationDates(data, period);
+
+  return data;
+};
