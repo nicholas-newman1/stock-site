@@ -53,6 +53,10 @@
   margin-bottom: 0.5rem;
 }
 
+.main-news__description {
+  font-size: 0.9rem;
+}
+
 @media (max-width: 600px) {
   .main-news__heading {
     font-size: 1.5rem;
