@@ -1,8 +1,9 @@
-export function truncate(str, n, useWordBoundary) {
+export function truncate(str, n) {
+  // shorten string based on n
   if (str.length <= n) {
     return str;
   }
-  const subString = str.substr(0, n - 1); // the original check
+  const subString = str.substr(0, n - 1);
   return subString.substr(0, subString.lastIndexOf(' '));
 }
 
@@ -15,6 +16,7 @@ export const getTimeAgoString = (date) => {
 };
 
 export const formatAMPM = (timestamp) => {
+  // convert timestamp to AM/PM time
   const date = new Date(timestamp);
   let hours = date.getHours();
   let minutes = date.getMinutes();
@@ -26,35 +28,8 @@ export const formatAMPM = (timestamp) => {
   return strTime;
 };
 
-export const shortenNumber = (number, decimals = 2, trailingZeros = false) => {
-  // if value is not a number, return it unaltered
-  if (typeof number !== 'number') return number;
-
-  // divide by either a trillion, billion, or million, and add the respective letter (T,B,M)
-  // toLocaleString formats number to be more readable
-
-  const options = {
-    minimumSignificantDigits: decimals,
-    maximumSignificantDigits: decimals,
-  };
-
-  if (number >= 1000000000000 || number <= -1000000000000) {
-    return `${(number / 1000000000000).toLocaleString(undefined, options)}T`;
-  } else if (number >= 1000000000 || number <= -1000000000) {
-    return `${(number / 1000000000).toLocaleString(undefined, options)}B`;
-  } else if (number >= 1000000 || number <= -1000000) {
-    return `${(number / 1000000).toLocaleString(undefined, options)}M`;
-  } else {
-    return trailingZeros
-      ? number.toLocaleString(undefined, {
-          minimumFractionDigits: decimals,
-          maximumFractionDigits: decimals,
-        })
-      : parseFloat(number.toFixed(decimals)).toLocaleString();
-  }
-};
-
 export const formatPhoneNumber = (phoneNumberString) => {
+  // Make phone numbers more readable
   var cleaned = ('' + phoneNumberString).replace(/\D/g, '');
   var match = cleaned.match(/^(1|)?(\d{3})(\d{3})(\d{4})$/);
   if (match) {
@@ -62,6 +37,33 @@ export const formatPhoneNumber = (phoneNumberString) => {
     return [intlCode, '(', match[2], ') ', match[3], '-', match[4]].join('');
   }
   return phoneNumberString;
+};
+
+export const sortData = (data, property, reverseOrder = false) => {
+  const compare = (a, b) => {
+    let comparison = 0;
+    if (a[property] < b[property]) comparison = -1;
+    if (a[property] > b[property]) comparison = 1;
+    return reverseOrder ? comparison * -1 : comparison;
+  };
+  data.sort(compare);
+};
+
+export const shortenNumber = (number, decimals = 2) => {
+  /* Return a number in localeString format (ex. commas added). Large numbers are
+  shortened and a letter is added (Ex. M = Million). Decimals are rounded */
+
+  if (typeof number !== 'number') return number;
+
+  if (number >= 1000000000000 || number <= -1000000000000) {
+    return `${round(number / 1000000000000, decimals)}T`;
+  } else if (number >= 1000000000 || number <= -1000000000) {
+    return `${round(number / 1000000000, decimals)}B`;
+  } else if (number >= 1000000 || number <= -1000000) {
+    return `${round(number / 1000000, decimals)}M`;
+  } else {
+    return round(number, decimals, true);
+  }
 };
 
 export const formatData = (data) => {
@@ -81,30 +83,70 @@ export const formatData = (data) => {
   return data;
 };
 
-export const sortData = (data, property, reverseOrder = false) => {
-  const compare = (a, b) => {
-    let comparison = 0;
-    if (a[property] < b[property]) comparison = -1;
-    if (a[property] > b[property]) comparison = 1;
-    return reverseOrder ? comparison * -1 : comparison;
+export const decimalsToRoundTo = (change) => {
+  /* Determines how many decimals to round to based on the change 
+  in price. For example some quotes only change by $0.0005 in a day. It would 
+  make sense then to round off to 4 decimals instead of the usual 2. The function
+  returns a minimum value of 2 since prices are typically displayed with a
+  minimum of 2 decimals (Ex. $2.10) */
+
+  let decimals = 2;
+
+  while (
+    change &&
+    (change.toLocaleString(undefined, {
+      maximumFractionDigits: decimals,
+    }) === '0' ||
+      change.toLocaleString(undefined, {
+        maximumFractionDigits: decimals,
+      }) === '-0')
+  ) {
+    decimals++;
+  }
+
+  return decimals;
+};
+
+export const round = (num, decimals = 2, trailingZeros = false) => {
+  /* Returns a string rounded the given decimals, if trailingZeros is true, 0's will be added
+  to the end of the string */
+  if (num === 0) return 0;
+
+  num = num.toLocaleString(undefined, {
+    maximumFractionDigits: decimals,
+    minimumFractionDigits: trailingZeros ? decimals : 0,
+  });
+
+  return num;
+};
+
+export const formatQuoteData = (data) => {
+  const { price, change, changesPercentage } = data;
+
+  // determine number of decimals to round to
+  let decimals = decimalsToRoundTo(change);
+
+  // round price, change, and changes percentage
+  data = {
+    ...data,
+    price: round(price, decimals, true),
+    change: round(change, decimals, true),
+    changesPercentage: round(changesPercentage, 2),
   };
-  data.sort(compare);
+
+  // replace null values with N/A, large numbers with shortened versions, insert commas
+  data = formatData(data);
+
+  return data;
 };
 
 export const formatStatementData = (data) => {
-  return data.map((item) => {
-    let formatted = Object.assign({}, item);
-
-    for (let key in formatted) {
-      formatted[key] = formatted[key] === null ? 'N/A' : formatted[key];
-      formatted[key] = shortenNumber(formatted[key]);
-    }
-
-    return formatted;
-  });
+  // replaces null values with N/A and large numbers with shortened versions
+  return data.map((item) => formatData(item));
 };
 
 export const formatValuationDates = (data, period) => {
+  // formats date based on period (annual or quarterly)
   if (period === 'quarter') {
     data = data.map((item) => {
       let date = new Date(item.date);
@@ -130,17 +172,20 @@ export const formatValuationDates = (data, period) => {
 };
 
 export const formatValuationData = (data, period) => {
+  // replaces null values with N/A and large numbers with shortened versions
   data = data.map((item) => {
     item.earningsYield = item.earningsYield * 100;
     return formatData(item);
   });
 
+  // formats date based on period (annual or quarterly)
   data = formatValuationDates(data, period);
 
   return data;
 };
 
 export const filterChartData = (data, timeframe) => {
+  // filters out objects not within the timeframe
   if (timeframe === '1D') {
     data = data.filter((item) => {
       const latestDate = new Date(data[0].date).toLocaleDateString();
@@ -190,21 +235,24 @@ export const filterChartData = (data, timeframe) => {
       const itemDate = Date.parse(item.date);
       return latestDate - itemDate < fiveYearsInMS;
     });
-  } else if (timeframe === 'MAX') {
-    while (data.length > 1000) {
-      //eslint-disable-next-line
-      data = data.filter((item, i) => {
-        return i % 2 === 1 || i === data.length - 1;
-      });
-    }
+  }
+
+  // thins out the amount of data points returned (max 300)
+  while (data.length > 300) {
+    data = data.filter((item, i) => {
+      return i === 0 || i % 2 === 1;
+    });
   }
 
   return data;
 };
 
 export const formatChartData = (data, timeframe) => {
+  /* removes data points not in the timeframe and thins out number of data
+  points (max 300) */
   data = filterChartData(data, timeframe);
 
+  // formats data to be compatible with chartJS
   data = data.map((item) => {
     return {
       x: new Date(item.date),

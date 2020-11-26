@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Scatter } from 'react-chartjs-2';
 import QuoteTimeframeNav from './QuoteTimeframeNav';
 import './quoteChart.css';
@@ -8,7 +8,6 @@ import {
   dummyOneMonthData,
   dummyDailyData,
 } from '../../../../dummyData';
-import { QuoteContext } from '../../../../context/QuoteContext';
 import Spinner from '../../../global/Spinner';
 import { formatChartData } from '../../../../helpers';
 import useFetch from '../../../../hooks/useFetch';
@@ -18,7 +17,6 @@ const QuoteChart = ({ symbol }) => {
   const [timeframe, setTimeframe] = useState('1D');
   const [chartData, setChartData] = useState([]);
   const [timeScaleFormat, tooltipFormat] = useChartFormat(timeframe);
-  const { decimals } = useContext(QuoteContext);
 
   /* depending on how far back data needs to be fetched (in terms of date), the
   API requires either 'historical-chart' endpoint or 'historical-price-full'
@@ -84,13 +82,7 @@ const QuoteChart = ({ symbol }) => {
       yAxes: [
         {
           ticks: {
-            precision: decimals,
-            callback: (value) =>
-              '$' +
-              value.toLocaleString(undefined, {
-                maximumFractionDigits: decimals,
-                minimumFractionDigits: decimals,
-              }),
+            callback: (value) => `$${value}`,
           },
         },
       ],
@@ -102,10 +94,7 @@ const QuoteChart = ({ symbol }) => {
       intersect: false,
       callbacks: {
         label: ({ xLabel, yLabel }) => {
-          return `${xLabel} | $${yLabel.toLocaleString(undefined, {
-            maximumFractionDigits: decimals,
-            minimumFractionDigits: decimals,
-          })}`;
+          return `${xLabel} | $${yLabel.toFixed(2)}`;
         },
       },
     },

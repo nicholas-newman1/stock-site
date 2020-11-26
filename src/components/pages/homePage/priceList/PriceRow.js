@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { decimalsToRoundTo, round } from '../../../../helpers';
 
 const PriceRow = ({ data }) => {
   let { symbol, price, change, changesPercentage } = data;
@@ -12,44 +13,10 @@ const PriceRow = ({ data }) => {
   if (symbol === '^GSPTSE') symbolText = 'S&P/TSX';
   if (symbol === '^IXIC') symbolText = 'NASDAQ';
 
-  // number to represent how many decimals will be displayed
-  let decimals = 2;
-
-  // determine number of decimal places to display, depending on the maginitude of the change
-  while (
-    change &&
-    (change.toLocaleString(undefined, {
-      maximumFractionDigits: decimals,
-    }) === '0' ||
-      change.toLocaleString(undefined, {
-        maximumFractionDigits: decimals,
-      }) === '-0')
-  ) {
-    decimals++;
-  }
-
-  // limit change decimal places
-  if (change) {
-    change = change.toLocaleString(undefined, {
-      maximumFractionDigits: decimals,
-      minimumFractionDigits: decimals,
-    });
-  }
-
-  // limit price decimal places
-  if (price) {
-    price = price.toLocaleString(undefined, {
-      maximumFractionDigits: decimals,
-      minimumFractionDigits: decimals,
-    });
-  }
-
-  // limit changesPercentage decimal places
-  if (changesPercentage) {
-    changesPercentage = changesPercentage.toLocaleString(undefined, {
-      maximumFractionDigits: decimals,
-    });
-  }
+  // Round change and price based on maginitude of change in price
+  let decimals = decimalsToRoundTo(change);
+  if (change) change = round(change, decimals, true);
+  if (price) price = round(price, decimals, true);
 
   return (
     <tr className='pricelist__tr'>

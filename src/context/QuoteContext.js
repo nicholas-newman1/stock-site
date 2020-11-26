@@ -1,6 +1,6 @@
 import React, { createContext, useState, useContext } from 'react';
 import { dummyQuoteData } from '../dummyData';
-import { shortenNumber } from '../helpers';
+import { formatQuoteData } from '../helpers';
 import { RealDataContext } from './RealDataContext';
 
 export const QuoteContext = createContext();
@@ -10,7 +10,7 @@ export const QuoteProvider = (props) => {
   const [isStock, setIsStock] = useState(false);
   const [quoteFetched, setQuoteFetched] = useState(false);
   const [quote, setQuote] = useState({
-    // set default values to be displayed until data is returned from fetch request
+    // data displayed while loading
     price: '----',
     change: '----',
     percentChange: '----',
@@ -30,7 +30,6 @@ export const QuoteProvider = (props) => {
     volume: '- -',
     avgVolume: '- -',
   });
-  const [decimals, setDecimals] = useState(2);
 
   const fetchQuote = async (symbol) => {
     let data;
@@ -52,8 +51,6 @@ export const QuoteProvider = (props) => {
       return;
     }
 
-    const { price, change, changesPercentage, exchange } = data;
-
     setIsStock(
       [
         'INDEX',
@@ -63,61 +60,11 @@ export const QuoteProvider = (props) => {
         'CRYPTO',
         'COMMODITY',
         '- - - - - - -',
-      ].findIndex((item) => item === exchange) === -1
+      ].findIndex((item) => item === data.exchange) === -1
     );
 
-    // Alter the returned data to make it prettier for rendering
-
-    let decimals = 2;
-    while (
-      change &&
-      (change.toLocaleString(undefined, {
-        maximumFractionDigits: decimals,
-      }) === '0' ||
-        change.toLocaleString(undefined, {
-          maximumFractionDigits: decimals,
-        }) === '-0')
-    ) {
-      decimals++;
-    }
-
-    setDecimals(decimals); // used for rounding in QuoteChart
-
-    data = {
-      ...data,
-
-      // round to 2 or 4 decimals depending on magnitude of the price
-      price: price.toLocaleString(undefined, {
-        maximumFractionDigits: decimals,
-        minimumFractionDigits: decimals,
-      }),
-
-      // round to 2 or 4 decimals depending on magnitude of the change
-      change: change.toLocaleString(undefined, {
-        maximumFractionDigits: decimals,
-        minimumFractionDigits: decimals,
-      }),
-
-      percentChange: Number(changesPercentage).toLocaleString(),
-
-      // added properties to make rendering easier
-      color: change > 0 ? 'green' : 'red',
-      isPositive: change > 0,
-    };
-
-    for (let key in data) {
-      // replace null values with 'N/A'
-      data = {
-        ...data,
-        [key]: data[key] === null ? 'N/A' : data[key],
-      };
-
-      // replace long numbers with a shortned version
-      data = {
-        ...data,
-        [key]: shortenNumber(data[key], decimals, true),
-      };
-    }
+    // Format data to be more readable
+    data = formatQuoteData(data);
 
     setQuote(data);
     setQuoteFetched(true);
@@ -132,8 +79,6 @@ export const QuoteProvider = (props) => {
         setIsStock,
         quoteFetched,
         setQuoteFetched,
-        decimals,
-        setDecimals,
       }}
     >
       {props.children}

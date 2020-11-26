@@ -45,7 +45,10 @@ const QuoteFinancials = ({ symbol }) => {
   );
 
   useEffect(() => {
-    setStatementData(formatStatementData(data)); // format the data to be more readable
+    /* removes data points not in the timeframe and thins out number of data
+    points (max 300). Also, formats data to be compatible with chartJS */
+    setStatementData(formatStatementData(data));
+
     //eslint-disable-next-line
   }, [data]);
 

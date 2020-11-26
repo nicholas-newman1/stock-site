@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { decimalsToRoundTo, round } from '../../../helpers';
 
 const TableRow = ({ item, index }) => {
   let { symbol, name, price, change, changesPercentage } = item;
@@ -7,42 +8,10 @@ const TableRow = ({ item, index }) => {
   const color = change > 0 ? 'green' : change < 0 ? '#de0e00' : 'black';
   const background = index % 2 === 1 ? 'white' : '#eee';
 
-  // Determine number of decimals to round to based on the maginitude of the price change
-  let decimals = 2;
-  while (
-    change &&
-    (change.toLocaleString(undefined, {
-      maximumFractionDigits: decimals,
-    }) === '0' ||
-      change.toLocaleString(undefined, {
-        maximumFractionDigits: decimals,
-      }) === '-0')
-  ) {
-    decimals++;
-  }
-
-  // limit change decimal places
-  if (change) {
-    change = change.toLocaleString(undefined, {
-      maximumFractionDigits: decimals,
-      minimumFractionDigits: decimals,
-    });
-  }
-
-  // limit price decimal places
-  if (price) {
-    price = price.toLocaleString(undefined, {
-      maximumFractionDigits: decimals,
-      minimumFractionDigits: decimals,
-    });
-  }
-
-  // limit changesPercentage decimal places
-  if (changesPercentage) {
-    changesPercentage = changesPercentage.toLocaleString(undefined, {
-      maximumFractionDigits: decimals,
-    });
-  }
+  // Round values based on maginitude of change in price
+  let decimals = decimalsToRoundTo(change);
+  if (change) change = round(change, decimals, true);
+  if (price) price = round(price, decimals, true);
 
   return (
     <tr className='table__tr' style={{ background }}>
