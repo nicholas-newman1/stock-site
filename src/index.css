@@ -9,9 +9,12 @@
   font-family: 'Roboto', sans-serif;
 }
 
+/* The following block keeps the footer at the bottom of the page when there is
+not enought content to push it to the bottom */
 #root {
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   min-height: 100vh;
 }
 
