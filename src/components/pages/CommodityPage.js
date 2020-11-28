@@ -5,6 +5,7 @@ import BottomNews from '../global/bottomNews/BottomNews';
 import Heading from '../global/heading/Heading';
 import { dummyCommodityData } from '../../dummyData';
 import useFetch from '../../hooks/useFetch';
+import useScrollTop from '../../hooks/useScrollTop';
 
 const CommodityPage = () => {
   const { data, setData, loading } = useFetch(
@@ -12,6 +13,8 @@ const CommodityPage = () => {
     'quotes/commodity', // endpoint
     dummyCommodityData // dummy data
   );
+
+  useScrollTop(); // scrolls to top of page on component mount
 
   return (
     <div>

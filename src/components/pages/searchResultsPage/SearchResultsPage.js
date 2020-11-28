@@ -8,6 +8,7 @@ import Heading from '../../global/heading/Heading';
 import BottomNews from '../../global/bottomNews/BottomNews';
 import { dummySearchResults } from '../../../dummyData';
 import useFetch from '../../../hooks/useFetch';
+import useScrollTop from '../../../hooks/useScrollTop';
 import './searchResultsPage.css';
 
 const SearchResults = ({ match }) => {
@@ -24,6 +25,8 @@ const SearchResults = ({ match }) => {
     `query=${query}${exchange && '&exchange=' + exchange}`, // parameters
     [match.params.query, exchange] // dependencies
   );
+
+  useScrollTop(); // scrolls to top of page on component mount
 
   return (
     <>

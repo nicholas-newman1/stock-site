@@ -11,6 +11,7 @@ import StockTable from './StockTable';
 import SectorTable from './SectorTable';
 import './stockPage.css';
 import useFetch from '../../../hooks/useFetch';
+import useScrollTop from '../../../hooks/useScrollTop';
 
 const StockPage = () => {
   const { data: activesData, loading: activesLoading } = useFetch(
@@ -30,6 +31,8 @@ const StockPage = () => {
     'losers',
     dummyLosersData
   );
+
+  useScrollTop(); // scrolls to top of page on component mount
 
   return (
     <div className='stock-page'>

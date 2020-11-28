@@ -11,6 +11,7 @@ import { RealDataContext } from '../../../context/RealDataContext';
 import QuoteFinancials from './quoteFinancials/QuoteFinancials';
 import { Helmet } from 'react-helmet-async';
 import { Redirect } from 'react-router-dom';
+import useScrollTop from '../../../hooks/useScrollTop';
 
 const QuotePage = ({ match }) => {
   const symbol = match.params.symbol;
@@ -24,8 +25,9 @@ const QuotePage = ({ match }) => {
   } = useContext(QuoteContext);
   const { realData } = useContext(RealDataContext);
 
+  useScrollTop(); // scrolls to top of page on component mount
+
   useEffect(() => {
-    document.querySelector('html').scrollTop = 0;
     return () => {
       setQuoteFetched(false);
     };

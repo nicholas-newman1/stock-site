@@ -1,7 +1,10 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
+import useScrollTop from '../../hooks/useScrollTop';
 
 const NotFoundPage = () => {
+  useScrollTop(); // scrolls to top of page on component mount
+
   return (
     <>
       <Helmet>

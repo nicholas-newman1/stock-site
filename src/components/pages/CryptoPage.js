@@ -5,6 +5,7 @@ import BottomNews from '../global/bottomNews/BottomNews';
 import Heading from '../global/heading/Heading';
 import { dummyCryptoData } from '../../dummyData';
 import useFetch from '../../hooks/useFetch';
+import useScrollTop from '../../hooks/useScrollTop';
 
 const CryptoPage = () => {
   const { data, setData, loading } = useFetch(
@@ -12,6 +13,8 @@ const CryptoPage = () => {
     'quotes/crypto', // endpoint
     dummyCryptoData // dummy data
   );
+
+  useScrollTop(); // scrolls to top of page on component mount
 
   return (
     <div>
