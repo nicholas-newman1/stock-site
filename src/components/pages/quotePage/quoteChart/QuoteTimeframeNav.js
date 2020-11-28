@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import './quoteTimeframeNav.css';
 
 const QuoteTimeframeNav = ({ setTimeframe }) => {
@@ -13,13 +13,14 @@ const QuoteTimeframeNav = ({ setTimeframe }) => {
 
   const timeframeBtns = ['1D', '5D', '1M', '6M', 'YTD', '1Y', '5Y', 'MAX'];
 
+  const timeframe = useRef();
   useEffect(() => {
     // disable first timeframe button on mount
-    document.querySelector('.quote-timeframe').firstChild.disabled = true;
+    timeframe.current.firstChild.disabled = true;
   }, []);
 
   return (
-    <nav className='quote-timeframe'>
+    <nav ref={timeframe} className='quote-timeframe'>
       {timeframeBtns.map((text, i) => (
         <button
           className='quote-timeframe__btn'

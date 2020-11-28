@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import './quoteFinancialsNav.css';
 
 const QuoteFinancialsNav = ({ setStatement, setPeriod }) => {
@@ -12,19 +12,17 @@ const QuoteFinancialsNav = ({ setStatement, setPeriod }) => {
     e.target.disabled = true;
   };
 
+  const statementNav = useRef();
+  const periodNav = useRef();
   useEffect(() => {
     // set disabled buttons on component mount
-    document.querySelector(
-      '.quote-financials-nav__statement-nav'
-    ).firstChild.disabled = true;
-    document.querySelector(
-      '.quote-financials-nav__period-nav'
-    ).firstChild.disabled = true;
+    statementNav.current.firstChild.disabled = true;
+    periodNav.current.firstChild.disabled = true;
   }, []);
 
   return (
     <div className='quote-financials-nav'>
-      <nav className='quote-financials-nav__statement-nav'>
+      <nav ref={statementNav} className='quote-financials-nav__statement-nav'>
         <button
           className='quote-financials-nav__btn'
           onClick={(e) => {
@@ -54,7 +52,7 @@ const QuoteFinancialsNav = ({ setStatement, setPeriod }) => {
         </button>
       </nav>
 
-      <nav className='quote-financials-nav__period-nav'>
+      <nav ref={periodNav} className='quote-financials-nav__period-nav'>
         <button
           className='quote-financials-nav__btn'
           onClick={(e) => {

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import './quoteValuationNav.css';
 
 const QuoteValuationNav = ({ setPeriod }) => {
@@ -11,13 +11,14 @@ const QuoteValuationNav = ({ setPeriod }) => {
     e.target.disabled = true;
   };
 
+  const nav = useRef();
   useEffect(() => {
     // set disabled button on component mount
-    document.querySelector('.valuation-nav').firstChild.disabled = true;
+    nav.current.firstChild.disabled = true;
   }, []);
 
   return (
-    <nav className='valuation-nav'>
+    <nav ref={nav} className='valuation-nav'>
       <button
         className='valuation-nav-btn'
         onClick={(e) => {
