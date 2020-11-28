@@ -1,0 +1,11 @@
+.header-warning {
+  background: #006acc;
+  color: white;
+  text-align: center;
+  line-height: 1.2rem;
+  letter-spacing: 1px;
+  font-size: 0.75rem;
+  font-weight: 300;
+  padding: 0.5rem 0;
+  margin-bottom: 0.5rem;
+}

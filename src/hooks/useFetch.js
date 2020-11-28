@@ -10,19 +10,24 @@ const useFetch = (
 ) => {
   const [data, setData] = useState(initialValue);
   const [loading, setLoading] = useState(true);
-  const { realData } = useContext(RealDataContext);
+  const { realData, setRealData } = useContext(RealDataContext);
 
   useEffect(() => {
     (async () => {
       setLoading(true);
       let data;
       if (realData) {
-        const res = await fetch(
-          `https://financialmodelingprep.com/api/v3/${endpoint}?apikey=${
-            process.env.REACT_APP_FMP_KEY
-          }${params && '&' + params}`
-        );
-        data = await res.json();
+        try {
+          const res = await fetch(
+            `https://financialmodelingprep.com/api/v3/${endpoint}?apikey=${
+              process.env.REACT_APP_FMP_KEY
+            }${params && '&' + params}`
+          );
+          data = await res.json();
+        } catch (error) {
+          data = [...dummyData];
+          setRealData(false);
+        }
       } else {
         data = [...dummyData];
       }

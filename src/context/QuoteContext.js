@@ -6,7 +6,7 @@ import { RealDataContext } from './RealDataContext';
 export const QuoteContext = createContext();
 
 export const QuoteProvider = (props) => {
-  const { realData } = useContext(RealDataContext);
+  const { realData, setRealData } = useContext(RealDataContext);
   const [isStock, setIsStock] = useState(false);
   const [quoteFetched, setQuoteFetched] = useState(false);
   const [quote, setQuote] = useState({
@@ -34,13 +34,16 @@ export const QuoteProvider = (props) => {
   const fetchQuote = async (symbol) => {
     let data;
     if (realData) {
-      const res = await fetch(
-        `https://financialmodelingprep.com/api/v3/quote/${symbol.toUpperCase()}?apikey=${
-          process.env.REACT_APP_FMP_KEY
-        }`
-      );
-      data = await res.json();
-      data = data[0];
+      try {
+        const res = await fetch(
+          `https://financialmodelingprep.com/api/v3/quote/${symbol}?apikey=${process.env.REACT_APP_FMP_KEY}`
+        );
+        data = await res.json();
+        data = data[0];
+      } catch (error) {
+        data = { ...dummyQuoteData[0] };
+        setRealData(false);
+      }
     } else {
       data = { ...dummyQuoteData[0] };
     }

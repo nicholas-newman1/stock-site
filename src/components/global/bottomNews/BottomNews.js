@@ -1,67 +1,37 @@
-import React, { useEffect, useState, useContext } from 'react';
+import React, { useEffect, useState } from 'react';
 import BottomNewsItem from './BottomNewsItem';
 import BottomNewsLoading from './BottomNewsLoading';
 import { dummyStockNews } from '../../../dummyData';
 import './bottomNews.css';
-import { RealDataContext } from '../../../context/RealDataContext';
+import useFetch from '../../../hooks/useFetch';
 
 const BottomNews = ({ symbol, shift = false }) => {
   const [newsData, setNewsData] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const { realData } = useContext(RealDataContext);
 
-  const fetchNewsData = async () => {
-    setLoading(true);
-    let data;
-    if (realData) {
-      /* Depending on the page, sometimes a symbol prop is passed. In that case,
-      the API call should include the ticker paramater. If no symbol is passed,
-      the ticker paramater should not be included so that the API returns
-      general stock news */
-      let tickersParam = '';
-      if (symbol) tickersParam = `tickers=${symbol}`;
-      let res = await fetch(
-        `https://financialmodelingprep.com/api/v3/stock_news?${tickersParam}&limit=11&apikey=${process.env.REACT_APP_FMP_KEY}`
-      );
-      data = await res.json();
-
-      /* sometimes the API returns less than 10 articles for certain symbols.
-      In that case, general stock news articles are pushed into the array until 
-      it reaches a length of 10 */
-      if (data.length < 10) {
-        res = await fetch(
-          `https://financialmodelingprep.com/api/v3/stock_news?limit=11&apikey=${process.env.REACT_APP_FMP_KEY}`
-        );
-        const generalData = await res.json();
-        let i = 0;
-        while (data.length < 10) {
-          data.push(generalData[i]);
-          i++;
-        }
-      }
-    } else {
-      data = dummyStockNews;
-    }
-
-    /* This component is used on the HomePage. The HomePage displays the first
-    article in a different format at the top of the screen. To avoid repetition,
-    the shift prop is set to true, which will remove the first article. If shift
-    is not set to true, the last news item is popped off to keep the array at an
-    even length of 10 */
-    shift ? data.shift() : data.pop();
-
-    setNewsData(data);
-    setLoading(false);
-  };
+  const { data, loading } = useFetch(
+    [], // initial value
+    'stock_news', // endpoint
+    dummyStockNews, // dummy data
+    `limit=11${symbol ? `&tickers=${symbol}` : ''}` // params
+  );
 
   useEffect(() => {
-    fetchNewsData();
+    // fetchNewsData();
+    if (data.length > 0) {
+      /* This component is used on the HomePage. The HomePage displays the first
+      article returned in its own component at the top of the screen. To avoid repetition, the shift prop is set to true, which will remove the first
+      article. If shift is not set to true, the last news item is popped off to
+      keep the array at an even length of 10 */
+      const newsData = [...data];
+      shift ? newsData.shift() : newsData.pop();
+      setNewsData(newsData);
+    }
     //eslint-disable-next-line
-  }, [realData]);
+  }, [data]);
 
   return (
     <div className='bottom-news'>
-      {loading ? (
+      {loading && !newsData.length > 0 ? (
         <BottomNewsLoading />
       ) : (
         <ul className='bottom-news__ul'>

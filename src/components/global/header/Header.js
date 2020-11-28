@@ -4,12 +4,15 @@ import { faBars } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import SearchBar from '../searchBar/SearchBar';
 import MainNav from '../mainNav/MainNav';
+import HeaderWarning from './HeaderWarning';
 import { DisplayNavContext } from '../../../context/DisplayNavContext';
+import { RealDataContext } from '../../../context/RealDataContext';
 import './header.css';
 
 const Header = () => {
   const [isLargeView, setIsLargeView] = useState(false);
   const { displayNav, setDisplayNav } = useContext(DisplayNavContext);
+  const { realData } = useContext(RealDataContext);
 
   useEffect(() => {
     const main = document.querySelector('main');
@@ -44,6 +47,7 @@ const Header = () => {
 
   return (
     <header className='header'>
+      {!realData && <HeaderWarning />}
       <div className='header__container container'>
         <Link className='header__logo' to='/'>
           Stock Site
