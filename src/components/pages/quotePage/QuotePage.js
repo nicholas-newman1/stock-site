@@ -7,7 +7,6 @@ import QuoteProfile from './quoteProfile/QuoteProfile';
 import QuoteValuation from './quoteValuation/QuoteValuation';
 import QuoteNav from './quoteNav/QuoteNav';
 import { QuoteContext } from '../../../context/QuoteContext';
-import { RealDataContext } from '../../../context/RealDataContext';
 import QuoteFinancials from './quoteFinancials/QuoteFinancials';
 import { Helmet } from 'react-helmet-async';
 import { Redirect } from 'react-router-dom';
@@ -23,21 +22,17 @@ const QuotePage = ({ match }) => {
     setQuoteFetched,
     quote,
   } = useContext(QuoteContext);
-  const { realData } = useContext(RealDataContext);
 
   useScrollTop(); // scrolls to top of page on component mount
 
   useEffect(() => {
+    fetchQuote(symbol);
+
     return () => {
       setQuoteFetched(false);
     };
     //eslint-disable-next-line
   }, []);
-
-  useEffect(() => {
-    fetchQuote(symbol);
-    //eslint-disable-next-line
-  }, [realData]);
 
   return quote !== null ? (
     <>
