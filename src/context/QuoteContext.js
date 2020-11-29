@@ -36,7 +36,7 @@ export const QuoteProvider = (props) => {
     if (realData) {
       try {
         const res = await fetch(
-          `https://financialmodelingprep.com/api/v3/quote/${symbol}?apikey=`
+          `https://financialmodelingprep.com/api/v3/quote/${symbol}?apikey=${process.env.REACT_APP_FMP_KEY}`
         );
         data = await res.json();
         if (data['Error Message']) throw data['Error Message'];
