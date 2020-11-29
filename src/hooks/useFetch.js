@@ -10,7 +10,7 @@ const useFetch = (
 ) => {
   const [data, setData] = useState(initialValue);
   const [loading, setLoading] = useState(true);
-  const { realData, setRealData } = useContext(RealDataContext);
+  const { realData, setRealData, setError } = useContext(RealDataContext);
 
   useEffect(() => {
     (async () => {
@@ -24,7 +24,10 @@ const useFetch = (
             }${params && '&' + params}`
           );
           data = await res.json();
+          if (data['Error Message']) throw data['Error Message'];
         } catch (error) {
+          console.log(new Error(error));
+          setError(error);
           data = [...dummyData];
           setRealData(false);
         }
