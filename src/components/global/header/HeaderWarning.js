@@ -10,14 +10,18 @@ const HeaderWarning = () => {
 
   return (
     <div className='header-warning'>
-      <div className='container'>
+      <div data-tip={error} className='container'>
         WARNING: This website is using dummy data.
         <FontAwesomeIcon
           className='header-warning__icon'
-          data-tip={error}
           icon={faQuestionCircle}
         />
-        <ReactToolTip />
+        <ReactToolTip
+          className='tooltip'
+          place='bottom'
+          multiline={true}
+          clickable={true}
+        />
       </div>
     </div>
   );
