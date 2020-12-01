@@ -7,7 +7,7 @@
 }
 
 @media (max-width: 700px) {
-  .search-results {
+  .search-results-page {
     grid-template-columns: auto;
   }
 }
