@@ -20,14 +20,17 @@ const Header = () => {
 
     // Hide/display nav part of header depending on window size
     const resizer = new ResizeObserver((e) => {
-      // Move main down into view
-      main.style.paddingTop = `${header.getBoundingClientRect().height + 16}px`;
       window.innerWidth > 700 ? setIsLargeView(true) : setIsLargeView(false);
     });
     resizer.observe(main);
 
-    // shrink/grow header based on scroll direction
+    // change push content into view when header resizes
+    const headerResizer = new ResizeObserver((e) => {
+      main.style.paddingTop = `${header.getBoundingClientRect().height + 16}px`;
+    });
+    headerResizer.observe(header);
 
+    // shrink/grow header based on scroll direction
     const headerLogo = document.querySelector('.header__logo');
     const headerHamburger = document.querySelector('.header__hamburger');
 
@@ -44,6 +47,8 @@ const Header = () => {
       lastScroll = currentScroll;
     });
   }, []);
+
+  useEffect(() => {}, []);
 
   return (
     <header className='header'>
