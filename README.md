@@ -10,7 +10,7 @@ This was my first larger project built with React and I developed a variety of s
 - Practiced using the __Context API__
 - Experienced why it's important to keep code __organized__ (especially in large projects)
 - Learned the different styling methods (__styled components, CSS modules, SCSS__). I chose to create a stylesheet for each component and use the __BEM naming convention__.
-- Became more familiar with the git workflow
+- Became more familiar with the __git workflow__
 
 ## Real Data Context - Explained ##
 The free plan provided by Financial Modeling Prep allows for a certain amount of requests daily. The Real Data Context is used to determine whether the site should fetch from the API or use dummy data, which I have stored in a regular js file. This data would typically be stored in a database, but that was out of the scope of this project. The _useFetch_ custom hook, as well as the _fetchQuote_ function in _QuoteContext_ check to see if the API returns an error. If this is the case, _realData_ is set to false and the entire site will use the dummy data stored in _dummyData.js_
