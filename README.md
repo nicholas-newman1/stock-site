@@ -1,7 +1,7 @@
 # Stock Site #
 This is a website to search up the lates stock, forex, cryptocurrency, and commodity prices.
 
-It is built React and uses the Financial Modeling Prep API (https://financialmodelingprep.com/).
+It is built with React and uses the Financial Modeling Prep API (https://financialmodelingprep.com/developer/docs/).
 
 ## Skills Developed ##
 This was my first larger project built with React and I developed a variety of skills:
