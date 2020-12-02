@@ -18,8 +18,8 @@ const QuotePage = ({ match }) => {
   const {
     fetchQuote,
     isStock,
-    quoteFetched,
-    setQuoteFetched,
+    isQuoteFetched,
+    setIsQuoteFetched,
     quote,
   } = useContext(QuoteContext);
 
@@ -29,7 +29,7 @@ const QuotePage = ({ match }) => {
     fetchQuote(symbol);
 
     return () => {
-      setQuoteFetched(false);
+      setIsQuoteFetched(false);
     };
     //eslint-disable-next-line
   }, []);
@@ -51,14 +51,14 @@ const QuotePage = ({ match }) => {
         {tab === 'Financials' && <QuoteFinancials symbol={symbol} />}
         {tab === 'Profile' && <QuoteProfile symbol={symbol} />}
         {tab === 'Valuation' && <QuoteValuation symbol={symbol} />}
-        {quoteFetched && !isStock && (
+        {isQuoteFetched && !isStock && (
           <>
             <br />
             <QuoteChart symbol={symbol} />
           </>
         )}
 
-        {quoteFetched && <BottomNews symbol={isStock ? symbol : ''} />}
+        {isQuoteFetched && <BottomNews symbol={isStock ? symbol : ''} />}
       </>
     </>
   ) : (

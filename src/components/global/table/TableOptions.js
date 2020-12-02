@@ -3,6 +3,7 @@ import './tableOptions.css';
 
 const TableOptions = ({ page, setPage, resultsPerPage, setResultsPerPage }) => {
   useEffect(() => {
+    // Go to the first page upon changing the number of results per page
     if (page !== 0) setPage(0);
     //eslint-disable-next-line
   }, [resultsPerPage]);

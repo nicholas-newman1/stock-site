@@ -2,6 +2,7 @@ import React from 'react';
 import './pageNav.css';
 
 const PageNav = ({ data, page, setPage, resultsPerPage }) => {
+  // variables used to disable/enable next page and prev page btns
   const onLastPage = data.length - page * resultsPerPage <= resultsPerPage;
   const onFirstPage = page === 0;
 

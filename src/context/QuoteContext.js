@@ -8,28 +8,8 @@ export const QuoteContext = createContext();
 export const QuoteProvider = (props) => {
   const { realData, setRealData, setError } = useContext(RealDataContext);
   const [isStock, setIsStock] = useState(false);
-  const [quoteFetched, setQuoteFetched] = useState(false);
-  const [quote, setQuote] = useState({
-    // data displayed while loading
-    price: '----',
-    change: '----',
-    percentChange: '----',
-    symbol: '----',
-    name: '--------------',
-    exchange: '- - - - - - -',
-    previousClose: '- -',
-    open: '- -',
-    dayHigh: '- -',
-    dayLow: '- -',
-    yearHigh: '- -',
-    yearLow: '- -',
-    marketCap: '- -',
-    pe: '- -',
-    eps: '- -',
-    sharesOutstanding: '- -',
-    volume: '- -',
-    avgVolume: '- -',
-  });
+  const [isQuoteFetched, setIsQuoteFetched] = useState(false);
+  const [quote, setQuote] = useState({});
 
   const fetchQuote = async (symbol) => {
     let data;
@@ -51,29 +31,20 @@ export const QuoteProvider = (props) => {
       data = { ...dummyQuoteData[0] };
     }
 
-    if (data === undefined) {
-      setQuote(null);
-      setQuoteFetched(true);
-      return;
-    }
-
+    /* Non-stock quotes do not have a QuoteNav on QuotePage and they display both QuoteSummary
+    and QuoteChart. Stock quotes only show QuoteSummary but have a nav to view 
+    QuoteChart, QuoteFinancials, QuoteProfile, etc */
     setIsStock(
-      [
-        'INDEX',
-        'ETF',
-        'MUTUAL_FUND',
-        'FOREX',
-        'CRYPTO',
-        'COMMODITY',
-        '- - - - - - -',
-      ].findIndex((item) => item === data.exchange) === -1
+      ['INDEX', 'ETF', 'MUTUAL_FUND', 'FOREX', 'CRYPTO', 'COMMODITY'].findIndex(
+        (item) => item === data.exchange
+      ) === -1
     );
 
     // Format data to be more readable
     data = formatQuoteData(data);
 
     setQuote(data);
-    setQuoteFetched(true);
+    setIsQuoteFetched(true);
   };
 
   return (
@@ -83,8 +54,8 @@ export const QuoteProvider = (props) => {
         fetchQuote,
         isStock,
         setIsStock,
-        quoteFetched,
-        setQuoteFetched,
+        isQuoteFetched,
+        setIsQuoteFetched,
       }}
     >
       {props.children}

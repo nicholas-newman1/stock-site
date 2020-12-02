@@ -40,13 +40,15 @@ export const formatPhoneNumber = (phoneNumberString) => {
 };
 
 export const sortData = (data, property, reverseOrder = false) => {
+  const sortedData = [...data];
   const compare = (a, b) => {
     let comparison = 0;
     if (a[property] < b[property]) comparison = -1;
     if (a[property] > b[property]) comparison = 1;
     return reverseOrder ? comparison * -1 : comparison;
   };
-  data.sort(compare);
+  sortedData.sort(compare);
+  return sortedData;
 };
 
 export const shortenNumber = (number, decimals = 2) => {
@@ -110,7 +112,7 @@ export const decimalsToRoundTo = (change) => {
 export const round = (num, decimals = 2, trailingZeros = false) => {
   /* Returns a string rounded the given decimals, if trailingZeros is true, 0's will be added
   to the end of the string */
-  if (num === 0) return 0;
+  if (num === 0) return '0';
 
   num = num.toLocaleString(undefined, {
     maximumFractionDigits: decimals,

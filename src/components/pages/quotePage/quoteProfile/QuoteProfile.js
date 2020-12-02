@@ -12,6 +12,9 @@ const QuoteProfile = ({ symbol }) => {
     dummyProfileData // dummy data
   );
 
+  /* This component contains a lot of conditional rendering because the API
+  doesn't always return the same values. */
+
   if (loading) {
     return <Spinner />;
   } else if (data.length > 0) {

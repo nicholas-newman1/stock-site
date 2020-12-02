@@ -13,33 +13,32 @@ const TableHead = ({ sortTableData }) => {
     { property: 'changesPercentage', label: 'Percent Change' },
   ];
 
+  const handleClick = (property) => {
+    sortTableData(property, !reverse);
+    setReverse((prevReverse) => !prevReverse);
+    setSortProperty(property);
+  };
+
   return (
     <thead>
       <tr className='table__tr'>
-        {headings.map((item, i) => {
-          const { property, label } = item;
-          const isSelected = sortProperty === property;
+        {headings.map(({ property, label }, i) => {
+          const isCurrentSort = sortProperty === property;
+
           return (
             <th
               key={property}
               className={i === 0 ? 'table__th-sticky' : 'table__th'}
+              style={isCurrentSort ? { textDecoration: 'underline' } : {}}
+              onClick={() => handleClick(property)}
+              tabIndex={0}
             >
-              <button
-                className='table__th-btn'
-                style={isSelected ? { textDecoration: 'underline' } : {}}
-                onClick={() => {
-                  sortTableData(property, !reverse);
-                  setReverse((prevReverse) => !prevReverse);
-                  setSortProperty(property);
-                }}
-              >
-                {label}
-                {isSelected && (
-                  <TableSortArrow
-                    style={!reverse ? { transform: 'rotate(180deg)' } : {}}
-                  />
-                )}
-              </button>
+              {label}
+              {isCurrentSort && (
+                <TableSortArrow
+                  style={!reverse ? { transform: 'rotate(180deg)' } : {}}
+                />
+              )}
             </th>
           );
         })}

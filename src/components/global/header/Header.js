@@ -18,19 +18,19 @@ const Header = () => {
     const main = document.querySelector('main');
     const header = document.querySelector('header');
 
-    // Hide/display nav part of header depending on window size
+    // Hide/display nav depending on window size
     const resizer = new ResizeObserver((e) => {
       window.innerWidth > 700 ? setIsLargeView(true) : setIsLargeView(false);
     });
     resizer.observe(main);
 
-    // change push content into view when header resizes
+    // margin top puts main into view from under the header
     const headerResizer = new ResizeObserver((e) => {
       main.style.paddingTop = `${header.getBoundingClientRect().height + 16}px`;
     });
     headerResizer.observe(header);
 
-    // shrink/grow header based on scroll direction
+    // shrink/grow header based on scroll direction (small screens only)
     const headerLogo = document.querySelector('.header__logo');
     const headerHamburger = document.querySelector('.header__hamburger');
 

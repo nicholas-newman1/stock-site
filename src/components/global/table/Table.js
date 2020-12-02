@@ -11,15 +11,13 @@ const Table = ({ loading, tableData, setTableData }) => {
   // remove any items that don't have a value for price or change
   tableData = tableData.filter((item) => item.price || item.change);
 
+  // sort data by property
   const sortTableData = (property, reverse) => {
-    setTableData((prevData) => {
-      const sortedData = [...prevData];
-      sortData(sortedData, property, reverse);
-      return sortedData;
-    });
+    setTableData((prevData) => sortData(prevData, property, reverse));
   };
 
   useEffect(() => {
+    // once data is fetched, sort by name
     if (tableData.length > 0) sortTableData('name');
     //eslint-disable-next-line
   }, [loading]);

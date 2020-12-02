@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import Spinner from '../../global/Spinner';
-import SearchFilter from './SearchFilter';
+import SearchFilter from './searchFilter/SearchFilter';
 import SearchItem from './SearchItem';
 import PageNav from '../../global/pageNav/PageNav';
 import Heading from '../../global/heading/Heading';
@@ -40,12 +40,12 @@ const SearchResults = ({ match }) => {
 
       <Heading text='Search Results' />
 
+      <SearchFilter setExchange={setExchange} />
+
       {loading ? (
         <Spinner />
       ) : data.length > 0 ? (
         <>
-          <SearchFilter setExchange={setExchange} />
-
           <PageNav
             data={data}
             page={page}

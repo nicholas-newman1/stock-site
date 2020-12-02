@@ -7,6 +7,8 @@ import { DisplayNavContext } from '../../../context/DisplayNavContext';
 
 const SearchBar = () => {
   const [text, setText] = useState('');
+
+  // used to close nav whenever a search is made (small screens only)
   const { setDisplayNav } = useContext(DisplayNavContext);
 
   return (

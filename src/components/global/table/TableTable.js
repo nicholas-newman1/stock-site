@@ -10,7 +10,9 @@ const TableTable = ({ tableData, page, resultsPerPage, sortTableData }) => {
       <TableHead sortTableData={sortTableData} />
       <tbody>
         {tableData.map((item, i) => {
+          // determines whether the item is on the current page
           const itemInRange = i <= offset + resultsPerPage - 1 && i >= offset;
+
           return (
             itemInRange && (
               <TableRow

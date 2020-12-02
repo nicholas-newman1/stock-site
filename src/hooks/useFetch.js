@@ -24,11 +24,16 @@ const useFetch = (
             }${params && '&' + params}`
           );
           data = await res.json();
+
+          /* API sometimes sends an error message */
           if (data['Error Message']) throw data['Error Message'];
         } catch (error) {
           console.log(new Error(error));
-          setError(error);
+          setError(error); // Error will be accesible by tooltip in header
           data = [...dummyData];
+
+          /* It is assumed API will continue returning errors, so the site will
+          use dummy data for every request until the site is refreshed */
           setRealData(false);
         }
       } else {
