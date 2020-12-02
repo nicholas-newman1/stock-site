@@ -13,7 +13,9 @@ This was my first larger project built with React and I developed a variety of s
 - Became more familiar with the __git workflow__
 
 ## Real Data Context - Explained ##
-The free plan provided by Financial Modeling Prep allows for a certain amount of requests daily. The Real Data Context is used to determine whether the site should fetch from the API or use dummy data, which I have stored in a regular js file. This data would typically be stored in a database, but that was out of the scope of this project. The _useFetch_ custom hook, as well as the _fetchQuote_ function in _QuoteContext_ check to see if the API returns an error. If this is the case, _realData_ is set to false and the entire site will use the dummy data stored in _dummyData.js_
+The _useFetch_ custom hook, as well as the _fetchQuote_ function in _QuoteContext_ check to see if the API returns an error. If this is the case, _realData_ is set to false and the entire site will use the dummy data stored in _dummyData.js_. This data would typically be stored in a database, but that was out of the scope of this project.
+
+Once the site is no longer using real data, a warning will be displayed at the top in the header. It will contain a tooltip which reports the exact error that caused the site to revert to using dummy data (most often out of daily API requests).
 
 ## Check It Out! ##
 Visit the webiste live: https://cocky-mayer-6414d2.netlify.app
