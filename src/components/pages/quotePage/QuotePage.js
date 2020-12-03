@@ -1,5 +1,6 @@
 import React, { useEffect, useContext, useState } from 'react';
 import Quote from './quote/Quote';
+import QuoteWatchlistBtn from './quoteWatchlistBtn/QuoteWatchlistBtn';
 import QuoteSummary from './quoteSummary/QuoteSummary';
 import BottomNews from '../../global/bottomNews/BottomNews';
 import QuoteChart from './quoteChart/QuoteChart';
@@ -45,6 +46,7 @@ const QuotePage = ({ match }) => {
       </Helmet>
       <>
         <Quote symbol={symbol} />
+        <QuoteWatchlistBtn symbol={symbol} />
         {isStock && <QuoteNav tab={tab} setTab={setTab} />}
         {tab === 'Summary' && <QuoteSummary symbol={symbol} />}
         {tab === 'Chart' && <QuoteChart symbol={symbol} />}

@@ -14,6 +14,7 @@ import StockPage from './components/pages/stockPage/StockPage';
 import CryptoPage from './components/pages/CryptoPage';
 import CommodityPage from './components/pages/CommodityPage';
 import ForexPage from './components/pages/ForexPage';
+import WatchlistPage from './components/pages/WatchlistPage';
 import Footer from './components/global/footer/Footer';
 import { QuoteProvider } from './context/QuoteContext';
 import { RealDataProvider } from './context/RealDataContext';
@@ -52,6 +53,7 @@ const App = () => {
                       path='/commodities'
                       component={CommodityPage}
                     />
+                    <Route exact path='/watchlist' component={WatchlistPage} />
                     <Redirect from='/quote/:symbol/**' to='/quote/:symbol' />
                     <Redirect from='/:page/**' to='/:page' />
                     <Redirect from='/**' to='/' />
