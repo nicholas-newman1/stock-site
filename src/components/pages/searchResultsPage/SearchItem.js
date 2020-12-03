@@ -1,9 +1,25 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { WatchlistContext } from '../../../context/WatchlistContext';
 import './searchItem.css';
 
 const SearchResultsItem = ({ result }) => {
+  const { watchlist, setWatchlist } = useContext(WatchlistContext);
   const { symbol, name, exchangeShortName } = result;
+
+  const handleClick = () => {
+    if (watchlist.includes(symbol)) {
+      const index = watchlist.findIndex((item) => item === symbol);
+      setWatchlist((prevWatchlist) => {
+        const newWatchlist = [...prevWatchlist];
+        newWatchlist.splice(index, 1);
+        return newWatchlist;
+      });
+    } else {
+      setWatchlist((prevWatchlist) => [...prevWatchlist, symbol]);
+    }
+  };
+
   return (
     <li className='search-result' key={symbol}>
       <div className='search-result__content'>
@@ -20,8 +36,10 @@ const SearchResultsItem = ({ result }) => {
             View Quote
           </Link>{' '}
         </button>
-        <button className='search-result__watchlist-btn'>
-          Add to Watchlist
+        <button className='search-result__watchlist-btn' onClick={handleClick}>
+          {watchlist.includes(symbol)
+            ? 'Remove From Watchlist'
+            : 'Add to Watchlist'}
         </button>
       </div>
     </li>

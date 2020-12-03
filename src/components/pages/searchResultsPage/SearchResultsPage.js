@@ -31,7 +31,7 @@ const SearchResults = ({ match }) => {
   return (
     <>
       <Helmet>
-        <title>{query} Search Results | Finance App</title>
+        <title>{query} | Search Results | Finance App</title>
         <meta
           name='description'
           content={`Search results for ${query}. Free stock quotes, forex exchange rates, cryptocurrency rates, and more.`}
