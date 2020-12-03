@@ -1,7 +1,12 @@
 # Stock Site #
-This is a website to search up the lates stock, forex, cryptocurrency, and commodity prices.
+This is a website to provide all the financial data you need.
+- Latest stock market news
+- Real time stock, forex, cryptocurrency, commodity quotes
+- Keep track of your investments with a watchlist (uses local storage)
+- See which sectors are growing or shrinking
+- Find the stocks that are active, gaining, or losing
 
-It is built with React and uses the Financial Modeling Prep API (https://financialmodelingprep.com/developer/docs/).
+The site is built with React and uses the Financial Modeling Prep API (https://financialmodelingprep.com/developer/docs/).
 
 ## Skills Developed ##
 This was my first larger project built with React and I developed a variety of skills:
@@ -9,7 +14,7 @@ This was my first larger project built with React and I developed a variety of s
 - __Fetch__ data from an __API__, store it in __state__, and display it in a component
 - Using the __Context API__
 - Keeping code __organized__
-- Using the __BEM naming convention__.
+- Using the __BEM naming convention__
 - Keeping large and small screens in mind with __responsive design__
 - __Git__ workflow
 
