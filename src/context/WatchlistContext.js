@@ -6,6 +6,7 @@ export const WatchlistContext = createContext();
 export const WatchlistProvider = (props) => {
   const [watchlist, setWatchlist] = useLocalStorage('watchlist', []);
 
+  // if symbol is in watchlist, remove it. If it isn't, add it.
   const updateWatchlist = (symbol) => {
     if (watchlist.includes(symbol)) {
       const index = watchlist.findIndex((item) => item === symbol);
