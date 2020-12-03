@@ -84,12 +84,14 @@ const Table = ({ loading, tableData, setTableData }) => {
             setPage={setPage}
             resultsPerPage={resultsPerPage}
           />
-          <TableOptions
-            page={page}
-            setPage={setPage}
-            resultsPerPage={resultsPerPage}
-            setResultsPerPage={setResultsPerPage}
-          />
+          {tableData.length > 5 && (
+            <TableOptions
+              page={page}
+              setPage={setPage}
+              resultsPerPage={resultsPerPage}
+              setResultsPerPage={setResultsPerPage}
+            />
+          )}
         </div>
       ) : (
         <h2>No Data Available</h2>
