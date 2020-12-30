@@ -5,17 +5,17 @@ import {
   BrowserRouter as Router,
   Redirect,
 } from 'react-router-dom';
-import Header from './components/global/header/Header';
-import HomePage from './components/pages/homePage/HomePage';
-import QuotePage from './components/pages/quotePage/QuotePage';
-import SearchResultsPage from './components/pages/searchResultsPage/SearchResultsPage';
-import IndexPage from './components/pages/IndexPage';
-import StockPage from './components/pages/stockPage/StockPage';
-import CryptoPage from './components/pages/CryptoPage';
-import CommodityPage from './components/pages/CommodityPage';
-import ForexPage from './components/pages/ForexPage';
-import WatchlistPage from './components/pages/WatchlistPage';
-import Footer from './components/global/footer/Footer';
+import Header from './components/header/Header';
+import HomePage from './pages/homePage/HomePage';
+import QuotePage from './pages/QuotePage';
+import SearchResultsPage from './pages/searchResultsPage/SearchResultsPage';
+import IndexPage from './pages/IndexPage';
+import StockPage from './pages/stockPage/StockPage';
+import CryptoPage from './pages/CryptoPage';
+import CommodityPage from './pages/CommodityPage';
+import ForexPage from './pages/ForexPage';
+import WatchlistPage from './pages/WatchlistPage';
+import Footer from './components/footer/Footer';
 import { QuoteProvider } from './context/QuoteContext';
 import { RealDataProvider } from './context/RealDataContext';
 import { DisplayNavProvider } from './context/DisplayNavContext';
