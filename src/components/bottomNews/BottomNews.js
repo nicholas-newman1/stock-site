@@ -5,7 +5,7 @@ import { dummyStockNews } from '../../dummyData';
 import './bottomNews.css';
 import useFetch from '../../hooks/useFetch';
 
-const BottomNews = ({ symbol, shift = false }) => {
+const BottomNews = ({ symbol = undefined, shift = false }) => {
   const [newsData, setNewsData] = useState([]);
 
   const { data, loading } = useFetch(
