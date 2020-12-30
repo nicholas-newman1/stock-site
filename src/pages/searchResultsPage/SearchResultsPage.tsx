@@ -11,6 +11,14 @@ import useFetch from '../../hooks/useFetch';
 import useScrollTop from '../../hooks/useScrollTop';
 import './searchResultsPage.css';
 
+interface Result {
+  symbol: string;
+  name: string;
+  currency: string;
+  stockExchange: string;
+  exchangeShortName: string;
+}
+
 const SearchResults = ({ match }) => {
   const [exchange, setExchange] = useState('');
   const [page, setPage] = useState(0);
@@ -54,7 +62,7 @@ const SearchResults = ({ match }) => {
           />
 
           <ul className='search-results-page'>
-            {data.map((result, i) => {
+            {data.map((result: Result, i: number) => {
               const itemInRange =
                 i <= offset + resultsPerPage - 1 && i >= offset;
               return (

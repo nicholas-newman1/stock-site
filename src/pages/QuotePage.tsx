@@ -14,7 +14,7 @@ import { Redirect } from 'react-router-dom';
 import useScrollTop from '../hooks/useScrollTop';
 
 const QuotePage = ({ match }) => {
-  const symbol = match.params.symbol;
+  const symbol: string = match.params.symbol;
   const [tab, setTab] = useState('Summary');
   const {
     fetchQuote,
@@ -45,10 +45,10 @@ const QuotePage = ({ match }) => {
         />
       </Helmet>
       <>
-        <Quote symbol={symbol} />
+        <Quote />
         <QuoteWatchlistBtn symbol={symbol} />
         {isStock && <QuoteNav tab={tab} setTab={setTab} />}
-        {tab === 'Summary' && <QuoteSummary symbol={symbol} />}
+        {tab === 'Summary' && <QuoteSummary />}
         {tab === 'Chart' && <QuoteChart symbol={symbol} />}
         {tab === 'Financials' && <QuoteFinancials symbol={symbol} />}
         {tab === 'Profile' && <QuoteProfile symbol={symbol} />}
