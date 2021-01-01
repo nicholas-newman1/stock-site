@@ -31,7 +31,7 @@ const BottomNews = ({ symbol = undefined, shift = false }) => {
 
   return (
     <div className='bottom-news'>
-      {loading && !newsData.length > 0 ? (
+      {loading && !(newsData.length > 0) ? (
         <BottomNewsLoading />
       ) : (
         <ul className='bottom-news__ul'>

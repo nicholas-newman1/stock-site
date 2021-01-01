@@ -12,18 +12,19 @@ const QuoteFinancialsNav = ({ setStatement, setPeriod }) => {
     e.target.disabled = true;
   };
 
-  const statementNav = useRef();
-  const periodNav = useRef();
+  const firstStatementBtn = useRef<HTMLButtonElement>();
+  const firstPeriodBtn = useRef<HTMLButtonElement>();
   useEffect(() => {
     // set disabled buttons on component mount
-    statementNav.current.firstChild.disabled = true;
-    periodNav.current.firstChild.disabled = true;
+    firstStatementBtn.current.disabled = true;
+    firstPeriodBtn.current.disabled = true;
   }, []);
 
   return (
     <div className='quote-financials-nav'>
-      <nav ref={statementNav} className='quote-financials-nav__statement-nav'>
+      <nav className='quote-financials-nav__statement-nav'>
         <button
+          ref={firstStatementBtn}
           className='quote-financials-nav__btn'
           onClick={(e) => {
             updateDisabled(e);
@@ -52,8 +53,9 @@ const QuoteFinancialsNav = ({ setStatement, setPeriod }) => {
         </button>
       </nav>
 
-      <nav ref={periodNav} className='quote-financials-nav__period-nav'>
+      <nav className='quote-financials-nav__period-nav'>
         <button
+          ref={firstPeriodBtn}
           className='quote-financials-nav__btn'
           onClick={(e) => {
             updateDisabled(e);

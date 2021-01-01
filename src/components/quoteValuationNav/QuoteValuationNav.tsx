@@ -11,15 +11,16 @@ const QuoteValuationNav = ({ setPeriod }) => {
     e.target.disabled = true;
   };
 
-  const nav = useRef();
+  const firstBtn = useRef<HTMLButtonElement>();
   useEffect(() => {
     // set disabled button on component mount
-    nav.current.firstChild.disabled = true;
+    firstBtn.current.disabled = true;
   }, []);
 
   return (
-    <nav ref={nav} className='valuation-nav'>
+    <nav className='valuation-nav'>
       <button
+        ref={firstBtn}
         className='valuation-nav-btn'
         onClick={(e) => {
           updateDisabled(e);

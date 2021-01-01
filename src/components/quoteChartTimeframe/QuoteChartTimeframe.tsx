@@ -13,10 +13,11 @@ const QuoteChartTimeframe = ({ setTimeframe }) => {
 
   const timeframeBtns = ['1D', '5D', '1M', '6M', 'YTD', '1Y', '5Y', 'MAX'];
 
-  const timeframe = useRef();
+  const timeframe = useRef<HTMLInputElement>();
   useEffect(() => {
     // disable first timeframe button on mount
-    timeframe.current.firstChild.disabled = true;
+    const firstBtn = timeframe.current.children[0] as HTMLButtonElement;
+    firstBtn.disabled = true;
   }, []);
 
   return (

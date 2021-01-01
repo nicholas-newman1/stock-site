@@ -11,7 +11,7 @@ const PageNav = ({ data, page, setPage, resultsPerPage }) => {
       <button
         className='page-nav__btn'
         onClick={() => setPage((prevPage) => prevPage - 1)}
-        disabled={onFirstPage ? 'disabled' : ''}
+        disabled={onFirstPage}
       >
         {'< '}Prev Page
       </button>
@@ -19,7 +19,7 @@ const PageNav = ({ data, page, setPage, resultsPerPage }) => {
       <button
         className='page-nav__btn'
         onClick={() => setPage((prevPage) => prevPage + 1)}
-        disabled={onLastPage ? 'disabled' : ''}
+        disabled={onLastPage}
       >
         Next Page{' >'}
       </button>

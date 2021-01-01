@@ -19,13 +19,13 @@ const Header = () => {
     const header = document.querySelector('header');
 
     // Hide/display nav depending on window size
-    const resizer = new ResizeObserver((e) => {
+    const resizer = new ResizeObserver(() => {
       window.innerWidth > 700 ? setIsLargeView(true) : setIsLargeView(false);
     });
     resizer.observe(main);
 
     // margin top puts main into view from under the header
-    const headerResizer = new ResizeObserver((e) => {
+    const headerResizer = new ResizeObserver(() => {
       main.style.paddingTop = `${header.getBoundingClientRect().height + 16}px`;
     });
     headerResizer.observe(header);

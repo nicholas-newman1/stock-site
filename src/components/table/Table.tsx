@@ -12,7 +12,7 @@ const Table = ({ loading, tableData, setTableData }) => {
   tableData = tableData.filter((item) => item.price || item.change);
 
   // sort data by property
-  const sortTableData = (property, reverse) => {
+  const sortTableData = (property, reverse = false) => {
     setTableData((prevData) => sortData(prevData, property, reverse));
   };
 

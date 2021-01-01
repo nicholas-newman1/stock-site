@@ -30,7 +30,8 @@ const SearchBar = () => {
         onClick={(e) => {
           setText('');
           setDisplayNav(false);
-          e.target.focus();
+          const el = e.target as HTMLAnchorElement;
+          el.focus();
         }}
       >
         <button

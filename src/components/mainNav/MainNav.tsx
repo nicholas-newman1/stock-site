@@ -2,7 +2,7 @@ import React from 'react';
 import MainNavItem from './MainNavItem';
 import './mainNav.css';
 
-const MainNav = ({ justifyCenter }) => {
+const MainNav = ({ justifyCenter = false }) => {
   const links = [
     'Home',
     'Indexes',
