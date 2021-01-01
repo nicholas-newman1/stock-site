@@ -14,7 +14,7 @@ import './stockPage.css';
 import useFetch from '../../hooks/useFetch';
 import useScrollTop from '../../hooks/useScrollTop';
 
-const StockPage = () => {
+const StockPage: React.FC = () => {
   const { data: activesData, loading: activesLoading } = useFetch(
     [], // initial value
     'actives', // endpoint

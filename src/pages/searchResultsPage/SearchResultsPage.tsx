@@ -10,6 +10,13 @@ import { dummySearchResults } from '../../dummyData';
 import useFetch from '../../hooks/useFetch';
 import useScrollTop from '../../hooks/useScrollTop';
 import './searchResultsPage.css';
+import { RouteComponentProps } from 'react-router-dom';
+
+interface MatchParams {
+  query: string;
+}
+
+interface Props extends RouteComponentProps<MatchParams> {}
 
 interface Result {
   symbol: string;
@@ -19,7 +26,7 @@ interface Result {
   exchangeShortName: string;
 }
 
-const SearchResults = ({ match }) => {
+const SearchResults: React.FC<Props> = ({ match }) => {
   const [exchange, setExchange] = useState('');
   const [page, setPage] = useState(0);
   const [resultsPerPage] = useState(10);

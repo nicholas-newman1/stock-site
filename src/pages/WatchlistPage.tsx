@@ -8,7 +8,7 @@ import { WatchlistContext } from '../context/WatchlistContext';
 import useFetch from '../hooks/useFetch';
 import useScrollTop from '../hooks/useScrollTop';
 
-const WatchlistPage = () => {
+const WatchlistPage: React.FC = () => {
   const { watchlist } = useContext(WatchlistContext);
 
   const { data, setData, loading } = useFetch(

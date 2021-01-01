@@ -7,7 +7,7 @@ import { dummyCommodityData } from '../dummyData';
 import useFetch from '../hooks/useFetch';
 import useScrollTop from '../hooks/useScrollTop';
 
-const CommodityPage = () => {
+const CommodityPage: React.FC = () => {
   const { data, setData, loading } = useFetch(
     [], // intial value
     'quotes/commodity', // endpoint

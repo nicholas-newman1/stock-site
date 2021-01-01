@@ -7,7 +7,7 @@ import { dummyForexData } from '../dummyData';
 import useFetch from '../hooks/useFetch';
 import useScrollTop from '../hooks/useScrollTop';
 
-const ForexPage = () => {
+const ForexPage: React.FC = () => {
   const { data, setData, loading } = useFetch(
     [], // intial value
     'quotes/forex', // endpoint

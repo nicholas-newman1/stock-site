@@ -7,7 +7,7 @@ import { dummyCryptoData } from '../dummyData';
 import useFetch from '../hooks/useFetch';
 import useScrollTop from '../hooks/useScrollTop';
 
-const CryptoPage = () => {
+const CryptoPage: React.FC = () => {
   const { data, setData, loading } = useFetch(
     [], // intial value
     'quotes/crypto', // endpoint

@@ -3,9 +3,9 @@ import { dummyQuoteData } from '../dummyData';
 import { formatQuoteData } from '../helpers';
 import { RealDataContext } from './RealDataContext';
 
-export const QuoteContext = createContext();
+export const QuoteContext = createContext(null);
 
-export const QuoteProvider = (props) => {
+export const QuoteProvider: React.FC = (props) => {
   const { realData, setRealData, setError } = useContext(RealDataContext);
   const [isStock, setIsStock] = useState(false);
   const [isQuoteFetched, setIsQuoteFetched] = useState(false);

@@ -1,22 +1,29 @@
 import React, { createContext } from 'react';
 import useLocalStorage from '../hooks/useLocalStorage';
 
-export const WatchlistContext = createContext();
+interface WatchlistContextInterface {
+  watchlist: string[];
+  updateWatchlist: (symbol: string) => void;
+}
 
-export const WatchlistProvider = (props) => {
+export const WatchlistContext = createContext<WatchlistContextInterface | null>(
+  null
+);
+
+export const WatchlistProvider: React.FC = (props) => {
   const [watchlist, setWatchlist] = useLocalStorage('watchlist', []);
 
   // if symbol is in watchlist, remove it. If it isn't, add it.
-  const updateWatchlist = (symbol) => {
+  const updateWatchlist = (symbol: string) => {
     if (watchlist.includes(symbol)) {
-      const index = watchlist.findIndex((item) => item === symbol);
-      setWatchlist((prevWatchlist) => {
+      const index = watchlist.findIndex((item: string) => item === symbol);
+      setWatchlist((prevWatchlist: string[]) => {
         const newWatchlist = [...prevWatchlist];
         newWatchlist.splice(index, 1);
         return newWatchlist;
       });
     } else {
-      setWatchlist((prevWatchlist) => [...prevWatchlist, symbol]);
+      setWatchlist((prevWatchlist: string[]) => [...prevWatchlist, symbol]);
     }
   };
 

@@ -1,8 +1,8 @@
 import React, { createContext, useState } from 'react';
 
-export const DisplayNavContext = createContext();
+export const DisplayNavContext = createContext(null);
 
-export const DisplayNavProvider = (props) => {
+export const DisplayNavProvider: React.FC = (props) => {
   const [displayNav, setDisplayNav] = useState(false);
 
   return (

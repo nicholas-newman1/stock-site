@@ -10,10 +10,16 @@ import QuoteNav from '../components/quoteNav/QuoteNav';
 import { QuoteContext } from '../context/QuoteContext';
 import QuoteFinancials from '../components/quoteFinancials/QuoteFinancials';
 import { Helmet } from 'react-helmet-async';
-import { Redirect } from 'react-router-dom';
+import { Redirect, RouteComponentProps } from 'react-router-dom';
 import useScrollTop from '../hooks/useScrollTop';
 
-const QuotePage = ({ match }) => {
+interface MatchProps {
+  symbol: string;
+}
+
+interface Props extends RouteComponentProps<MatchProps> {}
+
+const QuotePage: React.FC<Props> = ({ match }) => {
   const symbol: string = match.params.symbol;
   const [tab, setTab] = useState('Summary');
   const {

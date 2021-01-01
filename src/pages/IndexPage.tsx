@@ -7,7 +7,7 @@ import { dummyIndexPageData } from '../dummyData';
 import useFetch from '../hooks/useFetch';
 import useScrollTop from '../hooks/useScrollTop';
 
-const IndexPage = () => {
+const IndexPage: React.FC = () => {
   const { data, setData, loading } = useFetch(
     [], // intial value
     'quotes/index', // endpoint

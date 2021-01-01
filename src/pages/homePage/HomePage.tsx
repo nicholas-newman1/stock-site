@@ -6,7 +6,7 @@ import { Helmet } from 'react-helmet-async';
 import useScrollTop from '../../hooks/useScrollTop';
 import './home.css';
 
-const Home = () => {
+const Home: React.FC = () => {
   useScrollTop(); // scrolls to top of page on component mount
 
   return (

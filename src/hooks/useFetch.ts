@@ -2,9 +2,9 @@ import { useState, useContext, useEffect } from 'react';
 import { RealDataContext } from '../context/RealDataContext';
 
 const useFetch = (
-  initialValue,
-  endpoint,
-  dummyData,
+  initialValue: any,
+  endpoint: string,
+  dummyData: any,
   params = '',
   dependencies = []
 ) => {
@@ -15,7 +15,7 @@ const useFetch = (
   useEffect(() => {
     (async () => {
       setLoading(true);
-      let data;
+      let data: any;
       if (realData) {
         try {
           const res = await fetch(
