@@ -3,32 +3,72 @@ import { dummyQuoteData } from '../dummyData';
 import { formatQuoteData } from '../helpers';
 import { RealDataContext } from './RealDataContext';
 
-export const QuoteContext = createContext(null);
+interface Quote {
+  symbol: string;
+  name: string;
+  price: number;
+  changesPercentage: number;
+  change: number;
+  dayLow: number;
+  dayHigh: number;
+  yearHigh: number;
+  yearLow: number;
+  marketCap: number;
+  priceAvg50: number;
+  priceAvg200: number;
+  volume: number;
+  avgVolume: number;
+  exchange: string;
+  open: number;
+  previousClose: number;
+  eps: number;
+  pe: number;
+  earningsAnnouncement: string;
+  sharesOutstanding: number;
+  timestamp: number;
+}
+
+interface Error {
+  'Error Message': string;
+}
+
+interface QuoteContextInterface {
+  quote: Quote | {};
+  fetchQuote: (symbol: string) => void;
+  isStock: boolean;
+  setIsStock: React.Dispatch<React.SetStateAction<boolean>>;
+  isQuoteFetched: boolean;
+  setIsQuoteFetched: React.Dispatch<React.SetStateAction<boolean>>;
+}
+export const QuoteContext = createContext<QuoteContextInterface>(
+  {} as QuoteContextInterface
+);
 
 export const QuoteProvider: React.FC = (props) => {
   const { realData, setRealData, setError } = useContext(RealDataContext);
   const [isStock, setIsStock] = useState(false);
   const [isQuoteFetched, setIsQuoteFetched] = useState(false);
-  const [quote, setQuote] = useState({});
+  const [quote, setQuote] = useState<Quote | {}>({});
 
-  const fetchQuote = async (symbol) => {
-    let data;
+  const fetchQuote = async (symbol: string) => {
+    let data: Quote[] | Error;
+    let quote: Quote;
     if (realData) {
       try {
         const res = await fetch(
           `https://financialmodelingprep.com/api/v3/quote/${symbol}?apikey=${process.env.REACT_APP_FMP_KEY}`
         );
         data = await res.json();
-        if (data['Error Message']) throw data['Error Message'];
-        data = data[0];
+        if ('Error Message' in data) throw new Error(data['Error Message']);
+        quote = data[0];
       } catch (error) {
         console.log(new Error(error));
         setError(error);
-        data = { ...dummyQuoteData[0] };
+        quote = { ...dummyQuoteData[0] };
         setRealData(false);
       }
     } else {
-      data = { ...dummyQuoteData[0] };
+      quote = { ...dummyQuoteData[0] };
     }
 
     /* Non-stock quotes do not have a QuoteNav on QuotePage and they display both QuoteSummary
@@ -36,14 +76,14 @@ export const QuoteProvider: React.FC = (props) => {
     QuoteChart, QuoteFinancials, QuoteProfile, etc */
     setIsStock(
       ['INDEX', 'ETF', 'MUTUAL_FUND', 'FOREX', 'CRYPTO', 'COMMODITY'].findIndex(
-        (item) => item === data.exchange
+        (item) => item === quote.exchange
       ) === -1
     );
 
     // Format data to be more readable
-    data = formatQuoteData(data);
+    quote = formatQuoteData(quote);
 
-    setQuote(data);
+    setQuote(quote);
     setIsQuoteFetched(true);
   };
 

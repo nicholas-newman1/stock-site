@@ -6,8 +6,8 @@ interface WatchlistContextInterface {
   updateWatchlist: (symbol: string) => void;
 }
 
-export const WatchlistContext = createContext<WatchlistContextInterface | null>(
-  null
+export const WatchlistContext = createContext<WatchlistContextInterface>(
+  {} as WatchlistContextInterface
 );
 
 export const WatchlistProvider: React.FC = (props) => {

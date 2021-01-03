@@ -1,6 +1,15 @@
 import React, { createContext, useState } from 'react';
 
-export const RealDataContext = createContext(null);
+interface RealDataContextInterface {
+  realData: boolean;
+  setRealData: React.Dispatch<React.SetStateAction<boolean>>;
+  error: string;
+  setError: React.Dispatch<React.SetStateAction<string>>;
+}
+
+export const RealDataContext = createContext<RealDataContextInterface>(
+  {} as RealDataContextInterface
+);
 
 /* The Real Data Context is used to determine whether the site should fetch from
 the API or use dummy data. The useFetch custom hook, as well as the fetchQuote
