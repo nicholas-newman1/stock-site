@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 
 const useScrollTop = () => {
   useEffect(() => {
-    document.querySelector('html').scrollTop = 0;
+    document.querySelector('html')!.scrollTop = 0;
   }, []);
 };
 
