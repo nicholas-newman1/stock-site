@@ -6,7 +6,7 @@ const useFetch = (
   endpoint: string,
   dummyData: any,
   params = '',
-  dependencies = []
+  dependencies = [] as any[]
 ) => {
   const [data, setData] = useState(initialValue);
   const [loading, setLoading] = useState(true);

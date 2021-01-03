@@ -44,11 +44,15 @@ const QuotePage: React.FC<Props> = ({ match }) => {
   return quote !== null ? (
     <>
       <Helmet>
-        <title>{`${quote.symbol} | ${quote.name} | Free Quote | Stock Site`}</title>
-        <meta
-          name='description'
-          content={`${quote.symbol} free quote. ${quote.name} quote. Free stock quotes, forex exchange rates, cryptocurrency rates, and more.`}
-        />
+        {'symbol' in quote && 'name' in quote && (
+          <>
+            <title>{`${quote.symbol} | ${quote.name} | Free Quote | Stock Site`}</title>{' '}
+            <meta
+              name='description'
+              content={`${quote.symbol} free quote. ${quote.name} quote. Free stock quotes, forex exchange rates, cryptocurrency rates, and more.`}
+            />
+          </>
+        )}
       </Helmet>
       <>
         <Quote />
