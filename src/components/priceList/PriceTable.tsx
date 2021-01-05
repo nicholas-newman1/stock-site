@@ -5,7 +5,11 @@ import { dummyIndexData } from '../../dummyData';
 import './priceTable.css';
 import useFetch from '../../hooks/useFetch';
 
-const PriceList = ({ symbols }) => {
+interface Props {
+  symbols: string[];
+}
+
+const PriceList: React.FC<Props> = ({ symbols }) => {
   const { data, loading } = useFetch(
     [], // intial value
     `quote/${symbols.join()}`, //endpoint
@@ -28,7 +32,9 @@ const PriceList = ({ symbols }) => {
           {loading ? (
             <LoadingPriceList />
           ) : (
-            data.map((quote) => <PriceRow key={quote.symbol} data={quote} />)
+            data.map((quote: Quote) => (
+              <PriceRow key={quote.symbol} data={quote} />
+            ))
           )}
         </tbody>
       </table>

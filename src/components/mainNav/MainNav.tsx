@@ -2,7 +2,11 @@ import React from 'react';
 import MainNavItem from './MainNavItem';
 import './mainNav.css';
 
-const MainNav = ({ justifyCenter = false }) => {
+interface Props {
+  justifyCenter?: boolean;
+}
+
+const MainNav: React.FC<Props> = ({ justifyCenter = false }) => {
   const links = [
     'Home',
     'Indexes',

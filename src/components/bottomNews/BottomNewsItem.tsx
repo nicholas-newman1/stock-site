@@ -2,7 +2,12 @@ import React from 'react';
 import { getTimeAgoString, truncate } from '../../helpers';
 import './bottomNewsItem.css';
 
-const QuoteNewsItem = ({ newsItem }) => {
+interface Props {
+  //newsItem: NewsItem;
+  newsItem: any;
+}
+
+const QuoteNewsItem: React.FC<Props> = ({ newsItem }) => {
   const { image, url, title, publishedDate, site, text } = newsItem;
 
   return (

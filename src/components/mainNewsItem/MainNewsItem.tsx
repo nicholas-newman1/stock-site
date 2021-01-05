@@ -4,7 +4,7 @@ import { getTimeAgoString, truncate } from '../../helpers';
 import { dummyNewsData } from '../../dummyData';
 import useFetch from '../../hooks/useFetch';
 
-const MainNewsItem = () => {
+const MainNewsItem: React.FC = () => {
   const { data, loading } = useFetch(
     [], // intial value
     'stock_news', // endpoint

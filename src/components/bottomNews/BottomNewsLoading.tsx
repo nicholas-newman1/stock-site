@@ -1,7 +1,7 @@
 import React from 'react';
 import './bottomNewsLoading.css';
 
-const BottomNewsLoading = () => {
+const BottomNewsLoading: React.FC = () => {
   let loadingItems = [];
   for (let i = 0; i < 10; i++) {
     loadingItems.push(

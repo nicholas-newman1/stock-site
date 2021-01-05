@@ -1,4 +1,7 @@
-export function truncate(str, n) {
+export function truncate(str: string, n: number) {
+  if (typeof str !== 'string' || typeof n !== 'number') {
+    return str;
+  }
   // shorten string based on n
   if (str.length <= n) {
     return str;
@@ -7,7 +10,8 @@ export function truncate(str, n) {
   return subString.substr(0, subString.lastIndexOf(' '));
 }
 
-export const getTimeAgoString = (date) => {
+export const getTimeAgoString = (date: string) => {
+  if (typeof date !== 'string') return date;
   const timeAgo = new Date(Date.now() - Date.parse(date));
   if (timeAgo.getMinutes() < 1) return `less than a minute ago`;
   if (timeAgo.getHours() < 1) return `${timeAgo.getMinutes()} minutes ago`;
@@ -15,11 +19,12 @@ export const getTimeAgoString = (date) => {
   if (timeAgo.getHours() > 1) return `${timeAgo.getHours()} hours ago`;
 };
 
-export const formatAMPM = (timestamp) => {
+export const formatAMPM = (timestamp: number) => {
+  if (typeof timestamp !== 'number') return timestamp;
   // convert timestamp to AM/PM time
   const date = new Date(timestamp);
   let hours = date.getHours();
-  let minutes = date.getMinutes();
+  let minutes: number | string = date.getMinutes();
   const ampm = hours >= 12 ? 'pm' : 'am';
   hours = hours % 12;
   hours = hours ? hours : 12; // the hour '0' should be '12'
@@ -28,7 +33,7 @@ export const formatAMPM = (timestamp) => {
   return strTime;
 };
 
-export const formatPhoneNumber = (phoneNumberString) => {
+export const formatPhoneNumber = (phoneNumberString: string) => {
   // Make phone numbers more readable
   var cleaned = ('' + phoneNumberString).replace(/\D/g, '');
   var match = cleaned.match(/^(1|)?(\d{3})(\d{3})(\d{4})$/);
@@ -39,9 +44,13 @@ export const formatPhoneNumber = (phoneNumberString) => {
   return phoneNumberString;
 };
 
-export const sortData = (data, property, reverseOrder = false) => {
+export const sortData = (
+  data: any[],
+  property: string,
+  reverseOrder = false
+) => {
   const sortedData = [...data];
-  const compare = (a, b) => {
+  const compare = (a: any, b: any) => {
     let comparison = 0;
     if (a[property] < b[property]) comparison = -1;
     if (a[property] > b[property]) comparison = 1;
@@ -51,7 +60,7 @@ export const sortData = (data, property, reverseOrder = false) => {
   return sortedData;
 };
 
-export const shortenNumber = (number, decimals = 2) => {
+export const shortenNumber = (number: number, decimals = 2) => {
   /* Return a number in localeString format (ex. commas added). Large numbers are
   shortened and a letter is added (Ex. M = Million). Decimals are rounded */
 
@@ -85,7 +94,7 @@ export const formatData = (data) => {
   return data;
 };
 
-export const decimalsToRoundTo = (change) => {
+export const decimalsToRoundTo = (change: number) => {
   /* Determines how many decimals to round to based on the change 
   in price. For example some quotes only change by $0.0005 in a day. It would 
   make sense then to round off to 4 decimals instead of the usual 2. The function
@@ -109,37 +118,38 @@ export const decimalsToRoundTo = (change) => {
   return decimals;
 };
 
-export const round = (num, decimals = 2, trailingZeros = false) => {
+export const round = (num: number, decimals = 2, trailingZeros = false) => {
   /* Returns a string rounded the given decimals, if trailingZeros is true, 0's will be added
   to the end of the string */
   if (num === 0) return '0';
 
-  num = num.toLocaleString(undefined, {
+  let numStr = num.toLocaleString(undefined, {
     maximumFractionDigits: decimals,
     minimumFractionDigits: trailingZeros ? decimals : 0,
   });
 
-  return num;
+  return numStr;
 };
 
-export const formatQuoteData = (data) => {
-  const { price, change, changesPercentage } = data;
+export const formatQuoteData = (quote: Quote) => {
+  const { price, change, changesPercentage } = quote;
 
   // determine number of decimals to round to
   let decimals = decimalsToRoundTo(change);
 
   // round price, change, and changes percentage
-  data = {
-    ...data,
+  let formattedQuote: FormattedQuote = {
+    ...quote,
     price: round(price, decimals, true),
     change: round(change, decimals, true),
     changesPercentage: round(changesPercentage, 2),
+    color: quote.change > 0 ? 'green' : quote.change < 0 ? '#de0e00' : 'black',
   };
 
   // replace null values with N/A, large numbers with shortened versions, insert commas
-  data = formatData(data);
+  formattedQuote = formatData(formattedQuote);
 
-  return data;
+  return formattedQuote;
 };
 
 export const formatStatementData = (data) => {
@@ -241,7 +251,7 @@ export const filterChartData = (data, timeframe) => {
 
   // thins out the amount of data points returned (max 300)
   while (data.length > 300) {
-    data = data.filter((item, i) => {
+    data = data.filter((item: any, i: number) => {
       return i === 0 || i % 2 === 1;
     });
   }

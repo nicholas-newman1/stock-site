@@ -1,7 +1,11 @@
 import React from 'react';
 import './heading.css';
 
-const Heading = ({ text }) => {
+interface Props {
+  text: string;
+}
+
+const Heading: React.FC<Props> = ({ text }) => {
   return (
     <div>
       <h1 className='page-heading'>{text}</h1>

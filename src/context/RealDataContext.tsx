@@ -19,7 +19,7 @@ stored in dummyData.js */
 
 export const RealDataProvider: React.FC = (props) => {
   const [realData, setRealData] = useState(false);
-  const [error, setError] = useState('');
+  const [error, setError] = useState('Something went wrong... Try refreshing.');
   return (
     <RealDataContext.Provider
       value={{

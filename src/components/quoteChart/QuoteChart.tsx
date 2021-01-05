@@ -13,8 +13,12 @@ import { formatChartData } from '../../helpers';
 import useFetch from '../../hooks/useFetch';
 import useChartFormat from '../../hooks/useChartFormat';
 
-const QuoteChart = ({ symbol }) => {
-  const [timeframe, setTimeframe] = useState('1D');
+interface Props {
+  symbol: string;
+}
+
+const QuoteChart: React.FC<Props> = ({ symbol }) => {
+  const [timeframe, setTimeframe] = useState<Timeframe>('1D');
   const [chartData, setChartData] = useState([]);
   const [timeScaleFormat, tooltipFormat] = useChartFormat(timeframe);
 
@@ -27,7 +31,15 @@ const QuoteChart = ({ symbol }) => {
   if (timeframe === '5D') interval = '5min';
   if (timeframe === '1M') interval = '1hour';
 
-  if (interval === '') endpoint = 'historical-price-full'; // interval === '' equivalent to timeframe !== 1D or 5D or 1M
+  if (
+    interval === 'YTD' ||
+    interval === '1Y' ||
+    interval === '5Y' ||
+    interval === 'MAX'
+  ) {
+    endpoint = 'historical-price-full';
+  }
+
   endpoint = `${endpoint}/${interval}/${symbol}`;
 
   // determine dummy data
@@ -82,7 +94,7 @@ const QuoteChart = ({ symbol }) => {
       yAxes: [
         {
           ticks: {
-            callback: (value) => `$${value}`,
+            callback: (value: string) => `$${value}`,
           },
         },
       ],
@@ -93,7 +105,7 @@ const QuoteChart = ({ symbol }) => {
       mode: 'index',
       intersect: false,
       callbacks: {
-        label: ({ xLabel, yLabel }) => {
+        label: ({ xLabel, yLabel }: { xLabel: string; yLabel: number }) => {
           return `${xLabel} | $${yLabel.toFixed(2)}`;
         },
       },

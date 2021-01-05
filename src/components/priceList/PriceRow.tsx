@@ -2,7 +2,11 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { decimalsToRoundTo, round } from '../../helpers';
 
-const PriceRow = ({ data }) => {
+interface Props {
+  data: Quote;
+}
+
+const PriceRow: React.FC<Props> = ({ data }) => {
   let { symbol, price, change, changesPercentage } = data;
   const color = change > 0 ? 'green' : '#de0e00';
   const isPositive = change > 0;
@@ -15,8 +19,10 @@ const PriceRow = ({ data }) => {
 
   // Round change and price based on maginitude of change in price
   let decimals = decimalsToRoundTo(change);
-  if (change) change = round(change, decimals, true);
-  if (price) price = round(price, decimals, true);
+  let changeStr = '';
+  let priceStr = '';
+  if (change) changeStr = round(change, decimals, true);
+  if (price) priceStr = round(price, decimals, true);
 
   return (
     <tr className='pricelist__tr'>
@@ -25,10 +31,10 @@ const PriceRow = ({ data }) => {
           {symbolText}
         </Link>
       </td>
-      <td className='pricelist__td'>${price}</td>
+      <td className='pricelist__td'>${priceStr}</td>
       <td className='pricelist__td' style={{ color }}>
         {isPositive && '+'}
-        {change}
+        {changeStr}
       </td>
       <td className='pricelist__td' style={{ color }}>
         {isPositive && '+'}

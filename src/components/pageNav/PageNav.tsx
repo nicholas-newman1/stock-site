@@ -1,7 +1,14 @@
 import React from 'react';
 import './pageNav.css';
 
-const PageNav = ({ data, page, setPage, resultsPerPage }) => {
+interface Props {
+  data: any[];
+  page: number;
+  setPage: React.Dispatch<React.SetStateAction<number>>;
+  resultsPerPage: number;
+}
+
+const PageNav: React.FC<Props> = ({ data, page, setPage, resultsPerPage }) => {
   // variables used to disable/enable next page and prev page btns
   const onLastPage = data.length - page * resultsPerPage <= resultsPerPage;
   const onFirstPage = page === 0;

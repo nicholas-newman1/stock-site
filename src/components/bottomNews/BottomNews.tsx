@@ -5,8 +5,12 @@ import { dummyStockNews } from '../../dummyData';
 import './bottomNews.css';
 import useFetch from '../../hooks/useFetch';
 
-const BottomNews = ({ symbol = '', shift = false }) => {
-  const [newsData, setNewsData] = useState([]);
+interface Props {
+  symbol?: string;
+  shift?: boolean;
+}
+const BottomNews: React.FC<Props> = ({ symbol = '', shift = false }) => {
+  const [newsData, setNewsData] = useState<any[]>([]);
 
   const { data, loading } = useFetch(
     [], // initial value

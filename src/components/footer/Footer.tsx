@@ -4,7 +4,7 @@ import SearchBar from '../searchBar/SearchBar';
 import MainNav from '../mainNav/MainNav';
 import './footer.css';
 
-const Footer = () => {
+const Footer: React.FC = () => {
   return (
     <footer className='footer'>
       <div className='footer__container container'>

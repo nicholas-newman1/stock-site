@@ -5,7 +5,7 @@ import { faQuestionCircle } from '@fortawesome/free-solid-svg-icons';
 import { RealDataContext } from '../../context/RealDataContext';
 import './headerWarning.css';
 
-const HeaderWarning = () => {
+const HeaderWarning: React.FC = () => {
   // error is stored in RealDataContext when a fetch request fails
   const { error } = useContext(RealDataContext);
 

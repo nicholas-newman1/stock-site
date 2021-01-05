@@ -3,7 +3,7 @@ import PriceTable from './PriceTable';
 import { Link } from 'react-router-dom';
 import './priceList.css';
 
-const PriceList = () => {
+const PriceList: React.FC = () => {
   return (
     <ul className='pricelist'>
       <li className='pricelist__item'>

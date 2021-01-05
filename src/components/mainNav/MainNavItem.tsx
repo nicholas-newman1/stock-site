@@ -2,7 +2,11 @@ import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { DisplayNavContext } from '../../context/DisplayNavContext';
 
-const MainNavItem = ({ item }) => {
+interface Props {
+  item: string;
+}
+
+const MainNavItem: React.FC<Props> = ({ item }) => {
   const { setDisplayNav } = useContext(DisplayNavContext);
 
   return (

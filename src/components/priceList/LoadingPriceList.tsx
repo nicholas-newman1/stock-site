@@ -1,6 +1,6 @@
 import React from 'react';
 
-const LoadingPriceList = () => {
+const LoadingPriceList: React.FC = () => {
   const loadingItems = [];
   for (let i = 0; i < 4; i++) {
     loadingItems.push(

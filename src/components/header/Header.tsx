@@ -9,14 +9,14 @@ import { DisplayNavContext } from '../../context/DisplayNavContext';
 import { RealDataContext } from '../../context/RealDataContext';
 import './header.css';
 
-const Header = () => {
+const Header: React.FC = () => {
   const [isLargeView, setIsLargeView] = useState(false);
   const { displayNav, setDisplayNav } = useContext(DisplayNavContext);
   const { realData } = useContext(RealDataContext);
 
   useEffect(() => {
-    const main = document.querySelector('main');
-    const header = document.querySelector('header');
+    const main = document.querySelector('main')!;
+    const header = document.querySelector('header')!;
 
     // Hide/display nav depending on window size
     const resizer = new ResizeObserver(() => {
@@ -31,8 +31,8 @@ const Header = () => {
     headerResizer.observe(header);
 
     // shrink/grow header based on scroll direction (small screens only)
-    const headerLogo = document.querySelector('.header__logo');
-    const headerHamburger = document.querySelector('.header__hamburger');
+    const headerLogo = document.querySelector('.header__logo')!;
+    const headerHamburger = document.querySelector('.header__hamburger')!;
 
     let lastScroll = 0;
     window.addEventListener('scroll', () => {

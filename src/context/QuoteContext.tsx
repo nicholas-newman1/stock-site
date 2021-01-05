@@ -3,37 +3,8 @@ import { dummyQuoteData } from '../dummyData';
 import { formatQuoteData } from '../helpers';
 import { RealDataContext } from './RealDataContext';
 
-interface Quote {
-  symbol: string;
-  name: string;
-  price: number;
-  changesPercentage: number;
-  change: number;
-  dayLow: number;
-  dayHigh: number;
-  yearHigh: number;
-  yearLow: number;
-  marketCap: number;
-  priceAvg50: number;
-  priceAvg200: number;
-  volume: number;
-  avgVolume: number;
-  exchange: string;
-  open: number;
-  previousClose: number;
-  eps: number;
-  pe: number;
-  earningsAnnouncement: string;
-  sharesOutstanding: number;
-  timestamp: number;
-}
-
-interface Error {
-  'Error Message': string;
-}
-
 interface QuoteContextInterface {
-  quote: Quote | {};
+  quote: FormattedQuote;
   fetchQuote: (symbol: string) => void;
   isStock: boolean;
   setIsStock: React.Dispatch<React.SetStateAction<boolean>>;
@@ -48,17 +19,16 @@ export const QuoteProvider: React.FC = (props) => {
   const { realData, setRealData, setError } = useContext(RealDataContext);
   const [isStock, setIsStock] = useState(false);
   const [isQuoteFetched, setIsQuoteFetched] = useState(false);
-  const [quote, setQuote] = useState<Quote | {}>({});
+  const [quote, setQuote] = useState({} as FormattedQuote);
 
   const fetchQuote = async (symbol: string) => {
-    let data: Quote[] | Error;
     let quote: Quote;
     if (realData) {
       try {
         const res = await fetch(
           `https://financialmodelingprep.com/api/v3/quote/${symbol}?apikey=${process.env.REACT_APP_FMP_KEY}`
         );
-        data = await res.json();
+        const data = await res.json();
         if ('Error Message' in data) throw new Error(data['Error Message']);
         quote = data[0];
       } catch (error) {
@@ -81,9 +51,9 @@ export const QuoteProvider: React.FC = (props) => {
     );
 
     // Format data to be more readable
-    quote = formatQuoteData(quote);
+    let formattedQuote = formatQuoteData(quote);
 
-    setQuote(quote);
+    setQuote(formattedQuote);
     setIsQuoteFetched(true);
   };
 
