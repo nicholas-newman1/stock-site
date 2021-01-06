@@ -1,6 +1,10 @@
 import React from 'react';
 
-const QuoteTableHead = ({ tableData }) => {
+interface Props {
+  tableData: FormattedStatementData;
+}
+
+const QuoteTableHead: React.FC<Props> = ({ tableData }) => {
   return (
     <thead className='quote-table__thead'>
       <tr className='quote-table__tr'>

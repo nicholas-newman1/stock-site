@@ -5,7 +5,11 @@ import Spinner from '../Spinner';
 import useFetch from '../../hooks/useFetch';
 import './quoteProfile.css';
 
-const QuoteProfile = ({ symbol }) => {
+interface Props {
+  symbol: string;
+}
+
+const QuoteProfile: React.FC<Props> = ({ symbol }) => {
   const { data, loading } = useFetch(
     [], // initial value
     `profile/${symbol}`, // endpoint
@@ -13,7 +17,7 @@ const QuoteProfile = ({ symbol }) => {
   );
 
   /* This component contains a lot of conditional rendering because the API
-  doesn't always return the same values. */
+  doesn't always return the same properties. */
 
   if (loading) {
     return <Spinner />;

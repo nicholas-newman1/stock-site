@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { QuoteContext } from '../../context/QuoteContext';
 import './quoteSummary.css';
 
-const QuoteDetails = () => {
+const QuoteDetails: React.FC = () => {
   const { quote } = useContext(QuoteContext);
 
   return (

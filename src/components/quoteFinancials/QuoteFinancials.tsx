@@ -14,25 +14,31 @@ import { formatStatementData } from '../../helpers';
 import useFetch from '../../hooks/useFetch';
 import './quoteFinancials.css';
 
-const QuoteFinancials = ({ symbol }) => {
-  const [statement, setStatement] = useState('income-statement');
-  const [period, setPeriod] = useState('');
-  const [statementData, setStatementData] = useState([]);
+interface Props {
+  symbol: string;
+}
+
+const QuoteFinancials: React.FC<Props> = ({ symbol }) => {
+  const [statement, setStatement] = useState<Statement>('income-statement');
+  const [period, setPeriod] = useState<Period>('');
+  const [statementData, setStatementData] = useState<FormattedStatementData>(
+    []
+  );
 
   // determine which dummyData to use
-  let dummyData;
+  let dummyData: FormattedStatementData;
   if (statement === 'income-statement') {
     period
-      ? (dummyData = [...dummyQuarterlyIncomeStatement])
-      : (dummyData = [...dummyAnnualIncomeStatement]);
+      ? (dummyData = formatStatementData([...dummyQuarterlyIncomeStatement]))
+      : (dummyData = formatStatementData([...dummyAnnualIncomeStatement]));
   } else if (statement === 'balance-sheet-statement') {
     period
-      ? (dummyData = [...dummyQuarterlyBalanceSheet])
-      : (dummyData = [...dummyAnnualBalanceSheet]);
-  } else if (statement === 'cash-flow-statement') {
+      ? (dummyData = formatStatementData([...dummyQuarterlyBalanceSheet]))
+      : (dummyData = formatStatementData([...dummyAnnualBalanceSheet]));
+  } else {
     period
-      ? (dummyData = [...dummyQuarterlyCashFlow])
-      : (dummyData = [...dummyAnnualCashFlow]);
+      ? (dummyData = formatStatementData([...dummyQuarterlyCashFlow]))
+      : (dummyData = formatStatementData([...dummyAnnualCashFlow]));
   }
 
   // custom hook makes fetch request
@@ -107,8 +113,8 @@ const QuoteFinancials = ({ symbol }) => {
     { label: 'Free Cash Flow', property: 'freeCashFlow' },
   ];
 
-  let tableHeadings;
-  let heading;
+  let tableHeadings: TableHeading[];
+  let heading: string;
 
   if (statement === 'income-statement') {
     tableHeadings = incomeStatementHeadings;
@@ -116,7 +122,7 @@ const QuoteFinancials = ({ symbol }) => {
   } else if (statement === 'balance-sheet-statement') {
     tableHeadings = balanceSheetHeadings;
     heading = 'Balance Sheet';
-  } else if (statement === 'cash-flow-statement') {
+  } else {
     tableHeadings = cashFlowHeadings;
     heading = 'Cash Flow';
   }

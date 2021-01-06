@@ -3,7 +3,12 @@ import QuoteTableHead from './QuoteTableHead';
 import QuoteTableRow from './QuoteTableRow';
 import './quoteTable.css';
 
-const QuoteTable = ({ statementData, tableHeadings }) => {
+interface Props {
+  statementData: FormattedStatementData;
+  tableHeadings: TableHeading[];
+}
+
+const QuoteTable: React.FC<Props> = ({ statementData, tableHeadings }) => {
   return (
     <table className='quote-table'>
       <QuoteTableHead tableData={statementData} />

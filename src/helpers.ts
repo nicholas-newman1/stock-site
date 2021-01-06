@@ -152,7 +152,9 @@ export const formatQuoteData = (quote: Quote) => {
   return formattedQuote;
 };
 
-export const formatStatementData = (data) => {
+export const formatStatementData = (
+  data: StatementData
+): FormattedStatementData => {
   // replaces null values with N/A and large numbers with shortened versions
   return data.map((item) => formatData(item));
 };

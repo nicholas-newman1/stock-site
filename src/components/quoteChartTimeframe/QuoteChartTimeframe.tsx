@@ -23,10 +23,10 @@ const QuoteChartTimeframe: React.FC<Props> = ({ setTimeframe }) => {
 
   const timeframeBtns = ['1D', '5D', '1M', '6M', 'YTD', '1Y', '5Y', 'MAX'];
 
-  const timeframe = useRef<HTMLInputElement>();
+  const timeframe = useRef<HTMLInputElement>(null);
   useEffect(() => {
     // disable first timeframe button on mount
-    const firstBtn = timeframe.current.children[0] as HTMLButtonElement;
+    const firstBtn = timeframe.current!.children[0] as HTMLButtonElement;
     firstBtn.disabled = true;
   }, []);
 

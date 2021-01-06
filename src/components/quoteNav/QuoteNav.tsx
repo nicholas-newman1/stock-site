@@ -1,7 +1,12 @@
 import React from 'react';
 import './quoteNav.css';
 
-const QuoteNav = ({ tab, setTab }) => {
+interface Props {
+  tab: string;
+  setTab: React.Dispatch<React.SetStateAction<string>>;
+}
+
+const QuoteNav: React.FC<Props> = ({ tab, setTab }) => {
   let navItems = ['Summary', 'Chart', 'Financials', 'Profile', 'Valuation'];
   return (
     <nav className='quote-nav'>
