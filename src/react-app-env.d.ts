@@ -60,8 +60,8 @@ interface FormattedQuote {
 }
 
 interface IncomeStatement {
-  date: string | null;
-  symbol: string | null;
+  date: string;
+  symbol: string;
   fillingDate: string | null;
   acceptedDate: string | null;
   period: string | null;
@@ -132,8 +132,8 @@ interface FormattedIncomeStatement {
 }
 
 interface BalanceSheet {
-  date: string | null;
-  symbol: string | null;
+  date: string;
+  symbol: string;
   fillingDate: string | null;
   acceptedDate: string | null;
   period: string | null;
@@ -230,8 +230,8 @@ interface FormattedBalanceSheet {
 }
 
 interface CashFlow {
-  date: string | null;
-  symbol: string | null;
+  date: string;
+  symbol: string;
   fillingDate: string | null;
   acceptedDate: string | null;
   period: string | null;
@@ -309,6 +309,130 @@ interface FormattedCashFlow {
   finalLink: string;
 }
 
+interface ValuationData {
+  symbol: string;
+  date: string;
+  revenuePerShare: number | null;
+  netIncomePerShare: number | null;
+  operatingCashFlowPerShare: number | null;
+  freeCashFlowPerShare: number | null;
+  cashPerShare: number | null;
+  bookValuePerShare: number | null;
+  tangibleBookValuePerShare: number | null;
+  shareholdersEquityPerShare: number | null;
+  interestDebtPerShare: number | null;
+  marketCap: number | null;
+  enterpriseValue: number | null;
+  peRatio: number | null;
+  priceToSalesRatio: number | null;
+  pocfratio: number | null;
+  pfcfRatio: number | null;
+  pbRatio: number | null;
+  ptbRatio: number | null;
+  evToSales: number | null;
+  enterpriseValueOverEBITDA: number | null;
+  evToOperatingCashFlow: number | null;
+  evToFreeCashFlow: number | null;
+  earningsYield: number | null;
+  freeCashFlowYield: number | null;
+  debtToEquity: number | null;
+  debtToAssets: number | null;
+  netDebtToEBITDA: number | null;
+  currentRatio: number | null;
+  interestCoverage: number | null;
+  incomeQuality: number | null;
+  dividendYield: number | null;
+  payoutRatio: number | null;
+  salesGeneralAndAdministrativeToRevenue: number | null;
+  researchAndDdevelopementToRevenue: number | null;
+  intangiblesToTotalAssets: number | null;
+  capexToOperatingCashFlow: number | null;
+  capexToRevenue: number | null;
+  capexToDepreciation: number | null;
+  stockBasedCompensationToRevenue: number | null;
+  grahamNumber: number | null;
+  roic: number | null;
+  returnOnTangibleAssets: number | null;
+  grahamNetNet: number | null;
+  workingCapital: number | null;
+  tangibleAssetValue: number | null;
+  netCurrentAssetValue: number | null;
+  investedCapital: number | null;
+  averageReceivables: number | null;
+  averagePayables: number | null;
+  averageInventory: number | null;
+  daysSalesOutstanding: number | null;
+  daysPayablesOutstanding: number | null;
+  daysOfInventoryOnHand: number | null;
+  receivablesTurnover: number | null;
+  payablesTurnover: number | null;
+  inventoryTurnover: number | null;
+  roe: number | null;
+  capexPerShare: number | null;
+}
+
+interface FormattedValuationData {
+  symbol: string;
+  date: string;
+  revenuePerShare: string;
+  netIncomePerShare: string;
+  operatingCashFlowPerShare: string;
+  freeCashFlowPerShare: string;
+  cashPerShare: string;
+  bookValuePerShare: string;
+  tangibleBookValuePerShare: string;
+  shareholdersEquityPerShare: string;
+  interestDebtPerShare: string;
+  marketCap: string;
+  enterpriseValue: string;
+  peRatio: string;
+  priceToSalesRatio: string;
+  pocfratio: string;
+  pfcfRatio: string;
+  pbRatio: string;
+  ptbRatio: string;
+  evToSales: string;
+  enterpriseValueOverEBITDA: string;
+  evToOperatingCashFlow: string;
+  evToFreeCashFlow: string;
+  earningsYield: string;
+  freeCashFlowYield: string;
+  debtToEquity: string;
+  debtToAssets: string;
+  netDebtToEBITDA: string;
+  currentRatio: string;
+  interestCoverage: string;
+  incomeQuality: string;
+  dividendYield: string;
+  payoutRatio: string;
+  salesGeneralAndAdministrativeToRevenue: string;
+  researchAndDdevelopementToRevenue: string;
+  intangiblesToTotalAssets: string;
+  capexToOperatingCashFlow: string;
+  capexToRevenue: string;
+  capexToDepreciation: string;
+  stockBasedCompensationToRevenue: string;
+  grahamNumber: string;
+  roic: string;
+  returnOnTangibleAssets: string;
+  grahamNetNet: string;
+  workingCapital: string;
+  tangibleAssetValue: string;
+  netCurrentAssetValue: string;
+  investedCapital: string;
+  averageReceivables: string;
+  averagePayables: string;
+  averageInventory: string;
+  daysSalesOutstanding: string;
+  daysPayablesOutstanding: string;
+  daysOfInventoryOnHand: string;
+  receivablesTurnover: string;
+  payablesTurnover: string;
+  inventoryTurnover: string;
+  roe: string;
+  capexPerShare: string;
+}
+
 type Timeframe = '1D' | '5D' | '1M' | 'YTD' | '1Y' | '5Y' | 'MAX';
 
 type Statement =
@@ -329,4 +453,11 @@ type FormattedStatementData = (
   | FormattedIncomeStatement
   | FormattedBalanceSheet
   | FormattedCashFlow
+)[];
+
+type FormattedTableData = (
+  | FormattedIncomeStatement
+  | FormattedBalanceSheet
+  | FormattedCashFlow
+  | FormattedValuationData
 )[];

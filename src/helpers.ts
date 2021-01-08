@@ -77,7 +77,7 @@ export const shortenNumber = (number: number, decimals = 2) => {
   }
 };
 
-export const formatData = (data) => {
+export const formatData = (data: any) => {
   for (let key in data) {
     // replace null values with 'N/A'
     data = {
@@ -88,7 +88,7 @@ export const formatData = (data) => {
     // replace long numbers with a shortned version
     data = {
       ...data,
-      [key]: shortenNumber(data[key]),
+      [key]: data[key],
     };
   }
   return data;
@@ -159,43 +159,48 @@ export const formatStatementData = (
   return data.map((item) => formatData(item));
 };
 
-export const formatValuationDates = (data, period) => {
+export const formatValuationDates = (
+  data: FormattedValuationData[],
+  period: Period
+) => {
   // formats date based on period (annual or quarterly)
   if (period === 'quarter') {
-    data = data.map((item) => {
-      let date = new Date(item.date);
-      date = date.toLocaleDateString(undefined, {
+    return data.map((item) => {
+      const date = new Date(item.date);
+      const newDate = date.toLocaleDateString(undefined, {
         month: 'numeric',
         year: 'numeric',
       });
       return {
         ...item,
-        date,
+        newDate,
       };
     });
   } else {
-    data = data.map((item) => {
+    return data.map((item) => {
       return {
         ...item,
         date: new Date(item.date).getFullYear().toString(),
       };
     });
   }
-
-  return data;
 };
 
-export const formatValuationData = (data, period) => {
+export const formatValuationData = (
+  data: ValuationData[],
+  period: Period
+): FormattedValuationData[] => {
+  let formattedData: FormattedValuationData[];
   // replaces null values with N/A and large numbers with shortened versions
-  data = data.map((item) => {
-    item.earningsYield = item.earningsYield * 100;
+  formattedData = data.map((item) => {
+    item.earningsYield = item.earningsYield ? item.earningsYield * 100 : null;
     return formatData(item);
   });
 
   // formats date based on period (annual or quarterly)
-  data = formatValuationDates(data, period);
+  formattedData = formatValuationDates(formattedData, period);
 
-  return data;
+  return formattedData;
 };
 
 export const filterChartData = (data, timeframe) => {

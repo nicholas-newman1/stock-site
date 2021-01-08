@@ -1,6 +1,12 @@
 import React from 'react';
 
-const QuoteTableRow = ({ label, objectKey, tableData }) => {
+interface Props {
+  label: string;
+  objectKey: string;
+  tableData: { [key: string]: any }[];
+}
+
+const QuoteTableRow: React.FC<Props> = ({ label, objectKey, tableData }) => {
   return (
     <tr className='quote-table__tr'>
       <th className='quote-table__th-sticky'>{label}</th>

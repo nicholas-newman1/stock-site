@@ -9,9 +9,15 @@ import {
 import { formatValuationData } from '../../helpers';
 import useFetch from '../../hooks/useFetch';
 
-const QuoteValuation = ({ symbol }) => {
-  const [valuationData, setValuationData] = useState([]);
-  const [period, setPeriod] = useState('');
+interface Props {
+  symbol: string;
+}
+
+const QuoteValuation: React.FC<Props> = ({ symbol }) => {
+  const [valuationData, setValuationData] = useState<FormattedValuationData[]>(
+    []
+  );
+  const [period, setPeriod] = useState<Period>('');
 
   // custom hook fetches data
   const { data, loading } = useFetch(

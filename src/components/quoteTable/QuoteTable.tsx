@@ -4,7 +4,7 @@ import QuoteTableRow from './QuoteTableRow';
 import './quoteTable.css';
 
 interface Props {
-  statementData: FormattedStatementData;
+  statementData: FormattedTableData;
   tableHeadings: TableHeading[];
 }
 
