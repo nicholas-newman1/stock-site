@@ -19,7 +19,7 @@ interface Props {
 
 const QuoteChart: React.FC<Props> = ({ symbol }) => {
   const [timeframe, setTimeframe] = useState<Timeframe>('1D');
-  const [chartData, setChartData] = useState([]);
+  const [chartData, setChartData] = useState<FormattedHistoricalPrices>([]);
   const [timeScaleFormat, tooltipFormat] = useChartFormat(timeframe);
 
   /* depending on how far back data needs to be fetched (in terms of date), the

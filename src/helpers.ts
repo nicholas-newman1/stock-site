@@ -203,7 +203,10 @@ export const formatValuationData = (
   return formattedData;
 };
 
-export const filterChartData = (data, timeframe) => {
+export const filterChartData = (
+  data: HistoricalPrices,
+  timeframe: Timeframe
+) => {
   // filters out objects not within the timeframe
   if (timeframe === '1D') {
     data = data.filter((item) => {
@@ -234,9 +237,7 @@ export const filterChartData = (data, timeframe) => {
     });
   } else if (timeframe === 'YTD') {
     data = data.filter((item) => {
-      const yearBeginning = Date.parse(
-        new Date(new Date().getFullYear().toString())
-      );
+      const yearBeginning = Date.parse(new Date().getFullYear().toString());
       const itemDate = Date.parse(item.date);
       return itemDate > yearBeginning;
     });

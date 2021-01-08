@@ -433,7 +433,7 @@ interface FormattedValuationData {
   capexPerShare: string;
 }
 
-type Timeframe = '1D' | '5D' | '1M' | 'YTD' | '1Y' | '5Y' | 'MAX';
+type Timeframe = '1D' | '5D' | '1M' | '6M' | 'YTD' | '1Y' | '5Y' | 'MAX';
 
 type Statement =
   | 'income-statement'
@@ -461,3 +461,33 @@ type FormattedTableData = (
   | FormattedCashFlow
   | FormattedValuationData
 )[];
+
+type HistoricalPrices = (
+  | {
+      date: string;
+      open: number;
+      low: number;
+      high: number;
+      close: number;
+      volume: number;
+    }
+  | {
+      date: string;
+      open: number;
+      high: number;
+      low: number;
+      close: number;
+      volume: number;
+      unadjustedVolume: number;
+      change: number;
+      changePercent: number;
+      vwap: number;
+      label: string;
+      changeOverTime: number;
+    }
+)[];
+
+type FormattedHistoricalPrices = {
+  x: Date;
+  y: Number;
+}[];
