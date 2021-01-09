@@ -22,7 +22,7 @@ import { DisplayNavProvider } from './context/DisplayNavContext';
 import { WatchlistProvider } from './context/WatchlistContext';
 import { HelmetProvider } from 'react-helmet-async';
 
-const App = () => {
+const App: React.FC = () => {
   return (
     <HelmetProvider>
       <WatchlistProvider>
