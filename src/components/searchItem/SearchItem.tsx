@@ -3,7 +3,11 @@ import { Link } from 'react-router-dom';
 import { WatchlistContext } from '../../context/WatchlistContext';
 import './searchItem.css';
 
-const SearchResultsItem = ({ result }) => {
+interface Props {
+  result: SearchResult;
+}
+
+const SearchResultsItem: React.FC<Props> = ({ result }) => {
   const { watchlist, updateWatchlist } = useContext(WatchlistContext);
   const { symbol, name, exchangeShortName } = result;
 

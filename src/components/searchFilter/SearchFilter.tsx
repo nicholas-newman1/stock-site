@@ -3,8 +3,12 @@ import SearchFilterBtn from './SearchFilterBtn';
 import './searchFilter.css';
 import SearchFilterOption from './SearchFilterOption';
 
-const SearchResultsFilter = ({ setExchange }) => {
-  const [checked, setChecked] = useState('');
+interface Props {
+  setExchange: React.Dispatch<React.SetStateAction<Exchange>>;
+}
+
+const SearchResultsFilter: React.FC<Props> = ({ setExchange }) => {
+  const [checked, setChecked] = useState<Exchange>('');
   const [displayFilter, setDisplayFilter] = useState(false);
 
   const exchanges = [
@@ -21,7 +25,7 @@ const SearchResultsFilter = ({ setExchange }) => {
     'EURONEXT',
   ];
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setExchange(checked);
   };
@@ -44,7 +48,7 @@ const SearchResultsFilter = ({ setExchange }) => {
                   key={i}
                   checked={checked}
                   setChecked={setChecked}
-                  exchange={exchange}
+                  exchange={exchange as Exchange}
                 />
               ))}
             </div>

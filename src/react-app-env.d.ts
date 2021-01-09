@@ -491,3 +491,37 @@ type FormattedHistoricalPrices = {
   x: Date;
   y: Number;
 }[];
+
+type Exchange =
+  | ''
+  | 'INDEX'
+  | 'MUTUAL_FUND'
+  | 'NASDAQ'
+  | 'ETF'
+  | 'COMMODITY'
+  | 'CRYPTO'
+  | 'FOREX'
+  | 'TSX'
+  | 'AMEX'
+  | 'NYSE'
+  | 'EURONEXT';
+
+interface SearchResult {
+  symbol: string;
+  name: string;
+  currency: string;
+  stockExchange: string;
+  exchangeShortName: string;
+}
+
+interface SectorQuote {
+  sector: string;
+  changesPercentage: string;
+}
+
+interface MarketQuote {
+  ticker: string;
+  changes: number;
+  price: string;
+  changesPercentage: string;
+}

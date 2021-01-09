@@ -1,6 +1,10 @@
 import React from 'react';
 
-const PriceListItem = ({ data }) => {
+interface Props {
+  data: SectorQuote;
+}
+
+const PriceListItem: React.FC<Props> = ({ data }) => {
   let { sector, changesPercentage } = data;
   const color = changesPercentage.charAt(0) !== '-' ? 'green' : '#de0e00';
   const isPositive = changesPercentage.charAt(0) !== '-';

@@ -88,7 +88,7 @@ export const formatData = (data: any) => {
     // replace long numbers with a shortned version
     data = {
       ...data,
-      [key]: data[key],
+      [key]: shortenNumber(data[key]),
     };
   }
   return data;
@@ -267,18 +267,20 @@ export const filterChartData = (
   return data;
 };
 
-export const formatChartData = (data, timeframe) => {
+export const formatChartData = (
+  data: HistoricalPrices,
+  timeframe: Timeframe
+) => {
   /* removes data points not in the timeframe and thins out number of data
   points (max 300) */
-  data = filterChartData(data, timeframe);
-
   // formats data to be compatible with chartJS
-  data = data.map((item) => {
+  let formattedData: FormattedHistoricalPrices;
+  formattedData = filterChartData(data, timeframe).map((item) => {
     return {
       x: new Date(item.date),
       y: item.close,
     };
   });
 
-  return data;
+  return formattedData;
 };

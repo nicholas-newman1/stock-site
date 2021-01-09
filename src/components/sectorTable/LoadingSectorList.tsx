@@ -1,6 +1,6 @@
 import React from 'react';
 
-const LoadingSectorList = () => {
+const LoadingSectorList: React.FC = () => {
   const loadingArray = [1, 2, 3, 4, 5];
 
   return (

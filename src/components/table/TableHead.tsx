@@ -1,7 +1,11 @@
 import React, { useState } from 'react';
 import TableSortArrow from './TableSortArrow';
 
-const TableHead = ({ sortTableData }) => {
+interface Props {
+  sortTableData: (property: string, reverse: boolean) => void;
+}
+
+const TableHead: React.FC<Props> = ({ sortTableData }) => {
   const [reverse, setReverse] = useState(false);
   const [sortProperty, setSortProperty] = useState('name');
 
@@ -13,7 +17,7 @@ const TableHead = ({ sortTableData }) => {
     { property: 'changesPercentage', label: 'Percent Change' },
   ];
 
-  const handleClick = (property) => {
+  const handleClick = (property: string) => {
     sortTableData(property, !reverse);
     setReverse((prevReverse) => !prevReverse);
     setSortProperty(property);

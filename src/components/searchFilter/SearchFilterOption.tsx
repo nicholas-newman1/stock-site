@@ -1,7 +1,17 @@
 import React from 'react';
 
-const SearchFilterOption = ({ checked, setChecked, exchange }) => {
-  const handleChange = (exchange) => {
+interface Props {
+  checked: Exchange;
+  setChecked: React.Dispatch<React.SetStateAction<Exchange>>;
+  exchange: Exchange;
+}
+
+const SearchFilterOption: React.FC<Props> = ({
+  checked,
+  setChecked,
+  exchange,
+}) => {
+  const handleChange = () => {
     setChecked(checked === exchange ? '' : exchange);
   };
 
@@ -12,7 +22,7 @@ const SearchFilterOption = ({ checked, setChecked, exchange }) => {
         type='checkbox'
         value={exchange}
         checked={checked === exchange}
-        onChange={() => handleChange(exchange)}
+        onChange={handleChange}
       />
       {exchange}
     </label>

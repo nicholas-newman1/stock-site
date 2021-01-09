@@ -2,7 +2,11 @@ import React, { useContext } from 'react';
 import { WatchlistContext } from '../../context/WatchlistContext';
 import './quoteWatchlistBtn.css';
 
-const QuoteWatchlistBtn = ({ symbol }) => {
+interface Props {
+  symbol: string;
+}
+
+const QuoteWatchlistBtn: React.FC<Props> = ({ symbol }) => {
   const { watchlist, updateWatchlist } = useContext(WatchlistContext);
 
   return (

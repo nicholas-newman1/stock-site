@@ -2,7 +2,15 @@ import React from 'react';
 
 /* This component toggles the visiblity of the search filter */
 
-const SearchFilterBtn = ({ displayFilter, setDisplayFilter }) => {
+interface Props {
+  displayFilter: boolean;
+  setDisplayFilter: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+const SearchFilterBtn: React.FC<Props> = ({
+  displayFilter,
+  setDisplayFilter,
+}) => {
   return (
     <button
       className='search-filter__toggle search-filter__btn'

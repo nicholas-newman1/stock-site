@@ -27,7 +27,7 @@ const Sectors = () => {
             <LoadingSectorList />
           ) : (
             data.map(
-              (quote, i) =>
+              (quote: SectorQuote, i: number) =>
                 (i < 5 || showAllSectors) && (
                   <SectorRow key={quote.sector} data={quote} />
                 )

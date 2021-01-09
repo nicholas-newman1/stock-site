@@ -1,7 +1,19 @@
 import React, { useEffect } from 'react';
 import './tableOptions.css';
 
-const TableOptions = ({ page, setPage, resultsPerPage, setResultsPerPage }) => {
+interface Props {
+  page: number;
+  setPage: React.Dispatch<React.SetStateAction<number>>;
+  resultsPerPage: number;
+  setResultsPerPage: React.Dispatch<React.SetStateAction<number>>;
+}
+
+const TableOptions: React.FC<Props> = ({
+  page,
+  setPage,
+  resultsPerPage,
+  setResultsPerPage,
+}) => {
   useEffect(() => {
     // Go to the first page upon changing the number of results per page
     if (page !== 0) setPage(0);

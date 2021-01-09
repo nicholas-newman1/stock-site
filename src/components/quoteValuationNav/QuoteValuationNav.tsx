@@ -1,20 +1,28 @@
 import React, { useEffect, useRef } from 'react';
 import './quoteValuationNav.css';
 
-const QuoteValuationNav = ({ setPeriod }) => {
-  const updateDisabled = (e) => {
+interface Props {
+  setPeriod: React.Dispatch<React.SetStateAction<Period>>;
+}
+
+const QuoteValuationNav: React.FC<Props> = ({ setPeriod }) => {
+  const updateDisabled = (
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) => {
     // set all button's disabled attribute to false
-    [...e.target.parentNode.children].forEach((btn) => {
+    const btn = e.target as HTMLButtonElement;
+    const btns = Array.from(btn.parentElement!.children) as HTMLButtonElement[];
+    btns.forEach((btn) => {
       btn.disabled = false;
     });
     // set the new button's disabled attribute to true
-    e.target.disabled = true;
+    btn.disabled = true;
   };
 
-  const firstBtn = useRef<HTMLButtonElement>();
+  const firstBtn = useRef<HTMLButtonElement>(null);
   useEffect(() => {
     // set disabled button on component mount
-    firstBtn.current.disabled = true;
+    firstBtn.current!.disabled = true;
   }, []);
 
   return (

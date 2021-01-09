@@ -1,6 +1,10 @@
 import React from 'react';
 
-const TableSortArrow = ({ style }) => {
+interface Props {
+  style: { [key: string]: string };
+}
+
+const TableSortArrow: React.FC<Props> = ({ style }) => {
   return (
     <svg
       className='table__sort-arrow'

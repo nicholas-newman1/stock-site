@@ -3,7 +3,19 @@ import TableHead from './TableHead';
 import TableRow from './TableRow';
 import './tabletable.css';
 
-const TableTable = ({ tableData, page, resultsPerPage, sortTableData }) => {
+interface Props {
+  tableData: Quote[];
+  page: number;
+  resultsPerPage: number;
+  sortTableData: (property: string, reverse?: boolean) => void;
+}
+
+const TableTable: React.FC<Props> = ({
+  tableData,
+  page,
+  resultsPerPage,
+  sortTableData,
+}) => {
   const offset = page * resultsPerPage;
   return (
     <table className='table'>
@@ -16,7 +28,8 @@ const TableTable = ({ tableData, page, resultsPerPage, sortTableData }) => {
           return (
             itemInRange && (
               <TableRow
-                key={item.loadingId ? item.loadingId : item.symbol}
+                //key={item.hasOwnProperty('loadingId') ? item.loadingId : item.symbol}
+                key={item.symbol}
                 item={item}
                 index={i}
               />

@@ -1,7 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const PriceListItem = ({ data }) => {
+interface Props {
+  data: MarketQuote;
+}
+
+const PriceListItem: React.FC<Props> = ({ data }) => {
   let { ticker, price, changes, changesPercentage } = data;
   const color = changes > 0 ? 'green' : '#de0e00';
   const isPositive = changes > 0;
@@ -23,16 +27,18 @@ const PriceListItem = ({ data }) => {
   }
 
   // limit changes decimal places
+  let changesStr = '';
   if (changes) {
-    changes = changes.toLocaleString(undefined, {
+    changesStr = changes.toLocaleString(undefined, {
       maximumFractionDigits: decimals,
       minimumFractionDigits: decimals,
     });
   }
 
   // limit price decimal places
+  let priceStr = '';
   if (price) {
-    price = parseFloat(price).toLocaleString(undefined, {
+    priceStr = parseFloat(price).toLocaleString(undefined, {
       maximumFractionDigits: decimals,
       minimumFractionDigits: decimals,
     });
@@ -45,10 +51,10 @@ const PriceListItem = ({ data }) => {
           {ticker}
         </Link>
       </td>
-      <td className='stock-table__td'>${price}</td>
+      <td className='stock-table__td'>${priceStr}</td>
       <td className='stock-table__td' style={{ color }}>
         {isPositive && '+'}
-        {changes}
+        {changesStr}
       </td>
       <td className='stock-table__td' style={{ color }}>
         {changesPercentage}

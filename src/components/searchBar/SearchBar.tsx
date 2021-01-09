@@ -5,7 +5,7 @@ import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { DisplayNavContext } from '../../context/DisplayNavContext';
 
-const SearchBar = () => {
+const SearchBar: React.FC = () => {
   const [text, setText] = useState('');
 
   // used to close nav whenever a search is made (small screens only)

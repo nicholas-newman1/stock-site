@@ -18,16 +18,8 @@ interface MatchParams {
 
 interface Props extends RouteComponentProps<MatchParams> {}
 
-interface Result {
-  symbol: string;
-  name: string;
-  currency: string;
-  stockExchange: string;
-  exchangeShortName: string;
-}
-
 const SearchResults: React.FC<Props> = ({ match }) => {
-  const [exchange, setExchange] = useState('');
+  const [exchange, setExchange] = useState<Exchange>('');
   const [page, setPage] = useState(0);
   const [resultsPerPage] = useState(10);
   const offset = page * resultsPerPage;
@@ -69,7 +61,7 @@ const SearchResults: React.FC<Props> = ({ match }) => {
           />
 
           <ul className='search-results-page'>
-            {data.map((result: Result, i: number) => {
+            {data.map((result: SearchResult, i: number) => {
               const itemInRange =
                 i <= offset + resultsPerPage - 1 && i >= offset;
               return (

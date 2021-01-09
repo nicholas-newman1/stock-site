@@ -3,7 +3,12 @@ import LoadingStockList from './LoadingStockList';
 import StockRow from './StockRow';
 import './stockTable.css';
 
-const StockList = ({ data, loading }) => {
+interface Props {
+  data: MarketQuote[];
+  loading: boolean;
+}
+
+const StockList: React.FC<Props> = ({ data, loading }) => {
   return (
     <table className='stock-table'>
       <thead className='stock-table__thead'>
