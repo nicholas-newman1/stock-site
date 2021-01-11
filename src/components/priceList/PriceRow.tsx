@@ -8,7 +8,7 @@ interface Props {
 
 const PriceRow: React.FC<Props> = ({ data }) => {
   let { symbol, price, change, changesPercentage } = data;
-  const color = change > 0 ? 'green' : '#de0e00';
+  const color = change > 0 ? 'green' : change < 0 ? '#de0e00' : 'black';
   const isPositive = change > 0;
 
   let symbolText = symbol;
@@ -19,8 +19,8 @@ const PriceRow: React.FC<Props> = ({ data }) => {
 
   // Round change and price based on maginitude of change in price
   let decimals = decimalsToRoundTo(change);
-  let changeStr = '';
-  let priceStr = '';
+  let changeStr = '0';
+  let priceStr = '0';
   if (change) changeStr = round(change, decimals, true);
   if (price) priceStr = round(price, decimals, true);
 

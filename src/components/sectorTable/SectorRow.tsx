@@ -6,8 +6,9 @@ interface Props {
 
 const PriceListItem: React.FC<Props> = ({ data }) => {
   let { sector, changesPercentage } = data;
-  const color = changesPercentage.charAt(0) !== '-' ? 'green' : '#de0e00';
-  const isPositive = changesPercentage.charAt(0) !== '-';
+  const changesNum = parseFloat(changesPercentage);
+  const color = changesNum > 0 ? 'green' : changesNum < 0 ? '#de0e00' : 'black';
+  const isPositive = changesNum > 0;
 
   return (
     <tr className='sector-table__tr'>

@@ -19,7 +19,7 @@ const Sectors = () => {
         <thead className='sector-table__thead'>
           <tr className='sector-table__tr'>
             <th className='sector-table__th'>Sector</th>
-            <th className='sector-table__th'>Change (%)</th>
+            <th className='sector-table__th'>Change</th>
           </tr>
         </thead>
         <tbody className='sector-table__tbody'>

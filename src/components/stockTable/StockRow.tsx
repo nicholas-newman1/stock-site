@@ -7,7 +7,7 @@ interface Props {
 
 const PriceListItem: React.FC<Props> = ({ data }) => {
   let { ticker, price, changes, changesPercentage } = data;
-  const color = changes > 0 ? 'green' : '#de0e00';
+  const color = changes > 0 ? 'green' : changes < 0 ? '#de0e00' : 'black';
   const isPositive = changes > 0;
 
   // number to represent how many decimals will be displayed
@@ -27,7 +27,7 @@ const PriceListItem: React.FC<Props> = ({ data }) => {
   }
 
   // limit changes decimal places
-  let changesStr = '';
+  let changesStr = '0';
   if (changes) {
     changesStr = changes.toLocaleString(undefined, {
       maximumFractionDigits: decimals,
@@ -36,7 +36,7 @@ const PriceListItem: React.FC<Props> = ({ data }) => {
   }
 
   // limit price decimal places
-  let priceStr = '';
+  let priceStr = '0';
   if (price) {
     priceStr = parseFloat(price).toLocaleString(undefined, {
       maximumFractionDigits: decimals,

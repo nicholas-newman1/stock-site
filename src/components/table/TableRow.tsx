@@ -15,8 +15,8 @@ const TableRow: React.FC<Props> = ({ item, index }) => {
 
   // Round values based on maginitude of change in price
   let decimals = decimalsToRoundTo(change);
-  let changeStr = '';
-  let priceStr = '';
+  let changeStr = '0';
+  let priceStr = '0';
   if (change) changeStr = round(change, decimals, true);
   if (price) priceStr = round(price, decimals, true);
 

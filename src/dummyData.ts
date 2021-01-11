@@ -1710,7 +1710,7 @@ export const dummyIndexPageData = [
 export const dummySectorsData = [
   {
     sector: 'Aerospace & Defense',
-    changesPercentage: '-5.2218%',
+    changesPercentage: '0%',
   },
   {
     sector: 'Airlines',
