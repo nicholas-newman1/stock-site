@@ -1,21 +1,5 @@
 import * as helpers from './helpers';
 
-/* DONT DEPEND ON ENVIRONMENT (AVOID FLAKINESS - SOMETIMES PASS/FAIL) 
-   Possible sources:
-   - Time dependence
-   - Network availability
-   - Explicit randomness
-   - Multithreading
-   - System dependence
-*/
-// ONE ASSERTION PER TEST
-// WRITE TESTS FIRST (KEEPS USER IN MIND, TESTS SHOULD FAIL FIRST)
-// TESTS ARE INDEPENDENT, THE INPUT OF ONE TEST SHOULD NOT DEPEND ON THE OUTPUT OF ANOTHER TEST
-// DON'T SHARE MUTABLE DATA BETWEEN TESTS (CAREFUL FOR GLOBAL STATE IN MODEL CODE)
-// SINGLE TEST SHOULD RUN IN A SECOND OR LESS, SUITE WITHIN A MINUTE (OTHERWISE SPLIT SUITES), FAIL FAST BY RUNNING SLOWEST TESTS LAST
-// DON"T USE THE SAME DATA IN EVERY TEST
-// DON'T USE CONDITIONAL LOGIC, MAKE SERPARATE TESTS
-
 describe('truncate', () => {
   it('should truncate strings to a given length', () => {
     expect(helpers.truncate('hello world', 6)).toBe('hello');
