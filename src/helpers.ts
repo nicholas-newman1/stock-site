@@ -32,7 +32,9 @@ export const getTimeAgoString = (timestamp: number) => {
 
   // return timeAgo string
   if (timeAgo < MINUTE) return `less than a minute ago`;
+  if (timeAgo < MINUTE * 2) return `A minute ago`;
   if (timeAgo < HOUR) return `${Math.floor(timeAgo / MINUTE)} minutes ago`;
+  if (timeAgo < HOUR * 2) return `An hour ago`;
   if (timeAgo < DAY) return `${Math.floor(timeAgo / HOUR)} hours ago`;
   if (timeAgo < DAY * 2) return `A day ago`;
   if (timeAgo < YEAR) return `${Math.floor(timeAgo / DAY)} days ago`;
@@ -50,8 +52,8 @@ export const formatAMPM = (timestamp: number) => {
   });
 };
 
+// Make phone numbers more readable
 export const formatPhoneNumber = (phoneNumberString: string) => {
-  // Make phone numbers more readable
   var cleaned = ('' + phoneNumberString).replace(/\D/g, '');
   var match = cleaned.match(/^(1|)?(\d{3})(\d{3})(\d{4})$/);
   if (match) {
