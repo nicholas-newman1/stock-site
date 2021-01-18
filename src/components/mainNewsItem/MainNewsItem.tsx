@@ -36,7 +36,7 @@ const MainNewsItem: React.FC = () => {
           </a>
         </h1>
         <p className='main-news__meta'>
-          {site} - <em>{getTimeAgoString(publishedDate)}</em>
+          {site} - <em>{getTimeAgoString(Date.parse(publishedDate))}</em>
         </p>
         <p className='main-news__description'>
           {text.length > 200 ? <>{truncate(text, 200)}&hellip;</> : text}

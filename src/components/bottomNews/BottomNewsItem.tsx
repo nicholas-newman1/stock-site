@@ -25,7 +25,7 @@ const QuoteNewsItem: React.FC<Props> = ({ newsItem }) => {
 
         <p className='bottom-news__meta'>
           {site.replace(/(^\w+:|^)\/\//, '').replace(/www./, '')} -{' '}
-          <em>{getTimeAgoString(publishedDate)}</em>
+          <em>{getTimeAgoString(Date.parse(publishedDate))}</em>
         </p>
 
         <p className='bottom-news__text'>

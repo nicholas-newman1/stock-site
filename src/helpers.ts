@@ -1,36 +1,53 @@
+/* Takes in a string and a number. Truncates the string to have a length no
+longer than the number provided. It will also remove partial words from the
+end of the string. */
 export function truncate(str: string, n: number) {
+  // return str unaltered if either paramater is of the wrong type
   if (typeof str !== 'string' || typeof n !== 'number') {
     return str;
   }
-  // shorten string based on n
+
+  // return string unaltered if its length is already < n
   if (str.length <= n) {
     return str;
   }
-  const subString = str.substr(0, n - 1);
+
+  // cut string to length of n and return it w/o partial words at the end
+  const subString = str.substr(0, n);
   return subString.substr(0, subString.lastIndexOf(' '));
 }
 
-export const getTimeAgoString = (date: string) => {
-  if (typeof date !== 'string') return date;
-  const timeAgo = new Date(Date.now() - Date.parse(date));
-  if (timeAgo.getMinutes() < 1) return `less than a minute ago`;
-  if (timeAgo.getHours() < 1) return `${timeAgo.getMinutes()} minutes ago`;
-  if (timeAgo.getHours() === 1) return `An hour ago`;
-  if (timeAgo.getHours() > 1) return `${timeAgo.getHours()} hours ago`;
+// converts milliseconds since epoch to a string indicating how long ago
+export const getTimeAgoString = (timestamp: number) => {
+  if (typeof timestamp !== 'number') return timestamp;
+
+  // constants
+  const MINUTE = 1000 * 60;
+  const HOUR = MINUTE * 60;
+  const DAY = HOUR * 24;
+  const YEAR = DAY * 365;
+
+  // timeAgo === milliseconds since given date
+  const timeAgo = Date.now() - timestamp;
+
+  // return timeAgo string
+  if (timeAgo < MINUTE) return `less than a minute ago`;
+  if (timeAgo < HOUR) return `${Math.floor(timeAgo / MINUTE)} minutes ago`;
+  if (timeAgo < DAY) return `${Math.floor(timeAgo / HOUR)} hours ago`;
+  if (timeAgo < DAY * 2) return `A day ago`;
+  if (timeAgo < YEAR) return `${Math.floor(timeAgo / DAY)} days ago`;
+  if (timeAgo < YEAR * 2) return `A year ago`;
+  return `${Math.floor(timeAgo / YEAR)} years ago`;
 };
 
+// convert milliseconds since epoch to AM/PM time
 export const formatAMPM = (timestamp: number) => {
   if (typeof timestamp !== 'number') return timestamp;
-  // convert timestamp to AM/PM time
-  const date = new Date(timestamp);
-  let hours = date.getHours();
-  let minutes: number | string = date.getMinutes();
-  const ampm = hours >= 12 ? 'pm' : 'am';
-  hours = hours % 12;
-  hours = hours ? hours : 12; // the hour '0' should be '12'
-  minutes = minutes < 10 ? '0' + minutes : minutes;
-  const strTime = hours + ':' + minutes + ' ' + ampm;
-  return strTime;
+
+  return new Date(timestamp).toLocaleTimeString([], {
+    hour: 'numeric',
+    minute: 'numeric',
+  });
 };
 
 export const formatPhoneNumber = (phoneNumberString: string) => {
