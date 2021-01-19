@@ -80,20 +80,23 @@ export const sortArrayOfQuotes = (
   return sortedData;
 };
 
-export const shortenNumber = (number: number, decimals = 2) => {
-  /* Return a number in localeString format (ex. commas added). Large numbers are
-  shortened and a letter is added (Ex. M = Million). Decimals are rounded */
-
+/* Returns a string where, if necessary, a given number is shortened and a
+letter is added. Rounded to 2 decimals. Numbers < 1 million should include
+trailing zeros */
+export const shortenNumber = (number: number) => {
   if (typeof number !== 'number') return number;
 
   if (number >= 1000000000000 || number <= -1000000000000) {
-    return `${round(number / 1000000000000, decimals)}T`;
+    return `${parseFloat((number / 1000000000000).toFixed(2))}T`;
   } else if (number >= 1000000000 || number <= -1000000000) {
-    return `${round(number / 1000000000, decimals)}B`;
+    return `${parseFloat((number / 1000000000).toFixed(2))}B`;
   } else if (number >= 1000000 || number <= -1000000) {
-    return `${round(number / 1000000, decimals)}M`;
+    return `${parseFloat((number / 1000000).toFixed(2))}M`;
   } else {
-    return round(number, decimals, true);
+    return number.toLocaleString(undefined, {
+      maximumFractionDigits: 2,
+      minimumFractionDigits: 2,
+    });
   }
 };
 

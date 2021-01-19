@@ -151,3 +151,46 @@ describe('sortArrayOfQuotes', () => {
     ]);
   });
 });
+
+describe('shortenNumber', () => {
+  it('should convert to trillions, round to two decimals, and add a T', () => {
+    expect(helpers.shortenNumber(2345786908542)).toBe('2.35T');
+  });
+
+  it('should convert to billions, round to two decimals, and add a B', () => {
+    expect(helpers.shortenNumber(2342786908)).toBe('2.34B');
+  });
+
+  it('should convert to millions, round to two decimals, and add an M', () => {
+    expect(helpers.shortenNumber(4392786)).toBe('4.39M');
+  });
+
+  it('should return thousands in local format and round to two decimals', () => {
+    expect(helpers.shortenNumber(11456.6743)).toBe(
+      (11456.6743).toLocaleString(undefined, {
+        maximumFractionDigits: 2,
+      })
+    );
+  });
+
+  it('should not include trailing zeros on numbers >= 1 trillion', () => {
+    expect(helpers.shortenNumber(243199000000000)).toBe('243.2T');
+  });
+
+  it('should not include trailing zeros on numbers >= 1 billion', () => {
+    expect(helpers.shortenNumber(9000000000)).toBe('9B');
+  });
+
+  it('should not include trailing zeros on numbers >= 1 million', () => {
+    expect(helpers.shortenNumber(14799000)).toBe('14.8M');
+  });
+
+  it('should include trailing zeros on number < 1 million', () => {
+    expect(helpers.shortenNumber(132985.799)).toBe(
+      (132985.799).toLocaleString(undefined, {
+        maximumFractionDigits: 2,
+        minimumFractionDigits: 2,
+      })
+    );
+  });
+});
