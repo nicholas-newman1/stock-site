@@ -63,8 +63,9 @@ export const formatPhoneNumber = (phoneNumberString: string) => {
   return phoneNumberString;
 };
 
-export const sortData = (
-  data: any[],
+// Takes in an array of quotes and sorts based on the given property
+export const sortArrayOfQuotes = (
+  data: Quote[],
   property: string,
   reverseOrder = false
 ) => {

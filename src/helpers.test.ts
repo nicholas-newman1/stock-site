@@ -106,3 +106,48 @@ describe('formatPhoneNumber', () => {
     expect(helpers.formatPhoneNumber('666 8675309')).toBe('(666) 867-5309');
   });
 });
+
+describe('sortArrayOfQuotes', () => {
+  const DATA = [
+    { symbol: 'D', price: 14.35, changesPercentage: 4.5 },
+    { symbol: 'A', price: 4.21, changesPercentage: 8.5 },
+    { symbol: 'B', price: 9.6, changesPercentage: 1.5 },
+    { symbol: 'C', price: 1295.23, changesPercentage: 90.5 },
+  ] as Quote[];
+
+  it('should sort alphabetically', () => {
+    expect(helpers.sortArrayOfQuotes(DATA, 'symbol')).toEqual([
+      { symbol: 'A', price: 4.21, changesPercentage: 8.5 },
+      { symbol: 'B', price: 9.6, changesPercentage: 1.5 },
+      { symbol: 'C', price: 1295.23, changesPercentage: 90.5 },
+      { symbol: 'D', price: 14.35, changesPercentage: 4.5 },
+    ]);
+  });
+
+  it('should sort reverse alphabetically', () => {
+    expect(helpers.sortArrayOfQuotes(DATA, 'symbol', true)).toEqual([
+      { symbol: 'D', price: 14.35, changesPercentage: 4.5 },
+      { symbol: 'C', price: 1295.23, changesPercentage: 90.5 },
+      { symbol: 'B', price: 9.6, changesPercentage: 1.5 },
+      { symbol: 'A', price: 4.21, changesPercentage: 8.5 },
+    ]);
+  });
+
+  it('should sort least to greatest', () => {
+    expect(helpers.sortArrayOfQuotes(DATA, 'price')).toEqual([
+      { symbol: 'A', price: 4.21, changesPercentage: 8.5 },
+      { symbol: 'B', price: 9.6, changesPercentage: 1.5 },
+      { symbol: 'D', price: 14.35, changesPercentage: 4.5 },
+      { symbol: 'C', price: 1295.23, changesPercentage: 90.5 },
+    ]);
+  });
+
+  it('should sort greatest to least', () => {
+    expect(helpers.sortArrayOfQuotes(DATA, 'price', true)).toEqual([
+      { symbol: 'C', price: 1295.23, changesPercentage: 90.5 },
+      { symbol: 'D', price: 14.35, changesPercentage: 4.5 },
+      { symbol: 'B', price: 9.6, changesPercentage: 1.5 },
+      { symbol: 'A', price: 4.21, changesPercentage: 8.5 },
+    ]);
+  });
+});
