@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import PageNav from '../pageNav/PageNav';
 import TableTable from './TableTable';
 import TableOptions from './TableOptions';
-import { sortArrayOfQuotes } from '../../helpers';
+import { sortArrayOfObjects } from '../../helpers';
 import Spinner from '../Spinner';
 
 interface Props {
@@ -20,7 +20,7 @@ const Table: React.FC<Props> = ({ loading, tableData, setTableData }) => {
 
   // sort data by property
   const sortTableData = (property: string, reverse = false) => {
-    setTableData((prevData) => sortArrayOfQuotes(prevData, property, reverse));
+    setTableData((prevData) => sortArrayOfObjects(prevData, property, reverse));
   };
 
   useEffect(() => {

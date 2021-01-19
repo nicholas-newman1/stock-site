@@ -107,47 +107,47 @@ describe('formatPhoneNumber', () => {
   });
 });
 
-describe('sortArrayOfQuotes', () => {
+describe('sortArrayOfObjects', () => {
   const DATA = [
-    { symbol: 'D', price: 14.35, changesPercentage: 4.5 },
-    { symbol: 'A', price: 4.21, changesPercentage: 8.5 },
-    { symbol: 'B', price: 9.6, changesPercentage: 1.5 },
-    { symbol: 'C', price: 1295.23, changesPercentage: 90.5 },
-  ] as Quote[];
+    { symbol: 'D', price: 14.35 },
+    { symbol: 'A', price: 4.21 },
+    { symbol: 'B', price: 9.6 },
+    { symbol: 'C', price: 1295.23 },
+  ];
 
   it('should sort alphabetically', () => {
-    expect(helpers.sortArrayOfQuotes(DATA, 'symbol')).toEqual([
-      { symbol: 'A', price: 4.21, changesPercentage: 8.5 },
-      { symbol: 'B', price: 9.6, changesPercentage: 1.5 },
-      { symbol: 'C', price: 1295.23, changesPercentage: 90.5 },
-      { symbol: 'D', price: 14.35, changesPercentage: 4.5 },
+    expect(helpers.sortArrayOfObjects(DATA, 'symbol')).toEqual([
+      { symbol: 'A', price: 4.21 },
+      { symbol: 'B', price: 9.6 },
+      { symbol: 'C', price: 1295.23 },
+      { symbol: 'D', price: 14.35 },
     ]);
   });
 
   it('should sort reverse alphabetically', () => {
-    expect(helpers.sortArrayOfQuotes(DATA, 'symbol', true)).toEqual([
-      { symbol: 'D', price: 14.35, changesPercentage: 4.5 },
-      { symbol: 'C', price: 1295.23, changesPercentage: 90.5 },
-      { symbol: 'B', price: 9.6, changesPercentage: 1.5 },
-      { symbol: 'A', price: 4.21, changesPercentage: 8.5 },
+    expect(helpers.sortArrayOfObjects(DATA, 'symbol', true)).toEqual([
+      { symbol: 'D', price: 14.35 },
+      { symbol: 'C', price: 1295.23 },
+      { symbol: 'B', price: 9.6 },
+      { symbol: 'A', price: 4.21 },
     ]);
   });
 
   it('should sort least to greatest', () => {
-    expect(helpers.sortArrayOfQuotes(DATA, 'price')).toEqual([
-      { symbol: 'A', price: 4.21, changesPercentage: 8.5 },
-      { symbol: 'B', price: 9.6, changesPercentage: 1.5 },
-      { symbol: 'D', price: 14.35, changesPercentage: 4.5 },
-      { symbol: 'C', price: 1295.23, changesPercentage: 90.5 },
+    expect(helpers.sortArrayOfObjects(DATA, 'price')).toEqual([
+      { symbol: 'A', price: 4.21 },
+      { symbol: 'B', price: 9.6 },
+      { symbol: 'D', price: 14.35 },
+      { symbol: 'C', price: 1295.23 },
     ]);
   });
 
   it('should sort greatest to least', () => {
-    expect(helpers.sortArrayOfQuotes(DATA, 'price', true)).toEqual([
-      { symbol: 'C', price: 1295.23, changesPercentage: 90.5 },
-      { symbol: 'D', price: 14.35, changesPercentage: 4.5 },
-      { symbol: 'B', price: 9.6, changesPercentage: 1.5 },
-      { symbol: 'A', price: 4.21, changesPercentage: 8.5 },
+    expect(helpers.sortArrayOfObjects(DATA, 'price', true)).toEqual([
+      { symbol: 'C', price: 1295.23 },
+      { symbol: 'D', price: 14.35 },
+      { symbol: 'B', price: 9.6 },
+      { symbol: 'A', price: 4.21 },
     ]);
   });
 });
@@ -194,3 +194,5 @@ describe('shortenNumber', () => {
     );
   });
 });
+
+// ADD GENERICS TO SORT ARRAY OF QUOTES TO MAKE IT MORE AVAILABLE TO USE

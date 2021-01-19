@@ -64,13 +64,13 @@ export const formatPhoneNumber = (phoneNumberString: string) => {
 };
 
 // Takes in an array of quotes and sorts based on the given property
-export const sortArrayOfQuotes = (
-  data: Quote[],
+export const sortArrayOfObjects = <T>(
+  data: T[],
   property: string,
   reverseOrder = false
 ) => {
   const sortedData = [...data];
-  const compare = (a: any, b: any) => {
+  const compare = (a: { [key: string]: any }, b: { [key: string]: any }) => {
     let comparison = 0;
     if (a[property] < b[property]) comparison = -1;
     if (a[property] > b[property]) comparison = 1;
