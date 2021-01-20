@@ -198,3 +198,126 @@ describe('shortenNumber', () => {
     );
   });
 });
+
+describe('replaceNullValues', () => {
+  it('should replace the null value in an object with a single property', () => {
+    expect(helpers.replaceNullValues({ key: null })).toEqual({ key: 'N/A' });
+  });
+
+  it('should replace the null value in an object with a multiple properties', () => {
+    const DATA = { key1: 'hello', key2: null, key3: 647 };
+    const RESULT = { key1: 'hello', key2: 'N/A', key3: 647 };
+    expect(helpers.replaceNullValues(DATA)).toEqual(RESULT);
+  });
+
+  it('should replace all null values in an object', () => {
+    const DATA = { key1: 'hello', key2: null, key3: null };
+    const RESULT = { key1: 'hello', key2: 'N/A', key3: 'N/A' };
+    expect(helpers.replaceNullValues(DATA)).toEqual(RESULT);
+  });
+});
+
+describe('shortenNumbers', () => {
+  it('should shorten the number in the object', () => {
+    const DATA = { key: 567845000 };
+    const RESULT = { key: helpers.shortenNumber(567845000) };
+    expect(helpers.shortenNumbers(DATA)).toEqual(RESULT);
+  });
+
+  it('should shorten the number in an object with multiple properties', () => {
+    const DATA = { key1: 'property', key2: 567845000, key3: false };
+    const RESULT = {
+      key1: 'property',
+      key2: helpers.shortenNumber(567845000),
+      key3: false,
+    };
+    expect(helpers.shortenNumbers(DATA)).toEqual(RESULT);
+  });
+
+  it('should shorten all number in an object', () => {
+    const DATA = {
+      key1: 189850720225.21315425,
+      key2: 567845000.432,
+      key3: false,
+    };
+    const RESULT = {
+      key1: helpers.shortenNumber(189850720225.21315425),
+      key2: helpers.shortenNumber(567845000.432),
+      key3: false,
+    };
+    expect(helpers.shortenNumbers(DATA)).toEqual(RESULT);
+  });
+});
+
+describe('truncateDecimals', () => {
+  it('should truncate to a given decimal place', () => {
+    expect(helpers.truncateDecimals(12.463, 2)).toBe(12.46);
+  });
+
+  it('should truncate to a given decimal place without rounding up', () => {
+    expect(helpers.truncateDecimals(157.465689, 4)).toBe(157.4656);
+  });
+
+  it('should truncate to 0 decimals when given a negative decimal place', () => {
+    expect(helpers.truncateDecimals(1.3, -1)).toBe(1);
+  });
+
+  it('should return the number unchanged when the given decimal places exceed the number of decimals on the given number', () => {
+    expect(helpers.truncateDecimals(9.345, 10)).toBe(9.345);
+  });
+});
+
+describe('decimalsToRoundTo', () => {
+  it('should return a minimum value of 2', () => {
+    expect(helpers.decimalsToRoundTo(345)).toBe(2);
+  });
+
+  it('should return the correct number of decimals', () => {
+    expect(helpers.decimalsToRoundTo(0.005)).toBe(3);
+  });
+
+  it('should return the correct number of decimals', () => {
+    expect(helpers.decimalsToRoundTo(0.00003)).toBe(5);
+  });
+
+  it('should return the correct number of decimals with negative numbers', () => {
+    expect(helpers.decimalsToRoundTo(-0.0009)).toBe(4);
+  });
+});
+
+describe('roundLocale', () => {
+  it('should return the given number to the given decimals in local format', () => {
+    expect(helpers.roundLocale(16.54673, 2)).toBe(
+      (16.54673).toLocaleString(undefined, {
+        maximumFractionDigits: 2,
+      })
+    );
+  });
+
+  it('should include trailing zeros', () => {
+    expect(helpers.roundLocale(560.000673, 2, true)).toBe(
+      (560.000673).toLocaleString(undefined, {
+        maximumFractionDigits: 2,
+        minimumFractionDigits: 2,
+      })
+    );
+  });
+});
+
+describe('getChangeColor', () => {
+  it('should return black when the given change is not of type number', () => {
+    expect(helpers.getChangeColor('N/A')).toBe('black');
+  });
+
+  it('should return "black" when change is zero', () => {
+    expect(helpers.getChangeColor(0)).toBe('black');
+  });
+
+  it('should return "green" when change is positive', () => {
+    expect(helpers.getChangeColor(23)).toBe('green');
+  });
+
+  it('should return "#de0e00" when change is negative', () => {
+    expect(helpers.getChangeColor(-0.001)).toBe('#de0e00');
+  });
+});

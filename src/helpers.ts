@@ -100,6 +100,7 @@ export const shortenNumber = (number: number) => {
   }
 };
 
+// Takes in an object and replaces any null values with 'N/A'
 export const replaceNullValues = (data: { [key: string]: any }) => {
   for (let key in data) {
     const value = data[key];
@@ -112,6 +113,7 @@ export const replaceNullValues = (data: { [key: string]: any }) => {
   return data;
 };
 
+// Takes in an object and replaces numbers with shortenNumber()
 export const shortenNumbers = (data: { [key: string]: any }) => {
   for (let key in data) {
     const value = data[key];
@@ -124,37 +126,35 @@ export const shortenNumbers = (data: { [key: string]: any }) => {
   return data;
 };
 
-export const formatData = (data: { [key: string]: any }) => {
-  return shortenNumbers(replaceNullValues(data));
+// truncates a numbers decimals without rounding
+export const truncateDecimals = (num: number, fixed: number) => {
+  var re = new RegExp('^-?\\d+(?:.\\d{0,' + (fixed || -1) + '})?');
+  return parseFloat(num.toString().match(re)![0]);
 };
 
+/* 
+- Determines how many decimals to round to based on the change in price.
+- For example: some quotes only change by $0.0005 in a day. It would make
+sense then to round off prices to 4 decimals.
+- The function returns a minimum value of 2 decimals since prices are
+typically displayed with a 2 decimals and trailing zeros (Ex. $2.00) 
+*/
 export const decimalsToRoundTo = (change: number) => {
-  /* Determines how many decimals to round to based on the change 
-  in price. For example some quotes only change by $0.0005 in a day. It would 
-  make sense then to round off to 4 decimals instead of the usual 2. The function
-  returns a minimum value of 2 since prices are typically displayed with a
-  minimum of 2 decimals (Ex. $2.10) */
-
   let decimals = 2;
 
-  while (
-    change &&
-    (change.toLocaleString(undefined, {
-      maximumFractionDigits: decimals,
-    }) === '0' ||
-      change.toLocaleString(undefined, {
-        maximumFractionDigits: decimals,
-      }) === '-0')
-  ) {
+  while (change !== 0 && truncateDecimals(change, decimals) === 0) {
     decimals++;
   }
 
   return decimals;
 };
 
-export const round = (num: number, decimals = 2, trailingZeros = false) => {
-  /* Returns a string rounded the given decimals, if trailingZeros is true, 0's will be added
-  to the end of the string */
+/* returns a number in local string format rounded to a given decimal place */
+export const roundLocale = (
+  num: number,
+  decimals: number,
+  trailingZeros = false
+) => {
   if (num === 0) return '0';
 
   let numStr = num.toLocaleString(undefined, {
@@ -176,27 +176,54 @@ export const formatQuoteData = (quote: APIObject) => {
   // determine number of decimals to round to
   let decimals = typeof change === 'number' ? decimalsToRoundTo(change) : 2;
 
-  // round price, change, and changes percentage
+  // variables to hold formatted values
+  let priceStr: string;
+  let changeStr: string;
+  let changesPercentageStr: string;
+
+  // round price
+  if (typeof price === 'number') {
+    priceStr = roundLocale(price, decimals, true);
+  } else {
+    priceStr = 'N/A';
+  }
+
+  // round change and add '+' if necessary
+  if (typeof change === 'number') {
+    changeStr = roundLocale(change, decimals, true);
+    if (change > 0) changeStr = '+' + changeStr;
+  } else {
+    changeStr = 'N/A';
+  }
+
+  // round changesPercentage and add '+' if necessary
+  if (typeof changesPercentage === 'number') {
+    changesPercentageStr = roundLocale(changesPercentage, 2, true);
+    if (changesPercentage > 0)
+      changesPercentageStr = '+' + changesPercentageStr;
+  } else {
+    changesPercentageStr = 'N/A';
+  }
+
+  // set formatted price, change, and changesPercentage. Add change color property
   let formattedQuote: APIObject = {
     ...quote,
-    price: typeof price === 'number' ? round(price, decimals, true) : price,
-    change: typeof change === 'number' ? round(change, decimals, true) : change,
-    changesPercentage:
-      typeof changesPercentage === 'number'
-        ? round(changesPercentage, 2)
-        : changesPercentage,
+    price: priceStr,
+    change: changeStr,
+    changesPercentage: changesPercentageStr,
     color: getChangeColor(change),
   };
 
-  // replace null values with N/A, large numbers with shortened versions, insert commas
-  formattedQuote = formatData(formattedQuote);
+  /* replace null values with N/A, large numbers with shortened versions in
+  local format */
+  formattedQuote = shortenNumbers(replaceNullValues(formattedQuote));
 
   return formattedQuote;
 };
 
 export const formatStatementData = (data: APIObject[]) => {
   // replaces null values with N/A and large numbers with shortened versions
-  return data.map((item) => formatData(item));
+  return data.map((item) => shortenNumbers(replaceNullValues(item)));
 };
 
 /* ############## POSSIBLY SET MORE GENERAL TYPES INSTEAD OF EACH INDIVIDUAL KEY? */
@@ -238,7 +265,7 @@ export const formatValuationData = (data: APIObject[], period: Period) => {
   formattedData = data.map((item) => {
     item.earningsYield =
       typeof item.earningsYield === 'number' ? item.earningsYield * 100 : null;
-    return formatData(item);
+    return shortenNumbers(replaceNullValues(item));
   });
 
   // formats date based on period (annual or quarterly)

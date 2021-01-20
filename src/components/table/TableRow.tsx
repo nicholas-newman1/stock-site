@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { decimalsToRoundTo, getChangeColor, round } from '../../helpers';
+import { decimalsToRoundTo, getChangeColor, roundLocale } from '../../helpers';
 
 interface Props {
   item: APIObject;
@@ -17,9 +17,9 @@ const TableRow: React.FC<Props> = ({ item, index }) => {
   // Round values based on maginitude of change in price
   let decimals = typeof change === 'number' ? decimalsToRoundTo(change) : 2;
   let changeStr =
-    typeof change === 'number' ? round(change, decimals, true) : 'N/A';
+    typeof change === 'number' ? roundLocale(change, decimals, true) : 'N/A';
   let priceStr =
-    typeof price === 'number' ? round(price, decimals, true) : 'N/A';
+    typeof price === 'number' ? roundLocale(price, decimals, true) : 'N/A';
 
   return (
     <tr className='table__tr' style={{ background }}>

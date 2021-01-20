@@ -1,8 +1,30 @@
 /// <reference types="react-scripts" />
 
 type APIObject = {
-  [key: string]: number | string | null;
+  [key: string]: any;
 };
+
+interface FormattedQuote {
+  symbol: string;
+  name: string;
+  exchange: string;
+  price: string;
+  change: string;
+  changesPercentage: string;
+  color: string;
+  previousClose: string;
+  open: string;
+  dayHigh: string;
+  dayLow: string;
+  yearHigh: string;
+  yearLow: string;
+  marketCap: string;
+  pe: string;
+  eps: string;
+  sharesOutstanding: string;
+  volume: string;
+  avgVolume: string;
+}
 
 interface NewsItem {
   image: string;
