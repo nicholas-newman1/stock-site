@@ -4,7 +4,7 @@ import TableRow from './TableRow';
 import './tabletable.css';
 
 interface Props {
-  tableData: Quote[];
+  tableData: APIObject[];
   page: number;
   resultsPerPage: number;
   sortTableData: (property: string, reverse?: boolean) => void;
@@ -26,14 +26,7 @@ const TableTable: React.FC<Props> = ({
           const itemInRange = i <= offset + resultsPerPage - 1 && i >= offset;
 
           return (
-            itemInRange && (
-              <TableRow
-                //key={item.hasOwnProperty('loadingId') ? item.loadingId : item.symbol}
-                key={item.symbol}
-                item={item}
-                index={i}
-              />
-            )
+            itemInRange && <TableRow key={item.symbol} item={item} index={i} />
           );
         })}
       </tbody>

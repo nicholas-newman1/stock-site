@@ -10,13 +10,27 @@ const Quote: React.FC = () => {
       <div className='quote__price-container'>
         <div className='quote__price'>${quote.price}</div>
         <div className='quote__change-container'>
-          <div className='quote__change' style={{ color: quote.color }}>
-            {quote.change && quote.change.charAt(0) !== '-' && '+'}
+          <div
+            className='quote__change'
+            style={{
+              color: typeof quote.color === 'string' ? quote.color : 'black',
+            }}
+          >
+            {typeof quote.change === 'string' &&
+              quote.change.charAt(0) !== '-' &&
+              '+'}
             {quote.change}
           </div>
-          <div className='quote__percent-change' style={{ color: quote.color }}>
+          <div
+            className='quote__percent-change'
+            style={{
+              color: typeof quote.color === 'string' ? quote.color : 'black',
+            }}
+          >
             {'('}
-            {quote.change && quote.change.charAt(0) !== '-' && '+'}
+            {typeof quote.change === 'string' &&
+              quote.change.charAt(0) !== '-' &&
+              '+'}
             {quote.changesPercentage}
             {'%)'}
           </div>

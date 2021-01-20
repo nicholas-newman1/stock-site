@@ -1,24 +1,25 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { decimalsToRoundTo, round } from '../../helpers';
+import { decimalsToRoundTo, getChangeColor, round } from '../../helpers';
 
 interface Props {
-  item: Quote;
+  item: APIObject;
   index: number;
 }
 
 const TableRow: React.FC<Props> = ({ item, index }) => {
   let { symbol, name, price, change, changesPercentage } = item;
 
-  const color = change > 0 ? 'green' : change < 0 ? '#de0e00' : 'black';
+  const color = getChangeColor(change);
+  const isPositive = typeof change === 'number' && change > 0;
   const background = index % 2 === 1 ? 'white' : '#eee';
 
   // Round values based on maginitude of change in price
-  let decimals = decimalsToRoundTo(change);
-  let changeStr = '0';
-  let priceStr = '0';
-  if (change) changeStr = round(change, decimals, true);
-  if (price) priceStr = round(price, decimals, true);
+  let decimals = typeof change === 'number' ? decimalsToRoundTo(change) : 2;
+  let changeStr =
+    typeof change === 'number' ? round(change, decimals, true) : 'N/A';
+  let priceStr =
+    typeof price === 'number' ? round(price, decimals, true) : 'N/A';
 
   return (
     <tr className='table__tr' style={{ background }}>
@@ -30,7 +31,7 @@ const TableRow: React.FC<Props> = ({ item, index }) => {
       <td className='table__td'>{name}</td>
       <td className='table__td'>${priceStr}</td>
       <td className='table__td' style={{ color }}>
-        {change > 0 && '+'}
+        {isPositive && '+'}
         {changeStr}
       </td>
       <td className='table__td' style={{ color }}>

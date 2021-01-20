@@ -150,6 +150,10 @@ describe('sortArrayOfObjects', () => {
       { symbol: 'A', price: 4.21 },
     ]);
   });
+
+  it('non-existing sort properties should return the object unchanged', () => {
+    expect(helpers.sortArrayOfObjects(DATA, 'existentialCrisis')).toEqual(DATA);
+  });
 });
 
 describe('shortenNumber', () => {
@@ -194,5 +198,3 @@ describe('shortenNumber', () => {
     );
   });
 });
-
-// ADD GENERICS TO SORT ARRAY OF QUOTES TO MAKE IT MORE AVAILABLE TO USE

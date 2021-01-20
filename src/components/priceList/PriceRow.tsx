@@ -1,15 +1,15 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { decimalsToRoundTo, round } from '../../helpers';
+import { decimalsToRoundTo, getChangeColor, round } from '../../helpers';
 
 interface Props {
-  data: Quote;
+  data: APIObject;
 }
 
 const PriceRow: React.FC<Props> = ({ data }) => {
   let { symbol, price, change, changesPercentage } = data;
-  const color = change > 0 ? 'green' : change < 0 ? '#de0e00' : 'black';
-  const isPositive = change > 0;
+  const color = getChangeColor(change);
+  const isPositive = typeof change === 'number' && change > 0;
 
   let symbolText = symbol;
   if (symbol === '^DJI') symbolText = 'DJIA';
@@ -18,11 +18,11 @@ const PriceRow: React.FC<Props> = ({ data }) => {
   if (symbol === '^IXIC') symbolText = 'NASDAQ';
 
   // Round change and price based on maginitude of change in price
-  let decimals = decimalsToRoundTo(change);
-  let changeStr = '0';
-  let priceStr = '0';
-  if (change) changeStr = round(change, decimals, true);
-  if (price) priceStr = round(price, decimals, true);
+  let decimals = typeof change === 'number' ? decimalsToRoundTo(change) : 2;
+  let changeStr =
+    typeof change === 'number' ? round(change, decimals, true) : 'N/A';
+  let priceStr =
+    typeof price === 'number' ? round(price, decimals, true) : 'N/A';
 
   return (
     <tr className='pricelist__tr'>

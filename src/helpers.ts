@@ -100,21 +100,32 @@ export const shortenNumber = (number: number) => {
   }
 };
 
-export const formatData = (data: any) => {
+export const replaceNullValues = (data: { [key: string]: any }) => {
   for (let key in data) {
-    // replace null values with 'N/A'
+    const value = data[key];
     data = {
       ...data,
-      [key]: data[key] === null ? 'N/A' : data[key],
-    };
-
-    // replace long numbers with a shortned version
-    data = {
-      ...data,
-      [key]: shortenNumber(data[key]),
+      [key]: value === null ? 'N/A' : value,
     };
   }
+
   return data;
+};
+
+export const shortenNumbers = (data: { [key: string]: any }) => {
+  for (let key in data) {
+    const value = data[key];
+    data = {
+      ...data,
+      [key]: typeof value === 'number' ? shortenNumber(value) : value,
+    };
+  }
+
+  return data;
+};
+
+export const formatData = (data: { [key: string]: any }) => {
+  return shortenNumbers(replaceNullValues(data));
 };
 
 export const decimalsToRoundTo = (change: number) => {
@@ -154,19 +165,27 @@ export const round = (num: number, decimals = 2, trailingZeros = false) => {
   return numStr;
 };
 
-export const formatQuoteData = (quote: Quote) => {
+export const getChangeColor = (change: any) => {
+  if (typeof change !== 'number') return 'black';
+  return change > 0 ? 'green' : change < 0 ? '#de0e00' : 'black';
+};
+
+export const formatQuoteData = (quote: APIObject) => {
   const { price, change, changesPercentage } = quote;
 
   // determine number of decimals to round to
-  let decimals = decimalsToRoundTo(change);
+  let decimals = typeof change === 'number' ? decimalsToRoundTo(change) : 2;
 
   // round price, change, and changes percentage
-  let formattedQuote: FormattedQuote = {
+  let formattedQuote: APIObject = {
     ...quote,
-    price: round(price, decimals, true),
-    change: round(change, decimals, true),
-    changesPercentage: round(changesPercentage, 2),
-    color: quote.change > 0 ? 'green' : quote.change < 0 ? '#de0e00' : 'black',
+    price: typeof price === 'number' ? round(price, decimals, true) : price,
+    change: typeof change === 'number' ? round(change, decimals, true) : change,
+    changesPercentage:
+      typeof changesPercentage === 'number'
+        ? round(changesPercentage, 2)
+        : changesPercentage,
+    color: getChangeColor(change),
   };
 
   // replace null values with N/A, large numbers with shortened versions, insert commas
@@ -175,48 +194,50 @@ export const formatQuoteData = (quote: Quote) => {
   return formattedQuote;
 };
 
-export const formatStatementData = (
-  data: StatementData
-): FormattedStatementData => {
+export const formatStatementData = (data: APIObject[]) => {
   // replaces null values with N/A and large numbers with shortened versions
   return data.map((item) => formatData(item));
 };
 
-export const formatValuationDates = (
-  data: FormattedValuationData[],
-  period: Period
-) => {
+/* ############## POSSIBLY SET MORE GENERAL TYPES INSTEAD OF EACH INDIVIDUAL KEY? */
+
+export const formatValuationDates = (data: APIObject[], period: Period) => {
   // formats date based on period (annual or quarterly)
   if (period === 'quarter') {
     return data.map((item) => {
-      const date = new Date(item.date);
-      const newDate = date.toLocaleDateString(undefined, {
-        month: 'numeric',
-        year: 'numeric',
-      });
-      return {
-        ...item,
-        newDate,
-      };
+      if (item.date) {
+        const date = new Date(item.date);
+        const newDate = date.toLocaleDateString(undefined, {
+          month: 'numeric',
+          year: 'numeric',
+        });
+        return {
+          ...item,
+          date: newDate,
+        };
+      } else {
+        return {
+          ...item,
+          date: 'N/A',
+        };
+      }
     });
   } else {
     return data.map((item) => {
       return {
         ...item,
-        date: new Date(item.date).getFullYear().toString(),
+        date: item.date ? new Date(item.date).getFullYear().toString() : 'N/A',
       };
     });
   }
 };
 
-export const formatValuationData = (
-  data: ValuationData[],
-  period: Period
-): FormattedValuationData[] => {
-  let formattedData: FormattedValuationData[];
+export const formatValuationData = (data: APIObject[], period: Period) => {
+  let formattedData: APIObject[];
   // replaces null values with N/A and large numbers with shortened versions
   formattedData = data.map((item) => {
-    item.earningsYield = item.earningsYield ? item.earningsYield * 100 : null;
+    item.earningsYield =
+      typeof item.earningsYield === 'number' ? item.earningsYield * 100 : null;
     return formatData(item);
   });
 
