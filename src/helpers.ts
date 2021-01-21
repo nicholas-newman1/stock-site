@@ -227,8 +227,6 @@ export const formatStatementData = (data: APIObject[]) => {
   return data.map((item) => shortenNumbers(replaceNullValues(item)));
 };
 
-/* ############## POSSIBLY SET MORE GENERAL TYPES INSTEAD OF EACH INDIVIDUAL KEY? */
-
 export const formatValuationDates = (data: APIObject[], period: Period) => {
   // formats date based on period (annual or quarterly)
   if (period === 'quarter') {

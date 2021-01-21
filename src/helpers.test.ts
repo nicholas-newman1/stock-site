@@ -449,3 +449,27 @@ describe('formatQuoteData', () => {
     expect(helpers.formatQuoteData(DATA)).toMatchObject(FORMATTED_DATA);
   });
 });
+
+describe('formatStatementData', () => {
+  it('should replace null values in each object using helpers.replaceNullValues', () => {
+    const DATA = [
+      { a: false, b: null, c: null },
+      { a: null, b: true, c: null },
+    ];
+
+    const FORMATTED_DATA = DATA.map((obj) => helpers.replaceNullValues(obj));
+
+    expect(helpers.formatStatementData(DATA)).toEqual(FORMATTED_DATA);
+  });
+
+  it('should replace numbers in each object using helpers.shortenNumbers', () => {
+    const DATA = [
+      { a: false, b: 12314.13213, c: 437590185.14 },
+      { a: 13.432875, b: true, c: 10423943214 },
+    ];
+
+    const FORMATTED_DATA = DATA.map((obj) => helpers.shortenNumbers(obj));
+
+    expect(helpers.formatStatementData(DATA)).toEqual(FORMATTED_DATA);
+  });
+});
