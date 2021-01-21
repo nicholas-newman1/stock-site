@@ -222,16 +222,16 @@ export const formatQuoteData = (quote: APIObject) => {
   return formattedQuote;
 };
 
+// replaces null values with N/A and large numbers with shortened versions
 export const formatStatementData = (data: APIObject[]) => {
-  // replaces null values with N/A and large numbers with shortened versions
   return data.map((item) => shortenNumbers(replaceNullValues(item)));
 };
 
+// formats date based on period (annual or quarterly)
 export const formatValuationDates = (data: APIObject[], period: Period) => {
-  // formats date based on period (annual or quarterly)
   if (period === 'quarter') {
     return data.map((item) => {
-      if (item.date) {
+      if (!isNaN(Date.parse(item.date))) {
         const date = new Date(item.date);
         const newDate = date.toLocaleDateString(undefined, {
           month: 'numeric',
@@ -252,7 +252,9 @@ export const formatValuationDates = (data: APIObject[], period: Period) => {
     return data.map((item) => {
       return {
         ...item,
-        date: item.date ? new Date(item.date).getFullYear().toString() : 'N/A',
+        date: !isNaN(Date.parse(item.date))
+          ? new Date(item.date).getFullYear().toString()
+          : 'N/A',
       };
     });
   }

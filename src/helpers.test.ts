@@ -323,7 +323,7 @@ describe('getChangeColor', () => {
 });
 
 describe('formatQuoteData', () => {
-  it('should round price based on the change and be in local string format', () => {
+  it('should use helpers.roundLocale and helpers.decimalsToRoundTo(change) to round price', () => {
     const DATA = {
       price: 567.675901,
       change: 2.37,
@@ -340,7 +340,7 @@ describe('formatQuoteData', () => {
     expect(helpers.formatQuoteData(DATA)).toMatchObject(FORMATTED_DATA);
   });
 
-  it('should round change based on the change and be in local string format', () => {
+  it('should use helpers.roundLocale and helpers.decimalsToRoundTo(change) to round change', () => {
     const DATA = { change: -0.0037 };
 
     const FORMATTED_DATA = {
@@ -354,7 +354,7 @@ describe('formatQuoteData', () => {
     expect(helpers.formatQuoteData(DATA)).toMatchObject(FORMATTED_DATA);
   });
 
-  it('should always round changesPercentage to two decimals', () => {
+  it('should use helpers.roundLocale with decimals = 2 to round changesPercentage', () => {
     const DATA = { changesPercentage: -0.7423 };
 
     const FORMATTED_DATA = {
@@ -418,7 +418,7 @@ describe('formatQuoteData', () => {
     expect(helpers.formatQuoteData(DATA)).toMatchObject(FORMATTED_DATA);
   });
 
-  it('should round price to two decimals when change is not of type number', () => {
+  it('should use helpers.roundLocale with decimals = 2 when change is not of type number', () => {
     const DATA = {
       price: 8.123,
       change: null,
@@ -431,7 +431,7 @@ describe('formatQuoteData', () => {
     expect(helpers.formatQuoteData(DATA)).toMatchObject(FORMATTED_DATA);
   });
 
-  it('should add "color: helpers.getChangeColor(change)" property', () => {
+  it('should add a color property using helpers.getChangeColor(change)', () => {
     const DATA = { change: 12 };
     const FORMATTED_DATA = { color: helpers.getChangeColor(DATA.change) };
     expect(helpers.formatQuoteData(DATA)).toMatchObject(FORMATTED_DATA);
@@ -471,5 +471,139 @@ describe('formatStatementData', () => {
     const FORMATTED_DATA = DATA.map((obj) => helpers.shortenNumbers(obj));
 
     expect(helpers.formatStatementData(DATA)).toEqual(FORMATTED_DATA);
+  });
+});
+
+describe('formatValuationDates', () => {
+  it('should convert quarterly dates to localeDateString with month and year', () => {
+    const DATA = [
+      { date: '2020-09-26' },
+      { date: '2020-06-27' },
+      { date: '2020-03-28' },
+    ];
+
+    const FORMATTED_DATA = DATA.map((item) => ({
+      ...item,
+      date: new Date(item.date).toLocaleDateString([], {
+        month: 'numeric',
+        year: 'numeric',
+      }),
+    }));
+
+    expect(helpers.formatValuationDates(DATA, 'quarter')).toEqual(
+      FORMATTED_DATA
+    );
+  });
+
+  it('should replace invalid quarterly dates with "N/A"', () => {
+    const DATA = [{ date: 'fewfe6' }, { date: null }, { date: true }];
+
+    const FORMATTED_DATA = DATA.map((item) => ({
+      ...item,
+      date: 'N/A',
+    }));
+
+    expect(helpers.formatValuationDates(DATA, 'quarter')).toEqual(
+      FORMATTED_DATA
+    );
+  });
+
+  it('should convert annual dates to show only the year', () => {
+    const DATA = [
+      { date: '2020-09-26' },
+      { date: '2019-06-27' },
+      { date: '2018-03-28' },
+    ];
+
+    const FORMATTED_DATA = [
+      { date: '2020' },
+      { date: '2019' },
+      { date: '2018' },
+    ];
+
+    expect(helpers.formatValuationDates(DATA, '')).toEqual(FORMATTED_DATA);
+  });
+
+  it('should replace invalid annual dates with "N/A"', () => {
+    const DATA = [{ date: 'fewfe6' }, { date: null }, { date: true }];
+
+    const FORMATTED_DATA = DATA.map((item) => ({
+      ...item,
+      date: 'N/A',
+    }));
+
+    expect(helpers.formatValuationDates(DATA, '')).toEqual(FORMATTED_DATA);
+  });
+
+  it('should not alter any values except quarterlly dates', () => {
+    const DATA = [
+      {
+        symbol: 'AAPL',
+        date: '2020-09-26',
+        marketCap: 1915229781102.37817,
+      },
+      {
+        symbol: 'AAPL',
+        date: '2019-06-27',
+        marketCap: 1525055207240.29199,
+      },
+      {
+        symbol: 'AAPL',
+        date: '2018-03-28',
+        marketCap: 1080171439180.40405,
+      },
+    ];
+
+    const FORMATTED_DATA = DATA.map((item) => ({
+      ...item,
+      date: new Date(item.date).toLocaleDateString([], {
+        month: 'numeric',
+        year: 'numeric',
+      }),
+    }));
+
+    expect(helpers.formatValuationDates(DATA, 'quarter')).toEqual(
+      FORMATTED_DATA
+    );
+  });
+
+  it('should not alter any values except annual dates', () => {
+    const DATA = [
+      {
+        symbol: 'AAPL',
+        date: '2020-09-26',
+        marketCap: 1915229781102.37817,
+      },
+      {
+        symbol: 'AAPL',
+        date: '2019-06-27',
+        marketCap: 1525055207240.29199,
+      },
+      {
+        symbol: 'AAPL',
+        date: '2018-03-28',
+        marketCap: 1080171439180.40405,
+      },
+    ];
+
+    const FORMATTED_DATA = [
+      {
+        symbol: 'AAPL',
+        date: '2020',
+        marketCap: 1915229781102.37817,
+      },
+      {
+        symbol: 'AAPL',
+        date: '2019',
+        marketCap: 1525055207240.29199,
+      },
+      {
+        symbol: 'AAPL',
+        date: '2018',
+        marketCap: 1080171439180.40405,
+      },
+    ];
+
+    expect(helpers.formatValuationDates(DATA, '')).toEqual(FORMATTED_DATA);
   });
 });
