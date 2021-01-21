@@ -170,6 +170,7 @@ export const getChangeColor = (change: any) => {
   return change > 0 ? 'green' : change < 0 ? '#de0e00' : 'black';
 };
 
+// formats the data in the quote to be more readable
 export const formatQuoteData = (quote: APIObject) => {
   const { price, change, changesPercentage } = quote;
 
@@ -198,7 +199,7 @@ export const formatQuoteData = (quote: APIObject) => {
 
   // round changesPercentage and add '+' if necessary
   if (typeof changesPercentage === 'number') {
-    changesPercentageStr = roundLocale(changesPercentage, 2, true);
+    changesPercentageStr = roundLocale(changesPercentage, 2);
     if (changesPercentage > 0)
       changesPercentageStr = '+' + changesPercentageStr;
   } else {
