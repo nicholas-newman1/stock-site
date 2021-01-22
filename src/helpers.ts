@@ -260,10 +260,12 @@ export const formatValuationDates = (data: APIObject[], period: Period) => {
   }
 };
 
+// formats the data to be more readable
 export const formatValuationData = (data: APIObject[], period: Period) => {
   let formattedData: APIObject[];
   // replaces null values with N/A and large numbers with shortened versions
   formattedData = data.map((item) => {
+    // multiply earningsYield to be a percentage instead of decimal
     item.earningsYield =
       typeof item.earningsYield === 'number' ? item.earningsYield * 100 : null;
     return shortenNumbers(replaceNullValues(item));
