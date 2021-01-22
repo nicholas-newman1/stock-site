@@ -355,15 +355,9 @@ export const filterNumberOfDataPoints = (
   return data;
 };
 
-export const formatChartData = (
-  data: HistoricalPrices,
-  timeframe: Timeframe
-) => {
-  /* removes data points not in the timeframe and thins out number of data
-  points (max 300) */
-  // formats data to be compatible with chartJS
-  let formattedData: FormattedHistoricalPrices;
-  formattedData = filterChartData(data, timeframe).map((item) => {
+// formats data to be compatible with chartJS
+export const formatChartData = (data: HistoricalPrices) => {
+  let formattedData: FormattedHistoricalPrices = data.map((item) => {
     return {
       x: new Date(item.date),
       y: item.close,

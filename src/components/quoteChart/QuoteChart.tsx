@@ -9,7 +9,7 @@ import {
   dummyDailyData,
 } from '../../dummyData';
 import Spinner from '../Spinner';
-import { formatChartData } from '../../helpers';
+import { filterChartData, formatChartData } from '../../helpers';
 import useFetch from '../../hooks/useFetch';
 import useChartFormat from '../../hooks/useChartFormat';
 
@@ -62,7 +62,11 @@ const QuoteChart: React.FC<Props> = ({ symbol }) => {
   useEffect(() => {
     /* formats data to be more readable. If historical array exists, use it.
     (see explanation in above comments) */
-    setChartData(formatChartData(historical ? historical : data, timeframe));
+    setChartData(
+      formatChartData(
+        filterChartData(historical ? historical : data, timeframe)
+      )
+    );
     // eslint-disable-next-line
   }, [data]);
 
