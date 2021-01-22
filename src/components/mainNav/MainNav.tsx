@@ -1,5 +1,5 @@
 import React from 'react';
-import MainNavItem from './MainNavItem';
+import MainNavItem from '../mainNavItem/MainNavItem';
 import './mainNav.css';
 
 interface Props {
