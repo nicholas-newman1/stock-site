@@ -339,12 +339,15 @@ export const filterChartData = (
   return data;
 };
 
+// returns an array with length <= max given
 export const filterNumberOfDataPoints = (
   data: HistoricalPrices,
   max: number
 ) => {
   while (data.length > max) {
     data = data.filter((item: any, i: number) => {
+      // keeps first item in array (important to display current stock price)
+      // filters relatively evenly accros the array with i % 2 === 1
       return i === 0 || i % 2 === 1;
     });
   }

@@ -811,4 +811,44 @@ describe('filterChartData', () => {
       helpers.filterChartData(DATA as HistoricalPrices, '5Y')
     ).toMatchObject(FILTERED_DATA);
   });
+
+  it('should filter to length <= 300 with helpers.filterNumberOfDataPoints', () => {
+    const DATA = [];
+
+    for (let i = 0; i < 400; i++) {
+      DATA.push({ date: `${i}` });
+    }
+
+    const FILTERED_DATA = helpers.filterChartData(
+      DATA as HistoricalPrices,
+      'MAX'
+    );
+
+    expect(FILTERED_DATA.length).toBeLessThanOrEqual(300);
+  });
+});
+
+describe('filterNumberOfDataPoints', () => {
+  interface DummyData {
+    date: string;
+  }
+
+  const DATA: DummyData[] = [];
+
+  for (let i = 0; i < 400; i++) {
+    DATA.push({ date: `${i}` });
+  }
+
+  const FILTERED_DATA = helpers.filterNumberOfDataPoints(
+    DATA as HistoricalPrices,
+    300
+  );
+
+  it('should not return an array with over 300 objects', () => {
+    expect(FILTERED_DATA.length).toBeLessThanOrEqual(300);
+  });
+
+  it('should not filter out the first object', () => {
+    expect(FILTERED_DATA[0]).toEqual(DATA[0]);
+  });
 });
