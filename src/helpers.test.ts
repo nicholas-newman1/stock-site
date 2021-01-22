@@ -681,3 +681,134 @@ describe('formatValuationData', () => {
     );
   });
 });
+
+describe('filterChartData', () => {
+  const DATA = [
+    { date: '2021-01-21 16:00:00' },
+    { date: '2021-01-21 12:00:00' },
+    { date: '2021-01-20 12:00:00' },
+    { date: '2021-01-19 12:00:00' },
+    { date: '2021-01-15 16:00:00' },
+    { date: '2021-01-06 12:00:00' },
+    { date: '2020-12-23 12:00:00' },
+    { date: '2020-12-19 16:00:00' },
+    { date: '2020-12-07 12:00:00' },
+    { date: '2020-10-07 12:00:00' },
+    { date: '2020-08-07 12:00:00' },
+    { date: '2020-06-07 12:00:00' },
+    { date: '2020-03-31 16:00:00' },
+    { date: '2020-01-31 12:00:00' },
+    { date: '2020-01-10 12:00:00' },
+    { date: '2019-01-25 12:00:00' },
+    { date: '2018-01-25 12:00:00' },
+    { date: '2017-01-25 12:00:00' },
+    { date: '2016-01-25 12:00:00' },
+    { date: '2016-01-17 12:00:00' },
+    { date: '2015-01-25 12:00:00' },
+  ];
+  it("should filter out any objects not within 1D of the first object's date", () => {
+    const FILTERED_DATA = [
+      { date: '2021-01-21 16:00:00' },
+      { date: '2021-01-21 12:00:00' },
+    ];
+
+    expect(
+      helpers.filterChartData(DATA as HistoricalPrices, '1D')
+    ).toMatchObject(FILTERED_DATA);
+  });
+
+  it("should filter out any objects not within 5D of the first object's date", () => {
+    const FILTERED_DATA = [
+      { date: '2021-01-21 16:00:00' },
+      { date: '2021-01-21 12:00:00' },
+      { date: '2021-01-20 12:00:00' },
+      { date: '2021-01-19 12:00:00' },
+    ];
+
+    expect(
+      helpers.filterChartData(DATA as HistoricalPrices, '5D')
+    ).toMatchObject(FILTERED_DATA);
+  });
+
+  it("should filter out any objects not within 1M of the first object's date", () => {
+    const FILTERED_DATA = [
+      { date: '2021-01-21 16:00:00' },
+      { date: '2021-01-21 12:00:00' },
+      { date: '2021-01-20 12:00:00' },
+      { date: '2021-01-19 12:00:00' },
+      { date: '2021-01-15 16:00:00' },
+      { date: '2021-01-06 12:00:00' },
+      { date: '2020-12-23 12:00:00' },
+    ];
+
+    expect(
+      helpers.filterChartData(DATA as HistoricalPrices, '1M')
+    ).toMatchObject(FILTERED_DATA);
+  });
+
+  it("should filter out any objects not within YTD of the first object's date", () => {
+    const FILTERED_DATA = [
+      { date: '2021-01-21 16:00:00' },
+      { date: '2021-01-21 12:00:00' },
+      { date: '2021-01-20 12:00:00' },
+      { date: '2021-01-19 12:00:00' },
+      { date: '2021-01-15 16:00:00' },
+      { date: '2021-01-06 12:00:00' },
+    ];
+
+    expect(
+      helpers.filterChartData(DATA as HistoricalPrices, 'YTD')
+    ).toMatchObject(FILTERED_DATA);
+  });
+
+  it("should filter out any objects not within 1Y of the first object's date", () => {
+    const FILTERED_DATA = [
+      { date: '2021-01-21 16:00:00' },
+      { date: '2021-01-21 12:00:00' },
+      { date: '2021-01-20 12:00:00' },
+      { date: '2021-01-19 12:00:00' },
+      { date: '2021-01-15 16:00:00' },
+      { date: '2021-01-06 12:00:00' },
+      { date: '2020-12-23 12:00:00' },
+      { date: '2020-12-19 16:00:00' },
+      { date: '2020-12-07 12:00:00' },
+      { date: '2020-10-07 12:00:00' },
+      { date: '2020-08-07 12:00:00' },
+      { date: '2020-06-07 12:00:00' },
+      { date: '2020-03-31 16:00:00' },
+      { date: '2020-01-31 12:00:00' },
+    ];
+
+    expect(
+      helpers.filterChartData(DATA as HistoricalPrices, '1Y')
+    ).toMatchObject(FILTERED_DATA);
+  });
+
+  it("should filter out any objects not within 5Y of the first object's date", () => {
+    const FILTERED_DATA = [
+      { date: '2021-01-21 16:00:00' },
+      { date: '2021-01-21 12:00:00' },
+      { date: '2021-01-20 12:00:00' },
+      { date: '2021-01-19 12:00:00' },
+      { date: '2021-01-15 16:00:00' },
+      { date: '2021-01-06 12:00:00' },
+      { date: '2020-12-23 12:00:00' },
+      { date: '2020-12-19 16:00:00' },
+      { date: '2020-12-07 12:00:00' },
+      { date: '2020-10-07 12:00:00' },
+      { date: '2020-08-07 12:00:00' },
+      { date: '2020-06-07 12:00:00' },
+      { date: '2020-03-31 16:00:00' },
+      { date: '2020-01-31 12:00:00' },
+      { date: '2020-01-10 12:00:00' },
+      { date: '2019-01-25 12:00:00' },
+      { date: '2018-01-25 12:00:00' },
+      { date: '2017-01-25 12:00:00' },
+      { date: '2016-01-25 12:00:00' },
+    ];
+
+    expect(
+      helpers.filterChartData(DATA as HistoricalPrices, '5Y')
+    ).toMatchObject(FILTERED_DATA);
+  });
+});
