@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import BottomNewsItem from './BottomNewsItem';
-import BottomNewsLoading from './BottomNewsLoading';
+import BottomNewsItem from '../bottomNewsItem/BottomNewsItem';
+import BottomNewsLoading from '../bottomNewsLoading/BottomNewsLoading';
 import { dummyStockNews } from '../../dummyData';
 import './bottomNews.css';
 import useFetch from '../../hooks/useFetch';

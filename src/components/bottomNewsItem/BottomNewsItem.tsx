@@ -3,8 +3,7 @@ import { getTimeAgoString, truncate } from '../../helpers';
 import './bottomNewsItem.css';
 
 interface Props {
-  //newsItem: NewsItem;
-  newsItem: any;
+  newsItem: KeyValueObject;
 }
 
 const QuoteNewsItem: React.FC<Props> = ({ newsItem }) => {
