@@ -18,7 +18,7 @@ const Home: React.FC = () => {
       </Helmet>
       <div className='home__section-one'>
         <MainNewsItem />
-        <BottomNews shift={true} />
+        <BottomNews />
       </div>
       <div className='home__section-two'>
         <PriceList />

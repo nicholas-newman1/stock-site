@@ -7,9 +7,9 @@ import useFetch from '../../hooks/useFetch';
 
 interface Props {
   symbol?: string;
-  shift?: boolean;
 }
-const BottomNews: React.FC<Props> = ({ symbol = '', shift = false }) => {
+
+const BottomNews: React.FC<Props> = ({ symbol = '' }) => {
   const [newsData, setNewsData] = useState<any[]>([]);
 
   const { data, loading } = useFetch(
@@ -20,15 +20,13 @@ const BottomNews: React.FC<Props> = ({ symbol = '', shift = false }) => {
   );
 
   useEffect(() => {
-    // fetchNewsData();
     if (data.length > 0) {
-      /* This component is used on the HomePage. The HomePage displays the first
-      article returned in its own component at the top of the screen. To avoid repetition, the shift prop is set to true, which will remove the first
-      article. If shift is not set to true, the last news item is popped off to
-      keep the array at an even length of 10 */
-      const newsData = [...data];
-      shift ? newsData.shift() : newsData.pop();
-      setNewsData(newsData);
+      /* The HomePage displays the first article in MainNewsItem. To avoid
+      repitition of news articles, the first article is removed from BottomNews
+      if the current page is the homepage. Otherwise, the last news item is
+      removed to keep the array at an even length of 10.*/
+      window.location.pathname === '/' ? data.shift() : data.pop();
+      setNewsData(data);
     }
     //eslint-disable-next-line
   }, [data]);
