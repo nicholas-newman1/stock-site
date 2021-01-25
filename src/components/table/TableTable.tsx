@@ -4,7 +4,7 @@ import TableRow from './TableRow';
 import './tabletable.css';
 
 interface Props {
-  tableData: APIObject[];
+  tableData: KeyValueObject[];
   page: number;
   resultsPerPage: number;
   sortTableData: (property: string, reverse?: boolean) => void;

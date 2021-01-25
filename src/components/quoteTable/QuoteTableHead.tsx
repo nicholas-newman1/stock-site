@@ -1,7 +1,7 @@
 import React from 'react';
 
 interface Props {
-  tableData: APIObject[];
+  tableData: KeyValueObject[];
 }
 
 const QuoteTableHead: React.FC<Props> = ({ tableData }) => {

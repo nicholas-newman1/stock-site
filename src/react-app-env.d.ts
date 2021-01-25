@@ -1,6 +1,6 @@
 /// <reference types="react-scripts" />
 
-type APIObject = {
+type KeyValueObject = {
   [key: string]: any;
 };
 

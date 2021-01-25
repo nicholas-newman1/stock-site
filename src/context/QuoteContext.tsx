@@ -4,7 +4,7 @@ import { formatQuoteData } from '../helpers';
 import { RealDataContext } from './RealDataContext';
 
 interface QuoteContextInterface {
-  quote: APIObject;
+  quote: KeyValueObject;
   fetchQuote: (symbol: string) => void;
   isStock: boolean;
   setIsStock: React.Dispatch<React.SetStateAction<boolean>>;
@@ -22,7 +22,7 @@ export const QuoteProvider: React.FC = (props) => {
   const [quote, setQuote] = useState({});
 
   const fetchQuote = async (symbol: string) => {
-    let quote: APIObject;
+    let quote: KeyValueObject;
     if (realData) {
       try {
         const res = await fetch(

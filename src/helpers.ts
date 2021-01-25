@@ -171,7 +171,7 @@ export const getChangeColor = (change: any) => {
 };
 
 // formats the data in the quote to be more readable
-export const formatQuoteData = (quote: APIObject) => {
+export const formatQuoteData = (quote: KeyValueObject) => {
   const { price, change, changesPercentage } = quote;
 
   // determine number of decimals to round to
@@ -207,7 +207,7 @@ export const formatQuoteData = (quote: APIObject) => {
   }
 
   // set formatted price, change, and changesPercentage. Add change color property
-  let formattedQuote: APIObject = {
+  let formattedQuote: KeyValueObject = {
     ...quote,
     price: priceStr,
     change: changeStr,
@@ -223,12 +223,15 @@ export const formatQuoteData = (quote: APIObject) => {
 };
 
 // replaces null values with N/A and large numbers with shortened versions
-export const formatStatementData = (data: APIObject[]) => {
+export const formatStatementData = (data: KeyValueObject[]) => {
   return data.map((item) => shortenNumbers(replaceNullValues(item)));
 };
 
 // formats date based on period (annual or quarterly)
-export const formatValuationDates = (data: APIObject[], period: Period) => {
+export const formatValuationDates = (
+  data: KeyValueObject[],
+  period: Period
+) => {
   if (period === 'quarter') {
     return data.map((item) => {
       if (!isNaN(Date.parse(item.date))) {
@@ -261,8 +264,8 @@ export const formatValuationDates = (data: APIObject[], period: Period) => {
 };
 
 // formats the data to be more readable
-export const formatValuationData = (data: APIObject[], period: Period) => {
-  let formattedData: APIObject[];
+export const formatValuationData = (data: KeyValueObject[], period: Period) => {
+  let formattedData: KeyValueObject[];
 
   formattedData = data.map((item) => {
     // multiply earningsYield to be a percentage instead of decimal

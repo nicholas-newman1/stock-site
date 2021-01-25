@@ -7,8 +7,8 @@ import Spinner from '../Spinner';
 
 interface Props {
   loading: boolean;
-  tableData: APIObject[];
-  setTableData: React.Dispatch<React.SetStateAction<APIObject[]>>;
+  tableData: KeyValueObject[];
+  setTableData: React.Dispatch<React.SetStateAction<KeyValueObject[]>>;
 }
 
 const Table: React.FC<Props> = ({ loading, tableData, setTableData }) => {

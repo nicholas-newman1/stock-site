@@ -32,7 +32,7 @@ const PriceList: React.FC<Props> = ({ symbols }) => {
           {loading ? (
             <LoadingPriceList />
           ) : (
-            data.map((quote: APIObject) => (
+            data.map((quote: KeyValueObject) => (
               <PriceRow key={quote.symbol} data={quote} />
             ))
           )}

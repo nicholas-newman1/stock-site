@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { decimalsToRoundTo, getChangeColor, roundLocale } from '../../helpers';
 
 interface Props {
-  data: APIObject;
+  data: KeyValueObject;
 }
 
 const PriceRow: React.FC<Props> = ({ data }) => {

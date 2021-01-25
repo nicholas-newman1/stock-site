@@ -10,7 +10,7 @@ interface Props {
 }
 
 const BottomNews: React.FC<Props> = ({ symbol = '' }) => {
-  const [newsData, setNewsData] = useState<any[]>([]);
+  const [newsData, setNewsData] = useState<KeyValueObject[]>([]);
 
   const { data, loading } = useFetch(
     [], // initial value

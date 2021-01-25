@@ -14,7 +14,7 @@ interface Props {
 }
 
 const QuoteValuation: React.FC<Props> = ({ symbol }) => {
-  const [valuationData, setValuationData] = useState<APIObject[]>([]);
+  const [valuationData, setValuationData] = useState<KeyValueObject[]>([]);
   const [period, setPeriod] = useState<Period>('');
 
   // custom hook fetches data

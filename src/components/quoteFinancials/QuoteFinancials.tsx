@@ -21,10 +21,10 @@ interface Props {
 const QuoteFinancials: React.FC<Props> = ({ symbol }) => {
   const [statement, setStatement] = useState<Statement>('income-statement');
   const [period, setPeriod] = useState<Period>('');
-  const [statementData, setStatementData] = useState<APIObject[]>([]);
+  const [statementData, setStatementData] = useState<KeyValueObject[]>([]);
 
   // determine which dummyData to use
-  let dummyData: APIObject[];
+  let dummyData: KeyValueObject[];
   if (statement === 'income-statement') {
     period
       ? (dummyData = formatStatementData([...dummyQuarterlyIncomeStatement]))
