@@ -10,30 +10,30 @@ const QuoteNewsItem: React.FC<Props> = ({ newsItem }) => {
   const { image, url, title, publishedDate, site, text } = newsItem;
 
   return (
-    <li className='bottom-news__item'>
-      <div className='bottom-news__image-container'>
-        <img className='bottom-news__image' src={image} alt='' />
-      </div>
+    <li className='bottom-news-item'>
+      <a className='bottom-news-item__link' href={url}>
+        <div className='bottom-news-item__image-container'>
+          <img className='bottom-news-item__image' src={image} alt='' />
+        </div>
 
-      <div className='bottom-news__content'>
-        <h2 className='bottom-news__heading'>
-          <a className='bottom-news__link' href={url}>
+        <div className='bottom-news-item__content'>
+          <h2 className='bottom-news-item__heading'>
             {title.length > 120 ? <>{truncate(title, 120)}&hellip;</> : title}
-          </a>
-        </h2>
+          </h2>
 
-        <p className='bottom-news__meta'>
-          <span className='bottom-new__site'>{cleanURL(site)}</span>
-          {' - '}
-          <span className='bottom-news__date'>
-            {getTimeAgoString(Date.parse(publishedDate))}
-          </span>
-        </p>
+          <div className='bottom-news-item__meta'>
+            <span className='bottom-news-item__site'>{cleanURL(site)}</span>
+            {' - '}
+            <span className='bottom-news-item__date'>
+              {getTimeAgoString(Date.parse(publishedDate))}
+            </span>
+          </div>
 
-        <p className='bottom-news__text'>
-          {text.length > 150 ? <>{truncate(text, 150)}&hellip;</> : text}
-        </p>
-      </div>
+          <p className='bottom-news-item__text'>
+            {text.length > 150 ? <>{truncate(text, 150)}&hellip;</> : text}
+          </p>
+        </div>
+      </a>
     </li>
   );
 };
