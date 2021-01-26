@@ -369,8 +369,3 @@ export const formatChartData = (data: HistoricalPrices) => {
 
   return formattedData;
 };
-
-// removed https:// and www. from a given url
-export const cleanURL = (url: string) => {
-  return url.replace(/(^\w+:|^)\/\//, '').replace(/www\./, '');
-};

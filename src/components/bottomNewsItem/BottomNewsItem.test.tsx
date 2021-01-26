@@ -44,32 +44,6 @@ describe('<BottomNewsItem />', () => {
     getByText(/^Newsfile Corp$/);
   });
 
-  it('should strip "www." from the site name', () => {
-    newsItem.site = 'www.sitename.com';
-    const { getByText } = render(<BottomNewsItem newsItem={newsItem} />);
-    getByText(/sitename.com/);
-  });
-
-  it('should strip "https://" from the site name', () => {
-    newsItem.site = 'https://sitename.com';
-    const { getByText } = render(<BottomNewsItem newsItem={newsItem} />);
-    getByText(/sitename.com/);
-    cleanup();
-  });
-
-  it('should strip other protocols from the site name', () => {
-    newsItem.site = 'wdad://sitename.com';
-    const { getByText } = render(<BottomNewsItem newsItem={newsItem} />);
-    getByText(/sitename.com/);
-    cleanup();
-  });
-
-  it('should strip protocol and "www." from the site name', () => {
-    newsItem.site = 'https://www.sitename.com';
-    const { getByText } = render(<BottomNewsItem newsItem={newsItem} />);
-    getByText(/sitename.com/);
-  });
-
   it('should have a time ago string', () => {
     const { getByText } = render(<BottomNewsItem newsItem={newsItem} />);
     getByText(/ago/);

@@ -1,5 +1,5 @@
 import React from 'react';
-import { cleanURL, getTimeAgoString, truncate } from '../../helpers';
+import { getTimeAgoString, truncate } from '../../helpers';
 import './bottomNewsItem.css';
 
 interface Props {
@@ -22,7 +22,7 @@ const QuoteNewsItem: React.FC<Props> = ({ newsItem }) => {
           </h2>
 
           <div className='bottom-news-item__meta'>
-            <span className='bottom-news-item__site'>{cleanURL(site)}</span>
+            <span className='bottom-news-item__site'>{site}</span>
             {' - '}
             <span className='bottom-news-item__date'>
               {getTimeAgoString(Date.parse(publishedDate))}
