@@ -1,9 +1,9 @@
 import React from 'react';
-import { getTimeAgoString, truncate } from '../../helpers';
+import { cleanURL, getTimeAgoString, truncate } from '../../helpers';
 import './bottomNewsItem.css';
 
 interface Props {
-  newsItem: KeyValueObject;
+  newsItem: NewsItem;
 }
 
 const QuoteNewsItem: React.FC<Props> = ({ newsItem }) => {
@@ -23,8 +23,11 @@ const QuoteNewsItem: React.FC<Props> = ({ newsItem }) => {
         </h2>
 
         <p className='bottom-news__meta'>
-          {site.replace(/(^\w+:|^)\/\//, '').replace(/www./, '')} -{' '}
-          <em>{getTimeAgoString(Date.parse(publishedDate))}</em>
+          <span className='bottom-new__site'>{cleanURL(site)}</span>
+          {' - '}
+          <span className='bottom-news__date'>
+            {getTimeAgoString(Date.parse(publishedDate))}
+          </span>
         </p>
 
         <p className='bottom-news__text'>

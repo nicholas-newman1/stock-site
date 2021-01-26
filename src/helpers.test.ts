@@ -871,3 +871,37 @@ describe('formatChartData', () => {
     expect(helpers.formatChartData(DATA)).toMatchObject(FORMATTED_DATA);
   });
 });
+
+describe('cleanURL', () => {
+  it('should remove https://', () => {
+    expect(helpers.cleanURL('https://mysite.com')).toBe('mysite.com');
+  });
+
+  it('should remove http://', () => {
+    expect(helpers.cleanURL('http://mysite.com')).toBe('mysite.com');
+  });
+
+  it('should remove any protocol', () => {
+    expect(helpers.cleanURL('weirdprotocol://mysite.com')).toBe('mysite.com');
+  });
+
+  it('should remove www.', () => {
+    expect(helpers.cleanURL('www.mysite.com')).toBe('mysite.com');
+  });
+
+  it('should remove https://www.', () => {
+    expect(helpers.cleanURL('https://www.mysite.com')).toBe('mysite.com');
+  });
+
+  it('should remove http://www.', () => {
+    expect(helpers.cleanURL('http://www.mysite.com')).toBe('mysite.com');
+  });
+
+  it('should not remove anything on the end.', () => {
+    expect(helpers.cleanURL('www.mysite.com.test')).toBe('mysite.com.test');
+  });
+
+  it('should not remove www when its part of the name', () => {
+    expect(helpers.cleanURL('wwwmysite.com')).toBe('wwwmysite.com');
+  });
+});
