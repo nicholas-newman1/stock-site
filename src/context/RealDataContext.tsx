@@ -18,7 +18,7 @@ the case, realData is set to false and the entire site will use the dummy data
 stored in dummyData.js */
 
 export const RealDataProvider: React.FC = (props) => {
-  const [realData, setRealData] = useState(false);
+  const [realData, setRealData] = useState(true);
   const [error, setError] = useState('Something went wrong... Try refreshing.');
   return (
     <RealDataContext.Provider
