@@ -6,9 +6,12 @@ import Heading from '../components/heading/Heading';
 import { dummyWatchlistData } from '../dummyData';
 import { WatchlistContext } from '../context/WatchlistContext';
 import useFetch from '../hooks/useFetch';
+import useFetch2 from '../hooks/useFetch2';
 import useScrollTop from '../hooks/useScrollTop';
 
 const WatchlistPage: React.FC = () => {
+  useScrollTop(); // scrolls to top of page on component mount
+
   const { watchlist } = useContext(WatchlistContext);
 
   const { data, setData, loading } = useFetch(
@@ -17,7 +20,11 @@ const WatchlistPage: React.FC = () => {
     dummyWatchlistData // dummy data
   );
 
-  useScrollTop(); // scrolls to top of page on component mount
+  const { data: newsData, loading: loadingNews } = useFetch2(
+    [], // initial value
+    'stock_news', // endpoint
+    'limit=10' // params
+  );
 
   return (
     <div>
@@ -32,7 +39,7 @@ const WatchlistPage: React.FC = () => {
       <Heading text='Watchlist' />
 
       <Table loading={loading} tableData={data} setTableData={setData} />
-      <BottomNews />
+      <BottomNews newsData={newsData} loading={loadingNews} />
     </div>
   );
 };

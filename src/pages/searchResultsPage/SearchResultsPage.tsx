@@ -8,6 +8,7 @@ import Heading from '../../components/heading/Heading';
 import BottomNews from '../../components/bottomNews/BottomNews';
 import { dummySearchResults } from '../../dummyData';
 import useFetch from '../../hooks/useFetch';
+import useFetch2 from '../../hooks/useFetch2';
 import useScrollTop from '../../hooks/useScrollTop';
 import './searchResultsPage.css';
 import { RouteComponentProps } from 'react-router-dom';
@@ -19,6 +20,8 @@ interface MatchParams {
 interface Props extends RouteComponentProps<MatchParams> {}
 
 const SearchResults: React.FC<Props> = ({ match }) => {
+  useScrollTop(); // scrolls to top of page on component mount
+
   const [exchange, setExchange] = useState<Exchange>('');
   const [page, setPage] = useState(0);
   const [resultsPerPage] = useState(10);
@@ -33,7 +36,11 @@ const SearchResults: React.FC<Props> = ({ match }) => {
     [match.params.query, exchange] // dependencies
   );
 
-  useScrollTop(); // scrolls to top of page on component mount
+  const { data: newsData, loading: loadingNews } = useFetch2(
+    [], // initial value
+    'stock_news', // endpoint
+    'limit=10' // params
+  );
 
   return (
     <>
@@ -82,7 +89,7 @@ const SearchResults: React.FC<Props> = ({ match }) => {
       ) : (
         <h2>No Results Found For '{query}'</h2>
       )}
-      <BottomNews />
+      <BottomNews newsData={newsData} loading={loadingNews} />
     </>
   );
 };

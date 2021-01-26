@@ -5,16 +5,23 @@ import BottomNews from '../components/bottomNews/BottomNews';
 import Heading from '../components/heading/Heading';
 import { dummyCryptoData } from '../dummyData';
 import useFetch from '../hooks/useFetch';
+import useFetch2 from '../hooks/useFetch2';
 import useScrollTop from '../hooks/useScrollTop';
 
 const CryptoPage: React.FC = () => {
+  useScrollTop(); // scrolls to top of page on component mount
+
   const { data, setData, loading } = useFetch(
     [], // intial value
     'quotes/crypto', // endpoint
     dummyCryptoData // dummy data
   );
 
-  useScrollTop(); // scrolls to top of page on component mount
+  const { data: newsData, loading: loadingNews } = useFetch2(
+    [], // initial value
+    'stock_news', // endpoint
+    'limit=10' // params
+  );
 
   return (
     <div>
@@ -29,7 +36,7 @@ const CryptoPage: React.FC = () => {
       <Heading text='Cryptocurrencies' />
 
       <Table loading={loading} tableData={data} setTableData={setData} />
-      <BottomNews />
+      <BottomNews newsData={newsData} loading={loadingNews} />
     </div>
   );
 };

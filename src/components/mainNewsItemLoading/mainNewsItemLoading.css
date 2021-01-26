@@ -1,0 +1,16 @@
+.main-news-item-loading {
+  width: 100%;
+  background: #ddd;
+  padding: 1rem;
+  padding-top: 50%;
+
+  border-radius: 10px;
+}
+
+.main-news-item-loading__div {
+  width: 100%;
+  margin: 0 auto;
+  background: #eee;
+  padding-top: 30%;
+  border-radius: 10px;
+}

@@ -5,16 +5,23 @@ import BottomNews from '../components/bottomNews/BottomNews';
 import Heading from '../components/heading/Heading';
 import { dummyCommodityData } from '../dummyData';
 import useFetch from '../hooks/useFetch';
+import useFetch2 from '../hooks/useFetch2';
 import useScrollTop from '../hooks/useScrollTop';
 
 const CommodityPage: React.FC = () => {
+  useScrollTop(); // scrolls to top of page on component mount
+
   const { data, setData, loading } = useFetch(
     [], // intial value
     'quotes/commodity', // endpoint
     dummyCommodityData // dummy data
   );
 
-  useScrollTop(); // scrolls to top of page on component mount
+  const { data: newsData, loading: loadingNews } = useFetch2(
+    [], // initial value
+    'stock_news', // endpoint
+    'limit=10' // params
+  );
 
   return (
     <div>
@@ -29,7 +36,7 @@ const CommodityPage: React.FC = () => {
       <Heading text='Commodities' />
 
       <Table loading={loading} tableData={data} setTableData={setData} />
-      <BottomNews />
+      <BottomNews newsData={newsData} loading={loadingNews} />
     </div>
   );
 };

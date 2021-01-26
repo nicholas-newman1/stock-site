@@ -2,15 +2,16 @@ import React, { useEffect, useContext, useState } from 'react';
 import Quote from '../components/quote/Quote';
 import QuoteWatchlistBtn from '../components/quoteWatchlistBtn/QuoteWatchlistBtn';
 import QuoteSummary from '../components/quoteSummary/QuoteSummary';
-import BottomNews from '../components/bottomNews/BottomNews';
 import QuoteChart from '../components/quoteChart/QuoteChart';
 import QuoteProfile from '../components/quoteProfile/QuoteProfile';
 import QuoteValuation from '../components/quoteValuation/QuoteValuation';
 import QuoteNav from '../components/quoteNav/QuoteNav';
-import { QuoteContext } from '../context/QuoteContext';
 import QuoteFinancials from '../components/quoteFinancials/QuoteFinancials';
+import BottomNews from '../components/bottomNews/BottomNews';
+import { QuoteContext } from '../context/QuoteContext';
 import { Helmet } from 'react-helmet-async';
 import { Redirect, RouteComponentProps } from 'react-router-dom';
+import useFetch2 from '../hooks/useFetch2';
 import useScrollTop from '../hooks/useScrollTop';
 
 interface MatchProps {
@@ -20,7 +21,9 @@ interface MatchProps {
 interface Props extends RouteComponentProps<MatchProps> {}
 
 const QuotePage: React.FC<Props> = ({ match }) => {
-  const symbol: string = match.params.symbol;
+  useScrollTop(); // scrolls to top of page on component mount
+
+  const symbol: string = match.params.symbol.replace('^', '%5E');
   const [tab, setTab] = useState('Summary');
   const {
     fetchQuote,
@@ -30,7 +33,12 @@ const QuotePage: React.FC<Props> = ({ match }) => {
     quote,
   } = useContext(QuoteContext);
 
-  useScrollTop(); // scrolls to top of page on component mount
+  const { data: newsData, loading: loadingNews } = useFetch2(
+    [], // initial value
+    'stock_news', // endpoint
+    `limit=10${isStock ? '&tickers=' + symbol : ''}`, // params
+    [isStock] // dependency
+  );
 
   useEffect(() => {
     fetchQuote(symbol);
@@ -70,7 +78,10 @@ const QuotePage: React.FC<Props> = ({ match }) => {
           </>
         )}
 
-        {isQuoteFetched && <BottomNews symbol={isStock ? symbol : ''} />}
+        <BottomNews
+          newsData={newsData}
+          loading={!isQuoteFetched || loadingNews}
+        />
       </>
     </>
   ) : (

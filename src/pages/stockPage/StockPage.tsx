@@ -12,9 +12,12 @@ import {
 
 import './stockPage.css';
 import useFetch from '../../hooks/useFetch';
+import useFetch2 from '../../hooks/useFetch2';
 import useScrollTop from '../../hooks/useScrollTop';
 
 const StockPage: React.FC = () => {
+  useScrollTop(); // scrolls to top of page on component mount
+
   const { data: activesData, loading: activesLoading } = useFetch(
     [], // initial value
     'actives', // endpoint
@@ -33,7 +36,11 @@ const StockPage: React.FC = () => {
     dummyLosersData
   );
 
-  useScrollTop(); // scrolls to top of page on component mount
+  const { data: newsData, loading: loadingNews } = useFetch2(
+    [], // initial value
+    'stock_news', // endpoint
+    'limit=10' // params
+  );
 
   return (
     <div className='stock-page'>
@@ -69,7 +76,7 @@ const StockPage: React.FC = () => {
         <SectorTable />
       </div>
 
-      <BottomNews />
+      <BottomNews newsData={newsData} loading={loadingNews} />
     </div>
   );
 };

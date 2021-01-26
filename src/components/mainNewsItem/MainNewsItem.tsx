@@ -1,26 +1,17 @@
 import React from 'react';
-import './mainNewsItem.css';
+import MainNewsItemLoading from '../mainNewsItemLoading/MainNewsItemLoading';
 import { getTimeAgoString, truncate } from '../../helpers';
-import { dummyNewsData } from '../../dummyData';
-import useFetch from '../../hooks/useFetch';
+import './mainNewsItem.css';
 
-const MainNewsItem: React.FC = () => {
-  const { data, loading } = useFetch(
-    [], // intial value
-    'stock_news', // endpoint
-    dummyNewsData, // dummy data
-    'limit=1' // params
-  );
+interface Props {
+  data: NewsItem;
+  loading: boolean;
+}
 
-  if (loading) {
-    return (
-      <div className='loading-main-news'>
-        <div className='loading-main-news__div' />
-      </div>
-    );
-  }
+const MainNewsItem: React.FC<Props> = ({ data, loading }) => {
+  if (loading) return <MainNewsItemLoading />;
 
-  const { site, title, text, publishedDate, url, image } = data[0];
+  const { site, title, text, publishedDate, url, image } = data;
 
   return (
     <div className='main-news__item'>
