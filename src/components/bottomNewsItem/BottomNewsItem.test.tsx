@@ -23,9 +23,12 @@ describe('<BottomNewsItem />', () => {
     render(<BottomNewsItem newsItem={newsItem} />);
   });
 
-  it('should render the title', () => {
-    const { getByText } = render(<BottomNewsItem newsItem={newsItem} />);
-    getByText(/SHAREHOLDER/);
+  it('should render the title as a heading', () => {
+    const { getByRole } = render(<BottomNewsItem newsItem={newsItem} />);
+    const heading = getByRole('heading');
+    expect(heading.textContent).toBe(
+      'SHAREHOLDER ALERT: Levi & Korsinsky, LLP Notifies Investors of an Investigation.'
+    );
   });
 
   it('should truncate title to be 120 characters or less', () => {
