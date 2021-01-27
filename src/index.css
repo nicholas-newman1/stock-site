@@ -33,6 +33,22 @@ footer {
   margin: 0 auto;
 }
 
+.watchlist-btn {
+  text-decoration: none;
+  color: #006acc;
+  border-radius: 500px;
+  font-size: 1rem;
+  font-weight: 400;
+  padding: 0.35rem 1rem;
+  border: 1px solid #006acc;
+}
+
+.watchlist-btn:hover {
+  background: #006acc;
+  color: white;
+  cursor: pointer;
+}
+
 .hidden {
   display: none;
 }

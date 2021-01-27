@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
-import Spinner from '../../components/Spinner';
+import Spinner from '../../components/spinner/Spinner';
 import SearchFilter from '../../components/searchFilter/SearchFilter';
 import SearchItem from '../../components/searchItem/SearchItem';
 import PageNav from '../../components/pageNav/PageNav';

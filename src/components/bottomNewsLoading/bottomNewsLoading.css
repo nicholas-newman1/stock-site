@@ -1,19 +1,25 @@
-.bottom-news__ul--loading {
+.bottom-news-loading__item {
+  background: #ddd;
+  border-radius: 10px;
+  min-height: 10rem;
+}
+
+.bottom-news-loading {
   list-style: none;
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1rem;
 }
 
-.bottom-news__div--loading {
+.bottom-news-loading__div {
   width: 30%;
-  padding-top: 25%;
+  height: 100%;
   background: #ccc;
   border-radius: 10px;
 }
 
 @media (max-width: 1000px) {
-  .bottom-news__ul--loading {
+  .bottom-news-loading {
     grid-template-columns: 1fr;
   }
 }

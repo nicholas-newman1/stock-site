@@ -71,7 +71,7 @@ const Header: React.FC = () => {
         {(displayNav || isLargeView) && (
           <>
             <div className='header__watchlist-container'>
-              <Link className='header__watchlist-link' to={`/watchlist`}>
+              <Link className='watchlist-btn' to={`/watchlist`}>
                 Watchlist
               </Link>
             </div>

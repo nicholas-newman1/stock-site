@@ -3,7 +3,7 @@ import PageNav from '../pageNav/PageNav';
 import TableTable from './TableTable';
 import TableOptions from './TableOptions';
 import { sortArrayOfObjects } from '../../helpers';
-import Spinner from '../Spinner';
+import Spinner from '../spinner/Spinner';
 
 interface Props {
   loading: boolean;

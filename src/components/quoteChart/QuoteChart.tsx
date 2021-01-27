@@ -8,7 +8,7 @@ import {
   dummyOneMonthData,
   dummyDailyData,
 } from '../../dummyData';
-import Spinner from '../Spinner';
+import Spinner from '../spinner/Spinner';
 import { filterChartData, formatChartData } from '../../helpers';
 import useFetch from '../../hooks/useFetch';
 import useChartFormat from '../../hooks/useChartFormat';

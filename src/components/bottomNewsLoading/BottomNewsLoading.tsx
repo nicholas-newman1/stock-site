@@ -5,12 +5,12 @@ const BottomNewsLoading: React.FC = () => {
   let loadingItems = [];
   for (let i = 0; i < 10; i++) {
     loadingItems.push(
-      <li key={i} className='bottom-news__item--loading'>
-        <div className='bottom-news__div--loading' />
+      <li key={i} className='bottom-news-loading__item'>
+        <div className='bottom-news-loading__div' />
       </li>
     );
   }
-  return <ul className='bottom-news__ul--loading'>{loadingItems}</ul>;
+  return <ul className='bottom-news-loading'>{loadingItems}</ul>;
 };
 
 export default BottomNewsLoading;

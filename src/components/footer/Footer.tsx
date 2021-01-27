@@ -19,7 +19,7 @@ const Footer: React.FC = () => {
         <MainNav justifyCenter={true} />
         <br />
 
-        <Link className='footer__watchlist-link' to={`/watchlist`}>
+        <Link className='watchlist-btn' to={`/watchlist`}>
           Watchlist
         </Link>
       </div>

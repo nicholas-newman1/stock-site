@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import StatementTable from '../quoteTable/QuoteTable';
 import QuoteFinancialsNav from '../quoteFinancialsNav/QuoteFinancialsNav';
-import Spinner from '../Spinner';
+import Spinner from '../spinner/Spinner';
 import {
   dummyAnnualIncomeStatement,
   dummyQuarterlyIncomeStatement,

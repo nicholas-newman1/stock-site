@@ -1,13 +1,13 @@
 import React, { useContext } from 'react';
 import { Helmet } from 'react-helmet-async';
-import Table from '../components/table/Table';
-import BottomNews from '../components/bottomNews/BottomNews';
-import Heading from '../components/heading/Heading';
-import { dummyWatchlistData } from '../dummyData';
-import { WatchlistContext } from '../context/WatchlistContext';
-import useFetch from '../hooks/useFetch';
-import useFetch2 from '../hooks/useFetch2';
-import useScrollTop from '../hooks/useScrollTop';
+import Table from '../../components/table/Table';
+import BottomNews from '../../components/bottomNews/BottomNews';
+import Heading from '../../components/heading/Heading';
+import { dummyWatchlistData } from '../../dummyData';
+import { WatchlistContext } from '../../context/WatchlistContext';
+import useFetch from '../../hooks/useFetch';
+import useFetch2 from '../../hooks/useFetch2';
+import useScrollTop from '../../hooks/useScrollTop';
 
 const WatchlistPage: React.FC = () => {
   useScrollTop(); // scrolls to top of page on component mount

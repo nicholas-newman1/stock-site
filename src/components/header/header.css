@@ -40,23 +40,7 @@
 .header__watchlist-container {
   display: flex;
   justify-content: flex-end;
-}
-
-.header__watchlist-link {
-  display: inline-block;
-  text-decoration: none;
-  color: #006acc;
-  border-radius: 3px;
-  font-size: 0.95rem;
-  font-weight: 400;
-  padding: 0.5rem 1rem;
-  border: 1px solid #006acc;
-}
-
-.header__watchlist-link:hover {
-  background: #006acc;
-  color: white;
-  cursor: pointer;
+  align-items: center;
 }
 
 .header__hamburger {

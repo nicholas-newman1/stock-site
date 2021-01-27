@@ -1,18 +1,18 @@
 import React, { useEffect, useContext, useState } from 'react';
-import Quote from '../components/quote/Quote';
-import QuoteWatchlistBtn from '../components/quoteWatchlistBtn/QuoteWatchlistBtn';
-import QuoteSummary from '../components/quoteSummary/QuoteSummary';
-import QuoteChart from '../components/quoteChart/QuoteChart';
-import QuoteProfile from '../components/quoteProfile/QuoteProfile';
-import QuoteValuation from '../components/quoteValuation/QuoteValuation';
-import QuoteNav from '../components/quoteNav/QuoteNav';
-import QuoteFinancials from '../components/quoteFinancials/QuoteFinancials';
-import BottomNews from '../components/bottomNews/BottomNews';
-import { QuoteContext } from '../context/QuoteContext';
+import Quote from '../../components/quote/Quote';
+import QuoteWatchlistBtn from '../../components/quoteWatchlistBtn/QuoteWatchlistBtn';
+import QuoteSummary from '../../components/quoteSummary/QuoteSummary';
+import QuoteChart from '../../components/quoteChart/QuoteChart';
+import QuoteProfile from '../../components/quoteProfile/QuoteProfile';
+import QuoteValuation from '../../components/quoteValuation/QuoteValuation';
+import QuoteNav from '../../components/quoteNav/QuoteNav';
+import QuoteFinancials from '../../components/quoteFinancials/QuoteFinancials';
+import BottomNews from '../../components/bottomNews/BottomNews';
+import { QuoteContext } from '../../context/QuoteContext';
 import { Helmet } from 'react-helmet-async';
 import { Redirect, RouteComponentProps } from 'react-router-dom';
-import useFetch2 from '../hooks/useFetch2';
-import useScrollTop from '../hooks/useScrollTop';
+import useFetch2 from '../../hooks/useFetch2';
+import useScrollTop from '../../hooks/useScrollTop';
 
 interface MatchProps {
   symbol: string;

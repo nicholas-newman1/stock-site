@@ -19,14 +19,14 @@ const PriceList: React.FC<Props> = ({ symbols }) => {
   return (
     <ul className='price-list'>
       {loading
-        ? symbols.map(() => (
-            <div className='price-list__item'>
+        ? symbols.map((symbol) => (
+            <div key={symbol} className='price-list__item'>
               <PriceListItemLoading />
             </div>
           ))
         : data.map((quote: KeyValueObject) => (
-            <div className='price-list__item'>
-              <PriceListItem key={quote.symbol} data={quote} />
+            <div key={quote.symbol} className='price-list__item'>
+              <PriceListItem data={quote} />
             </div>
           ))}
     </ul>
