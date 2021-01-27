@@ -32,10 +32,11 @@ const QuoteChart: React.FC<Props> = ({ symbol }) => {
   if (timeframe === '1M') interval = '1hour';
 
   if (
-    interval === 'YTD' ||
-    interval === '1Y' ||
-    interval === '5Y' ||
-    interval === 'MAX'
+    timeframe === '6M' ||
+    timeframe === 'YTD' ||
+    timeframe === '1Y' ||
+    timeframe === '5Y' ||
+    timeframe === 'MAX'
   ) {
     endpoint = 'historical-price-full';
   }
