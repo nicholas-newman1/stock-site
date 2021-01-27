@@ -1,46 +1,34 @@
 import React from 'react';
-import PriceTable from './PriceTable';
-import { Link } from 'react-router-dom';
+import PriceListItemLoading from '../priceListItemLoading/PriceListItemLoading';
+import PriceListItem from '../priceListItem/PriceListItem';
+import { dummyIndexData } from '../../dummyData';
+import useFetch from '../../hooks/useFetch';
 import './priceList.css';
 
-const PriceList: React.FC = () => {
+interface Props {
+  symbols: string[];
+}
+
+const PriceList: React.FC<Props> = ({ symbols }) => {
+  const { data, loading } = useFetch(
+    [], // intial value
+    `quote/${symbols.join()}`, //endpoint
+    dummyIndexData // dummy data
+  );
+
   return (
-    <ul className='pricelist'>
-      <li className='pricelist__item'>
-        <h2 className='pricelist__heading'>
-          <Link className='pricelist__link' to='/indexes'>
-            Indexes
-          </Link>
-        </h2>
-        <PriceTable symbols={['^DJI', '^GSPC', '^IXIC', '^GSPTSE']} />
-      </li>
-
-      <li className='pricelist__item'>
-        <h2 className='pricelist__heading'>
-          <Link className='pricelist__link' to='/stocks'>
-            Stocks
-          </Link>
-        </h2>
-        <PriceTable symbols={['AMZN', 'AAPL', 'FB', 'TSLA']} />
-      </li>
-
-      <li className='pricelist__item'>
-        <h2 className='pricelist__heading'>
-          <Link className='pricelist__link' to='/forex'>
-            Forex
-          </Link>
-        </h2>
-        <PriceTable symbols={['CADUSD', 'CADEUR', 'CADGBP', 'CADJPY']} />
-      </li>
-
-      <li className='pricelist__item'>
-        <h2 className='pricelist__heading'>
-          <Link className='pricelist__link' to='/cryptocurrencies'>
-            Cryptocurrencies
-          </Link>
-        </h2>
-        <PriceTable symbols={['BTCUSD', 'ETHUSD', 'XRPUSD', 'USDTUSD']} />
-      </li>
+    <ul className='price-list'>
+      {loading
+        ? symbols.map(() => (
+            <div className='price-list__item'>
+              <PriceListItemLoading />
+            </div>
+          ))
+        : data.map((quote: KeyValueObject) => (
+            <div className='price-list__item'>
+              <PriceListItem key={quote.symbol} data={quote} />
+            </div>
+          ))}
     </ul>
   );
 };

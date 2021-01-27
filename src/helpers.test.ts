@@ -304,6 +304,16 @@ describe('roundLocale', () => {
   });
 });
 
+describe('insertDollarSign', () => {
+  it('should insert a dollar sign at 0 index on positive numbers', () => {
+    expect(helpers.insertDollarSign('123,234,345.12')).toBe('$123,234,345.12');
+  });
+
+  it('should insert a dollar sign at 1 index on negative numbers', () => {
+    expect(helpers.insertDollarSign('-234,345')).toBe('-$234,345');
+  });
+});
+
 describe('getChangeColor', () => {
   it('should return black when the given change is not of type number', () => {
     expect(helpers.getChangeColor('N/A')).toBe('black');
@@ -313,12 +323,12 @@ describe('getChangeColor', () => {
     expect(helpers.getChangeColor(0)).toBe('black');
   });
 
-  it('should return "green" when change is positive', () => {
-    expect(helpers.getChangeColor(23)).toBe('green');
+  it('should return "#25783b" when change is positive', () => {
+    expect(helpers.getChangeColor(23)).toBe('#25783b');
   });
 
-  it('should return "#de0e00" when change is negative', () => {
-    expect(helpers.getChangeColor(-0.001)).toBe('#de0e00');
+  it('should return "#cf0007" when change is negative', () => {
+    expect(helpers.getChangeColor(-0.001)).toBe('#cf0007');
   });
 });
 

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import BottomNews from '../../components/bottomNews/BottomNews';
-import PriceList from '../../components/priceList/PriceList';
+import PriveOverview from '../../components/priceOverview/PriceOverview';
 import MainNewsItem from '../../components/mainNewsItem/MainNewsItem';
 import { Helmet } from 'react-helmet-async';
 import useScrollTop from '../../hooks/useScrollTop';
@@ -36,7 +36,7 @@ const Home: React.FC = () => {
         <BottomNews newsData={bottomNewsData} loading={loadingNews} />
       </div>
       <div className='home__section-two'>
-        <PriceList />
+        <PriveOverview />
       </div>
     </div>
   );

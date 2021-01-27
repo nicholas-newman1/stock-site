@@ -165,9 +165,16 @@ export const roundLocale = (
   return numStr;
 };
 
+export const insertDollarSign = (num: string) => {
+  if (num.charAt(0) !== '-') return '$' + num;
+  const newNum = num.split('');
+  newNum.splice(1, 0, '$');
+  return newNum.join('');
+};
+
 export const getChangeColor = (change: any) => {
   if (typeof change !== 'number') return 'black';
-  return change > 0 ? 'green' : change < 0 ? '#de0e00' : 'black';
+  return change > 0 ? '#25783b' : change < 0 ? '#cf0007' : 'black';
 };
 
 // formats the data in the quote to be more readable
