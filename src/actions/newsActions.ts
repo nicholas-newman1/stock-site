@@ -13,5 +13,11 @@ const setNewsData = (data: NewsItem[]): SetNewsData => ({
 });
 
 export const fetchNews = (params = '') => {
-  return fetchFromAPI('stock_news', setNewsLoading, setNewsData, params);
+  return fetchFromAPI(
+    'stock_news',
+    'news',
+    setNewsLoading,
+    setNewsData,
+    params
+  );
 };

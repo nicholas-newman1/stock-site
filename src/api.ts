@@ -5,6 +5,7 @@ import { AppActions } from './types/actionTypes';
 
 export const fetchFromAPI = (
   endpoint: string,
+  dummyEndpoint: string,
   setLoading: (status: boolean) => any,
   setData: (data: any) => any,
   params = ''
@@ -21,7 +22,7 @@ export const fetchFromAPI = (
         .then((data) => {
           if (data['Error Message']) {
             dispatch(disableRealData(data['Error Message']));
-            fetch(`../dummyData/${endpoint}.json`)
+            fetch(`../dummyData/${dummyEndpoint}.json`)
               .then((res) => res.json())
               .then((data) => dispatch(setData(data)));
           } else {
@@ -30,7 +31,7 @@ export const fetchFromAPI = (
         })
         .catch((err) => dispatch(disableRealData(err.message)));
     } else {
-      fetch(`../dummyData/${endpoint}.json`)
+      fetch(`../dummyData/${dummyEndpoint}.json`)
         .then((res) => res.json())
         .then((data) => dispatch(setData(data)));
     }
