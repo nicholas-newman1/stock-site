@@ -1,17 +1,19 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { RouteComponentProps } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchNews } from '../../actions/newsActions';
+import { AppState } from '../../reducers/rootReducer';
 import { Helmet } from 'react-helmet-async';
+import { dummySearchResults } from '../../dummyData';
 import Spinner from '../../components/spinner/Spinner';
 import SearchFilter from '../../components/searchFilter/SearchFilter';
 import SearchItem from '../../components/searchItem/SearchItem';
 import PageNav from '../../components/pageNav/PageNav';
 import Heading from '../../components/heading/Heading';
 import BottomNews from '../../components/bottomNews/BottomNews';
-import { dummySearchResults } from '../../dummyData';
 import useFetch from '../../hooks/useFetch';
-import useFetch2 from '../../hooks/useFetch2';
 import useScrollTop from '../../hooks/useScrollTop';
 import './searchResultsPage.css';
-import { RouteComponentProps } from 'react-router-dom';
 
 interface MatchParams {
   query: string;
@@ -36,11 +38,16 @@ const SearchResults: React.FC<Props> = ({ match }) => {
     [match.params.query, exchange] // dependencies
   );
 
-  const { data: newsData, loading: loadingNews } = useFetch2(
-    [], // initial value
-    'stock_news', // endpoint
-    'limit=10' // params
+  const dispatch = useDispatch();
+
+  const { data: newsData, loading: loadingNews } = useSelector(
+    (state: AppState) => state.news
   );
+
+  useEffect(() => {
+    dispatch(fetchNews('limit=10'));
+    //eslint-disable-next-line
+  }, []);
 
   return (
     <>

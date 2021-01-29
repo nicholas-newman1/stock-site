@@ -1,11 +1,13 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { AppState } from '../../reducers/rootReducer';
+import { fetchNews } from '../../actions/newsActions';
 import { Helmet } from 'react-helmet-async';
+import { dummyCryptoData } from '../../dummyData';
+import Heading from '../../components/heading/Heading';
 import Table from '../../components/table/Table';
 import BottomNews from '../../components/bottomNews/BottomNews';
-import Heading from '../../components/heading/Heading';
-import { dummyCryptoData } from '../../dummyData';
 import useFetch from '../../hooks/useFetch';
-import useFetch2 from '../../hooks/useFetch2';
 import useScrollTop from '../../hooks/useScrollTop';
 
 const CryptoPage: React.FC = () => {
@@ -17,11 +19,16 @@ const CryptoPage: React.FC = () => {
     dummyCryptoData // dummy data
   );
 
-  const { data: newsData, loading: loadingNews } = useFetch2(
-    [], // initial value
-    'stock_news', // endpoint
-    'limit=10' // params
+  const dispatch = useDispatch();
+
+  const { data: newsData, loading: loadingNews } = useSelector(
+    (state: AppState) => state.news
   );
+
+  useEffect(() => {
+    dispatch(fetchNews('limit=10'));
+    //eslint-disable-next-line
+  }, []);
 
   return (
     <div>

@@ -1,19 +1,20 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchNews } from '../../actions/newsActions';
+import { AppState } from '../../reducers/rootReducer';
 import { Helmet } from 'react-helmet-async';
-import BottomNews from '../../components/bottomNews/BottomNews';
-import Heading from '../../components/heading/Heading';
-import StockTable from '../../components/stockTable/StockTable';
-import SectorTable from '../../components/sectorTable/SectorTable';
 import {
   dummyActivesData,
   dummyGainersData,
   dummyLosersData,
 } from '../../dummyData';
-
-import './stockPage.css';
+import Heading from '../../components/heading/Heading';
+import StockTable from '../../components/stockTable/StockTable';
+import SectorTable from '../../components/sectorTable/SectorTable';
+import BottomNews from '../../components/bottomNews/BottomNews';
 import useFetch from '../../hooks/useFetch';
-import useFetch2 from '../../hooks/useFetch2';
 import useScrollTop from '../../hooks/useScrollTop';
+import './stockPage.css';
 
 const StockPage: React.FC = () => {
   useScrollTop(); // scrolls to top of page on component mount
@@ -36,11 +37,16 @@ const StockPage: React.FC = () => {
     dummyLosersData
   );
 
-  const { data: newsData, loading: loadingNews } = useFetch2(
-    [], // initial value
-    'stock_news', // endpoint
-    'limit=10' // params
+  const dispatch = useDispatch();
+
+  const { data: newsData, loading: loadingNews } = useSelector(
+    (state: AppState) => state.news
   );
+
+  useEffect(() => {
+    dispatch(fetchNews('limit=10'));
+    //eslint-disable-next-line
+  }, []);
 
   return (
     <div className='stock-page'>

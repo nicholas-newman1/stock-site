@@ -1,12 +1,14 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import Table from '../../components/table/Table';
 import BottomNews from '../../components/bottomNews/BottomNews';
 import Heading from '../../components/heading/Heading';
 import { dummyIndexPageData } from '../../dummyData';
 import useFetch from '../../hooks/useFetch';
-import useFetch2 from '../../hooks/useFetch2';
 import useScrollTop from '../../hooks/useScrollTop';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchNews } from '../../actions/newsActions';
+import { AppState } from '../../reducers/rootReducer';
 
 const IndexPage: React.FC = () => {
   useScrollTop(); // scrolls to top of page on component mount
@@ -17,11 +19,16 @@ const IndexPage: React.FC = () => {
     dummyIndexPageData // dummy data
   );
 
-  const { data: newsData, loading: loadingNews } = useFetch2(
-    [], // initial value
-    'stock_news', // endpoint
-    'limit=10' // params
+  const dispatch = useDispatch();
+
+  const { data: newsData, loading: loadingNews } = useSelector(
+    (state: AppState) => state.news
   );
+
+  useEffect(() => {
+    dispatch(fetchNews('limit=10'));
+    //eslint-disable-next-line
+  }, []);
 
   return (
     <div>

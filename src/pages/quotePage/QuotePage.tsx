@@ -1,4 +1,10 @@
 import React, { useEffect, useContext, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchNews } from '../../actions/newsActions';
+import { AppState } from '../../reducers/rootReducer';
+import { QuoteContext } from '../../context/QuoteContext';
+import { Helmet } from 'react-helmet-async';
+import { Redirect, RouteComponentProps } from 'react-router-dom';
 import Quote from '../../components/quote/Quote';
 import QuoteWatchlistBtn from '../../components/quoteWatchlistBtn/QuoteWatchlistBtn';
 import QuoteSummary from '../../components/quoteSummary/QuoteSummary';
@@ -8,10 +14,6 @@ import QuoteValuation from '../../components/quoteValuation/QuoteValuation';
 import QuoteNav from '../../components/quoteNav/QuoteNav';
 import QuoteFinancials from '../../components/quoteFinancials/QuoteFinancials';
 import BottomNews from '../../components/bottomNews/BottomNews';
-import { QuoteContext } from '../../context/QuoteContext';
-import { Helmet } from 'react-helmet-async';
-import { Redirect, RouteComponentProps } from 'react-router-dom';
-import useFetch2 from '../../hooks/useFetch2';
 import useScrollTop from '../../hooks/useScrollTop';
 
 interface MatchProps {
@@ -33,12 +35,16 @@ const QuotePage: React.FC<Props> = ({ match }) => {
     quote,
   } = useContext(QuoteContext);
 
-  const { data: newsData, loading: loadingNews } = useFetch2(
-    [], // initial value
-    'stock_news', // endpoint
-    `limit=10${isStock ? '&tickers=' + symbol : ''}`, // params
-    [isStock] // dependency
+  const dispatch = useDispatch();
+
+  const { data: newsData, loading: loadingNews } = useSelector(
+    (state: AppState) => state.news
   );
+
+  useEffect(() => {
+    dispatch(fetchNews('limit=10'));
+    //eslint-disable-next-line
+  }, []);
 
   useEffect(() => {
     fetchQuote(symbol);
