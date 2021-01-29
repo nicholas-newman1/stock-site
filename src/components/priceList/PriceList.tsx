@@ -1,30 +1,26 @@
 import React from 'react';
-import PriceListItemLoading from '../priceListItemLoading/PriceListItemLoading';
+import { Quote } from '../../types/APITypes';
 import PriceListItem from '../priceListItem/PriceListItem';
-import { dummyIndexData } from '../../dummyData';
-import useFetch from '../../hooks/useFetch';
+import PriceListItemLoading from '../priceListItemLoading/PriceListItemLoading';
 import './priceList.css';
 
 interface Props {
-  symbols: string[];
+  quotes: Quote[];
+  loading: boolean;
 }
 
-const PriceList: React.FC<Props> = ({ symbols }) => {
-  const { data, loading } = useFetch(
-    [], // intial value
-    `quote/${symbols.join()}`, //endpoint
-    dummyIndexData // dummy data
-  );
+const PriceList: React.FC<Props> = ({ quotes, loading }) => {
+  const loadingRows = [0, 1, 2, 3];
 
   return (
     <ul className='price-list'>
       {loading
-        ? symbols.map((symbol) => (
-            <div key={symbol} className='price-list__item'>
+        ? loadingRows.map((id) => (
+            <div key={id} className='price-list__item'>
               <PriceListItemLoading />
             </div>
           ))
-        : data.map((quote: KeyValueObject) => (
+        : quotes.map((quote: KeyValueObject) => (
             <div key={quote.symbol} className='price-list__item'>
               <PriceListItem data={quote} />
             </div>
