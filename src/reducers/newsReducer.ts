@@ -1,4 +1,5 @@
 import { NewsActionTypes } from '../types/actionTypes';
+import { NewsItem } from '../types/APITypes';
 
 interface NewsState {
   loading: boolean;

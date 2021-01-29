@@ -1,4 +1,6 @@
-/* ##### realData action types ##### */
+import { NewsItem, Quote } from './APITypes';
+
+/* ##### RealData Action Types ##### */
 
 const ENABLE_REAL_DATA = 'ENABLE_REAL_DATA';
 const DISABLE_REAL_DATA = 'DISABLE_REAL_DATA';
@@ -14,7 +16,7 @@ export interface DisableRealData {
 
 export type RealDataActionTypes = EnableRealData | DisableRealData;
 
-/* ###### news action types ##### */
+/* ###### News Action Types ##### */
 
 const SET_NEWS_LOADING = 'SET_NEWS_LOADING';
 const SET_NEWS_DATA = 'SET_NEWS_DATA';
@@ -31,6 +33,28 @@ export interface SetNewsData {
 
 export type NewsActionTypes = SetNewsLoading | SetNewsData;
 
-/* ##### App action types ##### */
+/* ##### PriceOverview Action Types */
 
-export type AppActions = NewsActionTypes | RealDataActionTypes;
+const SET_PRICE_OVERVIEW_LOADING = 'SET_PRICE_OVERVIEW_LOADING';
+const SET_PRICE_OVERVIEW_DATA = 'SET_PRICE_OVERVIEW_DATA';
+
+export interface SetPriceOverviewLoading {
+  type: typeof SET_PRICE_OVERVIEW_LOADING;
+  payload: boolean;
+}
+
+export interface SetPriceOverviewData {
+  type: typeof SET_PRICE_OVERVIEW_DATA;
+  payload: Quote[];
+}
+
+export type PriceOverviewActionTypes =
+  | SetPriceOverviewLoading
+  | SetPriceOverviewData;
+
+/* ##### App Action Types ##### */
+
+export type AppActions =
+  | RealDataActionTypes
+  | NewsActionTypes
+  | PriceOverviewActionTypes;
