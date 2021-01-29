@@ -26,15 +26,6 @@ interface FormattedQuote {
   avgVolume: string;
 }
 
-interface NewsItem {
-  image: string;
-  url: string;
-  title: string;
-  publishedDate: string;
-  site: string;
-  text: string;
-}
-
 type Timeframe = '1D' | '5D' | '1M' | '6M' | 'YTD' | '1Y' | '5Y' | 'MAX';
 
 type Statement =

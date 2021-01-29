@@ -1,4 +1,5 @@
 import React from 'react';
+import { NewsItem } from '../../types/APITypes';
 import BottomNewsItem from '../bottomNewsItem/BottomNewsItem';
 import BottomNewsLoading from '../bottomNewsLoading/BottomNewsLoading';
 import './bottomNews.css';
