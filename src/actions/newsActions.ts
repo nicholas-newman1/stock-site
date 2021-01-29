@@ -23,7 +23,16 @@ export const fetchNews = (params = '') => {
         }${params && '&' + params}`
       )
         .then((res) => res.json())
-        .then((data) => dispatch(setNewsData(data)))
+        .then((data) => {
+          if (data['Error Message']) {
+            dispatch(disableRealData(data['Error Message']));
+            fetch('../dummyData/stock_news.json')
+              .then((res) => res.json())
+              .then((data) => dispatch(setNewsData(data)));
+          } else {
+            dispatch(setNewsData(data));
+          }
+        })
         .catch((err) => dispatch(disableRealData(err.message)));
     } else {
       fetch('../dummyData/stock_news.json')

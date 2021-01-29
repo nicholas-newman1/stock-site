@@ -1,8 +1,8 @@
 import { RealDataActionTypes } from '../types/actionTypes';
 
 const initialState = {
-  status: true,
-  error: 'Something went wrong... Try refreshing.',
+  status: false,
+  error: 'Calls to a REST API will be simulated using local JSON files',
 };
 
 export const realDataReducer = (
