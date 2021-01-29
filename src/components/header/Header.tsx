@@ -5,14 +5,19 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import SearchBar from '../searchBar/SearchBar';
 import MainNav from '../mainNav/MainNav';
 import HeaderWarning from './HeaderWarning';
-import { DisplayNavContext } from '../../context/DisplayNavContext';
 import { RealDataContext } from '../../context/RealDataContext';
 import './header.css';
+import { useDispatch, useSelector } from 'react-redux';
+import { AppState } from '../../reducers/rootReducer';
+import { toggleDisplayMobileNav } from '../../actions/displayMobileNavActions';
 
 const Header: React.FC = () => {
+  const dispatch = useDispatch();
   const [isLargeView, setIsLargeView] = useState(false);
-  const { displayNav, setDisplayNav } = useContext(DisplayNavContext);
   const { realData } = useContext(RealDataContext);
+  const displayMobileNav = useSelector(
+    (state: AppState) => state.displayMobileNav
+  );
 
   useEffect(() => {
     const main = document.querySelector('main')!;
@@ -65,10 +70,10 @@ const Header: React.FC = () => {
         <FontAwesomeIcon
           className='header__hamburger'
           icon={faBars}
-          onClick={() => setDisplayNav(!displayNav)}
+          onClick={() => dispatch(toggleDisplayMobileNav())}
         />
 
-        {(displayNav || isLargeView) && (
+        {(displayMobileNav || isLargeView) && (
           <>
             <div className='header__watchlist-container'>
               <Link className='watchlist-btn' to={`/watchlist`}>

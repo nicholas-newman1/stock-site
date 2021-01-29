@@ -1,6 +1,7 @@
-import React, { useContext } from 'react';
+import React from 'react';
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { DisplayNavContext } from '../../context/DisplayNavContext';
+import { setDisplayMobileNav } from '../../actions/displayMobileNavActions';
 import './mainNavItem.css';
 
 interface Props {
@@ -8,14 +9,14 @@ interface Props {
 }
 
 const MainNavItem: React.FC<Props> = ({ item }) => {
-  const { setDisplayNav } = useContext(DisplayNavContext);
+  const dispatch = useDispatch();
 
   return (
     <li className='main-nav-item'>
       <Link
         className='main-nav-item__link'
         to={item === 'Home' ? '/' : `/${item.toLowerCase()}`}
-        onClick={() => setDisplayNav(false)}
+        onClick={() => dispatch(setDisplayMobileNav(false))}
       >
         {item}
       </Link>

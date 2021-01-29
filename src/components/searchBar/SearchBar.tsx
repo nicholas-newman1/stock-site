@@ -1,15 +1,14 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './searchBar.css';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { DisplayNavContext } from '../../context/DisplayNavContext';
+import { useDispatch } from 'react-redux';
+import { setDisplayMobileNav } from '../../actions/displayMobileNavActions';
 
 const SearchBar: React.FC = () => {
+  const dispatch = useDispatch();
   const [text, setText] = useState('');
-
-  // used to close nav whenever a search is made (small screens only)
-  const { setDisplayNav } = useContext(DisplayNavContext);
 
   return (
     <form className='search-bar'>
@@ -29,7 +28,7 @@ const SearchBar: React.FC = () => {
         to={`/search/${text}`}
         onClick={(e) => {
           setText('');
-          setDisplayNav(false);
+          dispatch(setDisplayMobileNav(false));
           const el = e.target as HTMLAnchorElement;
           el.focus();
         }}
