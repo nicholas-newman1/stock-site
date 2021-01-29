@@ -1,7 +1,6 @@
-import { Dispatch } from 'redux';
-import { AppState } from '../reducers/rootReducer';
-import { AppActions, SetNewsLoading, SetNewsData } from '../types/actionTypes';
-import { disableRealData } from './realDataActions';
+import { fetchFromAPI } from '../api';
+import { SetNewsLoading, SetNewsData } from '../types/actionTypes';
+import { NewsItem } from '../types/APITypes';
 
 const setNewsLoading = (status: boolean): SetNewsLoading => ({
   type: 'SET_NEWS_LOADING',
@@ -14,30 +13,5 @@ const setNewsData = (data: NewsItem[]): SetNewsData => ({
 });
 
 export const fetchNews = (params = '') => {
-  return (dispatch: Dispatch<AppActions>, getState: () => AppState) => {
-    dispatch(setNewsLoading(true));
-    if (getState().realData.status) {
-      fetch(
-        `https://financialmodelingprep.com/api/v3/stock_news?apikey=${
-          process.env.REACT_APP_FMP_KEY
-        }${params && '&' + params}`
-      )
-        .then((res) => res.json())
-        .then((data) => {
-          if (data['Error Message']) {
-            dispatch(disableRealData(data['Error Message']));
-            fetch('../dummyData/stock_news.json')
-              .then((res) => res.json())
-              .then((data) => dispatch(setNewsData(data)));
-          } else {
-            dispatch(setNewsData(data));
-          }
-        })
-        .catch((err) => dispatch(disableRealData(err.message)));
-    } else {
-      fetch('../dummyData/stock_news.json')
-        .then((res) => res.json())
-        .then((data) => dispatch(setNewsData(data)));
-    }
-  };
+  return fetchFromAPI('stock_news', setNewsLoading, setNewsData, params);
 };
