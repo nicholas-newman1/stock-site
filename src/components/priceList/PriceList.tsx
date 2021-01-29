@@ -20,7 +20,7 @@ const PriceList: React.FC<Props> = ({ quotes, loading }) => {
               <PriceListItemLoading />
             </div>
           ))
-        : quotes.map((quote: KeyValueObject) => (
+        : quotes.map((quote) => (
             <div key={quote.symbol} className='price-list__item'>
               <PriceListItem data={quote} />
             </div>
