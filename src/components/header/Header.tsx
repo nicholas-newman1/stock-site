@@ -1,11 +1,10 @@
-import React, { useEffect, useState, useContext } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import SearchBar from '../searchBar/SearchBar';
 import MainNav from '../mainNav/MainNav';
 import HeaderWarning from './HeaderWarning';
-import { RealDataContext } from '../../context/RealDataContext';
 import './header.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppState } from '../../reducers/rootReducer';
@@ -13,8 +12,8 @@ import { toggleDisplayMobileNav } from '../../actions/displayMobileNavActions';
 
 const Header: React.FC = () => {
   const dispatch = useDispatch();
+  const realData = useSelector((state: AppState) => state.realData);
   const [isLargeView, setIsLargeView] = useState(false);
-  const { realData } = useContext(RealDataContext);
   const displayMobileNav = useSelector(
     (state: AppState) => state.displayMobileNav
   );
@@ -57,7 +56,7 @@ const Header: React.FC = () => {
 
   return (
     <header className='header'>
-      {!realData && <HeaderWarning />}
+      {!realData.status && <HeaderWarning />}
       <div className='header__container container'>
         <Link className='header__logo' to='/'>
           Stock Site

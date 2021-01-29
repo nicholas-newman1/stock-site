@@ -1,5 +1,7 @@
-import { useState, useContext, useEffect } from 'react';
-import { RealDataContext } from '../context/RealDataContext';
+import { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { disableRealData } from '../actions/realDataActions';
+import { AppState } from '../reducers/rootReducer';
 
 const useFetch = (
   initialValue: any,
@@ -10,13 +12,14 @@ const useFetch = (
 ) => {
   const [data, setData] = useState(initialValue);
   const [loading, setLoading] = useState(true);
-  const { realData, setRealData, setError } = useContext(RealDataContext);
+  const dispatch = useDispatch();
+  const realData = useSelector((state: AppState) => state.realData);
 
   useEffect(() => {
     (async () => {
       setLoading(true);
       let data: any;
-      if (realData) {
+      if (realData.status) {
         try {
           const res = await fetch(
             `https://financialmodelingprep.com/api/v3/${endpoint}?apikey=${
@@ -28,13 +31,8 @@ const useFetch = (
           /* API sometimes sends an error message */
           if (data['Error Message']) throw data['Error Message'];
         } catch (error) {
-          console.log(new Error(error));
-          setError(error); // Error will be accesible by tooltip in header
           data = [...dummyData];
-
-          /* It is assumed API will continue returning errors, so the site will
-          use dummy data for every request until the site is refreshed */
-          setRealData(false);
+          dispatch(disableRealData(error));
         }
       } else {
         data = [...dummyData];

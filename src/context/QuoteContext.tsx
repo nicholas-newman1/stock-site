@@ -1,7 +1,9 @@
-import React, { createContext, useState, useContext } from 'react';
+import React, { createContext, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { disableRealData } from '../actions/realDataActions';
 import { dummyQuoteData } from '../dummyData';
 import { formatQuoteData } from '../helpers';
-import { RealDataContext } from './RealDataContext';
+import { AppState } from '../reducers/rootReducer';
 
 interface QuoteContextInterface {
   quote: KeyValueObject;
@@ -16,14 +18,15 @@ export const QuoteContext = createContext<QuoteContextInterface>(
 );
 
 export const QuoteProvider: React.FC = (props) => {
-  const { realData, setRealData, setError } = useContext(RealDataContext);
   const [isStock, setIsStock] = useState(false);
   const [isQuoteFetched, setIsQuoteFetched] = useState(false);
   const [quote, setQuote] = useState({});
+  const dispatch = useDispatch();
+  const realData = useSelector((state: AppState) => state.realData);
 
   const fetchQuote = async (symbol: string) => {
     let quote: KeyValueObject;
-    if (realData) {
+    if (realData.status) {
       try {
         const res = await fetch(
           `https://financialmodelingprep.com/api/v3/quote/${symbol}?apikey=${process.env.REACT_APP_FMP_KEY}`
@@ -32,10 +35,8 @@ export const QuoteProvider: React.FC = (props) => {
         if ('Error Message' in data) throw new Error(data['Error Message']);
         quote = data[0];
       } catch (error) {
-        console.log(new Error(error));
-        setError(error);
         quote = { ...dummyQuoteData[0] };
-        setRealData(false);
+        dispatch(disableRealData(error));
       }
     } else {
       quote = { ...dummyQuoteData[0] };
