@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
-import BottomNews from '../../components/BottomNews';
-import PriveOverview from '../../components/PriceOverview';
-import MainNewsItem from '../../components/MainNewsItem';
+import BottomNews from '../../components/smart/BottomNews';
+import PriveOverview from '../../components/smart/PriceOverview';
+import MainNewsItem from '../../components/dumb/MainNewsItem';
 import { Helmet } from 'react-helmet-async';
 import useScrollTop from '../../hooks/useScrollTop';
 import './home.css';

@@ -1,0 +1,12 @@
+.price-overview {
+  list-style: none;
+}
+
+.price-overview__item + .price-overview__item {
+  margin-top: 2rem;
+}
+
+.price-overview__heading {
+  text-align: center;
+  margin-bottom: 1rem;
+}

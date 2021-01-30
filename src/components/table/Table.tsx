@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import PageNav from '../PageNav';
+import PageNav from '../dumb/PageNav';
 import TableTable from '../TableTable';
 import TableOptions from '../TableOptions';
 import { sortArrayOfObjects } from '../../helpers';

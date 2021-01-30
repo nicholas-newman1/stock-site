@@ -13,7 +13,7 @@ import QuoteProfile from '../../components/QuoteProfile';
 import QuoteValuation from '../../components/QuoteValuation';
 import QuoteNav from '../../components/QuoteNav';
 import QuoteFinancials from '../../components/QuoteFinancials';
-import BottomNews from '../../components/BottomNews';
+import BottomNews from '../../components/smart/BottomNews';
 import useScrollTop from '../../hooks/useScrollTop';
 
 interface MatchProps {

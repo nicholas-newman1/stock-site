@@ -4,9 +4,9 @@ import { AppState } from '../../reducers/rootReducer';
 import { fetchNews } from '../../actions/newsActions';
 import { Helmet } from 'react-helmet-async';
 import { dummyCryptoData } from '../../dummyData';
-import Heading from '../../components/Heading';
+import Heading from '../../components/dumb/Heading';
 import Table from '../../components/Table/Table';
-import BottomNews from '../../components/BottomNews';
+import BottomNews from '../../components/smart/BottomNews';
 import useFetch from '../../hooks/useFetch';
 import useScrollTop from '../../hooks/useScrollTop';
 

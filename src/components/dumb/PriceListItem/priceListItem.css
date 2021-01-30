@@ -1,0 +1,31 @@
+.price-list-item__link {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 1rem;
+  padding: 0.5rem;
+  background: #eee;
+  border-radius: 500px;
+  white-space: nowrap;
+
+  color: black;
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-align: center;
+  text-decoration: none;
+  transition: transform 300ms;
+}
+
+.price-list-item__link:hover {
+  transform: scale(1.025);
+}
+
+.price-list-item__symbol {
+  color: #006acc;
+}
+
+@media (max-width: 400px) {
+  .price-list-item__link {
+    font-size: 0.8rem;
+    gap: 0.5rem;
+  }
+}

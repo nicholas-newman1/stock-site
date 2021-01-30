@@ -8,34 +8,65 @@ import {
   dummyGainersData,
   dummyLosersData,
 } from '../../dummyData';
-import Heading from '../../components/Heading';
-import StockTable from '../../components/StockTable';
+import Heading from '../../components/dumb/Heading';
 import SectorTable from '../../components/SectorTable';
-import BottomNews from '../../components/BottomNews';
+import BottomNews from '../../components/smart/BottomNews';
 import useFetch from '../../hooks/useFetch';
 import useScrollTop from '../../hooks/useScrollTop';
 import './stockPage.css';
+import PriceList from '../../components/dumb/PriceList';
+import HeadingLink from '../../components/dumb/HeadingLink';
+
+interface MarketQuote {
+  ticker: string; // "BRK-A"
+  changes: number; // -4120.0
+  price: string; // "344100"
+  changesPercentage: string; //"(-1.18%)"
+  companyName: string; // "Berkshire Hathaway Inc"
+}
+
+interface MarketFetch {
+  data: MarketQuote[];
+  loading: boolean;
+}
 
 const StockPage: React.FC = () => {
   useScrollTop(); // scrolls to top of page on component mount
 
-  const { data: activesData, loading: activesLoading } = useFetch(
+  const { data: activesData, loading: activesLoading }: MarketFetch = useFetch(
     [], // initial value
     'actives', // endpoint
     dummyActivesData // dummy data
   );
 
-  const { data: gainersData, loading: gainersLoading } = useFetch(
+  const { data: gainersData, loading: gainersLoading }: MarketFetch = useFetch(
     [],
     'gainers',
     dummyGainersData
   );
 
-  const { data: losersData, loading: losersLoading } = useFetch(
+  const { data: losersData, loading: losersLoading }: MarketFetch = useFetch(
     [],
     'losers',
     dummyLosersData
   );
+
+  const filterQuotes = (quotes: MarketQuote[]) => {
+    return quotes.filter((quote, i) => i < 4);
+  };
+
+  const formatData = (quotes: MarketQuote[]) => {
+    return quotes.map((item) => ({
+      symbol: item.ticker,
+      price: parseFloat(item.price),
+      change: item.changes,
+      changesPercentage: parseFloat(item.changesPercentage.replace('(', '')),
+    }));
+  };
+
+  const format = (quotes: MarketQuote[]) => {
+    return formatData(filterQuotes(quotes));
+  };
 
   const dispatch = useDispatch();
 
@@ -62,18 +93,24 @@ const StockPage: React.FC = () => {
 
       <div className='stock-page__stocklists'>
         <div className='stock-page__stock-table'>
-          <h2 className='stockpage__sub-heading'>Actives</h2>
-          <StockTable data={activesData} loading={activesLoading} />
+          <h2 className='stockpage__sub-heading'>
+            <HeadingLink to=''>Actives</HeadingLink>
+          </h2>
+          <PriceList quotes={format(activesData)} loading={activesLoading} />
         </div>
 
         <div className='stock-page__stock-table'>
-          <h2 className='stockpage__sub-heading'>Gainers</h2>
-          <StockTable data={gainersData} loading={gainersLoading} />
+          <h2 className='stockpage__sub-heading'>
+            <HeadingLink to=''>Gainers</HeadingLink>
+          </h2>
+          <PriceList quotes={format(gainersData)} loading={gainersLoading} />
         </div>
 
         <div className='stock-page__stock-table'>
-          <h2 className='stockpage__sub-heading'>Losers</h2>
-          <StockTable data={losersData} loading={losersLoading} />
+          <h2 className='stockpage__sub-heading'>
+            <HeadingLink to=''>Losers</HeadingLink>
+          </h2>
+          <PriceList quotes={format(losersData)} loading={losersLoading} />
         </div>
       </div>
 
