@@ -1,6 +1,11 @@
-import React, { useContext } from 'react';
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { WatchlistContext } from '../../context/WatchlistContext';
+import {
+  addToWatchlist,
+  removeFromWatchlist,
+} from '../../actions/watchlistActions';
+import { AppState } from '../../reducers/rootReducer';
 import './searchItem.css';
 
 interface Props {
@@ -8,8 +13,10 @@ interface Props {
 }
 
 const SearchResultsItem: React.FC<Props> = ({ result }) => {
-  const { watchlist, updateWatchlist } = useContext(WatchlistContext);
   const { symbol, name, exchangeShortName } = result;
+  const dispatch = useDispatch();
+  const watchlist = useSelector((state: AppState) => state.watchlist);
+  const isInWatchlist = watchlist.includes(symbol);
 
   return (
     <li className='search-result' key={symbol}>
@@ -29,11 +36,13 @@ const SearchResultsItem: React.FC<Props> = ({ result }) => {
         </button>
         <button
           className='search-result__watchlist-btn'
-          onClick={() => updateWatchlist(symbol)}
+          onClick={() =>
+            isInWatchlist
+              ? dispatch(removeFromWatchlist(symbol))
+              : dispatch(addToWatchlist(symbol))
+          }
         >
-          {watchlist.includes(symbol)
-            ? 'Remove From Watchlist'
-            : 'Add to Watchlist'}
+          {isInWatchlist ? 'Remove From Watchlist' : 'Add to Watchlist'}
         </button>
       </div>
     </li>

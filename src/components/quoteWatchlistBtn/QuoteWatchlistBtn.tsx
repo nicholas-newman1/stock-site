@@ -1,5 +1,10 @@
-import React, { useContext } from 'react';
-import { WatchlistContext } from '../../context/WatchlistContext';
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  addToWatchlist,
+  removeFromWatchlist,
+} from '../../actions/watchlistActions';
+import { AppState } from '../../reducers/rootReducer';
 import './quoteWatchlistBtn.css';
 
 interface Props {
@@ -7,16 +12,20 @@ interface Props {
 }
 
 const QuoteWatchlistBtn: React.FC<Props> = ({ symbol }) => {
-  const { watchlist, updateWatchlist } = useContext(WatchlistContext);
+  const dispatch = useDispatch();
+  const watchlist = useSelector((state: AppState) => state.watchlist);
+  const isInWatchlist = watchlist.includes(symbol);
 
   return (
     <button
       className='quote-watchlist-btn'
-      onClick={() => updateWatchlist(symbol)}
+      onClick={() =>
+        isInWatchlist
+          ? dispatch(removeFromWatchlist(symbol))
+          : dispatch(addToWatchlist(symbol))
+      }
     >
-      {watchlist.includes(symbol)
-        ? 'Remove From Watchlist'
-        : 'Add to Watchlist'}
+      {isInWatchlist ? 'Remove From Watchlist' : 'Add to Watchlist'}
     </button>
   );
 };

@@ -70,10 +70,28 @@ export type PriceOverviewActionTypes =
   | SetPriceOverviewLoading
   | SetPriceOverviewData;
 
+/* ##### Watchlist Action Types */
+
+const ADD_TO_WATCHLIST = 'ADD_TO_WATCHLIST';
+const REMOVE_FROM_WATCHLIST = 'REMOVE_FROM_WATCHLIST';
+
+export interface AddToWatchlist {
+  type: typeof ADD_TO_WATCHLIST;
+  payload: string;
+}
+
+export interface RemoveFromWatchlist {
+  type: typeof REMOVE_FROM_WATCHLIST;
+  payload: string;
+}
+
+export type WatchlistActionTypes = AddToWatchlist | RemoveFromWatchlist;
+
 /* ##### App Action Types ##### */
 
 export type AppActions =
   | DisplayMobileNavActionTypes
   | RealDataActionTypes
   | NewsActionTypes
-  | PriceOverviewActionTypes;
+  | PriceOverviewActionTypes
+  | WatchlistActionTypes;

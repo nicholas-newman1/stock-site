@@ -1,10 +1,9 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchNews } from '../../actions/newsActions';
 import { AppState } from '../../reducers/rootReducer';
 import { Helmet } from 'react-helmet-async';
 import { dummyWatchlistData } from '../../dummyData';
-import { WatchlistContext } from '../../context/WatchlistContext';
 import Heading from '../../components/heading/Heading';
 import Table from '../../components/table/Table';
 import BottomNews from '../../components/bottomNews/BottomNews';
@@ -14,7 +13,7 @@ import useScrollTop from '../../hooks/useScrollTop';
 const WatchlistPage: React.FC = () => {
   useScrollTop(); // scrolls to top of page on component mount
 
-  const { watchlist } = useContext(WatchlistContext);
+  const watchlist = useSelector((state: AppState) => state.watchlist);
 
   const { data, setData, loading } = useFetch(
     [], // intial value

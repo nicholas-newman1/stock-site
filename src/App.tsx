@@ -17,40 +17,37 @@ import ForexPage from './pages/forexPage/ForexPage';
 import WatchlistPage from './pages/watchlistPage/WatchlistPage';
 import Footer from './components/footer/Footer';
 import { QuoteProvider } from './context/QuoteContext';
-import { WatchlistProvider } from './context/WatchlistContext';
 import { HelmetProvider } from 'react-helmet-async';
 
 const App: React.FC = () => {
   return (
     <HelmetProvider>
-      <WatchlistProvider>
-        <QuoteProvider>
-          <Router>
-            <Header />
-            <main>
-              <Switch>
-                <Route exact path='/' component={HomePage} />
-                <Route
-                  exact
-                  path='/search/:query'
-                  component={SearchResultsPage}
-                />
-                <Route exact path='/quote/:symbol' component={QuotePage} />
-                <Route exact path='/indexes' component={IndexPage} />
-                <Route exact path='/stocks' component={StockPage} />
-                <Route exact path='/cryptocurrencies' component={CryptoPage} />
-                <Route exact path='/forex' component={ForexPage} />
-                <Route exact path='/commodities' component={CommodityPage} />
-                <Route exact path='/watchlist' component={WatchlistPage} />
-                <Redirect from='/quote/:symbol/**' to='/quote/:symbol' />
-                <Redirect from='/:page/**' to='/:page' />
-                <Redirect from='/**' to='/' />
-              </Switch>
-            </main>
-            <Footer />
-          </Router>
-        </QuoteProvider>
-      </WatchlistProvider>
+      <QuoteProvider>
+        <Router>
+          <Header />
+          <main>
+            <Switch>
+              <Route exact path='/' component={HomePage} />
+              <Route
+                exact
+                path='/search/:query'
+                component={SearchResultsPage}
+              />
+              <Route exact path='/quote/:symbol' component={QuotePage} />
+              <Route exact path='/indexes' component={IndexPage} />
+              <Route exact path='/stocks' component={StockPage} />
+              <Route exact path='/cryptocurrencies' component={CryptoPage} />
+              <Route exact path='/forex' component={ForexPage} />
+              <Route exact path='/commodities' component={CommodityPage} />
+              <Route exact path='/watchlist' component={WatchlistPage} />
+              <Redirect from='/quote/:symbol/**' to='/quote/:symbol' />
+              <Redirect from='/:page/**' to='/:page' />
+              <Redirect from='/**' to='/' />
+            </Switch>
+          </main>
+          <Footer />
+        </Router>
+      </QuoteProvider>
     </HelmetProvider>
   );
 };

@@ -1,7 +1,7 @@
 import { RealDataActionTypes } from '../types/actionTypes';
 
 const initialState = {
-  status: false,
+  status: true,
   error: 'Calls to a REST API will be simulated using local JSON files',
 };
 
