@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import PageNav from '../pageNav/PageNav';
-import TableTable from './TableTable';
-import TableOptions from './TableOptions';
+import PageNav from '../PageNav';
+import TableTable from '../TableTable';
+import TableOptions from '../TableOptions';
 import { sortArrayOfObjects } from '../../helpers';
-import Spinner from '../spinner/Spinner';
+import Spinner from '../Spinner';
 
 interface Props {
   loading: boolean;

@@ -5,17 +5,17 @@ import {
   BrowserRouter as Router,
   Redirect,
 } from 'react-router-dom';
-import Header from './components/header/Header';
-import HomePage from './pages/homePage/HomePage';
-import QuotePage from './pages/quotePage/QuotePage';
-import SearchResultsPage from './pages/searchResultsPage/SearchResultsPage';
-import IndexPage from './pages/indexPage/IndexPage';
-import StockPage from './pages/stockPage/StockPage';
-import CryptoPage from './pages/cryptoPage/CryptoPage';
-import CommodityPage from './pages/commodityPage/CommodityPage';
-import ForexPage from './pages/forexPage/ForexPage';
-import WatchlistPage from './pages/watchlistPage/WatchlistPage';
-import Footer from './components/footer/Footer';
+import Header from './components/Header';
+import HomePage from './pages/HomePage';
+import QuotePage from './pages/QuotePage';
+import SearchResultsPage from './pages/SearchResultsPage';
+import IndexPage from './pages/IndexPage';
+import StockPage from './pages/StockPage';
+import CryptoPage from './pages/CryptoPage';
+import CommodityPage from './pages/CommodityPage';
+import ForexPage from './pages/ForexPage';
+import WatchlistPage from './pages/WatchlistPage';
+import Footer from './components/Footer';
 import { QuoteProvider } from './context/QuoteContext';
 import { HelmetProvider } from 'react-helmet-async';
 

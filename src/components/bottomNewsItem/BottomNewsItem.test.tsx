@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import BottomNewsItem from './BottomNewsItem';
+import BottomNewsItem from '.';
 
 describe('<BottomNewsItem />', () => {
   const newsItem = {

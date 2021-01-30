@@ -1,5 +1,5 @@
 import React from 'react';
-import BottomNews from './BottomNews';
+import BottomNews from '.';
 import { render } from '@testing-library/react';
 import { truncate } from '../../helpers';
 
