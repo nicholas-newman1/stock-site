@@ -25,7 +25,7 @@ interface Props extends RouteComponentProps<MatchProps> {}
 const QuotePage: React.FC<Props> = ({ match }) => {
   useScrollTop(); // scrolls to top of page on component mount
 
-  const symbol: string = match.params.symbol.replace('^', '%5E');
+  const symbol: string = match.params.symbol;
   const [tab, setTab] = useState('Summary');
   const {
     fetchQuote,
@@ -42,9 +42,10 @@ const QuotePage: React.FC<Props> = ({ match }) => {
   );
 
   useEffect(() => {
-    dispatch(fetchNews('limit=10'));
+    isQuoteFetched &&
+      dispatch(fetchNews(isStock ? `tickers=${symbol}&limit=10` : 'limit=10'));
     //eslint-disable-next-line
-  }, []);
+  }, [isQuoteFetched]);
 
   useEffect(() => {
     fetchQuote(symbol);
