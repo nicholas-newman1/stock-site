@@ -24,77 +24,102 @@ export const getDummyData = (statement: Statement, period: Period) => {
   }
 };
 
-export const getStatementHeading = (statement: Statement) => {
+export const getTableHeadings = (statement: Statement) => {
   if (statement === 'income-statement') {
-    return 'Income Statement';
+    return [
+      'Revenue',
+      'Cost of Revenue',
+      'Gross Profit',
+      'Operating Expense',
+      'Operating Income',
+      'Interest Expense',
+      'Other Income Expense',
+      'Pretax Income',
+      'Income Tax Expense',
+      'Net Income',
+      'EPS',
+      'Diluted EPS',
+      'Diluted Average Shares',
+      'Total Expenses',
+      'EBITDA',
+      'Depreciation',
+    ];
   } else if (statement === 'balance-sheet-statement') {
-    return 'Balance Sheet';
+    return [
+      'Total Assets',
+      'Current Assets',
+      'Non-Current Assets',
+      'Total Liabilities',
+      'Current Liabilities',
+      'Non-Current Liabilities',
+      'Total Stockholders Equity',
+      'Total Debt',
+      'Long Term Debt',
+      'Short Term Debt',
+    ];
   } else {
-    return 'Cash Flow';
+    return [
+      'Operating Cash Flow',
+      'Investing Cash Flow',
+      'Financing Cash Flow',
+      'Beginning Cash Position',
+      'Change In Cash',
+      'End Cash Position',
+      'Capital Expenditure',
+      'Common Stock Issued',
+      'Common Stock Repurchased',
+      'Debt Repayment',
+      'Free Cash Flow',
+    ];
   }
 };
 
-const incomeStatementHeadings = [
-  { label: 'Revenue', property: 'revenue' },
-  { label: 'Cost of Revenue', property: 'costOfRevenue' },
-  { label: 'Gross Profit', property: 'grossProfit' },
-  { label: 'Operating Expense', property: 'operatingExpenses' },
-  { label: 'Operating Income', property: 'operatingIncome' },
-  { label: 'Interest Expense', property: 'interestExpense' },
-  { label: 'Other Income Expense', property: 'totalOtherIncomeExpensesNet' },
-  { label: 'Pretax Income', property: 'incomeBeforeTax' },
-  { label: 'Income Tax Expense', property: 'incomeTaxExpense' },
-  { label: 'Net Income', property: 'netIncome' },
-  { label: 'EPS', property: 'eps' },
-  { label: 'Diluted EPS', property: 'epsdiluted' },
-  { label: 'Diluted Average Shares', property: 'weightedAverageShsOutDil' },
-  { label: 'Total Expenses', property: 'costAndExpenses' },
-  { label: 'EBITDA', property: 'ebitda' },
-  { label: 'Depreciation', property: 'depreciationAndAmortization' },
-];
-
-const balanceSheetHeadings = [
-  { label: 'Total Assets', property: 'totalAssets' },
-  { label: 'Current Assets', property: 'totalCurrentAssets' },
-  { label: 'Non-Current Assets', property: 'totalNonCurrentAssets' },
-  { label: 'Total Liabilities', property: 'totalLiabilities' },
-  { label: 'Current Liabilities', property: 'totalCurrentLiabilities' },
-  {
-    label: 'Non-Current Liabilities',
-    property: 'totalNonCurrentLiabilities',
-  },
-  { label: 'Total Stockholders Equity', property: 'totalStockholdersEquity' },
-  { label: 'Total Debt', property: 'totalDebt' },
-  { label: 'Long Term Debt', property: 'longTermDebt' },
-  { label: 'Short Term Debt', property: 'shortTermDebt' },
-];
-
-const cashFlowHeadings = [
-  { label: 'Operating Cash Flow', property: 'operatingCashFlow' },
-  {
-    label: 'Investing Cash Flow',
-    property: 'netCashUsedForInvestingActivities',
-  },
-  {
-    label: 'Financing Cash Flow',
-    property: 'netCashUsedProvidedByFinancingActivities',
-  },
-  { label: 'Beginning Cash Position', property: 'cashAtBeginningOfPeriod' },
-  { label: 'Change In Cash', property: 'netChangeInCash' },
-  { label: 'End Cash Position', property: 'cashAtEndOfPeriod' },
-  { label: 'Capital Expenditure', property: 'capitalExpenditure' },
-  { label: 'Common Stock Issued', property: 'commonStockIssued' },
-  { label: 'Common Stock Repurchased', property: 'commonStockRepurchased' },
-  { label: 'Debt Repayment', property: 'debtRepayment' },
-  { label: 'Free Cash Flow', property: 'freeCashFlow' },
-];
-
-export const getTableHeadings = (statement: Statement) => {
+export const getProperties = (statement: Statement) => {
   if (statement === 'income-statement') {
-    return incomeStatementHeadings;
+    return [
+      'revenue',
+      'costOfRevenue',
+      'grossProfit',
+      'operatingExpenses',
+      'operatingIncome',
+      'interestExpense',
+      'totalOtherIncomeExpensesNet',
+      'incomeBeforeTax',
+      'incomeTaxExpense',
+      'netIncome',
+      'eps',
+      'epsdiluted',
+      'weightedAverageShsOutDil',
+      'costAndExpenses',
+      'ebitda',
+      'depreciationAndAmortization',
+    ];
   } else if (statement === 'balance-sheet-statement') {
-    return balanceSheetHeadings;
+    return [
+      'totalAssets',
+      'totalCurrentAssets',
+      'totalNonCurrentAssets',
+      'totalLiabilities',
+      'totalCurrentLiabilities',
+      'totalNonCurrentLiabilities',
+      'totalStockholdersEquity',
+      'totalDebt',
+      'longTermDebt',
+      'shortTermDebt',
+    ];
   } else {
-    return cashFlowHeadings;
+    return [
+      'operatingCashFlow',
+      'netCashUsedForInvestingActivities',
+      'netCashUsedProvidedByFinancingActivities',
+      'cashAtBeginningOfPeriod',
+      'netChangeInCash',
+      'cashAtEndOfPeriod',
+      'capitalExpenditure',
+      'commonStockIssued',
+      'commonStockRepurchased',
+      'debtRepayment',
+      'freeCashFlow',
+    ];
   }
 };

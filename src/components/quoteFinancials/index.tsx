@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
-import StatementTable from '../QuoteTable';
-import Spinner from '../Spinner';
-import { formatStatementData } from '../../helpers';
+import { formatStatementData, pluck, pluckAll } from '../../helpers';
 import useFetch from '../../hooks/useFetch';
 import './quoteFinancials.css';
 import ButtonBar from '../dumb/BtnBar';
-import { getDummyData, getStatementHeading, getTableHeadings } from './helpers';
+import TableOne from '../dumb/TableOne';
+import { getDummyData, getProperties, getTableHeadings } from './helpers';
 
 interface Props {
   symbol: string;
@@ -42,21 +41,12 @@ const QuoteFinancials: React.FC<Props> = ({ symbol }) => {
         <ButtonBar btns={periodNavBtns} setState={setPeriod} />
       </div>
 
-      {loading ? (
-        <Spinner />
-      ) : data.length > 0 ? (
-        <div className='statement'>
-          <h3 className='statement__heading'>
-            {getStatementHeading(statement)}
-          </h3>
-          <StatementTable
-            statementData={formatStatementData(data)}
-            tableHeadings={getTableHeadings(statement)}
-          />
-        </div>
-      ) : (
-        <h3>No Data Available</h3>
-      )}
+      <TableOne
+        data={pluckAll(formatStatementData(data), getProperties(statement))}
+        rowHeadings={getTableHeadings(statement)}
+        headHeadings={pluck(data, 'date')}
+        loading={loading}
+      />
     </div>
   );
 };

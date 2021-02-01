@@ -881,3 +881,35 @@ describe('formatChartData', () => {
     expect(helpers.formatChartData(DATA)).toMatchObject(FORMATTED_DATA);
   });
 });
+
+describe('pluckAll', () => {
+  const DATA = [
+    { foo: 1, bar: 'one' },
+    { foo: 2, bar: 'two' },
+    { foo: 3, bar: 'three' },
+  ];
+  it('should extract values from objects', () => {
+    const PLUCKED_DATA = [
+      [1, 2, 3],
+      ['one', 'two', 'three'],
+    ];
+
+    expect(helpers.pluckAll(DATA, ['foo', 'bar'])).toEqual(PLUCKED_DATA);
+  });
+
+  it('should only use the keys passed', () => {
+    const PLUCKED_DATA = [[1, 2, 3]];
+
+    expect(helpers.pluckAll(DATA, ['foo'])).toEqual(PLUCKED_DATA);
+  });
+
+  it('should use all the keys passed', () => {
+    const PLUCKED_DATA = [
+      [1, 2, 3],
+      ['one', 'two', 'three'],
+      [undefined, undefined, undefined],
+    ];
+
+    expect(helpers.pluckAll(DATA, ['foo', 'bar', 'baz'])).toEqual(PLUCKED_DATA);
+  });
+});

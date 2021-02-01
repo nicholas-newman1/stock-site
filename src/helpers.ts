@@ -376,3 +376,13 @@ export const formatChartData = (data: HistoricalPrices) => {
 
   return formattedData;
 };
+
+export const pluck = (arr: KeyValueObject[], key: string) => {
+  return arr.map((obj) => obj[key]);
+};
+
+/* converts an array of objects to an array of arrays for
+all properties on the first object. All objects should have the same keys. */
+export const pluckAll = (arr: KeyValueObject[], keys: string[]) => {
+  return keys.map((key) => pluck(arr, key));
+};

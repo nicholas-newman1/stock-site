@@ -1,20 +1,19 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import QuoteValuationNav from '../QuoteValuationNav';
-import QuoteTableHead from '../QuoteTableHead';
-import QuoteTableRow from '../QuoteTableRow';
 import {
   dummyAnnualValuationData,
   dummyQuarterlyValuationData,
 } from '../../dummyData';
-import { formatValuationData } from '../../helpers';
+import { formatValuationData, pluck, pluckAll } from '../../helpers';
 import useFetch from '../../hooks/useFetch';
+import TableOne from '../dumb/TableOne';
 
 interface Props {
   symbol: string;
 }
 
 const QuoteValuation: React.FC<Props> = ({ symbol }) => {
-  const [valuationData, setValuationData] = useState<KeyValueObject[]>([]);
+  // const [valuationData, setValuationData] = useState<KeyValueObject[]>([]);
   const [period, setPeriod] = useState<Period>('');
 
   // custom hook fetches data
@@ -26,47 +25,48 @@ const QuoteValuation: React.FC<Props> = ({ symbol }) => {
     [period] // dependencies
   );
 
-  useEffect(() => {
-    // format data to be more readable
-    setValuationData(formatValuationData(data, period));
-    // eslint-disable-next-line
-  }, [data]);
-
-  const tableHeadings = [
-    { label: 'EPS', property: 'netIncomePerShare' },
-    { label: 'Book Value/Share', property: 'bookValuePerShare' },
-    { label: 'Price/Sales', property: 'priceToSalesRatio' },
-    { label: 'P/E', property: 'peRatio' },
-    { label: 'P/B', property: 'pbRatio' },
-    { label: 'P/FCF', property: 'pfcfRatio' },
-    { label: 'P/OCF', property: 'pocfratio' },
-    { label: 'Earnings Yield (%)', property: 'earningsYield' },
-    { label: 'Enterprise Value', property: 'enterpriseValue' },
-    { label: 'Enterprise Value/EBITDA', property: 'enterpriseValueOverEBITDA' },
-    { label: 'ROE', property: 'roe' },
-    { label: 'FCF/Share', property: 'freeCashFlowPerShare' },
-    { label: 'Debt/Equity', property: 'debtToEquity' },
+  const properties = [
+    'netIncomePerShare',
+    'bookValuePerShare',
+    'priceToSalesRatio',
+    'peRatio',
+    'pbRatio',
+    'pfcfRatio',
+    'pocfratio',
+    'earningsYield',
+    'enterpriseValue',
+    'enterpriseValueOverEBITDA',
+    'roe',
+    'freeCashFlowPerShare',
+    'debtToEquity',
   ];
 
-  return loading || valuationData.length > 0 ? (
+  const rowHeadings = [
+    'EPS',
+    'Book Value/Share',
+    'Price/Sales',
+    'P/E',
+    'P/B',
+    'P/FCF',
+    'P/OCF',
+    'Earnings Yield (%)',
+    'Enterprise Value',
+    'Enterprise Value/EBITDA',
+    'ROE',
+    'FCF/Share',
+    'Debt/Equity',
+  ];
+
+  return (
     <div>
       <QuoteValuationNav setPeriod={setPeriod} />
-      <table className='quote-table'>
-        <QuoteTableHead tableData={valuationData} />
-        <tbody className='quote-table__tbody'>
-          {tableHeadings.map(({ label, property }, i) => (
-            <QuoteTableRow
-              key={i}
-              label={label}
-              objectKey={property}
-              tableData={valuationData}
-            />
-          ))}
-        </tbody>
-      </table>
+      <TableOne
+        data={pluckAll(formatValuationData(data, period), properties)}
+        rowHeadings={rowHeadings}
+        headHeadings={pluck(formatValuationData(data, period), 'date')}
+        loading={loading}
+      />
     </div>
-  ) : (
-    <h2>No Data Available</h2>
   );
 };
 
