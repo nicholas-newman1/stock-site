@@ -1,0 +1,23 @@
+.btn-bar {
+  list-style: none;
+  display: flex;
+}
+
+.btn-bar__btn {
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0.25rem 0.5rem;
+  border: 1px solid grey;
+}
+
+.btn-bar__btn:disabled {
+  cursor: default;
+  color: white;
+  background: #148eff;
+  border: 1px solid #148eff;
+}
+
+.btn-bar__li + .btn-bar__li .btn-bar__btn {
+  border-left: none;
+}

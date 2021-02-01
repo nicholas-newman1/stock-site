@@ -6,27 +6,23 @@ import {
 } from '../../dummyData';
 
 export const getTimeScaleFormat = (timeframe: Timeframe) => {
-  let timeScaleFormat: TimeScaleFormat;
   if (timeframe === '1D') {
-    timeScaleFormat = 'hour';
+    return 'hour';
   } else if (timeframe === '5D' || timeframe === '1M') {
-    timeScaleFormat = 'day';
+    return 'day';
   } else {
-    timeScaleFormat = 'month';
+    return 'month';
   }
-  return timeScaleFormat;
 };
 
 export const getTooltipFormat = (timeframe: Timeframe) => {
-  let tooltipFormat: TooltipFormat;
   if (timeframe === '1D') {
-    tooltipFormat = 'h:mm a';
+    return 'h:mm a';
   } else if (timeframe === '5D' || timeframe === '1M') {
-    tooltipFormat = 'MMM D h:mm a';
+    return 'MMM D h:mm a';
   } else {
-    tooltipFormat = 'MMM D, YYYY';
+    return 'MMM D, YYYY';
   }
-  return tooltipFormat;
 };
 
 export const getEndpoint = (symbol: string, timeframe: Timeframe) => {
@@ -40,9 +36,8 @@ export const getEndpoint = (symbol: string, timeframe: Timeframe) => {
 };
 
 export const getDummyData = (timeframe: Timeframe) => {
-  let dummyData = dummyDailyData.historical; // effectively an else
-  if (timeframe === '1D') dummyData = dummyIntradayData;
-  if (timeframe === '5D') dummyData = dummyFiveDayData;
-  if (timeframe === '1M') dummyData = dummyOneMonthData;
-  return dummyData;
+  if (timeframe === '1D') return dummyIntradayData;
+  if (timeframe === '5D') return dummyFiveDayData;
+  if (timeframe === '1M') return dummyOneMonthData;
+  return dummyDailyData.historical;
 };

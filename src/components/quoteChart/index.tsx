@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import QuoteTimeframeNav from '../QuoteChartTimeframe';
 import useFetch from '../../hooks/useFetch';
 import HistoricalChart from '../dumb/HistoricalChart';
 import {
@@ -10,6 +9,7 @@ import {
 } from './helpers';
 import './quoteChart.css';
 import { filterChartData, formatChartData } from '../../helpers';
+import ButtonBar from '../dumb/BtnBar';
 
 interface Props {
   symbol: string;
@@ -18,13 +18,14 @@ interface Props {
 const QuoteChart: React.FC<Props> = ({ symbol }) => {
   const [timeframe, setTimeframe] = useState<Timeframe>('1D');
 
-  const timeScaleFormat = getTimeScaleFormat(timeframe);
-  const tooltipFormat = getTooltipFormat(timeframe);
-  const endpoint = getEndpoint(symbol, timeframe);
-  const dummyData = getDummyData(timeframe);
-
   // fetch data
-  const { data, loading } = useFetch([], endpoint, dummyData, '', [timeframe]);
+  const { data, loading } = useFetch(
+    [],
+    getEndpoint(symbol, timeframe),
+    getDummyData(timeframe),
+    '',
+    [timeframe]
+  );
 
   /* depending on endpoint, historical data array is either directly in data or in
   data.historical */
@@ -35,14 +36,25 @@ const QuoteChart: React.FC<Props> = ({ symbol }) => {
     )
   );
 
+  const timeframeBtns = [
+    { text: '1D' },
+    { text: '5D' },
+    { text: '1M' },
+    { text: '6M' },
+    { text: 'YTD' },
+    { text: '1Y' },
+    { text: '5Y' },
+    { text: 'MAX' },
+  ];
+
   return (
     <div className='quote-chart'>
-      <QuoteTimeframeNav setTimeframe={setTimeframe} />
+      <ButtonBar btns={timeframeBtns} setState={setTimeframe} />
       <HistoricalChart
         data={chartData}
         loading={loading}
-        timeScaleFormat={timeScaleFormat}
-        tooltipFormat={tooltipFormat}
+        timeScaleFormat={getTimeScaleFormat(timeframe)}
+        tooltipFormat={getTooltipFormat(timeframe)}
       />
     </div>
   );
