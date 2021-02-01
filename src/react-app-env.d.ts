@@ -70,6 +70,14 @@ type FormattedHistoricalPrices = {
   y: Number;
 }[];
 
+type HistoricalChartData = {
+  x: Date;
+  y: Number;
+}[];
+
+type TooltipFormat = 'h:mm a' | 'MMM D h:mm a' | 'MMM D, YYYY';
+type TimeScaleFormat = 'hour' | 'day' | 'month';
+
 type Exchange =
   | ''
   | 'INDEX'

@@ -73,8 +73,13 @@ const QuotePage: React.FC<Props> = ({ match }) => {
         <Quote />
         <QuoteWatchlistBtn symbol={symbol} />
         {isStock && <QuoteNav tab={tab} setTab={setTab} />}
-        {tab === 'Summary' && <QuoteSummary />}
-        {tab === 'Chart' && <QuoteChart symbol={symbol} />}
+        {tab === 'Summary' && (
+          <>
+            <QuoteChart symbol={symbol} />
+            <br />
+            <QuoteSummary />
+          </>
+        )}
         {tab === 'Financials' && <QuoteFinancials symbol={symbol} />}
         {tab === 'Profile' && <QuoteProfile symbol={symbol} />}
         {tab === 'Valuation' && <QuoteValuation symbol={symbol} />}

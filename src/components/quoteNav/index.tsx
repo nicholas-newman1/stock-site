@@ -7,7 +7,7 @@ interface Props {
 }
 
 const QuoteNav: React.FC<Props> = ({ tab, setTab }) => {
-  let navItems = ['Summary', 'Chart', 'Financials', 'Profile', 'Valuation'];
+  let navItems = ['Summary', 'Financials', 'Profile', 'Valuation'];
   return (
     <nav className='quote-nav'>
       <ul className='quote-nav__ul'>

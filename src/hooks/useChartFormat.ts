@@ -3,12 +3,14 @@ import { useState, useEffect } from 'react';
 // determine how timeScale and toolTips will be formatted based on timeframe
 
 const useChartFormat = (timeframe: Timeframe) => {
-  const [timeScaleFormat, setTimeScaleFormat] = useState('minute');
-  const [tooltipFormat, setTooltipFormat] = useState('h:mm a');
+  const [timeScaleFormat, setTimeScaleFormat] = useState<TimeScaleFormat>(
+    'hour'
+  );
+  const [tooltipFormat, setTooltipFormat] = useState<TooltipFormat>('h:mm a');
 
   useEffect(() => {
     if (timeframe === '1D') {
-      setTimeScaleFormat('minute');
+      setTimeScaleFormat('hour');
       setTooltipFormat('h:mm a');
     } else if (timeframe === '5D' || timeframe === '1M') {
       setTimeScaleFormat('day');
@@ -19,7 +21,7 @@ const useChartFormat = (timeframe: Timeframe) => {
     }
   }, [timeframe]);
 
-  return [timeScaleFormat, tooltipFormat];
+  return { timeScaleFormat, tooltipFormat };
 };
 
 export default useChartFormat;
