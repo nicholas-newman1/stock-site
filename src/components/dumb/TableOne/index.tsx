@@ -1,8 +1,6 @@
 import React from 'react';
 import Spinner from '../../Spinner';
-import QuoteTableHead from '../TableOneHead';
-import QuoteTableRow from '../TableOneRow';
-import '../../QuoteTable/quoteTable.css';
+import './tableOne.css';
 
 interface Props {
   data: any[][];
@@ -20,15 +18,36 @@ const QuoteTable: React.FC<Props> = ({
   return loading ? (
     <Spinner />
   ) : data.length > 0 ? (
-    <table className='quote-table'>
-      <QuoteTableHead headings={headHeadings} />
-      {/* <QuoteTableBody headings={rowHeading} data={data} /> */}
-      <tbody className='quote-table__tbody'>
-        {rowHeadings.map((rowHeading, i) => {
-          return (
-            <QuoteTableRow key={i} rowHeading={rowHeading} rowData={data[i]} />
-          );
-        })}
+    <table className='table-one'>
+      <thead className='table-one__thead'>
+        <tr className='table-one__tr'>
+          <th className='table-one__th-sticky'></th>
+          {headHeadings.map((item, i) => (
+            <th
+              className='table-one__th'
+              key={i}
+              style={i % 2 === 0 ? { background: '#eee' } : {}}
+            >
+              {item}
+            </th>
+          ))}
+        </tr>
+      </thead>
+      <tbody className='table-one__tbody'>
+        {rowHeadings.map((rowHeading, i) => (
+          <tr className='table-one__tr'>
+            <th className='table-one__th-sticky'>{rowHeading}</th>
+            {data[i].map((item, i) => (
+              <td
+                className='table-one__td'
+                key={i}
+                style={i % 2 === 0 ? { background: '#eee' } : {}}
+              >
+                {item}
+              </td>
+            ))}
+          </tr>
+        ))}
       </tbody>
     </table>
   ) : (

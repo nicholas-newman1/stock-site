@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import QuoteValuationNav from '../QuoteValuationNav';
 import {
   dummyAnnualValuationData,
   dummyQuarterlyValuationData,
@@ -7,6 +6,8 @@ import {
 import { formatValuationData, pluck, pluckAll } from '../../helpers';
 import useFetch from '../../hooks/useFetch';
 import TableOne from '../dumb/TableOne';
+import ButtonBar from '../dumb/BtnBar';
+import './quoteValuation.css';
 
 interface Props {
   symbol: string;
@@ -57,9 +58,14 @@ const QuoteValuation: React.FC<Props> = ({ symbol }) => {
     'Debt/Equity',
   ];
 
+  const periodNavBtns = [
+    { text: 'Annually', value: '' },
+    { text: 'Quarterly', value: 'quarter' },
+  ];
+
   return (
-    <div>
-      <QuoteValuationNav setPeriod={setPeriod} />
+    <div className='quote-valuation'>
+      <ButtonBar btns={periodNavBtns} setState={setPeriod} />
       <TableOne
         data={pluckAll(formatValuationData(data, period), properties)}
         rowHeadings={rowHeadings}
