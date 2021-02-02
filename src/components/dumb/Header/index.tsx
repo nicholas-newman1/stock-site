@@ -17,7 +17,7 @@ interface Props {
 const Header: React.FC<Props> = ({ links }) => {
   const dispatch = useDispatch();
   const realData = useSelector((state: AppState) => state.realData);
-  const [isLargeView, setIsLargeView] = useState(false);
+  const [forceDisplayNav, setForceDisplayNav] = useState(false);
   const displayMobileNav = useSelector(
     (state: AppState) => state.displayMobileNav
   );
@@ -28,7 +28,9 @@ const Header: React.FC<Props> = ({ links }) => {
 
     // Hide/display nav depending on window size
     const resizer = new ResizeObserver(() => {
-      window.innerWidth > 700 ? setIsLargeView(true) : setIsLargeView(false);
+      window.innerWidth > 700
+        ? setForceDisplayNav(true)
+        : setForceDisplayNav(false);
     });
     resizer.observe(main);
 
@@ -74,7 +76,7 @@ const Header: React.FC<Props> = ({ links }) => {
           onClick={() => dispatch(toggleDisplayMobileNav())}
         />
 
-        {(displayMobileNav || isLargeView) && (
+        {(displayMobileNav || forceDisplayNav) && (
           <>
             <div className='header__watchlist-container'>
               <Link className='watchlist-btn' to={`/watchlist`}>

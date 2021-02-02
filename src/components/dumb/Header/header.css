@@ -48,7 +48,7 @@
 }
 
 @media (max-width: 700px) {
-  header {
+  .header__container {
     padding-top: 0;
   }
   .header__logo {
