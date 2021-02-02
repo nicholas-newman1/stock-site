@@ -6,7 +6,7 @@ import {
 import { formatValuationData, pluck, pluckAll } from '../../helpers';
 import useFetch from '../../hooks/useFetch';
 import TableOne from '../dumb/TableOne';
-import ButtonBar from '../dumb/BtnBar';
+import BtnBarOne from '../dumb/BtnBarOne';
 import './quoteValuation.css';
 
 interface Props {
@@ -65,7 +65,7 @@ const QuoteValuation: React.FC<Props> = ({ symbol }) => {
 
   return (
     <div className='quote-valuation'>
-      <ButtonBar btns={periodNavBtns} setState={setPeriod} />
+      <BtnBarOne btns={periodNavBtns} setState={setPeriod} />
       <TableOne
         data={pluckAll(formatValuationData(data, period), properties)}
         rowHeadings={rowHeadings}

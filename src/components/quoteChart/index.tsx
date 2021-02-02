@@ -9,7 +9,7 @@ import {
 } from './helpers';
 import './quoteChart.css';
 import { filterChartData, formatChartData } from '../../helpers';
-import ButtonBar from '../dumb/BtnBar';
+import BtnBarOne from '../dumb/BtnBarOne';
 
 interface Props {
   symbol: string;
@@ -49,7 +49,7 @@ const QuoteChart: React.FC<Props> = ({ symbol }) => {
 
   return (
     <div className='quote-chart'>
-      <ButtonBar btns={timeframeBtns} setState={setTimeframe} />
+      <BtnBarOne btns={timeframeBtns} setState={setTimeframe} />
       <HistoricalChart
         data={chartData}
         loading={loading}

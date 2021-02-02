@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import { formatStatementData, pluck, pluckAll } from '../../helpers';
 import useFetch from '../../hooks/useFetch';
 import './quoteFinancials.css';
-import ButtonBar from '../dumb/BtnBar';
 import TableOne from '../dumb/TableOne';
 import { getDummyData, getProperties, getTableHeadings } from './helpers';
+import BtnBarOne from '../dumb/BtnBarOne';
 
 interface Props {
   symbol: string;
@@ -37,8 +37,8 @@ const QuoteFinancials: React.FC<Props> = ({ symbol }) => {
   return (
     <div className='quote-financials'>
       <div className='quote-financials__nav'>
-        <ButtonBar btns={statementNavBtns} setState={setStatement} />
-        <ButtonBar btns={periodNavBtns} setState={setPeriod} />
+        <BtnBarOne btns={statementNavBtns} setState={setStatement} />
+        <BtnBarOne btns={periodNavBtns} setState={setPeriod} />
       </div>
 
       <TableOne

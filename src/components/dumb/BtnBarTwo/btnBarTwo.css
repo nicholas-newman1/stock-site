@@ -1,0 +1,27 @@
+.btn-bar-two {
+  list-style: none;
+  display: flex;
+}
+
+.btn-bar-two__btn {
+  cursor: pointer;
+  background: none;
+  padding: 0.5rem 1.5rem;
+  border: 1px solid #ccc;
+  font-weight: 300;
+  font-size: 0.8rem;
+  color: black;
+}
+
+.btn-bar-two__btn:hover {
+  background: #eee;
+}
+
+.btn-bar-two__btn:disabled {
+  cursor: default;
+  background: #ccc;
+}
+
+.btn-bar-two__li + .btn-bar-two__li .btn-bar-two__btn {
+  border-left: none;
+}
