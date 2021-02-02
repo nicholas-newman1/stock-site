@@ -10,7 +10,7 @@ import {
 } from '../../dummyData';
 import Heading from '../../components/dumb/Heading';
 import SectorTable from '../../components/SectorTable';
-import BottomNews from '../../components/smart/BottomNews';
+import BottomNews from '../../components/dumb/BottomNews';
 import useFetch from '../../hooks/useFetch';
 import useScrollTop from '../../hooks/useScrollTop';
 import './stockPage.css';

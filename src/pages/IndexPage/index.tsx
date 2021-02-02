@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import Table from '../../components/Table/Table';
-import BottomNews from '../../components/smart/BottomNews';
+import BottomNews from '../../components/dumb/BottomNews';
 import Heading from '../../components/dumb/Heading';
 import { dummyIndexPageData } from '../../dummyData';
 import useFetch from '../../hooks/useFetch';

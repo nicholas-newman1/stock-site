@@ -5,7 +5,7 @@ import {
   BrowserRouter as Router,
   Redirect,
 } from 'react-router-dom';
-import Header from './components/smart/Header';
+import Header from './components/dumb/Header';
 import HomePage from './pages/HomePage';
 import QuotePage from './pages/QuotePage';
 import SearchResultsPage from './pages/SearchResultsPage';
@@ -15,7 +15,7 @@ import CryptoPage from './pages/CryptoPage';
 import CommodityPage from './pages/CommodityPage';
 import ForexPage from './pages/ForexPage';
 import WatchlistPage from './pages/WatchlistPage';
-import Footer from './components/smart/Footer';
+import Footer from './components/dumb/Footer';
 import { QuoteProvider } from './context/QuoteContext';
 import { HelmetProvider } from 'react-helmet-async';
 

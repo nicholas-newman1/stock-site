@@ -10,7 +10,7 @@ import SearchFilter from '../../components/SearchFilter';
 import SearchItem from '../../components/SearchItem';
 import PageNav from '../../components/dumb/PageNav';
 import Heading from '../../components/dumb/Heading';
-import BottomNews from '../../components/smart/BottomNews';
+import BottomNews from '../../components/dumb/BottomNews';
 import useFetch from '../../hooks/useFetch';
 import useScrollTop from '../../hooks/useScrollTop';
 import './searchResultsPage.css';

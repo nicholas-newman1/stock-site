@@ -6,8 +6,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link } from 'react-router-dom';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 import SearchBar from '../../SearchBar';
-import MainNav from '../../dumb/MainNav';
-import HeaderWarning from '../../dumb/HeaderWarning';
+import MainNav from '../MainNav';
+import HeaderWarning from '../HeaderWarning';
 import './header.css';
 
 interface Props {
@@ -55,8 +55,6 @@ const Header: React.FC<Props> = ({ links }) => {
       lastScroll = currentScroll;
     });
   }, []);
-
-  useEffect(() => {}, []);
 
   return (
     <header className='header'>

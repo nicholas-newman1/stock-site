@@ -6,7 +6,7 @@ import { Helmet } from 'react-helmet-async';
 import { dummyForexData } from '../../dummyData';
 import Heading from '../../components/dumb/Heading';
 import Table from '../../components/Table/Table';
-import BottomNews from '../../components/smart/BottomNews';
+import BottomNews from '../../components/dumb/BottomNews';
 import useFetch from '../../hooks/useFetch';
 import useScrollTop from '../../hooks/useScrollTop';
 

@@ -13,7 +13,7 @@ import QuoteProfile from '../../components/QuoteProfile';
 import QuoteValuation from '../../components/QuoteValuation';
 import QuoteNav from '../../components/QuoteNav';
 import QuoteFinancials from '../../components/QuoteFinancials';
-import BottomNews from '../../components/smart/BottomNews';
+import BottomNews from '../../components/dumb/BottomNews';
 import useScrollTop from '../../hooks/useScrollTop';
 
 interface MatchProps {
@@ -72,7 +72,7 @@ const QuotePage: React.FC<Props> = ({ match }) => {
       <>
         <Quote />
         <QuoteWatchlistBtn symbol={symbol} />
-        {isStock && <QuoteNav tab={tab} setTab={setTab} />}
+        {isStock && <QuoteNav setTab={setTab} />}
         {tab === 'Summary' && (
           <>
             <QuoteChart symbol={symbol} />

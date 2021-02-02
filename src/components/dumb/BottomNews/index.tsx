@@ -1,7 +1,7 @@
 import React from 'react';
 import { NewsItem } from '../../../types/APITypes';
-import BottomNewsItem from '../../dumb/BottomNewsItem';
-import BottomNewsLoading from '../../dumb/BottomNewsLoading';
+import BottomNewsItem from '../BottomNewsItem';
+import BottomNewsLoading from '../BottomNewsLoading';
 import './bottomNews.css';
 
 interface Props {

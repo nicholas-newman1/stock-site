@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
-import PriceList from '../../dumb/PriceList';
+import PriceList from '../dumb/PriceList';
 import { useDispatch, useSelector } from 'react-redux';
-import { AppState } from '../../../reducers/rootReducer';
-import { fetchPriceOverviewData } from '../../../actions/priceOverviewActions';
-import { Quote } from '../../../types/APITypes';
-import HeadingLink from '../../dumb/HeadingLink';
+import { AppState } from '../../reducers/rootReducer';
+import { fetchPriceOverviewData } from '../../actions/priceOverviewActions';
+import { Quote } from '../../types/APITypes';
+import HeadingLink from '../dumb/HeadingLink';
 import './priceOverview.css';
 
 const PriceOverview: React.FC = () => {

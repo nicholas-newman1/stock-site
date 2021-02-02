@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import SearchBar from '../../SearchBar';
-import MainNav from '../../dumb/MainNav';
+import MainNav from '../MainNav';
 import './footer.css';
 
 interface Props {
