@@ -1,32 +1,23 @@
 import React from 'react';
+import BtnBarTwo from '../dumb/BtnBarTwo';
 import './quoteNav.css';
 
 interface Props {
-  tab: string;
   setTab: React.Dispatch<React.SetStateAction<string>>;
 }
 
-const QuoteNav: React.FC<Props> = ({ tab, setTab }) => {
-  let navItems = ['Summary', 'Financials', 'Profile', 'Valuation'];
+const QuoteNav: React.FC<Props> = ({ setTab }) => {
+  let navItems = [
+    { text: 'Summary' },
+    { text: 'Financials' },
+    { text: 'Profile' },
+    { text: 'Valuation' },
+  ];
+
   return (
-    <nav className='quote-nav'>
-      <ul className='quote-nav__ul'>
-        {navItems.map((item) => (
-          <li key={item} className='quote-nav__li'>
-            <button
-              className={`quote-nav__btn ${
-                tab === item
-                  ? 'quote-nav__btn--active'
-                  : 'quote-nav__btn--inactive'
-              }`}
-              onClick={() => setTab(item)}
-            >
-              {item}
-            </button>
-          </li>
-        ))}
-      </ul>
-    </nav>
+    <div className='quote-nav'>
+      <BtnBarTwo btns={navItems} setState={setTab} />
+    </div>
   );
 };
 

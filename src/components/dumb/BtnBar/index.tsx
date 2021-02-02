@@ -10,7 +10,7 @@ interface Props {
   setState: React.Dispatch<React.SetStateAction<any>>;
 }
 
-const ButtonBar: React.FC<Props> = ({ render, setState }) => {
+const BtnBar: React.FC<Props> = ({ render, setState }) => {
   const btnBar = useRef<HTMLDivElement>(null);
 
   const handleClick = (
@@ -38,4 +38,4 @@ const ButtonBar: React.FC<Props> = ({ render, setState }) => {
   return <div ref={btnBar}>{render(handleClick)}</div>;
 };
 
-export default ButtonBar;
+export default BtnBar;

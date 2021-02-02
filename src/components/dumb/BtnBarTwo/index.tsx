@@ -12,7 +12,7 @@ interface Props {
   setState: React.Dispatch<React.SetStateAction<any>>;
 }
 
-const BtnBarOne: React.FC<Props> = ({ btns, setState }) => {
+const BtnBarTwo: React.FC<Props> = ({ btns, setState }) => {
   return (
     <BtnBar
       setState={setState}
@@ -34,4 +34,4 @@ const BtnBarOne: React.FC<Props> = ({ btns, setState }) => {
   );
 };
 
-export default BtnBarOne;
+export default BtnBarTwo;
