@@ -1,4 +1,5 @@
 .sector-table {
+  margin-top: -12px;
   border-spacing: 0 12px;
   width: 100%;
 }
@@ -6,17 +7,6 @@
 .sector-table__tr--loading {
   height: 2rem;
   background: #eee;
-}
-
-.sector-table__td:first-child,
-.sector-table__th:first-child {
-  border-top-left-radius: 5px;
-  border-bottom-left-radius: 5px;
-}
-.sector-table__td:last-child,
-.sector-table__th:last-child {
-  border-top-right-radius: 5px;
-  border-bottom-right-radius: 5px;
 }
 
 .sector-table__th {

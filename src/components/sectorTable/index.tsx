@@ -28,7 +28,7 @@ const Sectors = () => {
           ) : (
             data.map(
               (quote: SectorQuote, i: number) =>
-                (i < 5 || showAllSectors) && (
+                (i < 14 || showAllSectors) && (
                   <SectorRow key={quote.sector} data={quote} />
                 )
             )
@@ -39,7 +39,7 @@ const Sectors = () => {
         className='sector-table__btn'
         onClick={() => setShowAllSectors((prev) => !prev)}
       >
-        {showAllSectors ? 'Hide All Sectors' : 'Show All Sectors'}
+        {showAllSectors ? 'Hide Sectors' : 'Show All Sectors'}
       </button>
     </>
   );

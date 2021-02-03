@@ -91,32 +91,34 @@ const StockPage: React.FC = () => {
 
       <Heading text='Stocks' />
 
-      <div className='stock-page__stocklists'>
-        <div className='stock-page__stock-table'>
-          <h2 className='stockpage__sub-heading'>
-            <HeadingLink to=''>Actives</HeadingLink>
-          </h2>
-          <PriceList quotes={format(activesData)} loading={activesLoading} />
+      <div className='stock-page__content'>
+        <div className='stock-page__stocklists'>
+          <div className='stock-page__stock-table'>
+            <h2 className='stockpage__sub-heading'>
+              <HeadingLink to=''>Actives</HeadingLink>
+            </h2>
+            <PriceList quotes={format(activesData)} loading={activesLoading} />
+          </div>
+
+          <div className='stock-page__stock-table'>
+            <h2 className='stockpage__sub-heading'>
+              <HeadingLink to=''>Gainers</HeadingLink>
+            </h2>
+            <PriceList quotes={format(gainersData)} loading={gainersLoading} />
+          </div>
+
+          <div className='stock-page__stock-table'>
+            <h2 className='stockpage__sub-heading'>
+              <HeadingLink to=''>Losers</HeadingLink>
+            </h2>
+            <PriceList quotes={format(losersData)} loading={losersLoading} />
+          </div>
         </div>
 
-        <div className='stock-page__stock-table'>
-          <h2 className='stockpage__sub-heading'>
-            <HeadingLink to=''>Gainers</HeadingLink>
-          </h2>
-          <PriceList quotes={format(gainersData)} loading={gainersLoading} />
+        <div className='stock-page__sector-table'>
+          <h2 className='stockpage__sub-heading'>Sectors</h2>
+          <SectorTable />
         </div>
-
-        <div className='stock-page__stock-table'>
-          <h2 className='stockpage__sub-heading'>
-            <HeadingLink to=''>Losers</HeadingLink>
-          </h2>
-          <PriceList quotes={format(losersData)} loading={losersLoading} />
-        </div>
-      </div>
-
-      <div className='stock-page__sector-table'>
-        <h2 className='stockpage__sub-heading'>Sectors</h2>
-        <SectorTable />
       </div>
 
       <BottomNews newsData={newsData} loading={loadingNews} />
