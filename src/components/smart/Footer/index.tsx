@@ -1,14 +1,15 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { setDisplayMobileNav } from '../../../actions/displayMobileNavActions';
 import SearchBar from '../../SearchBar';
-import MainNav from '../MainNav';
+import MainNavItems from '../../dumb/MainNavItems';
+import MainNav from '../../dumb/Nav';
 import './footer.css';
 
-interface Props {
-  links: string[];
-}
+const Footer: React.FC = () => {
+  const dispatch = useDispatch();
 
-const Footer: React.FC<Props> = ({ links }) => {
   return (
     <footer className='footer'>
       <div className='footer__container container'>
@@ -21,7 +22,10 @@ const Footer: React.FC<Props> = ({ links }) => {
         </div>
 
         <div className='footer__nav-container'>
-          <MainNav links={links} />
+          <MainNavItems
+            hideNav={() => dispatch(setDisplayMobileNav(false))}
+            render={(navItems) => <MainNav navItems={navItems} />}
+          />
         </div>
 
         <Link className='watchlist-btn' to={`/watchlist`}>

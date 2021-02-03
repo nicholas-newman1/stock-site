@@ -1,20 +1,20 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppState } from '../../../reducers/rootReducer';
-import { toggleDisplayMobileNav } from '../../../actions/displayMobileNavActions';
+import {
+  setDisplayMobileNav,
+  toggleDisplayMobileNav,
+} from '../../../actions/displayMobileNavActions';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link } from 'react-router-dom';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 import SearchBar from '../../SearchBar';
-import MainNav from '../MainNav';
-import HeaderWarning from '../HeaderWarning';
+import MainNav from '../../dumb/Nav';
+import HeaderWarning from '../../dumb/HeaderWarning';
 import './header.css';
+import MainNavItems from '../../dumb/MainNavItems';
 
-interface Props {
-  links: string[];
-}
-
-const Header: React.FC<Props> = ({ links }) => {
+const Header: React.FC = () => {
   const dispatch = useDispatch();
   const realData = useSelector((state: AppState) => state.realData);
   const [forceDisplayNav, setForceDisplayNav] = useState(false);
@@ -84,7 +84,10 @@ const Header: React.FC<Props> = ({ links }) => {
               </Link>
             </div>
             <div className='header__nav-container'>
-              <MainNav links={links} />
+              <MainNavItems
+                hideNav={() => dispatch(setDisplayMobileNav(false))}
+                render={(navItems) => <MainNav navItems={navItems} />}
+              />
             </div>
           </>
         )}
