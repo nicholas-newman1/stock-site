@@ -9,7 +9,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link } from 'react-router-dom';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 import SearchBar from '../../SearchBar';
-import MainNav from '../../dumb/Nav';
+import Nav from '../../dumb/Nav';
 import HeaderWarning from '../../dumb/HeaderWarning';
 import './header.css';
 import MainNavItems from '../../dumb/MainNavItems';
@@ -86,7 +86,7 @@ const Header: React.FC = () => {
             <div className='header__nav-container'>
               <MainNavItems
                 hideNav={() => dispatch(setDisplayMobileNav(false))}
-                render={(navItems) => <MainNav navItems={navItems} />}
+                render={(navItems) => <Nav navItems={navItems} />}
               />
             </div>
           </>

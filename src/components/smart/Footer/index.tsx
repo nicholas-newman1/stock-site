@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { setDisplayMobileNav } from '../../../actions/displayMobileNavActions';
 import SearchBar from '../../SearchBar';
 import MainNavItems from '../../dumb/MainNavItems';
-import MainNav from '../../dumb/Nav';
+import Nav from '../../dumb/Nav';
 import './footer.css';
 
 const Footer: React.FC = () => {
@@ -24,7 +24,7 @@ const Footer: React.FC = () => {
         <div className='footer__nav-container'>
           <MainNavItems
             hideNav={() => dispatch(setDisplayMobileNav(false))}
-            render={(navItems) => <MainNav navItems={navItems} />}
+            render={(navItems) => <Nav navItems={navItems} />}
           />
         </div>
 
