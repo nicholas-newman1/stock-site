@@ -5,7 +5,7 @@ import { fetchNews } from '../../actions/newsActions';
 import { AppState } from '../../reducers/rootReducer';
 import { Helmet } from 'react-helmet-async';
 import { dummySearchResults } from '../../dummyData';
-import Spinner from '../../components/Spinner';
+import Spinner from '../../components/dumb/Spinner';
 import SearchFilter from '../../components/SearchFilter';
 import SearchItem from '../../components/SearchItem';
 import PageNav from '../../components/dumb/PageNav';

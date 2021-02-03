@@ -1,6 +1,6 @@
 import React from 'react';
 import { Scatter } from 'react-chartjs-2';
-import Spinner from '../../Spinner';
+import Spinner from '../Spinner';
 import './historicalChart.css';
 
 interface Props {
