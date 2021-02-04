@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import { formatStatementData, pluck, pluckAll } from '../../helpers';
 import useFetch from '../../hooks/useFetch';
 import './quoteFinancials.css';
-import TableOne from '../dumb/TableOne';
+// import TableOne from '../dumb/TableOne';
+import TableOne from '../dumb/TablePaginated';
 import { getDummyData, getProperties, getTableHeadings } from './helpers';
 import BtnBarOne from '../dumb/BtnBarOne';
 
@@ -46,6 +47,7 @@ const QuoteFinancials: React.FC<Props> = ({ symbol }) => {
         rowHeadings={getTableHeadings(statement)}
         headHeadings={pluck(data, 'date')}
         loading={loading}
+        options={{ skipFirstHeading: true, columnEmphasis: true }}
       />
     </div>
   );

@@ -1,0 +1,4 @@
+.table-paginated {
+  display: grid;
+  gap: 1rem;
+}

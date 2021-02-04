@@ -71,6 +71,7 @@ const QuoteValuation: React.FC<Props> = ({ symbol }) => {
         rowHeadings={rowHeadings}
         headHeadings={pluck(formatValuationData(data, period), 'date')}
         loading={loading}
+        options={{ skipFirstHeading: true, columnEmphasis: true }}
       />
     </div>
   );
