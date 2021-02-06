@@ -229,66 +229,6 @@ export const formatQuoteData = (quote: KeyValueObject) => {
   return formattedQuote;
 };
 
-// replaces null values with N/A and large numbers with shortened versions
-export const formatStatementData = (data: KeyValueObject[]) => {
-  return data.map((item) => shortenNumbers(replaceNullValues(item)));
-};
-
-// formats date based on period (annual or quarterly)
-export const formatValuationDates = (
-  data: KeyValueObject[],
-  period: Period
-) => {
-  if (period === 'quarter') {
-    return data.map((item) => {
-      if (!isNaN(Date.parse(item.date))) {
-        const date = new Date(item.date);
-        const newDate = date.toLocaleDateString(undefined, {
-          month: 'numeric',
-          year: 'numeric',
-        });
-        return {
-          ...item,
-          date: newDate,
-        };
-      } else {
-        return {
-          ...item,
-          date: 'N/A',
-        };
-      }
-    });
-  } else {
-    return data.map((item) => {
-      return {
-        ...item,
-        date: !isNaN(Date.parse(item.date))
-          ? new Date(item.date).getFullYear().toString()
-          : 'N/A',
-      };
-    });
-  }
-};
-
-// formats the data to be more readable
-export const formatValuationData = (data: KeyValueObject[], period: Period) => {
-  let formattedData: KeyValueObject[];
-
-  formattedData = data.map((item) => {
-    // multiply earningsYield to be a percentage instead of decimal
-    item.earningsYield =
-      typeof item.earningsYield === 'number' ? item.earningsYield * 100 : null;
-
-    // replaces null values with N/A and large numbers with shortened versions
-    return shortenNumbers(replaceNullValues(item));
-  });
-
-  // formats date based on period (annual or quarterly)
-  formattedData = formatValuationDates(formattedData, period);
-
-  return formattedData;
-};
-
 export const filterChartData = (
   data: HistoricalPrices,
   timeframe: Timeframe
@@ -382,7 +322,33 @@ export const pluck = (arr: KeyValueObject[], key: string) => {
 };
 
 /* converts an array of objects to an array of arrays for
-all properties on the first object. All objects should have the same keys. */
-export const pluckAll = (arr: KeyValueObject[], keys: string[]) => {
+all properties given in keys array. All objects should have the same keys. */
+export const pluckProperties = (arr: KeyValueObject[], keys: string[]) => {
   return keys.map((key) => pluck(arr, key));
+};
+
+/* converts an array of objects to an array of arrays for
+all properties on the first object. All objects should have the same keys. */
+export const pluckAll = (arr: KeyValueObject[]) => {
+  if (arr.length > 0) {
+    return Object.keys(arr[0] || {}).map((key) => pluck(arr, key));
+  }
+  return [];
+};
+
+export const formatDate = (date: Date, period: Period) => {
+  if (period === 'quarter') {
+    return date.toLocaleDateString(undefined, {
+      month: 'numeric',
+      year: 'numeric',
+    });
+  }
+  return date.getFullYear().toString();
+};
+
+export const formatDates = (dates: string[], period: Period) => {
+  return dates.map((date) => {
+    if (isNaN(Date.parse(date))) return 'N/A';
+    return formatDate(new Date(date), period);
+  });
 };

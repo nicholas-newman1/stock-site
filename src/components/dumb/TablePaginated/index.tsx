@@ -1,35 +1,17 @@
 import React, { useState } from 'react';
+import { TableProps } from '../../../types/propTypes';
 import PageNav from '../PageNav';
 import PageOptions from '../PageOptions';
 import Table from '../TableOne';
 import './tablePaginated.css';
 
-// repeated
-interface TableOptions {
-  skipFirstHeading?: boolean;
-  columnEmphasis?: boolean;
-}
-
-interface Props {
-  data: any[][];
-  rowHeadings: any[];
-  headHeadings: any[];
-  loading: boolean;
-  options?: TableOptions;
-}
-
-const TablePaginated: React.FC<Props> = ({
+const TablePaginated: React.FC<TableProps> = ({
   data,
-  headHeadings,
-  rowHeadings,
   loading,
-  options = {
-    skipFirstHeading: false,
-    columnEmphasis: false,
-  },
+  horizontal,
 }) => {
   const [page, setPage] = useState(0);
-  const [resultsPerPage, setResultsPerPage] = useState(5);
+  const [resultsPerPage, setResultsPerPage] = useState(10);
 
   const filterRows = (data: any[]) =>
     data.filter((row, i) => {
@@ -41,10 +23,8 @@ const TablePaginated: React.FC<Props> = ({
     <div className='table-paginated'>
       <Table
         data={filterRows(data)}
-        headHeadings={headHeadings}
-        rowHeadings={filterRows(rowHeadings)}
         loading={loading}
-        options={options}
+        horizontal={horizontal}
       />
       <PageNav
         data={data}

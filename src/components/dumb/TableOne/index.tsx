@@ -1,89 +1,73 @@
 import React from 'react';
+import { TableProps } from '../../../types/propTypes';
 import Spinner from '../Spinner';
 import './tableOne.css';
 
-interface TableOptions {
-  skipFirstHeading?: boolean;
-  columnEmphasis?: boolean;
-}
-
-interface Props {
-  data: any[][];
-  rowHeadings: any[];
-  headHeadings: any[];
-  loading: boolean;
-  options?: TableOptions;
-}
-
-const TableOne: React.FC<Props> = ({
+const TableOne: React.FC<TableProps> = ({
   data,
-  headHeadings,
-  rowHeadings,
   loading,
-  options: { skipFirstHeading, columnEmphasis } = {
-    skipFirstHeading: false,
-    columnEmphasis: false,
-  },
+  horizontal = false,
 }) => {
-  const isRowHeadings = rowHeadings.length > 0;
-
   return loading ? (
     <Spinner />
   ) : data.length > 0 ? (
     <table className='table-one'>
-      <thead className='table-one__thead'>
-        <tr className='table-one__tr'>
-          {skipFirstHeading && <th className='table-one__th-sticky'></th>}
-
-          {headHeadings.map((item, i) => (
-            <th
-              className={
-                i === 0 && !skipFirstHeading
-                  ? 'table-one__th-sticky'
-                  : 'table-one__th'
-              }
-              key={i}
-              style={
-                i % 2 === (skipFirstHeading ? 0 : 1) && columnEmphasis
-                  ? { background: '#eee' }
-                  : {}
-              }
-            >
-              {item}
-            </th>
-          ))}
-        </tr>
-      </thead>
-      <tbody className='table-one__tbody'>
-        {(isRowHeadings ? rowHeadings : data).map((rowHeading, i) => (
-          <tr
-            key={i}
-            style={i % 2 === 0 && !columnEmphasis ? { background: '#eee' } : {}}
-            className='table-one__tr'
-          >
-            {isRowHeadings && (
+      {!horizontal && (
+        <thead className='table-one__thead'>
+          <tr className='table-one__tr'>
+            {data[0].map((item, i) => (
               <th
-                style={
-                  i % 2 === 0 && !columnEmphasis ? { background: '#eee' } : {}
+                className={
+                  i === 0 && horizontal
+                    ? 'table-one__th-sticky'
+                    : 'table-one__th'
                 }
-                className='table-one__th-sticky'
-              >
-                {rowHeading}
-              </th>
-            )}
-            {data[i].map((item, i) => (
-              <td
-                className='table-one__td'
                 key={i}
-                style={
-                  i % 2 === 0 && columnEmphasis ? { background: '#eee' } : {}
-                }
+                style={i % 2 === 1 && horizontal ? { background: '#eee' } : {}}
               >
                 {item}
-              </td>
+              </th>
             ))}
           </tr>
-        ))}
+        </thead>
+      )}
+      <tbody className='table-one__tbody'>
+        {data
+          .filter((x, i) => horizontal || i !== 0) // skip first array as it is rendered in the head
+          .map((row, i) => (
+            <tr
+              key={i}
+              style={i % 2 === 0 && !horizontal ? { background: '#eee' } : {}}
+              className='table-one__tr'
+            >
+              {horizontal && (
+                <th
+                  style={
+                    i % 2 === 0 && !horizontal ? { background: '#eee' } : {}
+                  }
+                  className='table-one__th-sticky'
+                >
+                  {row[0]}
+                </th>
+              )}
+
+              {row
+                .filter((x, i) => i !== 0 || !horizontal)
+                .map((item, i) => (
+                  <td
+                    className='table-one__td'
+                    key={i}
+                    style={
+                      i % 2 === (horizontal ? 0 : 1) && horizontal
+                        ? { background: '#eee' }
+                        : {}
+                    }
+                  >
+                    {item}
+                  </td>
+                ))}
+            </tr>
+          ))}
       </tbody>
     </table>
   ) : (

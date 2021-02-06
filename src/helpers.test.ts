@@ -460,30 +460,6 @@ describe('formatQuoteData', () => {
   });
 });
 
-describe('formatStatementData', () => {
-  it('should replace null values in each object using helpers.replaceNullValues', () => {
-    const DATA = [
-      { a: false, b: null, c: null },
-      { a: null, b: true, c: null },
-    ];
-
-    const FORMATTED_DATA = DATA.map((obj) => helpers.replaceNullValues(obj));
-
-    expect(helpers.formatStatementData(DATA)).toEqual(FORMATTED_DATA);
-  });
-
-  it('should replace numbers in each object using helpers.shortenNumbers', () => {
-    const DATA = [
-      { a: false, b: 12314.13213, c: 437590185.14 },
-      { a: 13.432875, b: true, c: 10423943214 },
-    ];
-
-    const FORMATTED_DATA = DATA.map((obj) => helpers.shortenNumbers(obj));
-
-    expect(helpers.formatStatementData(DATA)).toEqual(FORMATTED_DATA);
-  });
-});
-
 describe('formatValuationDates', () => {
   it('should convert quarterly dates to localeDateString with month and year', () => {
     const DATA = [
@@ -882,7 +858,7 @@ describe('formatChartData', () => {
   });
 });
 
-describe('pluckAll', () => {
+describe('pluckProperties', () => {
   const DATA = [
     { foo: 1, bar: 'one' },
     { foo: 2, bar: 'two' },
@@ -894,13 +870,13 @@ describe('pluckAll', () => {
       ['one', 'two', 'three'],
     ];
 
-    expect(helpers.pluckAll(DATA, ['foo', 'bar'])).toEqual(PLUCKED_DATA);
+    expect(helpers.pluckProperties(DATA, ['foo', 'bar'])).toEqual(PLUCKED_DATA);
   });
 
   it('should only use the keys passed', () => {
     const PLUCKED_DATA = [[1, 2, 3]];
 
-    expect(helpers.pluckAll(DATA, ['foo'])).toEqual(PLUCKED_DATA);
+    expect(helpers.pluckProperties(DATA, ['foo'])).toEqual(PLUCKED_DATA);
   });
 
   it('should use all the keys passed', () => {
@@ -910,6 +886,8 @@ describe('pluckAll', () => {
       [undefined, undefined, undefined],
     ];
 
-    expect(helpers.pluckAll(DATA, ['foo', 'bar', 'baz'])).toEqual(PLUCKED_DATA);
+    expect(helpers.pluckProperties(DATA, ['foo', 'bar', 'baz'])).toEqual(
+      PLUCKED_DATA
+    );
   });
 });

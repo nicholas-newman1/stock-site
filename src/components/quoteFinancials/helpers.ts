@@ -6,120 +6,116 @@ import {
   dummyQuarterlyCashFlow,
   dummyQuarterlyIncomeStatement,
 } from '../../dummyData';
-import { formatStatementData } from '../../helpers';
+import {
+  formatDates,
+  pluckProperties,
+  replaceNullValues,
+  shortenNumbers,
+} from '../../helpers';
 
 export const getDummyData = (statement: Statement, period: Period) => {
   if (statement === 'income-statement') {
-    return period
-      ? formatStatementData([...dummyQuarterlyIncomeStatement])
-      : formatStatementData([...dummyAnnualIncomeStatement]);
+    return period === 'quarter'
+      ? [...dummyQuarterlyIncomeStatement]
+      : [...dummyAnnualIncomeStatement];
   } else if (statement === 'balance-sheet-statement') {
-    return period
-      ? formatStatementData([...dummyQuarterlyBalanceSheet])
-      : formatStatementData([...dummyAnnualBalanceSheet]);
+    return period === 'quarter'
+      ? [...dummyQuarterlyBalanceSheet]
+      : [...dummyAnnualBalanceSheet];
   } else {
-    return period
-      ? formatStatementData([...dummyQuarterlyCashFlow])
-      : formatStatementData([...dummyAnnualCashFlow]);
+    return period === 'quarter'
+      ? [...dummyQuarterlyCashFlow]
+      : [...dummyAnnualCashFlow];
   }
 };
 
-export const getTableHeadings = (statement: Statement) => {
+const incomeStatementLabels: KeyValueObject = {
+  date: 'Date',
+  revenue: 'Revenue',
+  costOfRevenue: 'Cost of Revenue',
+  grossProfit: 'Gross Profit',
+  operatingExpenses: 'Operating Expense',
+  operatingIncome: 'Operating Income',
+  interestExpense: 'Interest Expense',
+  totalOtherIncomeExpensesNet: 'Other Income Expense',
+  incomeBeforeTax: 'Pretax Income',
+  incomeTaxExpense: 'Income Tax Expense',
+  netIncome: 'Net Income',
+  eps: 'EPS',
+  epsdiluted: 'Diluted EPS',
+  weightedAverageShsOutDil: 'Diluted Average Shares',
+  costAndExpenses: 'Total Expenses',
+  ebitda: 'EBITDA',
+  depreciationAndAmortization: 'Depreciation',
+};
+
+const balanceSheetLabels: KeyValueObject = {
+  date: 'Date',
+  totalAssets: 'Total Assets',
+  totalCurrentAssets: 'Current Assets',
+  totalNonCurrentAssets: 'Non-Current Assets',
+  totalLiabilities: 'Total Liabilities',
+  totalCurrentLiabilities: 'Current Liabilities',
+  totalNonCurrentLiabilities: 'Non-Current Liabilities',
+  totalStockholdersEquity: 'Total Stockholders Equity',
+  totalDebt: 'Total Debt',
+  longTermDebt: 'Long Term Debt',
+  shortTermDebt: 'Short Term Debt',
+};
+
+const cashFlowLabels: KeyValueObject = {
+  date: 'Date',
+  operatingCashFlow: 'Operating Cash Flow',
+  netCashUsedForInvestingActivities: 'Investing Cash Flow',
+  netCashUsedProvidedByFinancingActivities: 'Financing Cash Flow',
+  cashAtBeginningOfPeriod: 'Beginning Cash Position',
+  netChangeInCash: 'Change In Cash',
+  cashAtEndOfPeriod: 'End Cash Position',
+  capitalExpenditure: 'Capital Expenditure',
+  commonStockIssued: 'Common Stock Issued',
+  commonStockRepurchased: 'Common Stock Repurchased',
+  debtRepayment: 'Debt Repayment',
+  freeCashFlow: 'Free Cash Flow',
+};
+
+const getProperties = (statement: Statement) => {
   if (statement === 'income-statement') {
-    return [
-      'Revenue',
-      'Cost of Revenue',
-      'Gross Profit',
-      'Operating Expense',
-      'Operating Income',
-      'Interest Expense',
-      'Other Income Expense',
-      'Pretax Income',
-      'Income Tax Expense',
-      'Net Income',
-      'EPS',
-      'Diluted EPS',
-      'Diluted Average Shares',
-      'Total Expenses',
-      'EBITDA',
-      'Depreciation',
-    ];
+    return Object.keys(incomeStatementLabels);
   } else if (statement === 'balance-sheet-statement') {
-    return [
-      'Total Assets',
-      'Current Assets',
-      'Non-Current Assets',
-      'Total Liabilities',
-      'Current Liabilities',
-      'Non-Current Liabilities',
-      'Total Stockholders Equity',
-      'Total Debt',
-      'Long Term Debt',
-      'Short Term Debt',
-    ];
+    return Object.keys(balanceSheetLabels);
   } else {
-    return [
-      'Operating Cash Flow',
-      'Investing Cash Flow',
-      'Financing Cash Flow',
-      'Beginning Cash Position',
-      'Change In Cash',
-      'End Cash Position',
-      'Capital Expenditure',
-      'Common Stock Issued',
-      'Common Stock Repurchased',
-      'Debt Repayment',
-      'Free Cash Flow',
-    ];
+    return Object.keys(cashFlowLabels);
   }
 };
 
-export const getProperties = (statement: Statement) => {
+const getLabel = (property: string, statement: Statement) => {
   if (statement === 'income-statement') {
-    return [
-      'revenue',
-      'costOfRevenue',
-      'grossProfit',
-      'operatingExpenses',
-      'operatingIncome',
-      'interestExpense',
-      'totalOtherIncomeExpensesNet',
-      'incomeBeforeTax',
-      'incomeTaxExpense',
-      'netIncome',
-      'eps',
-      'epsdiluted',
-      'weightedAverageShsOutDil',
-      'costAndExpenses',
-      'ebitda',
-      'depreciationAndAmortization',
-    ];
+    return incomeStatementLabels[property];
   } else if (statement === 'balance-sheet-statement') {
-    return [
-      'totalAssets',
-      'totalCurrentAssets',
-      'totalNonCurrentAssets',
-      'totalLiabilities',
-      'totalCurrentLiabilities',
-      'totalNonCurrentLiabilities',
-      'totalStockholdersEquity',
-      'totalDebt',
-      'longTermDebt',
-      'shortTermDebt',
-    ];
+    return balanceSheetLabels[property];
   } else {
-    return [
-      'operatingCashFlow',
-      'netCashUsedForInvestingActivities',
-      'netCashUsedProvidedByFinancingActivities',
-      'cashAtBeginningOfPeriod',
-      'netChangeInCash',
-      'cashAtEndOfPeriod',
-      'capitalExpenditure',
-      'commonStockIssued',
-      'commonStockRepurchased',
-      'debtRepayment',
-      'freeCashFlow',
-    ];
+    return cashFlowLabels[property];
   }
+};
+
+export const formatStatementData = (
+  data: KeyValueObject[],
+  statement: Statement,
+  period: Period
+) => {
+  // replace null values with N/A and large numbers with shortened versions
+  const prettier = data.map((item) => shortenNumbers(replaceNullValues(item)));
+
+  /* Create an array of arrays. Each sub array contains the values for a given property that should be common between all the financial statement objects in the given data. */
+  const plucked = pluckProperties(prettier, getProperties(statement));
+
+  // formats dates based on period (annual or quarterly)
+  plucked.unshift(formatDates(plucked.shift()!, period));
+
+  /* Each row needs a heading in the 0 index. */
+  const labeled = plucked.map((row, i) => {
+    row.unshift(getLabel(getProperties(statement)[i], statement));
+    return row;
+  });
+  return labeled;
 };

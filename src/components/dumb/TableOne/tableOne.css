@@ -7,8 +7,12 @@
   border-left: 1px solid #ccc;
 }
 
+.table-one__tr:first-child > td,
+.table-one__tr:first-child > th {
+  border-top: 1px solid #ccc;
+}
+
 .table-one__th {
-  border-bottom: 1px solid #ccc;
   border-right: 1px solid #ccc;
   border-top: 1px solid #ccc;
 }
@@ -30,7 +34,7 @@
   position: sticky;
   left: 0;
   background: white;
-  font-weight: 400;
+  font-weight: 700;
   text-align: left;
 }
 
@@ -50,7 +54,8 @@
 .table-one__th,
 .table-one__th-sticky,
 .table-one__td {
-  padding: 0.6em 1em;
+  padding: 0 1em;
+  height: 2.5em;
   white-space: nowrap;
 }
 

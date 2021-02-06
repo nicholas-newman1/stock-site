@@ -33,7 +33,7 @@ type Statement =
   | 'balance-sheet-statement'
   | 'cash-flow-statement';
 
-type Period = '' | 'quarter';
+type Period = 'annual' | 'quarter';
 
 interface TableHeading {
   label: string;

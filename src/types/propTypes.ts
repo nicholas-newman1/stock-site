@@ -3,3 +3,9 @@ export interface NavItem {
   link: string;
   onClick: () => void;
 }
+
+export interface TableProps {
+  data: any[][];
+  loading: boolean;
+  horizontal?: boolean;
+}

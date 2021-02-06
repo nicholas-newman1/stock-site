@@ -8,7 +8,7 @@ interface Props {
   setResultsPerPage: React.Dispatch<React.SetStateAction<number>>;
 }
 
-const TableOptions: React.FC<Props> = ({
+const PageOptions: React.FC<Props> = ({
   page,
   setPage,
   resultsPerPage,
@@ -40,4 +40,4 @@ const TableOptions: React.FC<Props> = ({
   );
 };
 
-export default TableOptions;
+export default PageOptions;
