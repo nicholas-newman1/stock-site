@@ -43,7 +43,13 @@ const QuotePage: React.FC<Props> = ({ match }) => {
 
   useEffect(() => {
     isQuoteFetched &&
-      dispatch(fetchNews(isStock ? `tickers=${symbol}&limit=10` : 'limit=10'));
+      dispatch(
+        fetchNews(
+          isStock
+            ? `tickers=${symbol}&limit=10`
+            : 'limit=10&tickers=AAPL,FB,AMZN,TSLA'
+        )
+      );
     //eslint-disable-next-line
   }, [isQuoteFetched]);
 

@@ -26,7 +26,7 @@ const CommodityPage: React.FC = () => {
   );
 
   useEffect(() => {
-    dispatch(fetchNews('limit=10'));
+    dispatch(fetchNews('limit=10&tickers=AAPL,FB,AMZN,TSLA'));
     //eslint-disable-next-line
   }, []);
 

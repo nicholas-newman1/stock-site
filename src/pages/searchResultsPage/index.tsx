@@ -45,7 +45,7 @@ const SearchResults: React.FC<Props> = ({ match }) => {
   );
 
   useEffect(() => {
-    dispatch(fetchNews('limit=10'));
+    dispatch(fetchNews('limit=10&tickers=AAPL,FB,AMZN,TSLA'));
     //eslint-disable-next-line
   }, []);
 

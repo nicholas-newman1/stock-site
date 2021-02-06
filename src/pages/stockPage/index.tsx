@@ -18,11 +18,11 @@ import PriceList from '../../components/dumb/PriceList';
 import HeadingLink from '../../components/dumb/HeadingLink';
 
 interface MarketQuote {
-  ticker: string; // "BRK-A"
-  changes: number; // -4120.0
-  price: string; // "344100"
-  changesPercentage: string; //"(-1.18%)"
-  companyName: string; // "Berkshire Hathaway Inc"
+  ticker: string;
+  changes: number;
+  price: string;
+  changesPercentage: string;
+  companyName: string;
 }
 
 interface MarketFetch {
@@ -75,7 +75,7 @@ const StockPage: React.FC = () => {
   );
 
   useEffect(() => {
-    dispatch(fetchNews('limit=10'));
+    dispatch(fetchNews('limit=10&tickers=AAPL,FB,AMZN,TSLA'));
     //eslint-disable-next-line
   }, []);
 
