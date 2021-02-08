@@ -6,7 +6,7 @@ import {
   Redirect,
 } from 'react-router-dom';
 import Header from './components/smart/Header';
-import HomePage from './pages/HomePage';
+import HomePage from './pages/HomePage/index';
 import QuotePage from './pages/QuotePage';
 import SearchResultsPage from './pages/SearchResultsPage';
 import IndexPage from './pages/IndexPage';
