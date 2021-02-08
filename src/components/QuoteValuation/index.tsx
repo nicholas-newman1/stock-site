@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import {
   dummyAnnualValuationData,
   dummyQuarterlyValuationData,
-} from '../../dummyData';
+} from '../../utils/dummyData';
 import { formatValuationData } from './helpers';
 import useFetch from '../../hooks/useFetch';
 import TableOne from '../dumb/TableOne';

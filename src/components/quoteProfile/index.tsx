@@ -1,6 +1,6 @@
 import React from 'react';
-import { dummyProfileData } from '../../dummyData';
-import { formatPhoneNumber } from '../../helpers';
+import { dummyProfileData } from '../../utils/dummyData';
+import { formatPhoneNumber } from '../../utils/helpers';
 import Spinner from '../dumb/Spinner';
 import useFetch from '../../hooks/useFetch';
 import './quoteProfile.css';

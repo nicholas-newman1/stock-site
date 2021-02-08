@@ -5,13 +5,13 @@ import {
   dummyQuarterlyBalanceSheet,
   dummyQuarterlyCashFlow,
   dummyQuarterlyIncomeStatement,
-} from '../../dummyData';
+} from '../../utils/dummyData';
 import {
   formatDates,
   pluckProperties,
   replaceNullValues,
   shortenNumbers,
-} from '../../helpers';
+} from '../../utils/helpers';
 
 export const getDummyData = (statement: Statement, period: Period) => {
   if (statement === 'income-statement') {
@@ -78,7 +78,7 @@ const cashFlowLabels: KeyValueObject = {
   freeCashFlow: 'Free Cash Flow',
 };
 
-const getProperties = (statement: Statement) => {
+export const getProperties = (statement: Statement) => {
   if (statement === 'income-statement') {
     return Object.keys(incomeStatementLabels);
   } else if (statement === 'balance-sheet-statement') {

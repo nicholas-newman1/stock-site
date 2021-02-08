@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchNews } from '../../actions/newsActions';
 import { AppState } from '../../reducers/rootReducer';
 import { Helmet } from 'react-helmet-async';
-import { dummySearchResults } from '../../dummyData';
+import { dummySearchResults } from '../../utils/dummyData';
 import Spinner from '../../components/dumb/Spinner';
 import SearchFilter from '../../components/SearchFilter';
 import SearchItem from '../../components/SearchItem';
@@ -68,7 +68,7 @@ const SearchResults: React.FC<Props> = ({ match }) => {
       ) : data.length > 0 ? (
         <>
           <PageNav
-            data={data}
+            length={data.length}
             page={page}
             setPage={setPage}
             resultsPerPage={resultsPerPage}
@@ -87,7 +87,7 @@ const SearchResults: React.FC<Props> = ({ match }) => {
           </ul>
 
           <PageNav
-            data={data}
+            length={data.length}
             page={page}
             setPage={setPage}
             resultsPerPage={resultsPerPage}

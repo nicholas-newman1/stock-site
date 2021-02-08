@@ -3,7 +3,7 @@ import {
   dummyIntradayData,
   dummyFiveDayData,
   dummyOneMonthData,
-} from '../../dummyData';
+} from '../../utils/dummyData';
 
 export const getTimeScaleFormat = (timeframe: Timeframe) => {
   if (timeframe === '1D') {

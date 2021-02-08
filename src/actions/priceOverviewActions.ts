@@ -1,4 +1,4 @@
-import { fetchFromAPI } from '../api';
+import { fetchFromAPI } from '../utils/api';
 import {
   SetPriceOverviewData,
   SetPriceOverviewLoading,

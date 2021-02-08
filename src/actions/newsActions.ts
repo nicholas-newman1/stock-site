@@ -1,4 +1,4 @@
-import { fetchFromAPI } from '../api';
+import { fetchFromAPI } from '../utils/api';
 import { SetNewsLoading, SetNewsData } from '../types/actionTypes';
 import { NewsItem } from '../types/APITypes';
 

@@ -12,6 +12,16 @@
   border-top: 1px solid #ccc;
 }
 
+.table-one__link {
+  color: #006acc;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.table-one__link:hover {
+  color: #148eff;
+}
+
 .table-one__th {
   border-right: 1px solid #ccc;
   border-top: 1px solid #ccc;

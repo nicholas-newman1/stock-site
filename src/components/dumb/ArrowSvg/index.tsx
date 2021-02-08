@@ -1,13 +1,14 @@
 import React from 'react';
 
 interface Props {
-  style: { [key: string]: string };
+  style?: { [key: string]: string };
+  className?: string;
 }
 
-const TableSortArrow: React.FC<Props> = ({ style }) => {
+const ArrowSvg: React.FC<Props> = ({ style = {}, className = '' }) => {
   return (
     <svg
-      className='table__sort-arrow'
+      className={className}
       style={style}
       xmlns='http://www.w3.org/2000/svg'
       viewBox='0 0 24 24'
@@ -17,4 +18,4 @@ const TableSortArrow: React.FC<Props> = ({ style }) => {
   );
 };
 
-export default TableSortArrow;
+export default ArrowSvg;

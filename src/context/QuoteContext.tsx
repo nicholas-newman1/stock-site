@@ -1,8 +1,8 @@
 import React, { createContext, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { disableRealData } from '../actions/realDataActions';
-import { dummyQuoteData } from '../dummyData';
-import { formatQuoteData } from '../helpers';
+import { dummyQuoteData } from '../utils/dummyData';
+import { formatQuoteData } from '../utils/helpers';
 import { AppState } from '../reducers/rootReducer';
 
 interface QuoteContextInterface {

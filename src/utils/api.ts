@@ -1,7 +1,7 @@
 import { Dispatch } from 'redux';
-import { disableRealData } from './actions/realDataActions';
-import { AppState } from './reducers/rootReducer';
-import { AppActions } from './types/actionTypes';
+import { disableRealData } from '../actions/realDataActions';
+import { AppState } from '../reducers/rootReducer';
+import { AppActions } from '../types/actionTypes';
 
 export const fetchFromAPI = (
   endpoint: string,

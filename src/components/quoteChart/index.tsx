@@ -8,7 +8,7 @@ import {
   getTooltipFormat,
 } from './helpers';
 import './quoteChart.css';
-import { filterChartData, formatChartData } from '../../helpers';
+import { filterChartData, formatChartData } from '../../utils/helpers';
 import BtnBarOne from '../dumb/BtnBarOne';
 
 interface Props {

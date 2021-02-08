@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { dummySectorsData } from '../../dummyData';
+import { dummySectorsData } from '../../utils/dummyData';
 import LoadingSectorList from '../SectorTableLoading';
 import SectorRow from '../SectorTableRow';
 import './sectorTable.css';

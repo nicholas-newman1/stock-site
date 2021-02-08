@@ -7,7 +7,7 @@ import {
   dummyActivesData,
   dummyGainersData,
   dummyLosersData,
-} from '../../dummyData';
+} from '../../utils/dummyData';
 import Heading from '../../components/dumb/Heading';
 import SectorTable from '../../components/SectorTable';
 import BottomNews from '../../components/dumb/BottomNews';

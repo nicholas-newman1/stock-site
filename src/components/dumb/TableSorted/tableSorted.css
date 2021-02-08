@@ -1,0 +1,16 @@
+.table-sorted__btn {
+  font-weight: inherit;
+  font-size: inherit;
+  text-align: inherit;
+  background: none;
+  border: none;
+  cursor: pointer;
+  height: 80%;
+  width: 100%;
+}
+
+.table-sorted__arrow {
+  width: 10px;
+  height: 10px;
+  margin-left: 4px;
+}

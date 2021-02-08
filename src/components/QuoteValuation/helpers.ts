@@ -3,7 +3,7 @@ import {
   pluckProperties,
   replaceNullValues,
   shortenNumbers,
-} from '../../helpers';
+} from '../../utils/helpers';
 
 const valuationLabels: KeyValueObject = {
   date: 'Date',
