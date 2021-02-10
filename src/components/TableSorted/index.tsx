@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { sortArrayOfObjects } from '../../../utils/helpers';
+import { sortArrayOfObjects } from '../../utils/helpers';
 import TableOne from '../TableOne';
 import ArrowSvg from '../ArrowSvg';
 import './tableSorted.css';

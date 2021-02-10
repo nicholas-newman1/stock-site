@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
-import Heading from '../../components/dumb/Heading';
-import SectorTable from '../../components/dumb/SectorTable';
-import BottomNews from '../../components/dumb/BottomNews';
+import Heading from '../../components/Heading';
+import SectorTable from '../../components/SectorTable';
+import BottomNews from '../../components/BottomNews';
 import useScrollTop from '../../hooks/useScrollTop';
-import PriceList from '../../components/dumb/PriceList';
-import HeadingLink from '../../components/dumb/HeadingLink';
+import PriceList from '../../components/PriceList';
+import HeadingLink from '../../components/HeadingLink';
 import useStockPageData from './useStockPageData';
 import './stockPage.css';
 

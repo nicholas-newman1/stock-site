@@ -14,7 +14,7 @@ import CryptoPage from './pages/CryptoPage';
 import CommodityPage from './pages/CommodityPage';
 import ForexPage from './pages/ForexPage';
 import WatchlistPage from './pages/WatchlistPage';
-import Footer from './components/dumb/Footer';
+import Footer from './components/Footer';
 import { QuoteProvider } from './context/QuoteContext';
 import { HelmetProvider } from 'react-helmet-async';
 import HeaderContainer from './containers/HeaderContainer';

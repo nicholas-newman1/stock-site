@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import QuoteFinancials from '../../components/dumb/QuoteFinancials';
+import QuoteFinancials from '../../components/QuoteFinancials';
 import { getDummyData, formatStatementData } from './helpers';
 import useFetch from '../../hooks/useFetch';
 

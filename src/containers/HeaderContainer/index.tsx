@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
-import Header from '../../components/dumb/Header';
+import Header from '../../components/Header';
 import { AppState } from '../../reducers/rootReducer';
 
 const HeaderContainer = () => {

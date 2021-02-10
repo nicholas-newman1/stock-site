@@ -4,12 +4,12 @@ import { AppState } from '../../reducers/rootReducer';
 import { fetchNews } from '../../actions/newsActions';
 import { Helmet } from 'react-helmet-async';
 import { dummyCryptoData } from '../../utils/dummyData';
-import Heading from '../../components/dumb/Heading';
-import BottomNews from '../../components/dumb/BottomNews';
+import Heading from '../../components/Heading';
+import BottomNews from '../../components/BottomNews';
 import useFetch from '../../hooks/useFetch';
 import useScrollTop from '../../hooks/useScrollTop';
 import { formatData, properties } from '../../utils/quoteTable';
-import TableSortedPaginated from '../../components/dumb/TableSortedPaginated';
+import TableSortedPaginated from '../../components/TableSortedPaginated';
 
 const CryptoPage: React.FC = () => {
   useScrollTop(); // scrolls to top of page on component mount

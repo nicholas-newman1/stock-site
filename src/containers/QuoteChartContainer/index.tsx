@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import QuoteChart from '../../components/dumb/QuoteChart';
+import QuoteChart from '../../components/QuoteChart';
 import {
   getEndpoint,
   getDummyData,

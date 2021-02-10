@@ -1,14 +1,14 @@
 import React, { useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
-import BottomNews from '../../components/dumb/BottomNews';
-import Heading from '../../components/dumb/Heading';
+import BottomNews from '../../components/BottomNews';
+import Heading from '../../components/Heading';
 import { dummyIndexPageData } from '../../utils/dummyData';
 import useFetch from '../../hooks/useFetch';
 import useScrollTop from '../../hooks/useScrollTop';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchNews } from '../../actions/newsActions';
 import { AppState } from '../../reducers/rootReducer';
-import TableSortedPaginated from '../../components/dumb/TableSortedPaginated';
+import TableSortedPaginated from '../../components/TableSortedPaginated';
 import { formatData, properties } from '../../utils/quoteTable';
 
 const IndexPage: React.FC = () => {

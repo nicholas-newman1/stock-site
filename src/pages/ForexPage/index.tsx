@@ -4,11 +4,11 @@ import { fetchNews } from '../../actions/newsActions';
 import { AppState } from '../../reducers/rootReducer';
 import { Helmet } from 'react-helmet-async';
 import { dummyForexData } from '../../utils/dummyData';
-import Heading from '../../components/dumb/Heading';
-import BottomNews from '../../components/dumb/BottomNews';
+import Heading from '../../components/Heading';
+import BottomNews from '../../components/BottomNews';
 import useFetch from '../../hooks/useFetch';
 import useScrollTop from '../../hooks/useScrollTop';
-import TableSortedPaginated from '../../components/dumb/TableSortedPaginated';
+import TableSortedPaginated from '../../components/TableSortedPaginated';
 import { formatData, properties } from '../../utils/quoteTable';
 
 const ForexPage: React.FC = () => {

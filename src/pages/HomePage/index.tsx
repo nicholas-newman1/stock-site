@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
-import BottomNews from '../../components/dumb/BottomNews';
-import MainNewsItem from '../../components/dumb/MainNewsItem';
+import BottomNews from '../../components/BottomNews';
+import MainNewsItem from '../../components/MainNewsItem';
 import { Helmet } from 'react-helmet-async';
 import useScrollTop from '../../hooks/useScrollTop';
 import './home.css';

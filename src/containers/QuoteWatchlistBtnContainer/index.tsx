@@ -4,7 +4,7 @@ import {
   removeFromWatchlist,
   addToWatchlist,
 } from '../../actions/watchlistActions';
-import QuoteWatchlistBtn from '../../components/dumb/QuoteWatchlistBtn';
+import QuoteWatchlistBtn from '../../components/QuoteWatchlistBtn';
 import { AppState } from '../../reducers/rootReducer';
 
 interface Props {

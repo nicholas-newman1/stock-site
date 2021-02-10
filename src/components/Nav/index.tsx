@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavItem as NavItemType } from '../../../types/propTypes';
+import { NavItem as NavItemType } from '../../types/propTypes';
 import NavItem from '../NavItem';
 import './nav.css';
 

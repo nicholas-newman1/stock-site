@@ -1,5 +1,5 @@
 import React from 'react';
-import { NewsItem } from '../../../types/APITypes';
+import { NewsItem } from '../../types/APITypes';
 import BottomNewsItem from '../BottomNewsItem';
 import BottomNewsLoading from '../BottomNewsLoading';
 import HorizontalRule from '../HorizontalRule';

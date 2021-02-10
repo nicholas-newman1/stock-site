@@ -5,16 +5,16 @@ import { fetchNews } from '../../actions/newsActions';
 import { AppState } from '../../reducers/rootReducer';
 import { Helmet } from 'react-helmet-async';
 import { dummySearchResults } from '../../utils/dummyData';
-import Spinner from '../../components/dumb/Spinner';
-import SearchFilter from '../../components/dumb/ExchangeFilter';
-import SearchResult from '../../components/dumb/SearchResult';
-import PageNav from '../../components/dumb/PageNav';
-import Heading from '../../components/dumb/Heading';
-import BottomNews from '../../components/dumb/BottomNews';
+import Spinner from '../../components/Spinner';
+import SearchFilter from '../../components/ExchangeFilter';
+import SearchResult from '../../components/SearchResult';
+import PageNav from '../../components/PageNav';
+import Heading from '../../components/Heading';
+import BottomNews from '../../components/BottomNews';
 import useFetch from '../../hooks/useFetch';
 import useScrollTop from '../../hooks/useScrollTop';
 import './searchResultsPage.css';
-import HorizontalRule from '../../components/dumb/HorizontalRule';
+import HorizontalRule from '../../components/HorizontalRule';
 import {
   addToWatchlist,
   removeFromWatchlist,

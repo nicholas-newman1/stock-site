@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchPriceOverviewData } from '../../actions/priceOverviewActions';
-import PriceListOverview from '../../components/dumb/PriceListOverview';
+import PriceListOverview from '../../components/PriceListOverview';
 import { AppState } from '../../reducers/rootReducer';
 import { Quote } from '../../types/APITypes';
 

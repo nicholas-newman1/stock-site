@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import QuoteValuation from '../../components/dumb/QuoteValuation';
+import QuoteValuation from '../../components/QuoteValuation';
 import { formatValuationData } from './helpers';
 import useFetch from '../../hooks/useFetch';
 import {

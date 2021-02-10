@@ -1,5 +1,5 @@
 import React from 'react';
-import { formatPhoneNumber } from '../../../utils/helpers';
+import { formatPhoneNumber } from '../../utils/helpers';
 import Spinner from '../Spinner';
 import './quoteProfile.css';
 

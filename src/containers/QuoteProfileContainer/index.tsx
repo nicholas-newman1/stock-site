@@ -1,5 +1,5 @@
 import React from 'react';
-import QuoteProfile from '../../components/dumb/QuoteProfile';
+import QuoteProfile from '../../components/QuoteProfile';
 import useFetch from '../../hooks/useFetch';
 import { dummyProfileData } from '../../utils/dummyData';
 

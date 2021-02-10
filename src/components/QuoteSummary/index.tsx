@@ -1,5 +1,5 @@
 import React from 'react';
-import { Quote } from '../../../types/APITypes';
+import { Quote } from '../../types/APITypes';
 import './quoteSummary.css';
 
 interface Props {
