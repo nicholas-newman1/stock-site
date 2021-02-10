@@ -2,6 +2,7 @@ import React from 'react';
 import { NewsItem } from '../../../types/APITypes';
 import BottomNewsItem from '../BottomNewsItem';
 import BottomNewsLoading from '../BottomNewsLoading';
+import HorizontalRule from '../HorizontalRule';
 import './bottomNews.css';
 
 interface Props {
@@ -12,6 +13,7 @@ interface Props {
 const BottomNews: React.FC<Props> = ({ newsData, loading }) => {
   return (
     <div className='bottom-news'>
+      <HorizontalRule />
       {loading || !(newsData.length > 0) ? (
         <BottomNewsLoading />
       ) : (

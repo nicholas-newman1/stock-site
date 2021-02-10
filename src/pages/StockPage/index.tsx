@@ -1,83 +1,31 @@
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchNews } from '../../actions/newsActions';
-import { AppState } from '../../reducers/rootReducer';
+import React, { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
-import {
-  dummyActivesData,
-  dummyGainersData,
-  dummyLosersData,
-} from '../../utils/dummyData';
 import Heading from '../../components/dumb/Heading';
-import SectorTable from '../../components/SectorTable';
+import SectorTable from '../../components/dumb/SectorTable';
 import BottomNews from '../../components/dumb/BottomNews';
-import useFetch from '../../hooks/useFetch';
 import useScrollTop from '../../hooks/useScrollTop';
-import './stockPage.css';
 import PriceList from '../../components/dumb/PriceList';
 import HeadingLink from '../../components/dumb/HeadingLink';
-
-interface MarketQuote {
-  ticker: string;
-  changes: number;
-  price: string;
-  changesPercentage: string;
-  companyName: string;
-}
-
-interface MarketFetch {
-  data: MarketQuote[];
-  loading: boolean;
-}
+import useStockPageData from './useStockPageData';
+import './stockPage.css';
 
 const StockPage: React.FC = () => {
   useScrollTop(); // scrolls to top of page on component mount
 
-  const { data: activesData, loading: activesLoading }: MarketFetch = useFetch(
-    [], // initial value
-    'actives', // endpoint
-    dummyActivesData // dummy data
-  );
+  const [showAllSectors, setShowAllSectors] = useState(false);
 
-  const { data: gainersData, loading: gainersLoading }: MarketFetch = useFetch(
-    [],
-    'gainers',
-    dummyGainersData
-  );
-
-  const { data: losersData, loading: losersLoading }: MarketFetch = useFetch(
-    [],
-    'losers',
-    dummyLosersData
-  );
-
-  const filterQuotes = (quotes: MarketQuote[]) => {
-    return quotes.filter((quote, i) => i < 4);
-  };
-
-  const formatData = (quotes: MarketQuote[]) => {
-    return quotes.map((item) => ({
-      symbol: item.ticker,
-      price: parseFloat(item.price),
-      change: item.changes,
-      changesPercentage: parseFloat(item.changesPercentage.replace('(', '')),
-    }));
-  };
-
-  const format = (quotes: MarketQuote[]) => {
-    return formatData(filterQuotes(quotes));
-  };
-
-  const dispatch = useDispatch();
-
-  const { data: newsData, loading: loadingNews } = useSelector(
-    (state: AppState) => state.news
-  );
-
-  useEffect(() => {
-    dispatch(fetchNews('limit=10&tickers=AAPL,FB,AMZN,TSLA'));
-    //eslint-disable-next-line
-  }, []);
+  const {
+    activesData,
+    activesLoading,
+    gainersData,
+    gainersLoading,
+    losersData,
+    losersLoading,
+    sectorsData,
+    sectorsLoading,
+    newsData,
+    newsLoading,
+  } = useStockPageData();
 
   return (
     <div className='stock-page'>
@@ -97,31 +45,46 @@ const StockPage: React.FC = () => {
             <h2 className='stockpage__sub-heading'>
               <HeadingLink to=''>Actives</HeadingLink>
             </h2>
-            <PriceList quotes={format(activesData)} loading={activesLoading} />
+            <PriceList quotes={activesData} loading={activesLoading} />
           </div>
 
           <div className='stock-page__stock-table'>
             <h2 className='stockpage__sub-heading'>
               <HeadingLink to=''>Gainers</HeadingLink>
             </h2>
-            <PriceList quotes={format(gainersData)} loading={gainersLoading} />
+            <PriceList quotes={gainersData} loading={gainersLoading} />
           </div>
 
           <div className='stock-page__stock-table'>
             <h2 className='stockpage__sub-heading'>
               <HeadingLink to=''>Losers</HeadingLink>
             </h2>
-            <PriceList quotes={format(losersData)} loading={losersLoading} />
+            <PriceList quotes={losersData} loading={losersLoading} />
           </div>
         </div>
 
         <div className='stock-page__sector-table'>
           <h2 className='stockpage__sub-heading'>Sectors</h2>
-          <SectorTable />
+
+          <SectorTable
+            data={
+              showAllSectors
+                ? sectorsData
+                : sectorsData.filter((x, i) => i < 14)
+            }
+            loading={sectorsLoading}
+          />
+
+          <button
+            className='stock-page__btn'
+            onClick={() => setShowAllSectors((prev) => !prev)}
+          >
+            {showAllSectors ? 'Hide Sectors' : 'Show All Sectors'}
+          </button>
         </div>
       </div>
 
-      <BottomNews newsData={newsData} loading={loadingNews} />
+      <BottomNews newsData={newsData} loading={newsLoading} />
     </div>
   );
 };

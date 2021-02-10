@@ -1,0 +1,64 @@
+.exchange-filter__container {
+  margin-bottom: 1rem;
+}
+
+.exchange-filter__toggle {
+  margin-bottom: 1rem;
+}
+
+.exchange-filter__form {
+  margin-bottom: 1rem;
+}
+
+.exchange-filter__label {
+  font-size: 0.8rem;
+}
+
+.exchange-filter__input {
+  margin-right: 0.5rem;
+}
+
+.exchange-filter__inputs {
+  display: grid;
+  grid-template-columns: repeat(5, auto);
+  row-gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.exchange-filter__btn {
+  padding: 0.5em 0.75em;
+  cursor: pointer;
+  border: none;
+  background: #ddd;
+}
+
+.exchange-filter__btn.submit {
+  background: #006acc;
+  color: white;
+}
+
+.exchange-filter__btn:hover {
+  background: #ccc;
+}
+
+.exchange-filter__btn.submit:hover {
+  background: #148eff;
+}
+
+@media (max-width: 700px) {
+  .exchange-filter__inputs {
+    grid-template-columns: repeat(3, auto);
+  }
+}
+
+@media (max-width: 400px) {
+  .exchange-filter__inputs {
+    grid-template-columns: repeat(2, auto);
+  }
+}
+
+@media (max-width: 300px) {
+  .exchange-filter__inputs {
+    grid-template-columns: repeat(1, auto);
+  }
+}

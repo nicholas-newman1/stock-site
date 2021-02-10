@@ -22,6 +22,18 @@
   text-transform: uppercase;
 }
 
+.stock-table__btn {
+  justify-self: end;
+  background: #ddd;
+  border: none;
+  padding: 0.75em 1.5em;
+  cursor: pointer;
+}
+
+.stock-table__btn:hover {
+  background: #ccc;
+}
+
 @media (max-width: 700px) {
   .stock-page__content {
     flex-direction: column;

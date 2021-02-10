@@ -6,14 +6,19 @@ import { AppState } from '../../reducers/rootReducer';
 import { Helmet } from 'react-helmet-async';
 import { dummySearchResults } from '../../utils/dummyData';
 import Spinner from '../../components/dumb/Spinner';
-import SearchFilter from '../../components/SearchFilter';
-import SearchItem from '../../components/SearchItem';
+import SearchFilter from '../../components/dumb/ExchangeFilter';
+import SearchResult from '../../components/dumb/SearchResult';
 import PageNav from '../../components/dumb/PageNav';
 import Heading from '../../components/dumb/Heading';
 import BottomNews from '../../components/dumb/BottomNews';
 import useFetch from '../../hooks/useFetch';
 import useScrollTop from '../../hooks/useScrollTop';
 import './searchResultsPage.css';
+import HorizontalRule from '../../components/dumb/HorizontalRule';
+import {
+  addToWatchlist,
+  removeFromWatchlist,
+} from '../../actions/watchlistActions';
 
 interface MatchParams {
   query: string;
@@ -44,6 +49,8 @@ const SearchResults: React.FC<Props> = ({ match }) => {
     (state: AppState) => state.news
   );
 
+  const watchlist = useSelector((state: AppState) => state.watchlist);
+
   useEffect(() => {
     dispatch(fetchNews('limit=10&tickers=AAPL,FB,AMZN,TSLA'));
     //eslint-disable-next-line
@@ -60,8 +67,8 @@ const SearchResults: React.FC<Props> = ({ match }) => {
       </Helmet>
 
       <Heading text='Search Results' />
-
       <SearchFilter setExchange={setExchange} />
+      <HorizontalRule />
 
       {loading ? (
         <Spinner />
@@ -80,7 +87,17 @@ const SearchResults: React.FC<Props> = ({ match }) => {
                 i <= offset + resultsPerPage - 1 && i >= offset;
               return (
                 itemInRange && (
-                  <SearchItem result={result} key={result.symbol} />
+                  <SearchResult
+                    result={result}
+                    key={result.symbol}
+                    isInWatchlist={watchlist.includes(result.symbol)}
+                    addToWatchlist={() =>
+                      dispatch(addToWatchlist(result.symbol))
+                    }
+                    removeFromWatchlist={() =>
+                      dispatch(removeFromWatchlist(result.symbol))
+                    }
+                  />
                 )
               );
             })}

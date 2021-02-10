@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import BottomNews from '../../components/dumb/BottomNews';
-import PriveOverview from '../../components/PriceOverview';
 import MainNewsItem from '../../components/dumb/MainNewsItem';
 import { Helmet } from 'react-helmet-async';
 import useScrollTop from '../../hooks/useScrollTop';
@@ -8,6 +7,7 @@ import './home.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppState } from '../../reducers/rootReducer';
 import { fetchNews } from '../../actions/newsActions';
+import PriceListOverviewContainer from '../../containers/PriceListOverviewContainer';
 
 const Home: React.FC = () => {
   useScrollTop(); // scrolls to top of page on component mount
@@ -37,7 +37,7 @@ const Home: React.FC = () => {
         />
       </div>
       <div className='home__section-two'>
-        <PriveOverview />
+        <PriceListOverviewContainer />
       </div>
     </div>
   );

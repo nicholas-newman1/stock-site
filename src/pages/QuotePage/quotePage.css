@@ -1,0 +1,6 @@
+.quote-page__flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}

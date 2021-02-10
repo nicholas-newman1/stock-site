@@ -5,16 +5,18 @@ import { AppState } from '../../reducers/rootReducer';
 import { QuoteContext } from '../../context/QuoteContext';
 import { Helmet } from 'react-helmet-async';
 import { Redirect, RouteComponentProps } from 'react-router-dom';
-import Quote from '../../components/Quote';
-import QuoteWatchlistBtn from '../../components/QuoteWatchlistBtn';
-import QuoteSummary from '../../components/QuoteSummary';
-import QuoteChart from '../../components/QuoteChart';
-import QuoteProfile from '../../components/QuoteProfile';
-import QuoteValuation from '../../components/QuoteValuation';
-import QuoteNav from '../../components/QuoteNav';
-import QuoteFinancials from '../../components/QuoteFinancials';
+import QuoteDetails from '../../components/dumb/Quote';
+import QuoteSummary from '../../components/dumb/QuoteSummary';
+import QuoteNav from '../../components/dumb/QuoteNav';
 import BottomNews from '../../components/dumb/BottomNews';
 import useScrollTop from '../../hooks/useScrollTop';
+import QuoteChartContainer from '../../containers/QuoteChartContainer';
+import QuoteFinancialsContainer from '../../containers/QuoteFinancialsContainer';
+import QuoteProfileContainer from '../../containers/QuoteProfileContainer';
+import { Quote } from '../../types/APITypes';
+import QuoteValuationContainer from '../../containers/QuoteValuationContainer';
+import QuoteWatchlistBtnContainer from '../../containers/QuoteWatchlistBtnContainer';
+import './quotePage.css';
 
 interface MatchProps {
   symbol: string;
@@ -76,19 +78,32 @@ const QuotePage: React.FC<Props> = ({ match }) => {
         )}
       </Helmet>
       <>
-        <Quote />
-        <QuoteWatchlistBtn symbol={symbol} />
+        <div className='quote-page__flex'>
+          <QuoteDetails
+            quote={{
+              price: quote.price,
+              change: quote.change,
+              changesPercentage: quote.changesPercentage,
+              symbol: quote.symbol,
+              name: quote.name,
+              exchange: quote.exchange,
+              color: quote.color,
+            }}
+          />
+          <QuoteWatchlistBtnContainer symbol={symbol} />
+        </div>
+
         {isStock && <QuoteNav setTab={setTab} />}
         {tab === 'Summary' && (
           <>
-            <QuoteChart symbol={symbol} />
+            <QuoteChartContainer symbol={symbol} />
             <br />
-            <QuoteSummary />
+            <QuoteSummary quote={quote as Quote} />
           </>
         )}
-        {tab === 'Financials' && <QuoteFinancials symbol={symbol} />}
-        {tab === 'Profile' && <QuoteProfile symbol={symbol} />}
-        {tab === 'Valuation' && <QuoteValuation symbol={symbol} />}
+        {tab === 'Financials' && <QuoteFinancialsContainer symbol={symbol} />}
+        {tab === 'Profile' && <QuoteProfileContainer symbol={symbol} />}
+        {tab === 'Valuation' && <QuoteValuationContainer symbol={symbol} />}
 
         <BottomNews
           newsData={newsData}
