@@ -43,7 +43,7 @@ const ExchangeFilter: React.FC<Props> = ({ setExchange }) => {
           <form className='exchange-filter__form' onSubmit={handleSubmit}>
             <div className='exchange-filter__inputs'>
               {exchanges.map((exchange, i) => (
-                <label className='exchange-filter__label'>
+                <label key={i} className='exchange-filter__label'>
                   <input
                     className='exchange-filter__input'
                     type='checkbox'
