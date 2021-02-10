@@ -16,7 +16,7 @@ export const labels = headings.map((obj) => obj.label);
 export const formatData = (data: KeyValueObject[]) => {
   let newData = data.map((item) => {
     item.symbol = (
-      <Link className='table-one__link' to={`/quote/${item.symbol}`}>
+      <Link className='link' to={`/quote/${item.symbol}`}>
         {item.symbol}
       </Link>
     );

@@ -93,6 +93,16 @@ footer {
   border-radius: 10000px;
 }
 
+.link {
+  color: #006acc;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.link:hover {
+  color: #148eff;
+}
+
 .hidden {
   display: none;
 }
