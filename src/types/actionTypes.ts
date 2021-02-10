@@ -1,23 +1,5 @@
 import { NewsItem, Quote } from './APITypes';
 
-/* ##### DisplayMobileNav Action Types ##### */
-
-const SET_DISPLAY_MOBILE_NAV = 'SET_DISPLAY_MOBILE_NAV';
-const TOGGLE_DISPLAY_MOBILE_NAV = 'TOGGLE_DISPLAY_MOBILE_NAV';
-
-export interface SetDisplayMobileNav {
-  type: typeof SET_DISPLAY_MOBILE_NAV;
-  payload: boolean;
-}
-
-export interface ToggleDisplayMobileNav {
-  type: typeof TOGGLE_DISPLAY_MOBILE_NAV;
-}
-
-export type DisplayMobileNavActionTypes =
-  | SetDisplayMobileNav
-  | ToggleDisplayMobileNav;
-
 /* ##### RealData Action Types ##### */
 
 const ENABLE_REAL_DATA = 'ENABLE_REAL_DATA';
@@ -90,7 +72,6 @@ export type WatchlistActionTypes = AddToWatchlist | RemoveFromWatchlist;
 /* ##### App Action Types ##### */
 
 export type AppActions =
-  | DisplayMobileNavActionTypes
   | RealDataActionTypes
   | NewsActionTypes
   | PriceOverviewActionTypes
