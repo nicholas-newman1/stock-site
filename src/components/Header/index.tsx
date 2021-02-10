@@ -80,7 +80,7 @@ const Header: React.FC<Props> = ({
           }`}
         >
           <Link
-            className='watchlist-btn'
+            className='btn-outline-blue btn--round'
             to={`/watchlist`}
             onClick={() => hideMobileNav()}
           >

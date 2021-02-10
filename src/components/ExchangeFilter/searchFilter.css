@@ -2,7 +2,7 @@
   margin-bottom: 1rem;
 }
 
-.exchange-filter__toggle {
+.exchange-filter__toggle-btn {
   margin-bottom: 1rem;
 }
 
@@ -22,27 +22,7 @@
   display: grid;
   grid-template-columns: repeat(5, auto);
   row-gap: 0.5rem;
-  margin-bottom: 0.5rem;
-}
-
-.exchange-filter__btn {
-  padding: 0.5em 0.75em;
-  cursor: pointer;
-  border: none;
-  background: #ddd;
-}
-
-.exchange-filter__btn.submit {
-  background: #006acc;
-  color: white;
-}
-
-.exchange-filter__btn:hover {
-  background: #ccc;
-}
-
-.exchange-filter__btn.submit:hover {
-  background: #148eff;
+  margin-bottom: 1rem;
 }
 
 @media (max-width: 700px) {

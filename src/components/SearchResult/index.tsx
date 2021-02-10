@@ -28,13 +28,11 @@ const SearchResult: React.FC<Props> = ({
         <p className='search-result__desc'>{name}</p>
       </div>
       <div className='search-result__btns-container'>
-        <button className='search-result__quote-btn'>
-          <Link className='search-result__quote-link' to={`/quote/${symbol}`}>
-            View Quote
-          </Link>{' '}
-        </button>
+        <Link className='btn-blue' to={`/quote/${symbol}`}>
+          View Quote
+        </Link>{' '}
         <button
-          className='search-result__watchlist-btn'
+          className='btn-outline-blue'
           onClick={() =>
             isInWatchlist ? removeFromWatchlist() : addToWatchlist()
           }

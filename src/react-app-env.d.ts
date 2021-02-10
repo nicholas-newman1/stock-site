@@ -1,5 +1,11 @@
 /// <reference types="react-scripts" />
 
+interface Button {
+  className?: string;
+  onClick?: () => void;
+  disabled?: boolean;
+}
+
 type KeyValueObject = {
   [key: string]: any;
 };

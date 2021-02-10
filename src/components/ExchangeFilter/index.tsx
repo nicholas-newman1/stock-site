@@ -1,6 +1,4 @@
 import React, { useState } from 'react';
-import ExchangeFilterBtn from '../ExchangeFilterBtn';
-import ExchangeFilterOption from '../ExchangeFilterOption';
 import './searchFilter.css';
 
 interface Props {
@@ -11,7 +9,7 @@ const ExchangeFilter: React.FC<Props> = ({ setExchange }) => {
   const [checked, setChecked] = useState<Exchange>('');
   const [displayFilter, setDisplayFilter] = useState(false);
 
-  const exchanges = [
+  const exchanges: Exchange[] = [
     'INDEX',
     'MUTUAL_FUND',
     'NASDAQ',
@@ -28,30 +26,39 @@ const ExchangeFilter: React.FC<Props> = ({ setExchange }) => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setExchange(checked);
+    setDisplayFilter(false);
   };
 
   return (
     <>
-      <ExchangeFilterBtn
-        displayFilter={displayFilter}
-        setDisplayFilter={setDisplayFilter}
-      />
+      <button
+        className='exchange-filter__toggle-btn btn-grey btn--small'
+        onClick={() => setDisplayFilter((prev) => !prev)}
+      >
+        {displayFilter ? 'Hide Filter' : 'Show Filter'}
+      </button>
 
       {displayFilter && (
         <div className='exchange-filter__container'>
           <form className='exchange-filter__form' onSubmit={handleSubmit}>
             <div className='exchange-filter__inputs'>
               {exchanges.map((exchange, i) => (
-                <ExchangeFilterOption
-                  key={i}
-                  checked={checked}
-                  setChecked={setChecked}
-                  exchange={exchange as Exchange}
-                />
+                <label className='exchange-filter__label'>
+                  <input
+                    className='exchange-filter__input'
+                    type='checkbox'
+                    value={exchange}
+                    checked={checked === exchange}
+                    onChange={() =>
+                      setChecked(checked === exchange ? '' : exchange)
+                    }
+                  />
+                  {exchange}
+                </label>
               ))}
             </div>
 
-            <button className='exchange-filter__btn submit' type='submit'>
+            <button className='btn-blue btn--small' type='submit'>
               Apply
             </button>
           </form>

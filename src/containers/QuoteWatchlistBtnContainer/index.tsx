@@ -4,7 +4,6 @@ import {
   removeFromWatchlist,
   addToWatchlist,
 } from '../../actions/watchlistActions';
-import QuoteWatchlistBtn from '../../components/QuoteWatchlistBtn';
 import { AppState } from '../../reducers/rootReducer';
 
 interface Props {
@@ -17,7 +16,8 @@ const QuoteWatchlistBtnContainer: React.FC<Props> = ({ symbol }) => {
   const isInWatchlist = watchlist.includes(symbol);
 
   return (
-    <QuoteWatchlistBtn
+    <button
+      className='btn-outline-blue'
       onClick={() =>
         isInWatchlist
           ? dispatch(removeFromWatchlist(symbol))
@@ -25,7 +25,7 @@ const QuoteWatchlistBtnContainer: React.FC<Props> = ({ symbol }) => {
       }
     >
       {isInWatchlist ? 'Remove From Watchlist' : 'Add to Watchlist'}
-    </QuoteWatchlistBtn>
+    </button>
   );
 };
 

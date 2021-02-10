@@ -33,20 +33,64 @@ footer {
   margin: 0 auto;
 }
 
-.watchlist-btn {
+.btn-blue {
+  display: inline-block;
   text-decoration: none;
-  color: #006acc;
-  border-radius: 500px;
-  font-size: 1rem;
-  font-weight: 400;
-  padding: 0.35rem 1rem;
+  white-space: nowrap;
+  background: #006acc;
   border: 1px solid #006acc;
+  color: white;
+  padding: 0.5em 1em;
+  font-size: 0.9rem;
 }
 
-.watchlist-btn:hover {
+.btn-blue:hover {
+  background: #148eff;
+  border: 1px solid #148eff;
+  cursor: pointer;
+}
+
+.btn-outline-blue {
+  display: inline-block;
+  text-decoration: none;
+  white-space: nowrap;
+  background: rgba(0, 0, 0, 0);
+  border: 1px solid #006acc;
+  color: #006acc;
+  padding: 0.5em 1em;
+  font-size: 0.9rem;
+}
+
+.btn-outline-blue:hover {
   background: #006acc;
+  border: 1px solid #006acc;
   color: white;
   cursor: pointer;
+}
+
+.btn-grey {
+  display: inline-block;
+  text-decoration: none;
+  white-space: nowrap;
+  background: #ccc;
+  border: 1px solid #ccc;
+  color: black;
+  padding: 0.5em 1em;
+  font-size: 0.9rem;
+}
+
+.btn-grey:hover {
+  background: #aaa;
+  border: 1px solid #aaa;
+  cursor: pointer;
+}
+
+.btn--small {
+  font-size: 0.8rem;
+}
+
+.btn--round {
+  border-radius: 10000px;
 }
 
 .hidden {
