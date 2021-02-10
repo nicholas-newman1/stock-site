@@ -1,26 +1,20 @@
 import React from 'react';
 import { TableProps } from '../../types/propTypes';
 import Spinner from '../Spinner';
-import './tableOne.css';
+import './table.css';
 
-const TableOne: React.FC<TableProps> = ({
-  data,
-  loading,
-  horizontal = false,
-}) => {
+const Table: React.FC<TableProps> = ({ data, loading, horizontal = false }) => {
   return loading ? (
     <Spinner />
   ) : data.length > 0 ? (
-    <table className='table-one'>
+    <table className='table'>
       {!horizontal && (
-        <thead className='table-one__thead'>
-          <tr className='table-one__tr'>
+        <thead className='table__thead'>
+          <tr className='table__tr'>
             {data[0].map((item, i) => (
               <th
                 className={
-                  i === 0 && horizontal
-                    ? 'table-one__th-sticky'
-                    : 'table-one__th'
+                  i === 0 && horizontal ? 'table__th-sticky' : 'table__th'
                 }
                 key={i}
                 style={i % 2 === 1 && horizontal ? { background: '#eee' } : {}}
@@ -31,21 +25,21 @@ const TableOne: React.FC<TableProps> = ({
           </tr>
         </thead>
       )}
-      <tbody className='table-one__tbody'>
+      <tbody className='table__tbody'>
         {data
           .filter((x, i) => horizontal || i !== 0) // skip first array as it is rendered in the head
           .map((row, i) => (
             <tr
               key={i}
               style={i % 2 === 0 && !horizontal ? { background: '#eee' } : {}}
-              className='table-one__tr'
+              className='table__tr'
             >
               {horizontal && (
                 <th
                   style={
                     i % 2 === 0 && !horizontal ? { background: '#eee' } : {}
                   }
-                  className='table-one__th-sticky'
+                  className='table__th-sticky'
                 >
                   {row[0]}
                 </th>
@@ -55,7 +49,7 @@ const TableOne: React.FC<TableProps> = ({
                 .filter((x, i) => i !== 0 || !horizontal)
                 .map((item, i) => (
                   <td
-                    className='table-one__td'
+                    className='table__td'
                     key={i}
                     style={
                       i % 2 === (horizontal ? 0 : 1) && horizontal
@@ -75,4 +69,4 @@ const TableOne: React.FC<TableProps> = ({
   );
 };
 
-export default TableOne;
+export default Table;

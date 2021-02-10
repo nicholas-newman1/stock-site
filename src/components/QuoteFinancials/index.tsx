@@ -1,6 +1,6 @@
 import React from 'react';
 import BtnBarOne from '../BtnBarOne';
-import TableOne from '../TableOne';
+import Table from '../Table';
 import './quoteFinancials.css';
 
 interface Props {
@@ -36,7 +36,7 @@ const QuoteFinancials: React.FC<Props> = ({
         />
       </div>
 
-      <TableOne data={tableData} loading={loading} horizontal={true} />
+      <Table data={tableData} loading={loading} horizontal={true} />
     </div>
   );
 };

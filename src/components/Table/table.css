@@ -1,4 +1,4 @@
-.table-one {
+.table {
   display: block;
   overflow-x: auto;
   border-spacing: 0;
@@ -7,38 +7,38 @@
   border-left: 1px solid #ccc;
 }
 
-.table-one__tr:first-child > td,
-.table-one__tr:first-child > th {
+.table__tr:first-child > td,
+.table__tr:first-child > th {
   border-top: 1px solid #ccc;
 }
 
-.table-one__link {
+.table__link {
   color: #006acc;
   font-weight: 700;
   text-decoration: none;
 }
 
-.table-one__link:hover {
+.table__link:hover {
   color: #148eff;
 }
 
-.table-one__th {
+.table__th {
   border-right: 1px solid #ccc;
   border-top: 1px solid #ccc;
 }
 
-.table-one__td {
+.table__td {
   text-align: center;
   border-bottom: 1px solid #ccc;
   border-right: 1px solid #ccc;
   font-size: 0.875rem;
 }
 
-.table-one__thead .table-one__th-sticky {
+.table__thead .table__th-sticky {
   border-top: 1px solid #ccc;
 }
 
-.table-one__th-sticky {
+.table__th-sticky {
   border-bottom: 1px solid #ccc;
   border-right: 1px solid #ccc;
   position: sticky;
@@ -48,7 +48,7 @@
   text-align: left;
 }
 
-.table-one__th-sticky:after {
+.table__th-sticky:after {
   content: ' ';
   height: 100%;
   position: absolute;
@@ -56,31 +56,31 @@
   width: 10px;
 }
 
-.table-one__th-sticky:after {
+.table__th-sticky:after {
   box-shadow: 10px 0 10px -10px rgba(0, 0, 0, 0.4) inset;
   right: -10px;
 }
 
-.table-one__th,
-.table-one__th-sticky,
-.table-one__td {
+.table__th,
+.table__th-sticky,
+.table__td {
   padding: 0 1em;
   height: 2.5em;
   white-space: nowrap;
 }
 
 @media (max-width: 500px) {
-  .table-one__th,
-  .table-one__th-sticky,
-  .table-one__td {
+  .table__th,
+  .table__th-sticky,
+  .table__td {
     font-size: 0.9rem;
   }
 }
 
 @media (max-width: 400px) {
-  .table-one__th,
-  .table-one__th-sticky,
-  .table-one__td {
+  .table__th,
+  .table__th-sticky,
+  .table__td {
     font-size: 0.8rem;
   }
 }

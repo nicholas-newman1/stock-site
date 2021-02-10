@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { sortArrayOfObjects } from '../../utils/helpers';
-import TableOne from '../TableOne';
+import Table from '../Table';
 import ArrowSvg from '../ArrowSvg';
 import './tableSorted.css';
 
@@ -81,9 +81,7 @@ const TableSorted: React.FC<Props> = ({
     //eslint-disable-next-line
   }, [data, sortProperty, reverse]);
 
-  return (
-    <TableOne data={tableData} loading={loading} horizontal={horizontal} />
-  );
+  return <Table data={tableData} loading={loading} horizontal={horizontal} />;
 };
 
 export default TableSorted;
