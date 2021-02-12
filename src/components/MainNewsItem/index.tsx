@@ -1,5 +1,5 @@
 import React from 'react';
-import MainNewsItemLoading from '../MainNewsItemLoading';
+import MainNewsItemLoading from './MainNewsItemLoading';
 import { NewsItem } from '../../types/APITypes';
 import { getTimeAgoString, truncate } from '../../utils/helpers';
 import './mainNewsItem.css';

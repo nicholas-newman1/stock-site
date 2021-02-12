@@ -1,6 +1,6 @@
 import React from 'react';
-import PriceListItem from '../PriceListItem';
-import PriceListItemLoading from '../PriceListItemLoading';
+import PriceListItem from './PriceListItem';
+import PriceListItemLoading from './PriceListItemLoading';
 import './priceList.css';
 
 export interface PriceListQuote {

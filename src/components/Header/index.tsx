@@ -2,7 +2,7 @@ import { faBars } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import HeaderWarning from '../HeaderWarning';
+import HeaderWarning from './HeaderWarning';
 import MainNavItems from '../MainNavItems';
 import Nav from '../Nav';
 import SearchBar from '../SearchBar';

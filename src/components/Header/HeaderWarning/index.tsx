@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faQuestionCircle } from '@fortawesome/free-solid-svg-icons';
 import './headerWarning.css';
 import { useSelector } from 'react-redux';
-import { AppState } from '../../reducers/rootReducer';
+import { AppState } from '../../../reducers/rootReducer';
 
 const HeaderWarning: React.FC = () => {
   const realData = useSelector((state: AppState) => state.realData);

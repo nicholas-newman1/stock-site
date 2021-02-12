@@ -1,6 +1,6 @@
 import React from 'react';
 import { SearchResult } from '../../types/APITypes';
-import SearchResultItem from '../SearchResultItem';
+import SearchResultItem from './SearchResultItem';
 import './searchResults.css';
 
 interface Props {

@@ -5,8 +5,8 @@ import {
   getChangeColor,
   insertDollarSign,
   roundLocale,
-} from '../../utils/helpers';
-import { PriceListQuote } from '../PriceList';
+} from '../../../utils/helpers';
+import { PriceListQuote } from '..';
 import './priceListItem.css';
 
 interface Props {

@@ -1,6 +1,6 @@
 import React from 'react';
-import SectorTableLoading from '../SectorTableLoading';
-import SectorTableRow from '../SectorTableRow';
+import SectorTableLoading from './SectorTableLoading';
+import SectorTableRow from './SectorTableRow';
 import './sectorTable.css';
 
 interface Props {
