@@ -5,9 +5,9 @@ import SectorTable from '../../components/SectorTable';
 import BottomNews from '../../components/BottomNews';
 import useScrollTop from '../../hooks/useScrollTop';
 import PriceList from '../../components/PriceList';
-import HeadingLink from '../../components/HeadingLink';
 import useStockPageData from './useStockPageData';
 import './stockPage.css';
+import { Link } from 'react-router-dom';
 
 const StockPage: React.FC = () => {
   useScrollTop(); // scrolls to top of page on component mount
@@ -43,21 +43,23 @@ const StockPage: React.FC = () => {
         <div className='stock-page__stocklists'>
           <div className='stock-page__stock-table'>
             <h2 className='stockpage__sub-heading'>
-              <HeadingLink to=''>Actives</HeadingLink>
+              <Link className='heading-link' to=''>
+                Actives
+              </Link>
             </h2>
             <PriceList quotes={activesData} loading={activesLoading} />
           </div>
 
           <div className='stock-page__stock-table'>
             <h2 className='stockpage__sub-heading'>
-              <HeadingLink to=''>Gainers</HeadingLink>
+              <Link to=''>Gainers</Link>
             </h2>
             <PriceList quotes={gainersData} loading={gainersLoading} />
           </div>
 
           <div className='stock-page__stock-table'>
             <h2 className='stockpage__sub-heading'>
-              <HeadingLink to=''>Losers</HeadingLink>
+              <Link to=''>Losers</Link>
             </h2>
             <PriceList quotes={losersData} loading={losersLoading} />
           </div>

@@ -33,6 +33,18 @@ footer {
   margin: 0 auto;
 }
 
+.heading-link {
+  text-transform: uppercase;
+  text-decoration: none;
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: #006acc;
+}
+
+.heading-link:hover {
+  color: #148eff;
+}
+
 .btn-blue {
   display: inline-block;
   text-decoration: none;
