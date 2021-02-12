@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import './searchResult.css';
+import './searchResultItem.css';
 
 interface Props {
   result: SearchResult;
@@ -9,7 +9,7 @@ interface Props {
   removeFromWatchlist: () => void;
 }
 
-const SearchResult: React.FC<Props> = ({
+const SearchResultItem: React.FC<Props> = ({
   result,
   isInWatchlist,
   addToWatchlist,
@@ -18,16 +18,16 @@ const SearchResult: React.FC<Props> = ({
   const { symbol, name, exchangeShortName } = result;
 
   return (
-    <li className='search-result' key={symbol}>
-      <div className='search-result__content'>
-        <h2 className='search-result__heading'>
-          <Link className='search-result__link' to={`/quote/${symbol}`}>
+    <li className='search-result-item' key={symbol}>
+      <div className='search-result-item__content'>
+        <h2 className='search-result-item__heading'>
+          <Link className='search-result-item__link' to={`/quote/${symbol}`}>
             {symbol} ({exchangeShortName})
           </Link>
         </h2>
-        <p className='search-result__desc'>{name}</p>
+        <p className='search-result-item__desc'>{name}</p>
       </div>
-      <div className='search-result__btns-container'>
+      <div className='search-result-item__btns-container'>
         <Link className='btn-blue' to={`/quote/${symbol}`}>
           View Quote
         </Link>{' '}
@@ -44,4 +44,4 @@ const SearchResult: React.FC<Props> = ({
   );
 };
 
-export default SearchResult;
+export default SearchResultItem;

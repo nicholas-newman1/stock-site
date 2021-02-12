@@ -31,3 +31,11 @@ export interface Quote {
   sharesOutstanding: number;
   timestamp: number;
 }
+
+export interface SearchResult {
+  symbol: string;
+  name: string;
+  currency: string;
+  stockExchange: string;
+  exchangeShortName: string;
+}

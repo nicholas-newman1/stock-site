@@ -7,7 +7,6 @@ import { Helmet } from 'react-helmet-async';
 import { dummySearchResults } from '../../utils/dummyData';
 import Spinner from '../../components/Spinner';
 import SearchFilter from '../../components/ExchangeFilter';
-import SearchResult from '../../components/SearchResult';
 import PageNav from '../../components/PageNav';
 import Heading from '../../components/Heading';
 import BottomNews from '../../components/BottomNews';
@@ -19,6 +18,13 @@ import {
   addToWatchlist,
   removeFromWatchlist,
 } from '../../actions/watchlistActions';
+import SearchResults from '../../components/SearchResults';
+import { SearchResult } from '../../types/APITypes';
+
+interface SearchResultsFetch {
+  data: SearchResult[];
+  loading: boolean;
+}
 
 interface MatchParams {
   query: string;
@@ -26,21 +32,35 @@ interface MatchParams {
 
 interface Props extends RouteComponentProps<MatchParams> {}
 
-const SearchResults: React.FC<Props> = ({ match }) => {
+const SearchResultsPage: React.FC<Props> = ({ match }) => {
   useScrollTop(); // scrolls to top of page on component mount
 
+  const [displayFilter, setDisplayFilter] = useState(false);
   const [exchange, setExchange] = useState<Exchange>('');
   const [page, setPage] = useState(0);
   const [resultsPerPage] = useState(10);
   const offset = page * resultsPerPage;
   const query = match.params.query;
+  const exchanges: Exchange[] = [
+    'INDEX',
+    'MUTUAL_FUND',
+    'NASDAQ',
+    'ETF',
+    'COMMODITY',
+    'CRYPTO',
+    'FOREX',
+    'TSX',
+    'AMEX',
+    'NYSE',
+    'EURONEXT',
+  ];
 
-  const { data, loading } = useFetch(
+  const { data, loading }: SearchResultsFetch = useFetch(
     [], // initial value
     'search', // endpoint
     dummySearchResults, // dummy data
     `query=${query}${exchange && '&exchange=' + exchange}`, // parameters
-    [match.params.query, exchange] // dependencies
+    [query, exchange] // dependencies
   );
 
   const dispatch = useDispatch();
@@ -67,41 +87,41 @@ const SearchResults: React.FC<Props> = ({ match }) => {
       </Helmet>
 
       <Heading text='Search Results' />
-      <SearchFilter setExchange={setExchange} />
+
+      <button
+        className='search-results-page__filter-btn btn-grey btn--small'
+        onClick={() => setDisplayFilter((prev) => !prev)}
+      >
+        {displayFilter ? 'Hide Filter' : 'Show Filter'}
+      </button>
+
+      {displayFilter && (
+        <SearchFilter
+          filters={exchanges}
+          setFilter={(exchange) => {
+            setExchange(exchange);
+            setDisplayFilter(false);
+          }}
+        />
+      )}
       <HorizontalRule />
 
       {loading ? (
         <Spinner />
       ) : data.length > 0 ? (
         <>
-          <PageNav
-            length={data.length}
-            page={page}
-            setPage={setPage}
-            resultsPerPage={resultsPerPage}
-          />
-
-          <ul className='search-results-page'>
-            {data.map((result: SearchResult, i: number) => {
+          <SearchResults
+            searchResults={data.filter((result, i) => {
               const itemInRange =
                 i <= offset + resultsPerPage - 1 && i >= offset;
-              return (
-                itemInRange && (
-                  <SearchResult
-                    result={result}
-                    key={result.symbol}
-                    isInWatchlist={watchlist.includes(result.symbol)}
-                    addToWatchlist={() =>
-                      dispatch(addToWatchlist(result.symbol))
-                    }
-                    removeFromWatchlist={() =>
-                      dispatch(removeFromWatchlist(result.symbol))
-                    }
-                  />
-                )
-              );
+              return itemInRange;
             })}
-          </ul>
+            watchlist={watchlist}
+            addToWatchlist={(symbol) => dispatch(addToWatchlist(symbol))}
+            removeFromWatchlist={(symbol) =>
+              dispatch(removeFromWatchlist(symbol))
+            }
+          />
 
           <PageNav
             length={data.length}
@@ -118,4 +138,4 @@ const SearchResults: React.FC<Props> = ({ match }) => {
   );
 };
 
-export default SearchResults;
+export default SearchResultsPage;

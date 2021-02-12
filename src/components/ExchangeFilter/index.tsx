@@ -1,70 +1,48 @@
 import React, { useState } from 'react';
 import './searchFilter.css';
 
-interface Props {
-  setExchange: React.Dispatch<React.SetStateAction<Exchange>>;
-}
+// what is this components concern?
+// should it have an apply button?
+// class/file names need to be fixed
 
-const ExchangeFilter: React.FC<Props> = ({ setExchange }) => {
-  const [checked, setChecked] = useState<Exchange>('');
-  const [displayFilter, setDisplayFilter] = useState(false);
+type Props<T> = {
+  filters: T[];
+  setFilter: (filter: T) => void;
+};
 
-  const exchanges: Exchange[] = [
-    'INDEX',
-    'MUTUAL_FUND',
-    'NASDAQ',
-    'ETF',
-    'COMMODITY',
-    'CRYPTO',
-    'FOREX',
-    'TSX',
-    'AMEX',
-    'NYSE',
-    'EURONEXT',
-  ];
+const ExchangeFilter = <T extends string>({ filters, setFilter }: Props<T>) => {
+  const [checked, setChecked] = useState<T>('' as T);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setExchange(checked);
-    setDisplayFilter(false);
+    setFilter(checked);
   };
 
   return (
-    <>
-      <button
-        className='exchange-filter__toggle-btn btn-grey btn--small'
-        onClick={() => setDisplayFilter((prev) => !prev)}
-      >
-        {displayFilter ? 'Hide Filter' : 'Show Filter'}
-      </button>
-
-      {displayFilter && (
-        <div className='exchange-filter__container'>
-          <form className='exchange-filter__form' onSubmit={handleSubmit}>
-            <div className='exchange-filter__inputs'>
-              {exchanges.map((exchange, i) => (
-                <label key={i} className='exchange-filter__label'>
-                  <input
-                    className='exchange-filter__input'
-                    type='checkbox'
-                    value={exchange}
-                    checked={checked === exchange}
-                    onChange={() =>
-                      setChecked(checked === exchange ? '' : exchange)
-                    }
-                  />
-                  {exchange}
-                </label>
-              ))}
-            </div>
-
-            <button className='btn-blue btn--small' type='submit'>
-              Apply
-            </button>
-          </form>
+    <div className='exchange-filter__container'>
+      <form className='exchange-filter__form' onSubmit={handleSubmit}>
+        <div className='exchange-filter__inputs'>
+          {filters.map((filter, i) => (
+            <label key={i} className='exchange-filter__label'>
+              <input
+                className='exchange-filter__input'
+                type='radio'
+                value={filter}
+                checked={checked === filter}
+                onChange={() =>
+                  setChecked(checked === filter ? ('' as T) : filter)
+                }
+              />
+              {filter}
+            </label>
+          ))}
         </div>
-      )}
-    </>
+
+        <button className='btn-blue btn--small' type='submit'>
+          Apply
+        </button>
+      </form>
+    </div>
   );
 };
 
