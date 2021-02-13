@@ -18,15 +18,27 @@ const useFetch = (
   useEffect(() => {
     (async () => {
       setLoading(true);
-      console.log('run');
+
       let data: any;
       if (realData.status) {
         try {
-          const res = await fetch('../../.netlify/functions/fmp.js', {
-            body: JSON.stringify({
+          console.log(
+            JSON.stringify({
               endpoint,
               params,
-            }),
+            })
+          );
+          const res = await fetch('http://localhost:9000/FMPApiRequest', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: btoa(
+              JSON.stringify({
+                endpoint,
+                params,
+              })
+            ),
           });
           data = await res.json();
 
