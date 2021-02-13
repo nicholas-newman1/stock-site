@@ -18,14 +18,16 @@ const useFetch = (
   useEffect(() => {
     (async () => {
       setLoading(true);
+      console.log('run');
       let data: any;
       if (realData.status) {
         try {
-          const res = await fetch(
-            `https://financialmodelingprep.com/api/v3/${endpoint}?apikey=${
-              process.env.REACT_APP_FMP_KEY
-            }${params && '&' + params}`
-          );
+          const res = await fetch('../../.netlify/functions/fmp.js', {
+            body: JSON.stringify({
+              endpoint,
+              params,
+            }),
+          });
           data = await res.json();
 
           /* API sometimes sends an error message */
