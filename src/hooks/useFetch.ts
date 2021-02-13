@@ -22,12 +22,6 @@ const useFetch = (
       let data: any;
       if (realData.status) {
         try {
-          console.log(
-            JSON.stringify({
-              endpoint,
-              params,
-            })
-          );
           const res = await fetch('/.netlify/functions/FMPApiRequest', {
             method: 'POST',
             headers: {

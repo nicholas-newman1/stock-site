@@ -24,7 +24,6 @@ exports.handler = async function (event, context, callback) {
         process.env.REACT_APP_FMP_KEY
       }${params && '&' + params}`
     );
-    console.log(process.env.REACT_APP_FMP_KEY);
     pass(res.data);
   } catch (err) {
     let error = {
