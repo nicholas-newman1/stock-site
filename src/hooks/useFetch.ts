@@ -28,7 +28,7 @@ const useFetch = (
               params,
             })
           );
-          const res = await fetch('http://localhost:9000/FMPApiRequest', {
+          const res = await fetch('/.netlify/functions/FMPApiRequest', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/x-www-form-urlencoded',
