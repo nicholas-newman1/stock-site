@@ -4,12 +4,11 @@ exports.handler = async function (event, context, callback) {
   const pass = (body) => {
     callback(null, {
       statusCode: 200,
-      headers: {
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Headers':
-          'Origin, X-Requested-With, Content-Type, Accept',
-        // ' Access-Control-Allow-Methods': '*',
-      },
+      // headers: {
+      //   'Access-Control-Allow-Origin': '*',
+      //   'Access-Control-Allow-Headers':
+      //     'Origin, X-Requested-With, Content-Type, Accept',
+      // },
       body: JSON.stringify(body),
     });
   };
