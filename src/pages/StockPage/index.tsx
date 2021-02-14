@@ -2,12 +2,12 @@ import React, { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import Heading from '../../components/Heading';
 import SectorTable from '../../components/SectorTable';
-import BottomNews from '../../components/BottomNews';
 import useScrollTop from '../../hooks/useScrollTop';
 import PriceList from '../../components/PriceList';
 import useStockPageData from './useStockPageData';
 import './stockPage.css';
 import { Link } from 'react-router-dom';
+import GeneralBottomNewsContainer from '../../containers/GeneralBottomNewsContainer';
 
 const StockPage: React.FC = () => {
   useScrollTop(); // scrolls to top of page on component mount
@@ -23,8 +23,6 @@ const StockPage: React.FC = () => {
     losersLoading,
     sectorsData,
     sectorsLoading,
-    newsData,
-    newsLoading,
   } = useStockPageData();
 
   return (
@@ -86,7 +84,7 @@ const StockPage: React.FC = () => {
         </div>
       </div>
 
-      <BottomNews newsData={newsData} loading={newsLoading} />
+      <GeneralBottomNewsContainer />
     </div>
   );
 };

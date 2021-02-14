@@ -1,8 +1,4 @@
-import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchNews } from '../../actions/newsActions';
 import useFetch from '../../hooks/useFetch';
-import { AppState } from '../../reducers/rootReducer';
 import {
   dummyActivesData,
   dummyGainersData,
@@ -54,17 +50,6 @@ const useStockPageData = () => {
     dummySectorsData // dummy data
   );
 
-  const dispatch = useDispatch();
-
-  const { data: newsData, loading: newsLoading } = useSelector(
-    (state: AppState) => state.news
-  );
-
-  useEffect(() => {
-    dispatch(fetchNews('limit=10&tickers=AAPL,FB,AMZN,TSLA'));
-    //eslint-disable-next-line
-  }, []);
-
   return {
     activesData: formatMarketQuotes(activesData),
     activesLoading,
@@ -74,8 +59,6 @@ const useStockPageData = () => {
     losersLoading,
     sectorsData,
     sectorsLoading,
-    newsData,
-    newsLoading,
   };
 };
 

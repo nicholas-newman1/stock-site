@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { RouteComponentProps } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchNews } from '../../actions/newsActions';
 import { AppState } from '../../reducers/rootReducer';
 import { Helmet } from 'react-helmet-async';
 import { dummySearchResults } from '../../utils/dummyData';
@@ -9,7 +8,6 @@ import Spinner from '../../components/Spinner';
 import SearchFilter from '../../components/ExchangeFilter';
 import PageNav from '../../components/PageNav';
 import Heading from '../../components/Heading';
-import BottomNews from '../../components/BottomNews';
 import useFetch from '../../hooks/useFetch';
 import useScrollTop from '../../hooks/useScrollTop';
 import './searchResultsPage.css';
@@ -20,6 +18,7 @@ import {
 } from '../../actions/watchlistActions';
 import SearchResults from '../../components/SearchResults';
 import { SearchResult } from '../../types/APITypes';
+import GeneralBottomNewsContainer from '../../containers/GeneralBottomNewsContainer';
 
 interface SearchResultsFetch {
   data: SearchResult[];
@@ -65,16 +64,7 @@ const SearchResultsPage: React.FC<Props> = ({ match }) => {
 
   const dispatch = useDispatch();
 
-  const { data: newsData, loading: loadingNews } = useSelector(
-    (state: AppState) => state.news
-  );
-
   const watchlist = useSelector((state: AppState) => state.watchlist);
-
-  useEffect(() => {
-    dispatch(fetchNews('limit=10&tickers=AAPL,FB,AMZN,TSLA'));
-    //eslint-disable-next-line
-  }, []);
 
   return (
     <>
@@ -133,7 +123,7 @@ const SearchResultsPage: React.FC<Props> = ({ match }) => {
       ) : (
         <h2>No Results Found For '{query}'</h2>
       )}
-      <BottomNews newsData={newsData} loading={loadingNews} />
+      <GeneralBottomNewsContainer />
     </>
   );
 };

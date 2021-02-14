@@ -22,7 +22,20 @@ const useFetch = (
       let data: any;
       if (realData.status) {
         try {
-          // const res = await fetch('/.netlify/functions/FMPApiRequest', {
+          const res = await fetch('/.netlify/functions/FMPRequest', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: btoa(
+              JSON.stringify({
+                endpoint,
+                params,
+              })
+            ),
+          });
+
+          // const res = await fetch('http://localhost:9000/FMPRequest', {
           //   method: 'POST',
           //   headers: {
           //     'Content-Type': 'application/x-www-form-urlencoded',
@@ -35,24 +48,11 @@ const useFetch = (
           //   ),
           // });
 
-          // const res = await fetch('http://localhost:9000/FMPApiRequest', {
-          //   method: 'POST',
-          //   headers: {
-          //     'Content-Type': 'application/x-www-form-urlencoded',
-          //   },
-          //   body: btoa(
-          //     JSON.stringify({
-          //       endpoint,
-          //       params,
-          //     })
-          //   ),
-          // });
-
-          const res = await fetch(
-            `https://financialmodelingprep.com/api/v3/${endpoint}?apikey=${
-              process.env.REACT_APP_FMP_KEY
-            }${params && '&' + params}`
-          );
+          // const res = await fetch(
+          //   `https://financialmodelingprep.com/api/v3/${endpoint}?apikey=${
+          //     process.env.REACT_APP_FMP_KEY
+          //   }${params && '&' + params}`
+          // );
 
           data = await res.json();
 
