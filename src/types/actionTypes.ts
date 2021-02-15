@@ -17,40 +17,66 @@ export interface DisableRealData {
 export type RealDataActionTypes = EnableRealData | DisableRealData;
 
 /* ###### News Action Types ##### */
+const FETCH_NEWS_REQUEST = 'FETCH_NEWS_REQUEST';
+const FETCH_NEWS_SUCCESS = 'FETCH_NEWS_SUCCESS';
+const FETCH_NEWS_FAILURE = 'FETCH_NEWS_FAILURE';
 
-const SET_NEWS_LOADING = 'SET_NEWS_LOADING';
-const SET_NEWS_DATA = 'SET_NEWS_DATA';
-
-export interface SetNewsLoading {
-  type: typeof SET_NEWS_LOADING;
-  payload: boolean;
+export interface FetchNewsRequest {
+  type: typeof FETCH_NEWS_REQUEST;
 }
-
-export interface SetNewsData {
-  type: typeof SET_NEWS_DATA;
+export interface FetchNewsSuccess {
+  type: typeof FETCH_NEWS_SUCCESS;
   payload: NewsItem[];
 }
+export interface FetchNewsFailure {
+  type: typeof FETCH_NEWS_FAILURE;
+  payload: string;
+}
 
-export type NewsActionTypes = SetNewsLoading | SetNewsData;
+export type NewsActionTypes =
+  | FetchNewsRequest
+  | FetchNewsSuccess
+  | FetchNewsFailure;
 
 /* ##### PriceOverview Action Types */
 
-const SET_PRICE_OVERVIEW_LOADING = 'SET_PRICE_OVERVIEW_LOADING';
-const SET_PRICE_OVERVIEW_DATA = 'SET_PRICE_OVERVIEW_DATA';
+const FETCH_PRICE_OVERVIEW_REQUEST = 'FETCH_PRICE_OVERVIEW_REQUEST';
+const FETCH_PRICE_OVERVIEW_SUCCESS = 'FETCH_PRICE_OVERVIEW_SUCCESS';
+const FETCH_PRICE_OVERVIEW_FAILURE = 'FETCH_PRICE_OVERVIEW_FAILURE';
 
-export interface SetPriceOverviewLoading {
-  type: typeof SET_PRICE_OVERVIEW_LOADING;
-  payload: boolean;
+export interface FetchPriceOverviewRequest {
+  type: typeof FETCH_PRICE_OVERVIEW_REQUEST;
 }
-
-export interface SetPriceOverviewData {
-  type: typeof SET_PRICE_OVERVIEW_DATA;
+export interface FetchPriceOverviewSuccess {
+  type: typeof FETCH_PRICE_OVERVIEW_SUCCESS;
   payload: Quote[];
+}
+export interface FetchPriceOverviewFailure {
+  type: typeof FETCH_PRICE_OVERVIEW_FAILURE;
+  payload: string;
 }
 
 export type PriceOverviewActionTypes =
-  | SetPriceOverviewLoading
-  | SetPriceOverviewData;
+  | FetchPriceOverviewRequest
+  | FetchPriceOverviewSuccess
+  | FetchPriceOverviewFailure;
+
+// const SET_PRICE_OVERVIEW_LOADING = 'SET_PRICE_OVERVIEW_LOADING';
+// const SET_PRICE_OVERVIEW_DATA = 'SET_PRICE_OVERVIEW_DATA';
+
+// export interface SetPriceOverviewLoading {
+//   type: typeof SET_PRICE_OVERVIEW_LOADING;
+//   payload: boolean;
+// }
+
+// export interface SetPriceOverviewData {
+//   type: typeof SET_PRICE_OVERVIEW_DATA;
+//   payload: Quote[];
+// }
+
+// export type PriceOverviewActionTypes =
+//   | SetPriceOverviewLoading
+//   | SetPriceOverviewData;
 
 /* ##### Watchlist Action Types */
 

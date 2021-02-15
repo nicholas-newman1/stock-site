@@ -45,21 +45,21 @@ const StockPage: React.FC = () => {
                 Actives
               </Link>
             </h2>
-            <PriceList quotes={activesData} loading={activesLoading} />
+            <PriceList quotes={activesData} loading={activesLoading} error='' />
           </div>
 
           <div className='stock-page__stock-table'>
             <h2 className='stockpage__sub-heading'>
               <Link to=''>Gainers</Link>
             </h2>
-            <PriceList quotes={gainersData} loading={gainersLoading} />
+            <PriceList quotes={gainersData} loading={gainersLoading} error='' />
           </div>
 
           <div className='stock-page__stock-table'>
             <h2 className='stockpage__sub-heading'>
               <Link to=''>Losers</Link>
             </h2>
-            <PriceList quotes={losersData} loading={losersLoading} />
+            <PriceList quotes={losersData} loading={losersLoading} error='' />
           </div>
         </div>
 

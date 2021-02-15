@@ -7,9 +7,11 @@ import { Quote } from '../../types/APITypes';
 
 const PriceListOverviewContainer: React.FC = () => {
   const dispatch = useDispatch();
-  const { data, loading } = useSelector(
-    (state: AppState) => state.priceOverview
-  );
+
+  const {
+    priceOverview: { data, loading, error },
+    realData,
+  } = useSelector((state: AppState) => state);
 
   useEffect(() => {
     dispatch(
@@ -33,7 +35,7 @@ const PriceListOverviewContainer: React.FC = () => {
       ])
     );
     //eslint-disable-next-line
-  }, []);
+  }, [realData.status]);
 
   const filterQuotes = (quotes: Quote[], symbols: string[]) => {
     return quotes.filter(({ symbol }) => {
@@ -77,7 +79,7 @@ const PriceListOverviewContainer: React.FC = () => {
     },
   ];
 
-  return <PriceListOverview pricelists={pricelists} />;
+  return <PriceListOverview pricelists={pricelists} error={error} />;
 };
 
 export default PriceListOverviewContainer;

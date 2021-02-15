@@ -18,10 +18,12 @@ export const priceOverviewReducer = (
   action: PriceOverviewActionTypes
 ) => {
   switch (action.type) {
-    case 'SET_PRICE_OVERVIEW_LOADING':
-      return { ...state, loading: action.payload };
-    case 'SET_PRICE_OVERVIEW_DATA':
-      return { ...state, data: action.payload, loading: false };
+    case 'FETCH_PRICE_OVERVIEW_REQUEST':
+      return { ...state, loading: true };
+    case 'FETCH_PRICE_OVERVIEW_SUCCESS':
+      return { ...state, data: action.payload, loading: false, error: '' };
+    case 'FETCH_PRICE_OVERVIEW_FAILURE':
+      return { ...state, data: [], loading: false, error: action.payload };
     default:
       return state;
   }

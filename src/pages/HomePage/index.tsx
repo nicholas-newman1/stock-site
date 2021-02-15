@@ -13,14 +13,16 @@ const Home: React.FC = () => {
   useScrollTop(); // scrolls to top of page on component mount
 
   const dispatch = useDispatch();
-  const { data: newsData, loading: loadingNews } = useSelector(
-    (state: AppState) => state.news
-  );
+
+  const {
+    news: { data: newsData, loading: loadingNews, error: newsError },
+    realData,
+  } = useSelector((state: AppState) => state);
 
   useEffect(() => {
     dispatch(fetchNews('limit=11&tickers=AAPL,FB,AMZN,TSLA'));
     //eslint-disable-next-line
-  }, []);
+  }, [realData.status]);
 
   return (
     <div className='home'>
@@ -30,10 +32,15 @@ const Home: React.FC = () => {
         </title>
       </Helmet>
       <div className='home__section-one'>
-        <MainNewsItem data={newsData[0]} loading={loadingNews} />
+        <MainNewsItem
+          data={newsData[0]}
+          loading={loadingNews}
+          error={newsError}
+        />
         <BottomNews
           newsData={newsData.filter((x, i) => i !== 0)}
           loading={loadingNews}
+          error={newsError}
         />
       </div>
       <div className='home__section-two'>

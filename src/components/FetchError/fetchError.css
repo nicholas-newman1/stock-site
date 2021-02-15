@@ -1,0 +1,15 @@
+.fetch-error {
+  display: inline-block;
+  background: #eee;
+  padding: 2rem;
+  display: grid;
+  justify-content: center;
+}
+
+.fetch-error__msg {
+  font-weight: 700;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  text-align: center;
+  margin-bottom: 0.5rem;
+}

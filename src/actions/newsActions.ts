@@ -1,23 +1,30 @@
 import { fetchFromAPI } from '../utils/api';
-import { SetNewsLoading, SetNewsData } from '../types/actionTypes';
+import {
+  FetchNewsRequest,
+  FetchNewsSuccess,
+  FetchNewsFailure,
+} from '../types/actionTypes';
 import { NewsItem } from '../types/APITypes';
 
-const setNewsLoading = (status: boolean): SetNewsLoading => ({
-  type: 'SET_NEWS_LOADING',
-  payload: status,
+const fetchNewsRequest = (): FetchNewsRequest => ({
+  type: 'FETCH_NEWS_REQUEST',
 });
-
-const setNewsData = (data: NewsItem[]): SetNewsData => ({
-  type: 'SET_NEWS_DATA',
+const fetchNewsSuccess = (data: NewsItem[]): FetchNewsSuccess => ({
+  type: 'FETCH_NEWS_SUCCESS',
   payload: data,
+});
+const fetchNewsFailure = (error: string): FetchNewsFailure => ({
+  type: 'FETCH_NEWS_FAILURE',
+  payload: error,
 });
 
 export const fetchNews = (params = '') => {
   return fetchFromAPI(
     'stock_news',
     'news',
-    setNewsLoading,
-    setNewsData,
+    fetchNewsRequest,
+    fetchNewsSuccess,
+    fetchNewsFailure,
     params
   );
 };

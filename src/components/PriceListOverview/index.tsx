@@ -11,9 +11,10 @@ interface PriceList {
 
 interface Props {
   pricelists: PriceList[];
+  error: string;
 }
 
-const PriceListOverview: React.FC<Props> = ({ pricelists }) => {
+const PriceListOverview: React.FC<Props> = ({ pricelists, error }) => {
   return (
     <ul className='price-list-overview'>
       {pricelists.map(({ headingLink, quotes, loading }, i) => (
@@ -23,7 +24,7 @@ const PriceListOverview: React.FC<Props> = ({ pricelists }) => {
               {headingLink}
             </Link>
           </h2>
-          <PriceList quotes={quotes} loading={loading} />
+          <PriceList quotes={quotes} loading={loading} error={error} />
         </li>
       ))}
     </ul>

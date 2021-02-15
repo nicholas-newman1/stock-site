@@ -7,16 +7,14 @@ import { AppState } from '../../reducers/rootReducer';
 const GeneralBottomNewsContainer = () => {
   const dispatch = useDispatch();
 
-  const { data: newsData, loading: loadingNews } = useSelector(
-    (state: AppState) => state.news
-  );
+  const { data, loading, error } = useSelector((state: AppState) => state.news);
 
   useEffect(() => {
     dispatch(fetchNews('limit=10&tickers=AAPL,FB,AMZN,TSLA'));
     //eslint-disable-next-line
   }, []);
 
-  return <BottomNews newsData={newsData} loading={loadingNews} />;
+  return <BottomNews newsData={data} loading={loading} error={error} />;
 };
 
 export default GeneralBottomNewsContainer;

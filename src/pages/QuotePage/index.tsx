@@ -39,9 +39,11 @@ const QuotePage: React.FC<Props> = ({ match }) => {
 
   const dispatch = useDispatch();
 
-  const { data: newsData, loading: loadingNews } = useSelector(
-    (state: AppState) => state.news
-  );
+  const {
+    data: newsData,
+    loading: loadingNews,
+    error: newsError,
+  } = useSelector((state: AppState) => state.news);
 
   useEffect(() => {
     isQuoteFetched &&
@@ -108,6 +110,7 @@ const QuotePage: React.FC<Props> = ({ match }) => {
         <BottomNews
           newsData={newsData}
           loading={!isQuoteFetched || loadingNews}
+          error={newsError}
         />
       </>
     </>

@@ -3,14 +3,17 @@ import MainNewsItemLoading from './MainNewsItemLoading';
 import { NewsItem } from '../../types/APITypes';
 import { getTimeAgoString, truncate } from '../../utils/helpers';
 import './mainNewsItem.css';
+import FetchErrorContainer from '../../containers/FetchErrorContainer';
 
 interface Props {
   data: NewsItem;
   loading: boolean;
+  error: string;
 }
 
-const MainNewsItem: React.FC<Props> = ({ data, loading }) => {
+const MainNewsItem: React.FC<Props> = ({ data, loading, error }) => {
   if (loading) return <MainNewsItemLoading />;
+  if (error) return <FetchErrorContainer error='Failed to fetch news' />;
 
   const { site, title, text, publishedDate, url, image } = data;
 
