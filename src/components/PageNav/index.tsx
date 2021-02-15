@@ -21,15 +21,15 @@ const PageNav: React.FC<Props> = ({
   return length > resultsPerPage ? (
     <div className='page-nav'>
       <button
-        className='page-nav__btn btn-grey btn--small'
+        className='page-nav__btn btn btn-grey btn-small'
         onClick={() => setPage((prevPage) => prevPage - 1)}
         disabled={onFirstPage}
       >
-        Prev Page
+        Previous Page
       </button>
 
       <button
-        className='page-nav__btn btn-grey btn--small'
+        className='page-nav__btn btn btn-grey btn-small'
         onClick={() => setPage((prevPage) => prevPage + 1)}
         disabled={onLastPage}
       >

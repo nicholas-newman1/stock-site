@@ -5,8 +5,10 @@
 .search-bar__input {
   width: 100%;
   padding: 0.5rem;
-  border: 1px solid #ddd;
   outline: none;
+  border: 1px solid #ddd;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
 }
 
 .search-bar__link {
@@ -17,9 +19,11 @@
 
 .search-bar__btn {
   background: #148eff;
-  border: none;
   width: 100%;
   display: inline-block;
+  border: none;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
 }
 
 .search-bar__btn:hover {

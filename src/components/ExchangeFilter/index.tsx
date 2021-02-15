@@ -38,7 +38,7 @@ const ExchangeFilter = <T extends string>({ filters, setFilter }: Props<T>) => {
           ))}
         </div>
 
-        <button className='btn-blue btn--small' type='submit'>
+        <button className='btn btn-blue btn-small' type='submit'>
           Apply
         </button>
       </form>

@@ -15,23 +15,11 @@
   width: 47%;
 }
 
-.stockpage__sub-heading {
+.stock-page__sub-heading {
   text-align: center;
   margin-bottom: 1rem;
   font-size: 1.1rem;
   text-transform: uppercase;
-}
-
-.stock-table__btn {
-  justify-self: end;
-  background: #ddd;
-  border: none;
-  padding: 0.75em 1.5em;
-  cursor: pointer;
-}
-
-.stock-table__btn:hover {
-  background: #ccc;
 }
 
 @media (max-width: 700px) {
@@ -44,23 +32,3 @@
     width: 100%;
   }
 }
-
-/* @media (max-width: 1200px) and (min-width: 1000px) {
-  .stock-page__stock-table {
-    width: 32.5%;
-  }
-}
-
-@media (max-width: 1000px) {
-  .stock-page__stocklists {
-    flex-direction: column;
-  }
-
-  .stock-page__stock-table {
-    width: 100%;
-  }
-
-  .stock-page__stock-table + .stock-page__stock-table {
-    margin-top: 1rem;
-  }
-} */

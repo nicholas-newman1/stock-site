@@ -6,6 +6,7 @@
   background: #eee;
   height: 100%;
   transition: transform 300ms;
+  border-radius: 5px;
 }
 
 .bottom-news-item__link:hover {
@@ -26,6 +27,8 @@
   width: 100%;
   object-fit: cover;
   height: 100%;
+  border-bottom-left-radius: 5px;
+  border-top-left-radius: 5px;
 }
 
 .bottom-news-item__content {

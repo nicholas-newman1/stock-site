@@ -45,63 +45,60 @@ footer {
   color: #148eff;
 }
 
-.btn-blue {
+.btn {
   display: inline-block;
   text-decoration: none;
   white-space: nowrap;
-  background: #006acc;
-  border: 1px solid #006acc;
-  color: white;
+  border-width: 1px;
+  border-radius: 5px;
+  border-style: solid;
   padding: 0.5em 1em;
   font-size: 0.9rem;
 }
 
-.btn-blue:hover {
-  background: #148eff;
-  border: 1px solid #148eff;
+.btn:hover:enabled {
   cursor: pointer;
+}
+
+.btn-blue {
+  background: #006acc;
+  border-color: #006acc;
+  color: white;
+}
+
+.btn-blue:hover:not([disabled]) {
+  background: #148eff;
+  border-color: #148eff;
 }
 
 .btn-outline-blue {
-  display: inline-block;
-  text-decoration: none;
-  white-space: nowrap;
   background: rgba(0, 0, 0, 0);
-  border: 1px solid #006acc;
+  border-color: #006acc;
   color: #006acc;
-  padding: 0.5em 1em;
-  font-size: 0.9rem;
 }
 
-.btn-outline-blue:hover {
+.btn-outline-blue:hover:not([disabled]) {
   background: #006acc;
-  border: 1px solid #006acc;
+  border-color: #006acc;
   color: white;
-  cursor: pointer;
 }
 
 .btn-grey {
-  display: inline-block;
-  text-decoration: none;
-  white-space: nowrap;
-  background: #ccc;
-  border: 1px solid #ccc;
+  background: #eaeaea;
+  border-color: #eaeaea;
   color: black;
-  padding: 0.5em 1em;
-  font-size: 0.9rem;
 }
 
-.btn-grey:hover {
-  background: #aaa;
-  border: 1px solid #aaa;
-  cursor: pointer;
+.btn-grey:hover:not([disabled]) {
+  background: #ddd;
+  border-color: #ddd;
 }
 
-.btn--small {
+.btn-small {
   font-size: 0.8rem;
 }
 
-.btn--round {
+.btn-round {
   border-radius: 10000px;
 }
 

@@ -17,7 +17,7 @@ const QuoteWatchlistBtnContainer: React.FC<Props> = ({ symbol }) => {
 
   return (
     <button
-      className='btn-outline-blue'
+      className='btn btn-outline-blue'
       onClick={() =>
         isInWatchlist
           ? dispatch(removeFromWatchlist(symbol))

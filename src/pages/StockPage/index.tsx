@@ -40,7 +40,7 @@ const StockPage: React.FC = () => {
       <div className='stock-page__content'>
         <div className='stock-page__stocklists'>
           <div className='stock-page__stock-table'>
-            <h2 className='stockpage__sub-heading'>
+            <h2 className='stock-page__sub-heading'>
               <Link className='heading-link' to=''>
                 Actives
               </Link>
@@ -49,22 +49,26 @@ const StockPage: React.FC = () => {
           </div>
 
           <div className='stock-page__stock-table'>
-            <h2 className='stockpage__sub-heading'>
-              <Link to=''>Gainers</Link>
+            <h2 className='stock-page__sub-heading'>
+              <Link className='heading-link' to=''>
+                Gainers
+              </Link>
             </h2>
             <PriceList quotes={gainersData} loading={gainersLoading} error='' />
           </div>
 
           <div className='stock-page__stock-table'>
-            <h2 className='stockpage__sub-heading'>
-              <Link to=''>Losers</Link>
+            <h2 className='stock-page__sub-heading'>
+              <Link className='heading-link' to=''>
+                Losers
+              </Link>
             </h2>
             <PriceList quotes={losersData} loading={losersLoading} error='' />
           </div>
         </div>
 
         <div className='stock-page__sector-table'>
-          <h2 className='stockpage__sub-heading'>Sectors</h2>
+          <h2 className='stock-page__sub-heading'>Sectors</h2>
 
           <SectorTable
             data={
@@ -76,7 +80,7 @@ const StockPage: React.FC = () => {
           />
 
           <button
-            className='stock-page__btn'
+            className='stock-page__btn btn btn-grey btn-small'
             onClick={() => setShowAllSectors((prev) => !prev)}
           >
             {showAllSectors ? 'Hide Sectors' : 'Show All Sectors'}

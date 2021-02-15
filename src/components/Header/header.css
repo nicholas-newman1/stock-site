@@ -14,11 +14,12 @@
 }
 
 .header__logo {
+  justify-self: flex-start;
   text-decoration: none;
+  text-transform: uppercase;
   color: #006acc;
   font-weight: 700;
   font-size: 1.5rem;
-  text-transform: uppercase;
 }
 
 .header__logo,
@@ -33,14 +34,10 @@
   grid-column: 1 / 4;
 }
 
-.header__logo:hover {
-  color: #148eff;
-}
-
 .header__watchlist-container {
   display: flex;
   justify-content: flex-end;
-  align-items: center;
+  align-items: flex-start;
 }
 
 .header__hamburger {

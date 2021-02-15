@@ -12,7 +12,7 @@ const FetchError: React.FC<Props> = ({ error, enableDummyData }) => {
       <p className='fetch-error__msg'>{error}</p>
       <button
         onClick={enableDummyData}
-        className='fetch-error__btn btn-outline-blue btn--small'
+        className='fetch-error__btn btn btn-outline-blue btn-small'
       >
         Use Dummy Data
       </button>

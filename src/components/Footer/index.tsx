@@ -21,7 +21,7 @@ const Footer: React.FC = () => {
           <MainNavItems render={(navItems) => <Nav navItems={navItems} />} />
         </div>
 
-        <Link className='watchlist-btn' to={`/watchlist`}>
+        <Link className='btn btn-outline-blue' to={`/watchlist`}>
           Watchlist
         </Link>
       </div>

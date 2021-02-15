@@ -4,8 +4,8 @@
   gap: 1rem;
   padding: 0.5rem;
   background: #eee;
-  border-radius: 500px;
   white-space: nowrap;
+  border-radius: 5px;
 
   color: black;
   font-size: 0.9rem;

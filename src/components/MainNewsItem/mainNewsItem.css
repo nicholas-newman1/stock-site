@@ -14,6 +14,8 @@
   padding-top: 50%;
   background-repeat: no-repeat;
   background-size: cover;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
 }
 
 .main-news-item__content {
@@ -21,6 +23,8 @@
   background: rgba(0, 2, 69, 0.8);
   color: white;
   padding: 1rem;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
 }
 
 .main-news-item__heading {

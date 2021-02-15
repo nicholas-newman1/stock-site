@@ -79,7 +79,7 @@ const SearchResultsPage: React.FC<Props> = ({ match }) => {
       <Heading text='Search Results' />
 
       <button
-        className='search-results-page__filter-btn btn-grey btn--small'
+        className='search-results-page__filter-btn btn btn-grey btn-small'
         onClick={() => setDisplayFilter((prev) => !prev)}
       >
         {displayFilter ? 'Hide Filter' : 'Show Filter'}
