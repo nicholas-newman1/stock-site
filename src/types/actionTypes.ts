@@ -1,3 +1,5 @@
+import { Dispatch } from 'redux';
+import { AppState } from '../reducers/rootReducer';
 import { NewsItem, Quote } from './APITypes';
 
 /* ##### RealData Action Types ##### */
@@ -15,6 +17,47 @@ export interface DisableRealData {
 }
 
 export type RealDataActionTypes = EnableRealData | DisableRealData;
+
+/* ###### Quote Action Types ##### */
+const FETCH_QUOTE_REQUEST = 'FETCH_QUOTE_REQUEST';
+const FETCH_QUOTE_SUCCESS = 'FETCH_QUOTE_SUCCESS';
+const FETCH_QUOTE_FAILURE = 'FETCH_QUOTE_FAILURE';
+const FETCH_QUOTE_NEWS_REQUEST = 'FETCH_QUOTE_NEWS_REQUEST';
+const FETCH_QUOTE_NEWS_SUCCESS = 'FETCH_QUOTE_NEWS_SUCCESS';
+const FETCH_QUOTE_NEWS_FAILURE = 'FETCH_QUOTE_NEWS_FAILURE';
+
+export interface FetchQuoteRequest {
+  type: typeof FETCH_QUOTE_REQUEST;
+}
+export interface FetchQuoteSuccess {
+  type: typeof FETCH_QUOTE_SUCCESS;
+  payload: Quote[];
+}
+export interface FetchQuoteFailure {
+  type: typeof FETCH_QUOTE_FAILURE;
+  payload: string;
+}
+export interface FetchQuoteNewsRequest {
+  type: typeof FETCH_QUOTE_NEWS_REQUEST;
+}
+export interface FetchQuoteNewsSuccess {
+  type: typeof FETCH_QUOTE_NEWS_SUCCESS;
+  payload: NewsItem[];
+}
+export interface FetchQuoteNewsFailure {
+  type: typeof FETCH_QUOTE_NEWS_FAILURE;
+  payload: string;
+}
+
+export type FetchQuote = (symbol: string) => (dispatch: Dispatch<AppActions>, getState: AppState) => void
+
+export type QuoteActionTypes =
+  | FetchQuoteRequest
+  | FetchQuoteSuccess
+  | FetchQuoteFailure
+  | FetchQuoteNewsRequest
+  | FetchQuoteNewsSuccess
+  | FetchQuoteNewsFailure
 
 /* ###### News Action Types ##### */
 const FETCH_NEWS_REQUEST = 'FETCH_NEWS_REQUEST';
@@ -61,23 +104,6 @@ export type PriceOverviewActionTypes =
   | FetchPriceOverviewSuccess
   | FetchPriceOverviewFailure;
 
-// const SET_PRICE_OVERVIEW_LOADING = 'SET_PRICE_OVERVIEW_LOADING';
-// const SET_PRICE_OVERVIEW_DATA = 'SET_PRICE_OVERVIEW_DATA';
-
-// export interface SetPriceOverviewLoading {
-//   type: typeof SET_PRICE_OVERVIEW_LOADING;
-//   payload: boolean;
-// }
-
-// export interface SetPriceOverviewData {
-//   type: typeof SET_PRICE_OVERVIEW_DATA;
-//   payload: Quote[];
-// }
-
-// export type PriceOverviewActionTypes =
-//   | SetPriceOverviewLoading
-//   | SetPriceOverviewData;
-
 /* ##### Watchlist Action Types */
 
 const ADD_TO_WATCHLIST = 'ADD_TO_WATCHLIST';
@@ -99,6 +125,7 @@ export type WatchlistActionTypes = AddToWatchlist | RemoveFromWatchlist;
 
 export type AppActions =
   | RealDataActionTypes
+  | QuoteActionTypes
   | NewsActionTypes
   | PriceOverviewActionTypes
   | WatchlistActionTypes;

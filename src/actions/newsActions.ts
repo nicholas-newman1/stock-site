@@ -25,6 +25,6 @@ export const fetchNews = (params = '') => {
     fetchNewsRequest,
     fetchNewsSuccess,
     fetchNewsFailure,
-    params
+    { params }
   );
 };

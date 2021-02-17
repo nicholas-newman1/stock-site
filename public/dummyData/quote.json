@@ -1,0 +1,26 @@
+[
+  {
+    "symbol": "AMZN",
+    "name": "Amazon.com, Inc.",
+    "price": 3125,
+    "changesPercentage": 2.99,
+    "change": -96.26,
+    "dayLow": 3123.295,
+    "dayHigh": 3195.7964542,
+    "yearHigh": 3552.25,
+    "yearLow": 1626.03,
+    "marketCap": 1565281222656,
+    "priceAvg50": 3217.8823,
+    "priceAvg200": 2729.357,
+    "volume": 5360007,
+    "avgVolume": 5071692,
+    "exchange": "NASDAQ",
+    "open": 3153.63,
+    "previousClose": 3221.26,
+    "eps": 26.037,
+    "pe": 120.02151,
+    "earningsAnnouncement": "2020-07-30T16:08:00.000+0000",
+    "sharesOutstanding": 500110111,
+    "timestamp": 1601804178
+  }
+]

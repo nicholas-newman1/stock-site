@@ -1,19 +1,6 @@
 import React from 'react';
-import { Quote } from '../../types/APITypes';
-import { replaceNullValues, shortenNumbers } from '../../utils/helpers';
-import './quoteSummary.css';
-import QuoteSummaryLoading from './QuoteSummaryLoading';
 
-interface Props {
-  quote: Quote;
-  loading: boolean;
-}
-
-const QuoteSummary: React.FC<Props> = ({ quote, loading }) => {
-  if (loading) return <QuoteSummaryLoading />;
-
-  const formattedQuote = shortenNumbers(replaceNullValues(quote));
-
+const QuoteSummaryLoading = () => {
   return (
     <div className='quote-summary'>
       <table className='quote-summary__table'>
@@ -29,14 +16,12 @@ const QuoteSummary: React.FC<Props> = ({ quote, loading }) => {
         </thead>
         <tbody className='quote-summary__tbody'>
           <tr className='quote-summary__tr'>
-            <td className='quote-summary__td'>
-              {formattedQuote.previousClose}
-            </td>
-            <td className='quote-summary__td'>{formattedQuote.open}</td>
-            <td className='quote-summary__td'>{formattedQuote.dayHigh}</td>
-            <td className='quote-summary__td'>{formattedQuote.dayLow}</td>
-            <td className='quote-summary__td'>{formattedQuote.yearHigh}</td>
-            <td className='quote-summary__td'>{formattedQuote.yearLow}</td>
+            <td className='quote-summary__td'></td>
+            <td className='quote-summary__td'></td>
+            <td className='quote-summary__td'></td>
+            <td className='quote-summary__td'></td>
+            <td className='quote-summary__td'></td>
+            <td className='quote-summary__td'></td>
           </tr>
         </tbody>
       </table>
@@ -54,14 +39,12 @@ const QuoteSummary: React.FC<Props> = ({ quote, loading }) => {
         </thead>
         <tbody className='quote-summary__tbody'>
           <tr className='quote-summary__tr'>
-            <td className='quote-summary__td'>{formattedQuote.marketCap}</td>
-            <td className='quote-summary__td'>{formattedQuote.pe}</td>
-            <td className='quote-summary__td'>{formattedQuote.eps}</td>
-            <td className='quote-summary__td'>
-              {formattedQuote.sharesOutstanding}
-            </td>
-            <td className='quote-summary__td'>{formattedQuote.volume}</td>
-            <td className='quote-summary__td'>{formattedQuote.avgVolume}</td>
+            <td className='quote-summary__td'></td>
+            <td className='quote-summary__td'></td>
+            <td className='quote-summary__td'></td>
+            <td className='quote-summary__td'></td>
+            <td className='quote-summary__td'></td>
+            <td className='quote-summary__td'></td>
           </tr>
         </tbody>
       </table>
@@ -69,4 +52,4 @@ const QuoteSummary: React.FC<Props> = ({ quote, loading }) => {
   );
 };
 
-export default QuoteSummary;
+export default QuoteSummaryLoading;

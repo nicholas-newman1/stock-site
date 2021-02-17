@@ -29994,7 +29994,7 @@ export const dummyQuoteData = [
   {
     symbol: 'AMZN',
     name: 'Amazon.com, Inc.',
-    price: 3125214332,
+    price: 3125,
     changesPercentage: 2.99,
     change: -96.26,
     dayLow: 3123.295,

@@ -8,13 +8,13 @@ export const fetchFromAPI = (
   onRequest: () => AppActions,
   onSuccess: (data: any) => AppActions,
   onFailure: (error: string) => AppActions,
-  params = ''
+  { params = '' } = {}
 ) => {
   return (dispatch: Dispatch<AppActions>, getState: () => AppState) => {
     dispatch(onRequest());
 
     if (getState().realData.status) {
-      fetch(
+      return fetch(
         `https://financialmodelingprep.com/api/v3/${endpoint}?apikey=${
           process.env.REACT_APP_FMP_KEY
         }${params && '&' + params}`
@@ -23,13 +23,15 @@ export const fetchFromAPI = (
         .then((data) => {
           if (data['Error Message']) {
             dispatch(onFailure(data['Error Message']));
+          } else if (data.hasOwnProperty('error')) {
+            dispatch(onFailure(data.error));
           } else {
             dispatch(onSuccess(data));
           }
         })
         .catch((err) => dispatch(onFailure(err.message)));
     } else {
-      fetch(`../dummyData/${dummyDataEndpoint}.json`)
+      return fetch(`../dummyData/${dummyDataEndpoint}.json`)
         .then((res) => res.json())
         .then((data) => dispatch(onSuccess(data)))
         .catch((err) => dispatch(onFailure(err.message)));

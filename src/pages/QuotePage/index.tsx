@@ -1,21 +1,19 @@
-import React, { useEffect, useContext, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchNews } from '../../actions/newsActions';
 import { AppState } from '../../reducers/rootReducer';
-import { QuoteContext } from '../../context/QuoteContext';
 import { Helmet } from 'react-helmet-async';
-import { Redirect, RouteComponentProps } from 'react-router-dom';
-import QuoteDetails from '../../components/Quote';
-import QuoteSummary from '../../components/QuoteSummary';
+import { RouteComponentProps } from 'react-router-dom';
+import { fetchQuoteAndQuoteNews } from '../../actions/quoteActions';
 import QuoteNav from '../../components/QuoteNav';
 import BottomNews from '../../components/BottomNews';
 import useScrollTop from '../../hooks/useScrollTop';
 import QuoteChartContainer from '../../containers/QuoteChartContainer';
 import QuoteFinancialsContainer from '../../containers/QuoteFinancialsContainer';
 import QuoteProfileContainer from '../../containers/QuoteProfileContainer';
-import { Quote } from '../../types/APITypes';
 import QuoteValuationContainer from '../../containers/QuoteValuationContainer';
 import QuoteWatchlistBtnContainer from '../../containers/QuoteWatchlistBtnContainer';
+import QuoteContainer from '../../containers/QuoteContainer';
+import QuoteSummaryContainer from '../../containers/QuoteSummaryContainer';
 import './quotePage.css';
 
 interface MatchProps {
@@ -29,44 +27,23 @@ const QuotePage: React.FC<Props> = ({ match }) => {
 
   const symbol: string = match.params.symbol;
   const [tab, setTab] = useState('Summary');
-  const {
-    fetchQuote,
-    isStock,
-    isQuoteFetched,
-    setIsQuoteFetched,
-    quote,
-  } = useContext(QuoteContext);
 
   const dispatch = useDispatch();
 
   const {
-    data: newsData,
-    loading: loadingNews,
-    error: newsError,
-  } = useSelector((state: AppState) => state.news);
+    quoteData: { data },
+    newsData: { data: newsData, loading: loadingNews, error: newsError },
+    isStock,
+  } = useSelector((state: AppState) => state.quote);
+
+  const quote = data[0] || {};
 
   useEffect(() => {
-    isQuoteFetched &&
-      dispatch(
-        fetchNews(
-          isStock
-            ? `tickers=${symbol}&limit=10`
-            : 'limit=10&tickers=AAPL,FB,AMZN,TSLA'
-        )
-      );
-    //eslint-disable-next-line
-  }, [isQuoteFetched]);
-
-  useEffect(() => {
-    fetchQuote(symbol);
-
-    return () => {
-      setIsQuoteFetched(false);
-    };
+    dispatch(fetchQuoteAndQuoteNews(symbol));
     //eslint-disable-next-line
   }, []);
 
-  return quote !== null ? (
+  return (
     <>
       <Helmet>
         {'symbol' in quote && 'name' in quote && (
@@ -81,17 +58,7 @@ const QuotePage: React.FC<Props> = ({ match }) => {
       </Helmet>
       <>
         <div className='quote-page__flex'>
-          <QuoteDetails
-            quote={{
-              price: quote.price,
-              change: quote.change,
-              changesPercentage: quote.changesPercentage,
-              symbol: quote.symbol,
-              name: quote.name,
-              exchange: quote.exchange,
-              color: quote.color,
-            }}
-          />
+          <QuoteContainer />
           <QuoteWatchlistBtnContainer symbol={symbol} />
         </div>
 
@@ -99,8 +66,7 @@ const QuotePage: React.FC<Props> = ({ match }) => {
         {tab === 'Summary' && (
           <>
             <QuoteChartContainer symbol={symbol} />
-            <br />
-            <QuoteSummary quote={quote as Quote} />
+            <QuoteSummaryContainer />
           </>
         )}
         {tab === 'Financials' && <QuoteFinancialsContainer symbol={symbol} />}
@@ -109,13 +75,11 @@ const QuotePage: React.FC<Props> = ({ match }) => {
 
         <BottomNews
           newsData={newsData}
-          loading={!isQuoteFetched || loadingNews}
+          loading={loadingNews}
           error={newsError}
         />
       </>
     </>
-  ) : (
-    <Redirect to='/' />
   );
 };
 
