@@ -31,17 +31,20 @@ const QuotePage: React.FC<Props> = ({ match }) => {
   const dispatch = useDispatch();
 
   const {
-    quoteData: { data },
-    newsData: { data: newsData, loading: loadingNews, error: newsError },
-    isStock,
-  } = useSelector((state: AppState) => state.quote);
+    quote: {
+      quoteData: { data: quoteData },
+      newsData: { data: newsData, loading: loadingNews, error: newsError },
+      isStock,
+    },
+    realData,
+  } = useSelector((state: AppState) => state);
 
-  const quote = data[0] || {};
+  const quote = quoteData[0] || {};
 
   useEffect(() => {
     dispatch(fetchQuoteAndQuoteNews(symbol));
     //eslint-disable-next-line
-  }, []);
+  }, [realData.status]);
 
   return (
     <>

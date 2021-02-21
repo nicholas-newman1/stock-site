@@ -12,7 +12,7 @@ interface Props {
   error: string;
 }
 
-const BottomNews: React.FC<Props> = ({ newsData, loading, error = '' }) => {
+const BottomNews: React.FC<Props> = ({ newsData, loading, error }) => {
   return (
     <div className='bottom-news'>
       <HorizontalRule />
