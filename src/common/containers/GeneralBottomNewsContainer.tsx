@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import BottomNews from '../../components/BottomNews';
-import { AppState } from '../../../app/rootReducer';
-import { fetchNews } from '../../redux/modules/news';
+import BottomNews from '../components/BottomNews';
+import { AppState } from '../../app/rootReducer';
+import { fetchNews } from '../redux/modules/news';
 
 const GeneralBottomNewsContainer = () => {
   const dispatch = useDispatch();
