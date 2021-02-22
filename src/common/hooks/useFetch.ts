@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { disableRealData } from '../../actions/realDataActions';
-import { AppState } from '../../reducers/rootReducer';
+import { disableRealData } from '../redux/modules/realData';
+import { AppState } from '../../app/rootReducer';
 
 const useFetch = (
   initialValue: any,

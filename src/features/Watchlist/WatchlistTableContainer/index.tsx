@@ -2,7 +2,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import TableSortedPaginated from '../../../common/components/TableSortedPaginated';
 import useFetch from '../../../common/hooks/useFetch';
-import { AppState } from '../../../reducers/rootReducer';
+import { AppState } from '../../../app/rootReducer';
 import { dummyWatchlistData } from '../../../app/dummyData';
 import { formatData, properties } from '../../../common/utils/quoteTable';
 

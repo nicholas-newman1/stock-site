@@ -1,5 +1,5 @@
 import React from 'react';
-import { TableProps } from '../../../types/propTypes';
+import { TableProps } from '../../types/propTypes';
 import Spinner from '../Spinner';
 import './table.css';
 

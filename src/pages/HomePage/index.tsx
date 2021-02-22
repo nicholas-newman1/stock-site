@@ -5,9 +5,9 @@ import { Helmet } from 'react-helmet-async';
 import useScrollTop from '../../common/hooks/useScrollTop';
 import './home.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { AppState } from '../../reducers/rootReducer';
-import { fetchNews } from '../../actions/newsActions';
-import PriceListOverviewContainer from '../../features/PriceListOverview/PriceListOverviewContainer';
+import { AppState } from '../../app/rootReducer';
+import PriceListOverviewContainer from '../../features/PriceOverview/PriceOverviewContainer';
+import { fetchNews } from '../../common/redux/modules/news';
 
 const Home: React.FC = () => {
   useScrollTop(); // scrolls to top of page on component mount

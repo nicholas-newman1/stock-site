@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { NavItem as NavItemType } from '../../../../types/propTypes';
+import { NavItem as NavItemType } from '../../../types/propTypes';
 import './navItem.css';
 
 interface Props {

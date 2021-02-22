@@ -1,6 +1,6 @@
 import React from 'react';
 import MainNewsItemLoading from './MainNewsItemLoading';
-import { NewsItem } from '../../../types/APITypes';
+import { NewsItem } from '../../../common/types/APITypes';
 import { getTimeAgoString, truncate } from '../../../common/utils/helpers';
 import './mainNewsItem.css';
 import FetchErrorContainer from '../../../common/containers/FetchErrorContainer';

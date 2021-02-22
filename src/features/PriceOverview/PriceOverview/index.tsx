@@ -2,7 +2,7 @@ import React from 'react';
 import PriceList, {
   PriceListQuote,
 } from '../../../common/components/PriceList';
-import './priceListOverview.css';
+import './priceOverview.css';
 import { Link } from 'react-router-dom';
 
 interface PriceList {
@@ -16,7 +16,7 @@ interface Props {
   error: string;
 }
 
-const PriceListOverview: React.FC<Props> = ({ pricelists, error }) => {
+const PriceOverview: React.FC<Props> = ({ pricelists, error }) => {
   return (
     <ul className='price-list-overview'>
       {pricelists.map(({ headingLink, quotes, loading }, i) => (
@@ -33,4 +33,4 @@ const PriceListOverview: React.FC<Props> = ({ pricelists, error }) => {
   );
 };
 
-export default PriceListOverview;
+export default PriceOverview;

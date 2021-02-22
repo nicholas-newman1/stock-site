@@ -1,6 +1,6 @@
 import React from 'react';
 import FetchErrorContainer from '../../../common/containers/FetchErrorContainer';
-import { Quote } from '../../../types/APITypes';
+import { Quote } from '../../../common/types/APITypes';
 import {
   replaceNullValues,
   shortenNumbers,

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { RouteComponentProps } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { AppState } from '../../reducers/rootReducer';
+import { AppState } from '../../app/rootReducer';
 import { Helmet } from 'react-helmet-async';
 import { dummySearchResults } from '../../app/dummyData';
 import Spinner from '../../common/components/Spinner';
@@ -15,9 +15,9 @@ import HorizontalRule from '../../common/components/HorizontalRule';
 import {
   addToWatchlist,
   removeFromWatchlist,
-} from '../../actions/watchlistActions';
+} from '../../features/Watchlist/watchlistSlice';
 import SearchResults from '../../features/SearchResults/SearchResults';
-import { SearchResult } from '../../types/APITypes';
+import { SearchResult } from '../../common/types/APITypes';
 import GeneralBottomNewsContainer from '../../common/containers/GeneralBottomNewsContainer';
 
 interface SearchResultsFetch {

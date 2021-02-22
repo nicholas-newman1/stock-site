@@ -1,10 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import {
-  removeFromWatchlist,
-  addToWatchlist,
-} from '../../../actions/watchlistActions';
-import { AppState } from '../../../reducers/rootReducer';
+import { removeFromWatchlist, addToWatchlist } from '../watchlistSlice';
+import { AppState } from '../../../app/rootReducer';
 
 interface Props {
   symbol: string;

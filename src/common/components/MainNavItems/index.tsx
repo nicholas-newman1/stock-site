@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavItem } from '../../../types/propTypes';
+import { NavItem } from '../../types/propTypes';
 
 interface Props {
   render: (NavItems: NavItem[]) => JSX.Element;

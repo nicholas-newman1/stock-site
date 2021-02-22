@@ -1,6 +1,6 @@
 import { Dispatch } from 'redux';
-import { AppState } from '../../reducers/rootReducer';
-import { AppActions } from '../../types/actionTypes';
+import { AppState } from '../../app/rootReducer';
+import { AppActions } from '../../common/types/actionTypes';
 
 export const fetchFromAPI = (
   endpoint: string,

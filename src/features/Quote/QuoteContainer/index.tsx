@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import Quote from '../Quote';
-import { AppState } from '../../../reducers/rootReducer';
+import { AppState } from '../../../app/rootReducer';
 
 const QuoteContainer = () => {
   const { data, loading, error } = useSelector(

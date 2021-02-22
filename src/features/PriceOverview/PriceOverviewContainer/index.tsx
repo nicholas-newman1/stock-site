@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchPriceOverviewData } from '../../../actions/priceOverviewActions';
-import PriceListOverview from '../PriceListOverview';
-import { AppState } from '../../../reducers/rootReducer';
-import { Quote } from '../../../types/APITypes';
+import { fetchPriceOverviewData } from '../priceOverviewSlice';
+import PriceListOverview from '../PriceOverview';
+import { AppState } from '../../../app/rootReducer';
+import { Quote } from '../../../common/types/APITypes';
 
-const PriceListOverviewContainer: React.FC = () => {
+const PriceOverviewContainer: React.FC = () => {
   const dispatch = useDispatch();
 
   const {
@@ -82,4 +82,4 @@ const PriceListOverviewContainer: React.FC = () => {
   return <PriceListOverview pricelists={pricelists} error={error} />;
 };
 
-export default PriceListOverviewContainer;
+export default PriceOverviewContainer;

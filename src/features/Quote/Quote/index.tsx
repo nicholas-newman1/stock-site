@@ -1,6 +1,6 @@
 import React from 'react';
 import FetchErrorContainer from '../../../common/containers/FetchErrorContainer';
-import { Quote as QuoteType } from '../../../types/APITypes';
+import { Quote as QuoteType } from '../../../common/types/APITypes';
 import { formatQuoteData } from '../../../common/utils/helpers';
 import Spinner from '../../../common/components/Spinner';
 import './quote.css';

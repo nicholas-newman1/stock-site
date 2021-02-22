@@ -1,10 +1,10 @@
 import React from 'react';
-import { NewsItem } from '../../../types/APITypes';
 import BottomNewsItem from './BottomNewsItem';
 import BottomNewsLoading from './BottomNewsLoading';
 import HorizontalRule from '../HorizontalRule';
 import './bottomNews.css';
 import FetchErrorContainer from '../../containers/FetchErrorContainer';
+import { NewsItem } from '../../types/APITypes';
 
 interface Props {
   newsData: NewsItem[];

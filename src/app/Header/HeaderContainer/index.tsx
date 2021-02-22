@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import Header from '../Header';
-import { AppState } from '../../../reducers/rootReducer';
+import { AppState } from '../../rootReducer';
 
 const HeaderContainer = () => {
   const realData = useSelector((state: AppState) => state.realData);

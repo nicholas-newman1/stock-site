@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { TableProps } from '../../../types/propTypes';
+import { TableProps } from '../../types/propTypes';
 import PageNav from '../PageNav';
 import PageOptions from '../PageOptions';
 import Table from '../Table';

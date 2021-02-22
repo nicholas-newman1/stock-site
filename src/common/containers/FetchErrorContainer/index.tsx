@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { disableRealData } from '../../../actions/realDataActions';
+import { disableRealData } from '../../redux/modules/realData';
 import FetchError from '../../components/FetchError';
 
 interface Props {

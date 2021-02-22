@@ -360,3 +360,10 @@ export const isStock = (exchange: string) => {
     ) === -1
   );
 };
+
+export const getFromLocalStorage = <T>(key: string, fallbackValue: T): T => {
+  const savedValue = localStorage.getItem(key);
+  if (savedValue) return JSON.parse(savedValue);
+  if (fallbackValue instanceof Function) return fallbackValue();
+  return fallbackValue;
+};
