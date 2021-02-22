@@ -1,4 +1,4 @@
-import { fetchFromAPI } from '../utils/api';
+import { fetchFromAPI } from '../common/utils/api';
 import {
   FetchQuoteRequest,
   FetchQuoteSuccess,
@@ -11,7 +11,7 @@ import { NewsItem, Quote } from '../types/APITypes';
 import { Dispatch } from 'redux';
 import { AppState } from '../reducers/rootReducer';
 import { AppActions } from '../types/actionTypes';
-import { isStock } from '../utils/helpers';
+import { isStock } from '../common/utils/helpers';
 
 const fetchQuoteRequest = (): FetchQuoteRequest => ({
   type: 'FETCH_QUOTE_REQUEST',

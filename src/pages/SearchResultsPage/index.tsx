@@ -3,22 +3,22 @@ import { RouteComponentProps } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppState } from '../../reducers/rootReducer';
 import { Helmet } from 'react-helmet-async';
-import { dummySearchResults } from '../../utils/dummyData';
-import Spinner from '../../components/Spinner';
-import SearchFilter from '../../components/ExchangeFilter';
-import PageNav from '../../components/PageNav';
-import Heading from '../../components/Heading';
-import useFetch from '../../hooks/useFetch';
-import useScrollTop from '../../hooks/useScrollTop';
+import { dummySearchResults } from '../../app/dummyData';
+import Spinner from '../../common/components/Spinner';
+import SearchFilter from '../../features/SearchResults/ExchangeFilter';
+import PageNav from '../../common/components/PageNav';
+import Heading from '../../common/components/Heading';
+import useFetch from '../../common/hooks/useFetch';
+import useScrollTop from '../../common/hooks/useScrollTop';
 import './searchResultsPage.css';
-import HorizontalRule from '../../components/HorizontalRule';
+import HorizontalRule from '../../common/components/HorizontalRule';
 import {
   addToWatchlist,
   removeFromWatchlist,
 } from '../../actions/watchlistActions';
-import SearchResults from '../../components/SearchResults';
+import SearchResults from '../../features/SearchResults/SearchResults';
 import { SearchResult } from '../../types/APITypes';
-import GeneralBottomNewsContainer from '../../containers/GeneralBottomNewsContainer';
+import GeneralBottomNewsContainer from '../../common/containers/GeneralBottomNewsContainer';
 
 interface SearchResultsFetch {
   data: SearchResult[];

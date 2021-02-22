@@ -1,4 +1,4 @@
-import { fetchFromAPI } from '../utils/api';
+import { fetchFromAPI } from '../common/utils/api';
 import {
   FetchNewsRequest,
   FetchNewsSuccess,

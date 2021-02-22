@@ -1,13 +1,13 @@
 import React, { useEffect } from 'react';
-import BottomNews from '../../components/BottomNews';
-import MainNewsItem from '../../components/MainNewsItem';
+import BottomNews from '../../common/components/BottomNews';
+import MainNewsItem from '../../features/MainNewsItem/MainNewsItem';
 import { Helmet } from 'react-helmet-async';
-import useScrollTop from '../../hooks/useScrollTop';
+import useScrollTop from '../../common/hooks/useScrollTop';
 import './home.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppState } from '../../reducers/rootReducer';
 import { fetchNews } from '../../actions/newsActions';
-import PriceListOverviewContainer from '../../containers/PriceListOverviewContainer';
+import PriceListOverviewContainer from '../../features/PriceListOverview/PriceListOverviewContainer';
 
 const Home: React.FC = () => {
   useScrollTop(); // scrolls to top of page on component mount

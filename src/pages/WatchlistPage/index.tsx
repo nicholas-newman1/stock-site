@@ -1,9 +1,9 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
-import Heading from '../../components/Heading';
-import useScrollTop from '../../hooks/useScrollTop';
-import WatchlistTableContainer from '../../containers/WatchlistTableContainer';
-import GeneralBottomNewsContainer from '../../containers/GeneralBottomNewsContainer';
+import Heading from '../../common/components/Heading';
+import useScrollTop from '../../common/hooks/useScrollTop';
+import WatchlistTableContainer from '../../features/WatchlistTable/WatchlistTableContainer';
+import GeneralBottomNewsContainer from '../../common/containers/GeneralBottomNewsContainer';
 
 const WatchlistPage: React.FC = () => {
   useScrollTop(); // scrolls to top of page on component mount

@@ -1,9 +1,9 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
-import Heading from '../../components/Heading';
-import useScrollTop from '../../hooks/useScrollTop';
-import ForexTableContainer from '../../containers/ForexTableContainer';
-import GeneralBottomNewsContainer from '../../containers/GeneralBottomNewsContainer';
+import Heading from '../../common/components/Heading';
+import useScrollTop from '../../common/hooks/useScrollTop';
+import ForexTableContainer from '../../features/ForexTable/ForexTableContainer';
+import GeneralBottomNewsContainer from '../../common/containers/GeneralBottomNewsContainer';
 
 const ForexPage: React.FC = () => {
   useScrollTop(); // scrolls to top of page on component mount

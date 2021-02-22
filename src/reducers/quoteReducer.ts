@@ -1,6 +1,6 @@
 import { QuoteActionTypes } from '../types/actionTypes';
 import { NewsItem, Quote } from '../types/APITypes';
-import { isStock } from '../utils/helpers';
+import { isStock } from '../common/utils/helpers';
 
 interface QuoteState {
   quoteData: {

@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
-import Heading from '../../components/Heading';
-import SectorTable from '../../components/SectorTable';
-import useScrollTop from '../../hooks/useScrollTop';
-import PriceList from '../../components/PriceList';
+import Heading from '../../common/components/Heading';
+import SectorTable from '../../features/SectorTable/SectorTable';
+import useScrollTop from '../../common/hooks/useScrollTop';
+import PriceList from '../../common/components/PriceList';
 import useStockPageData from './useStockPageData';
 import './stockPage.css';
 import { Link } from 'react-router-dom';
-import GeneralBottomNewsContainer from '../../containers/GeneralBottomNewsContainer';
+import GeneralBottomNewsContainer from '../../common/containers/GeneralBottomNewsContainer';
 
 const StockPage: React.FC = () => {
   useScrollTop(); // scrolls to top of page on component mount

@@ -1,10 +1,10 @@
-import useFetch from '../../hooks/useFetch';
+import useFetch from '../../common/hooks/useFetch';
 import {
   dummyActivesData,
   dummyGainersData,
   dummyLosersData,
   dummySectorsData,
-} from '../../utils/dummyData';
+} from '../../app/dummyData';
 import { formatMarketQuotes } from './helpers';
 
 interface MarketQuote {

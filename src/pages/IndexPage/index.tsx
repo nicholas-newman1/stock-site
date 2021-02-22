@@ -1,9 +1,9 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
-import Heading from '../../components/Heading';
-import useScrollTop from '../../hooks/useScrollTop';
-import IndexTableContainer from '../../containers/IndexTableContainer';
-import GeneralBottomNewsContainer from '../../containers/GeneralBottomNewsContainer';
+import Heading from '../../common/components/Heading';
+import useScrollTop from '../../common/hooks/useScrollTop';
+import IndexTableContainer from '../../features/IndexTable/IndexTableContainer';
+import GeneralBottomNewsContainer from '../../common/containers/GeneralBottomNewsContainer';
 
 const IndexPage: React.FC = () => {
   useScrollTop(); // scrolls to top of page on component mount

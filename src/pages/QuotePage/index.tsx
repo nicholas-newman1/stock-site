@@ -4,16 +4,16 @@ import { AppState } from '../../reducers/rootReducer';
 import { Helmet } from 'react-helmet-async';
 import { RouteComponentProps } from 'react-router-dom';
 import { fetchQuoteAndQuoteNews } from '../../actions/quoteActions';
-import QuoteNav from '../../components/QuoteNav';
-import BottomNews from '../../components/BottomNews';
-import useScrollTop from '../../hooks/useScrollTop';
-import QuoteChartContainer from '../../containers/QuoteChartContainer';
-import QuoteFinancialsContainer from '../../containers/QuoteFinancialsContainer';
-import QuoteProfileContainer from '../../containers/QuoteProfileContainer';
-import QuoteValuationContainer from '../../containers/QuoteValuationContainer';
-import QuoteWatchlistBtnContainer from '../../containers/QuoteWatchlistBtnContainer';
-import QuoteContainer from '../../containers/QuoteContainer';
-import QuoteSummaryContainer from '../../containers/QuoteSummaryContainer';
+import QuoteNav from '../../features/QuoteNav';
+import BottomNews from '../../common/components/BottomNews';
+import useScrollTop from '../../common/hooks/useScrollTop';
+import QuoteChartContainer from '../../features/QuoteChart/QuoteChartContainer';
+import QuoteFinancialsContainer from '../../features/QuoteFinancials/QuoteFinancialsContainer';
+import QuoteProfileContainer from '../../features/QuoteProfile/QuoteProfileContainer';
+import QuoteValuationContainer from '../../features/QuoteValuation/QuoteValuationContainer';
+import QuoteWatchlistBtnContainer from '../../common/containers/QuoteWatchlistBtnContainer';
+import QuoteContainer from '../../features/Quote/QuoteContainer';
+import QuoteSummaryContainer from '../../features/QuoteSummary/QuoteSummaryContainer';
 import './quotePage.css';
 
 interface MatchProps {
