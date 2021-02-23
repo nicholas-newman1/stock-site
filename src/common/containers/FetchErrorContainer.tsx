@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { disableRealData } from '../../redux/modules/realData';
-import FetchError from '../../components/FetchError';
+import { disableRealData } from '../redux/modules/realData';
+import FetchError from '../components/FetchError';
 
 interface Props {
   error: string;
