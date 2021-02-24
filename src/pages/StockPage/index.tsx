@@ -45,7 +45,7 @@ const StockPage: React.FC = () => {
                 Actives
               </Link>
             </h2>
-            <PriceList quotes={activesData} loading={activesLoading} error='' />
+            <PriceList quotes={activesData} loading={activesLoading} />
           </div>
 
           <div className='stock-page__stock-table'>
@@ -54,7 +54,7 @@ const StockPage: React.FC = () => {
                 Gainers
               </Link>
             </h2>
-            <PriceList quotes={gainersData} loading={gainersLoading} error='' />
+            <PriceList quotes={gainersData} loading={gainersLoading} />
           </div>
 
           <div className='stock-page__stock-table'>
@@ -63,7 +63,7 @@ const StockPage: React.FC = () => {
                 Losers
               </Link>
             </h2>
-            <PriceList quotes={losersData} loading={losersLoading} error='' />
+            <PriceList quotes={losersData} loading={losersLoading} />
           </div>
         </div>
 

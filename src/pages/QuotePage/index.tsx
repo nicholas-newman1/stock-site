@@ -15,6 +15,7 @@ import QuoteWatchlistBtnContainer from '../../features/Watchlist/WatchlistBtnCon
 import QuoteContainer from '../../features/Quote/QuoteContainer';
 import QuoteSummaryContainer from '../../features/QuoteSummary/QuoteSummaryContainer';
 import './quotePage.css';
+import FetchErrorContainer from '../../common/containers/FetchErrorContainer';
 
 interface MatchProps {
   symbol: string;
@@ -76,11 +77,11 @@ const QuotePage: React.FC<Props> = ({ match }) => {
         {tab === 'Profile' && <QuoteProfileContainer symbol={symbol} />}
         {tab === 'Valuation' && <QuoteValuationContainer symbol={symbol} />}
 
-        <BottomNews
-          newsData={newsData}
-          loading={loadingNews}
-          error={newsError}
-        />
+        {newsError ? (
+          <FetchErrorContainer error='Failed to fetch news' />
+        ) : (
+          <BottomNews newsData={newsData} loading={loadingNews} />
+        )}
       </>
     </>
   );

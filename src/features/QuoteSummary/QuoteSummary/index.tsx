@@ -1,5 +1,4 @@
 import React from 'react';
-import FetchErrorContainer from '../../../common/containers/FetchErrorContainer';
 import { Quote } from '../../../common/types/APITypes';
 import {
   replaceNullValues,
@@ -11,12 +10,10 @@ import QuoteSummaryLoading from './QuoteSummaryLoading';
 interface Props {
   quote: Quote;
   loading: boolean;
-  error: string;
 }
 
-const QuoteSummary: React.FC<Props> = ({ quote, loading, error }) => {
+const QuoteSummary: React.FC<Props> = ({ quote, loading }) => {
   if (loading) return <QuoteSummaryLoading />;
-  if (error) return <FetchErrorContainer error='Failed to fetch quote' />;
 
   const formattedQuote = shortenNumbers(replaceNullValues(quote));
 

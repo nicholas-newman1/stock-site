@@ -4,6 +4,7 @@ import { fetchPriceOverviewData } from '../priceOverviewSlice';
 import PriceListOverview from '../PriceOverview';
 import { AppState } from '../../../app/rootReducer';
 import { Quote } from '../../../common/types/APITypes';
+import FetchErrorContainer from '../../../common/containers/FetchErrorContainer';
 
 const PriceOverviewContainer: React.FC = () => {
   const dispatch = useDispatch();
@@ -79,7 +80,9 @@ const PriceOverviewContainer: React.FC = () => {
     },
   ];
 
-  return <PriceListOverview pricelists={pricelists} error={error} />;
+  if (error) return <FetchErrorContainer error='Failed to fetch quotes' />;
+
+  return <PriceListOverview pricelists={pricelists} />;
 };
 
 export default PriceOverviewContainer;

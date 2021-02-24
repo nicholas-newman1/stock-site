@@ -9,8 +9,10 @@ interface Props {
 
 const QuoteWatchlistBtnContainer: React.FC<Props> = ({ symbol }) => {
   const dispatch = useDispatch();
-  const watchlist = useSelector((state: AppState) => state.watchlist);
-  const isInWatchlist = watchlist.includes(symbol);
+  const watchlistItems = useSelector(
+    (state: AppState) => state.watchlist.items
+  );
+  const isInWatchlist = watchlistItems.includes(symbol);
 
   return (
     <button

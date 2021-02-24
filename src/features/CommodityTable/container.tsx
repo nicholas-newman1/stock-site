@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react';
+import TableSortedPaginated from '../../common/components/TableSortedPaginated';
+import { formatData, properties } from '../../common/utils/quoteTable';
 import { useDispatch, useSelector } from 'react-redux';
-import TableSortedPaginated from '../../../common/components/TableSortedPaginated';
-import { AppState } from '../../../app/rootReducer';
-import { formatData, properties } from '../../../common/utils/quoteTable';
-import { fetchWatchlist } from '../watchlistSlice';
-import FetchErrorContainer from '../../../common/containers/FetchErrorContainer';
+import { AppState } from '../../app/rootReducer';
+import FetchErrorContainer from '../../common/containers/FetchErrorContainer';
+import { fetchCommodity } from './commoditySlice';
 
-const WatchlistTableContainer = () => {
+const CommodityTableContainer = () => {
   const { data, loading, error } = useSelector(
     (state: AppState) => state.commodity
   );
@@ -18,10 +18,10 @@ const WatchlistTableContainer = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchWatchlist());
+    dispatch(fetchCommodity());
   }, [dispatch, realDataStatus]);
 
-  if (error) return <FetchErrorContainer error='Failed to fetch watchlist' />;
+  if (error) return <FetchErrorContainer error='Failed to fetch commodities' />;
 
   return (
     <TableSortedPaginated
@@ -34,4 +34,4 @@ const WatchlistTableContainer = () => {
   );
 };
 
-export default WatchlistTableContainer;
+export default CommodityTableContainer;

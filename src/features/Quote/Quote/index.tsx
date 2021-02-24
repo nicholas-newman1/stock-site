@@ -1,5 +1,4 @@
 import React from 'react';
-import FetchErrorContainer from '../../../common/containers/FetchErrorContainer';
 import { Quote as QuoteType } from '../../../common/types/APITypes';
 import { formatQuoteData } from '../../../common/utils/helpers';
 import Spinner from '../../../common/components/Spinner';
@@ -8,12 +7,10 @@ import './quote.css';
 interface Props {
   quote: QuoteType;
   loading: boolean;
-  error: string;
 }
 
-const Quote: React.FC<Props> = ({ quote, loading, error }) => {
+const Quote: React.FC<Props> = ({ quote, loading }) => {
   if (loading) return <Spinner />;
-  if (error) return <FetchErrorContainer error='Failed to fetch quote' />;
 
   const {
     price,

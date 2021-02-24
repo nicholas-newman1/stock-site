@@ -4,6 +4,10 @@ import { combineReducers } from 'redux';
 import watchlistReducer from '../features/Watchlist/watchlistSlice';
 import realDataReducer from '../common/redux/modules/realData';
 import quoteReducer from '../pages/QuotePage/quoteSlice';
+import commodityReducer from '../features/CommodityTable/commoditySlice';
+import cryptoReducer from '../features/CryptoTable/cryptoSlice';
+import forexReducer from '../features/ForexTable/forexSlice';
+import indexReducer from '../features/IndexTable/indexSlice';
 
 const rootReducer = combineReducers({
   news: newsReducer,
@@ -11,6 +15,10 @@ const rootReducer = combineReducers({
   quote: quoteReducer,
   priceOverview: priceOverviewReducer,
   watchlist: watchlistReducer,
+  commodity: commodityReducer,
+  crypto: cryptoReducer,
+  forex: forexReducer,
+  index: indexReducer,
 });
 
 export type AppState = ReturnType<typeof rootReducer>;

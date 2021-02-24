@@ -2,7 +2,7 @@ import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import Heading from '../../common/components/Heading';
 import useScrollTop from '../../common/hooks/useScrollTop';
-import CommodityTableContainer from '../../features/CommodityTable/CommodityTableContainer';
+import CommodityTableContainer from '../../features/CommodityTable/container';
 import GeneralBottomNewsContainer from '../../common/containers/GeneralBottomNewsContainer';
 
 const CommodityPage: React.FC = () => {

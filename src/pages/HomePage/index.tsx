@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { AppState } from '../../app/rootReducer';
 import PriceListOverviewContainer from '../../features/PriceOverview/PriceOverviewContainer';
 import { fetchNews } from '../../common/redux/modules/news';
+import FetchErrorContainer from '../../common/containers/FetchErrorContainer';
 
 const Home: React.FC = () => {
   useScrollTop(); // scrolls to top of page on component mount
@@ -32,16 +33,17 @@ const Home: React.FC = () => {
         </title>
       </Helmet>
       <div className='home__section-one'>
-        <MainNewsItem
-          data={newsData[0]}
-          loading={loadingNews}
-          error={newsError}
-        />
-        <BottomNews
-          newsData={newsData.filter((x, i) => i !== 0)}
-          loading={loadingNews}
-          error={newsError}
-        />
+        {newsError ? (
+          <FetchErrorContainer error='Failed to fetch news' />
+        ) : (
+          <>
+            <MainNewsItem data={newsData[0]} loading={loadingNews} />
+            <BottomNews
+              newsData={newsData.filter((x, i) => i !== 0)}
+              loading={loadingNews}
+            />
+          </>
+        )}
       </div>
       <div className='home__section-two'>
         <PriceListOverviewContainer />
