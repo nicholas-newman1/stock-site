@@ -13,7 +13,7 @@ const MainNavItems: React.FC<Props> = ({ render, hideNav = () => {} }) => {
     { text: 'Stocks', link: '/stocks', onClick: hideNav },
     { text: 'Forex', link: '/forex', onClick: hideNav },
     { text: 'Cryptocurrencies', link: '/cryptocurrencies', onClick: hideNav },
-    { text: 'Commodities', link: 'commodities', onClick: hideNav },
+    { text: 'Commodities', link: '/commodities', onClick: hideNav },
   ];
 
   return render(NavItems);
