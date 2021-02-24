@@ -1,5 +1,18 @@
 /// <reference types="react-scripts" />
 
+interface MarketQuote {
+  ticker: string;
+  changes: number;
+  price: string;
+  changesPercentage: string;
+  companyName: string;
+}
+
+interface MarketFetch {
+  data: MarketQuote[];
+  loading: boolean;
+}
+
 interface Button {
   className?: string;
   onClick?: () => void;

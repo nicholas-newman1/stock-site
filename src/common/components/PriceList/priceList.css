@@ -1,4 +1,13 @@
 .price-list {
+  margin-bottom: 2rem;
+}
+
+.price-list__heading {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.price-list__list {
   display: grid;
   gap: 1rem;
   list-style: none;

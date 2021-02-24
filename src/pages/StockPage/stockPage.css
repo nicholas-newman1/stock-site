@@ -7,10 +7,6 @@
   width: 50%;
 }
 
-.stock-page__stock-table + .stock-page__stock-table {
-  margin-top: 1.5rem;
-}
-
 .stock-page__sector-table {
   width: 47%;
 }
