@@ -8,6 +8,7 @@ import { CryptoActionTypes } from '../../features/CryptoTable/cryptoSlice';
 import { ForexActionTypes } from '../../features/ForexTable/forexSlice';
 import { IndexActionTypes } from '../../features/IndexTable/indexSlice';
 import { MainNewsItemActionTypes } from '../../features/MainNewsItem/mainNewsItemSlice';
+import { SectorsActionTypes } from '../../features/SectorTable/sectorsSlice';
 
 export type AppActions =
   | RealDataActionTypes
@@ -19,4 +20,5 @@ export type AppActions =
   | CryptoActionTypes
   | ForexActionTypes
   | IndexActionTypes
-  | MainNewsItemActionTypes;
+  | MainNewsItemActionTypes
+  | SectorsActionTypes;

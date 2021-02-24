@@ -1,18 +1,16 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import Heading from '../../common/components/Heading';
-import SectorTable from '../../features/SectorTable/SectorTable';
 import useScrollTop from '../../common/hooks/useScrollTop';
 import PriceList from '../../common/components/PriceList';
 import useStockPageData from './useStockPageData';
 import './stockPage.css';
 import { Link } from 'react-router-dom';
 import GeneralBottomNewsContainer from '../../common/containers/GeneralBottomNewsContainer';
+import { SectorTableContainer } from '../../features/SectorTable';
 
 const StockPage: React.FC = () => {
   useScrollTop(); // scrolls to top of page on component mount
-
-  const [showAllSectors, setShowAllSectors] = useState(false);
 
   const {
     activesData,
@@ -21,8 +19,6 @@ const StockPage: React.FC = () => {
     gainersLoading,
     losersData,
     losersLoading,
-    sectorsData,
-    sectorsLoading,
   } = useStockPageData();
 
   return (
@@ -69,22 +65,7 @@ const StockPage: React.FC = () => {
 
         <div className='stock-page__sector-table'>
           <h2 className='stock-page__sub-heading'>Sectors</h2>
-
-          <SectorTable
-            data={
-              showAllSectors
-                ? sectorsData
-                : sectorsData.filter((x, i) => i < 14)
-            }
-            loading={sectorsLoading}
-          />
-
-          <button
-            className='stock-page__btn btn btn-grey btn-small'
-            onClick={() => setShowAllSectors((prev) => !prev)}
-          >
-            {showAllSectors ? 'Hide Sectors' : 'Show All Sectors'}
-          </button>
+          <SectorTableContainer />
         </div>
       </div>
 

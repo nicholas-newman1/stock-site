@@ -3,7 +3,6 @@ import {
   dummyActivesData,
   dummyGainersData,
   dummyLosersData,
-  dummySectorsData,
 } from '../../app/dummyData';
 import { formatMarketQuotes } from './helpers';
 
@@ -17,11 +16,6 @@ interface MarketQuote {
 
 interface MarketFetch {
   data: MarketQuote[];
-  loading: boolean;
-}
-
-interface SectorFetch {
-  data: SectorQuote[];
   loading: boolean;
 }
 
@@ -44,12 +38,6 @@ const useStockPageData = () => {
     dummyLosersData
   );
 
-  const { data: sectorsData, loading: sectorsLoading }: SectorFetch = useFetch(
-    [], // intial value
-    'sectors-performance', // endpoint
-    dummySectorsData // dummy data
-  );
-
   return {
     activesData: formatMarketQuotes(activesData),
     activesLoading,
@@ -57,8 +45,6 @@ const useStockPageData = () => {
     gainersLoading,
     losersData: formatMarketQuotes(losersData),
     losersLoading,
-    sectorsData,
-    sectorsLoading,
   };
 };
 

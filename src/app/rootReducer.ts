@@ -9,6 +9,7 @@ import cryptoReducer from '../features/CryptoTable/cryptoSlice';
 import forexReducer from '../features/ForexTable/forexSlice';
 import indexReducer from '../features/IndexTable/indexSlice';
 import mainNewsItemReducer from '../features/MainNewsItem/mainNewsItemSlice';
+import sectorsReducer from '../features/SectorTable/sectorsSlice';
 
 const rootReducer = combineReducers({
   news: newsReducer,
@@ -21,6 +22,7 @@ const rootReducer = combineReducers({
   forex: forexReducer,
   index: indexReducer,
   mainNewsItem: mainNewsItemReducer,
+  sectors: sectorsReducer,
 });
 
 export type AppState = ReturnType<typeof rootReducer>;
