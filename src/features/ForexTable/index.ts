@@ -1,3 +1,3 @@
-import ForexTableContainer from './container';
+import ForexTableContainer from './containers/ForexTableContainer';
 
 export { ForexTableContainer };

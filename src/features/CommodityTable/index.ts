@@ -1,3 +1,3 @@
-import CommodityTableContainer from './container';
+import CommodityTableContainer from './containers/CommodityTableContainer';
 
 export { CommodityTableContainer };

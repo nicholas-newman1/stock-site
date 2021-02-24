@@ -1,3 +1,3 @@
-import SectorTableContainer from './container';
+import SectorTableContainer from './containers/SectorTableContainer';
 
 export { SectorTableContainer };

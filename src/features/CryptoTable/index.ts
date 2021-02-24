@@ -1,3 +1,3 @@
-import CryptoTableContainer from './container';
+import CryptoTableContainer from './containers/CryptoTableContainer';
 
 export { CryptoTableContainer };

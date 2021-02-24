@@ -4,17 +4,17 @@ import { AppState } from '../../app/rootReducer';
 import { Helmet } from 'react-helmet-async';
 import { RouteComponentProps } from 'react-router-dom';
 import { fetchQuoteAndQuoteNews } from './quoteSlice';
-import useScrollTop from '../../common/hooks/useScrollTop';
-import QuoteChartContainer from '../../features/QuoteChart/QuoteChartContainer';
-import QuoteFinancialsContainer from '../../features/QuoteFinancials/QuoteFinancialsContainer';
-import QuoteProfileContainer from '../../features/QuoteProfile/QuoteProfileContainer';
-import QuoteValuationContainer from '../../features/QuoteValuation/QuoteValuationContainer';
-import { WatchlistBtnContainer } from '../../features/Watchlist';
+import { QuoteChartContainer } from '../../features/QuoteChart';
+import { QuoteFinancialsContainer } from '../../features/QuoteFinancials';
+import { QuoteProfileContainer } from '../../features/QuoteProfile';
+import { QuoteValuationContainer } from '../../features/QuoteValuation';
 import { QuoteSummaryContainer } from '../../features/QuoteSummary';
-import './quotePage.css';
-import BtnBarTwo from '../../common/components/BtnBarTwo';
 import { QuoteContainer } from '../../features/Quote';
 import { QuoteNewsContainer } from '../../features/QuoteNews';
+import { WatchlistBtnContainer } from '../../features/Watchlist';
+import BtnBarTwo from '../../common/components/BtnBarTwo';
+import useScrollTop from '../../common/hooks/useScrollTop';
+import './quotePage.css';
 
 interface MatchProps {
   symbol: string;

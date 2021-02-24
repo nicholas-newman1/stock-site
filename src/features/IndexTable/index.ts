@@ -1,3 +1,3 @@
-import IndexTableContainer from './container';
+import IndexTableContainer from './containers/IndexTableContainer';
 
 export { IndexTableContainer };

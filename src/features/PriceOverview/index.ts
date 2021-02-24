@@ -1,3 +1,3 @@
-import PriceOverviewContainer from './container';
+import PriceOverviewContainer from './containers/PriceOverviewContainer';
 
 export { PriceOverviewContainer };

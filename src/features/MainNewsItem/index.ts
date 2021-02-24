@@ -1,3 +1,3 @@
-import MainNewsItemContainer from './container';
+import MainNewsItemContainer from './containers/MainNewsItemContainer';
 
 export { MainNewsItemContainer };
