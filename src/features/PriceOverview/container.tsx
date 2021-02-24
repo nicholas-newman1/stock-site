@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchPriceOverviewData } from '../priceOverviewSlice';
-import PriceListOverview from '../PriceOverview';
-import { AppState } from '../../../app/rootReducer';
-import { Quote } from '../../../common/types/APITypes';
-import FetchErrorContainer from '../../../common/containers/FetchErrorContainer';
+import { fetchPriceOverviewData } from './priceOverviewSlice';
+import PriceListOverview from './components/PriceOverview';
+import { AppState } from '../../app/rootReducer';
+import { Quote } from '../../common/types/APITypes';
+import FetchErrorContainer from '../../common/containers/FetchErrorContainer';
 
-const PriceOverviewContainer: React.FC = () => {
+const PriceOverviewContainer = () => {
   const dispatch = useDispatch();
 
   const {

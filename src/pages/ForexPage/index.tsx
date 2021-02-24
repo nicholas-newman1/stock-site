@@ -2,7 +2,7 @@ import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import Heading from '../../common/components/Heading';
 import useScrollTop from '../../common/hooks/useScrollTop';
-import ForexTableContainer from '../../features/ForexTable/container';
+import { ForexTableContainer } from '../../features/ForexTable';
 import GeneralBottomNewsContainer from '../../common/containers/GeneralBottomNewsContainer';
 
 const ForexPage: React.FC = () => {

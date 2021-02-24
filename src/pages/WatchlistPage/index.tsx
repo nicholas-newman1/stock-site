@@ -2,7 +2,7 @@ import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import Heading from '../../common/components/Heading';
 import useScrollTop from '../../common/hooks/useScrollTop';
-import WatchlistTableContainer from '../../features/Watchlist/WatchlistTableContainer';
+import { WatchlistTableContainer } from '../../features/Watchlist';
 import GeneralBottomNewsContainer from '../../common/containers/GeneralBottomNewsContainer';
 
 const WatchlistPage: React.FC = () => {

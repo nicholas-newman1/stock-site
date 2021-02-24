@@ -1,8 +1,8 @@
 import React from 'react';
-import MainNewsItemContainer from '../../features/MainNewsItem/container';
+import { MainNewsItemContainer } from '../../features/MainNewsItem';
 import { Helmet } from 'react-helmet-async';
 import useScrollTop from '../../common/hooks/useScrollTop';
-import PriceListOverviewContainer from '../../features/PriceOverview/PriceOverviewContainer';
+import { PriceOverviewContainer } from '../../features/PriceOverview';
 import GeneralBottomNewsContainer from '../../common/containers/GeneralBottomNewsContainer';
 import './home.css';
 
@@ -21,7 +21,7 @@ const Home: React.FC = () => {
         <GeneralBottomNewsContainer />
       </div>
       <div className='home__section-two'>
-        <PriceListOverviewContainer />
+        <PriceOverviewContainer />
       </div>
     </div>
   );

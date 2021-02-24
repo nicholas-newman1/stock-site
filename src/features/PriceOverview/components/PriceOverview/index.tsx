@@ -1,7 +1,7 @@
 import React from 'react';
 import PriceList, {
   PriceListQuote,
-} from '../../../common/components/PriceList';
+} from '../../../../common/components/PriceList';
 import './priceOverview.css';
 import { Link } from 'react-router-dom';
 

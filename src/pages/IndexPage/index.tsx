@@ -2,7 +2,7 @@ import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import Heading from '../../common/components/Heading';
 import useScrollTop from '../../common/hooks/useScrollTop';
-import IndexTableContainer from '../../features/IndexTable/container';
+import { IndexTableContainer } from '../../features/IndexTable';
 import GeneralBottomNewsContainer from '../../common/containers/GeneralBottomNewsContainer';
 
 const IndexPage: React.FC = () => {

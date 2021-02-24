@@ -7,7 +7,7 @@ interface Props {
   symbol: string;
 }
 
-const QuoteWatchlistBtnContainer: React.FC<Props> = ({ symbol }) => {
+const WatchlistBtnContainer: React.FC<Props> = ({ symbol }) => {
   const dispatch = useDispatch();
   const watchlistItems = useSelector(
     (state: AppState) => state.watchlist.items
@@ -28,4 +28,4 @@ const QuoteWatchlistBtnContainer: React.FC<Props> = ({ symbol }) => {
   );
 };
 
-export default QuoteWatchlistBtnContainer;
+export default WatchlistBtnContainer;

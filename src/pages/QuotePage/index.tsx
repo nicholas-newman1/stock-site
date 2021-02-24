@@ -10,7 +10,7 @@ import QuoteChartContainer from '../../features/QuoteChart/QuoteChartContainer';
 import QuoteFinancialsContainer from '../../features/QuoteFinancials/QuoteFinancialsContainer';
 import QuoteProfileContainer from '../../features/QuoteProfile/QuoteProfileContainer';
 import QuoteValuationContainer from '../../features/QuoteValuation/QuoteValuationContainer';
-import QuoteWatchlistBtnContainer from '../../features/Watchlist/WatchlistBtnContainer';
+import { WatchlistBtnContainer } from '../../features/Watchlist';
 import Quote from '../../common/components/Quote';
 import QuoteSummary from '../../common/components/QuoteSummary';
 import './quotePage.css';
@@ -63,7 +63,7 @@ const QuotePage: React.FC<Props> = ({ match }) => {
       <>
         <div className='quote-page__flex'>
           <Quote quote={quote} loading={loadingQuote} />
-          <QuoteWatchlistBtnContainer symbol={symbol} />
+          <WatchlistBtnContainer symbol={symbol} />
         </div>
 
         {isStock && (
