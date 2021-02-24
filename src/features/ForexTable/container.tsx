@@ -8,7 +8,7 @@ import { fetchForex } from './forexSlice';
 
 const ForexTableContainer = () => {
   const { data, loading, error } = useSelector(
-    (state: AppState) => state.commodity
+    (state: AppState) => state.forex
   );
 
   const realDataStatus = useSelector(

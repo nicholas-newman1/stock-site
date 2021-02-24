@@ -8,7 +8,7 @@ import FetchErrorContainer from '../../../common/containers/FetchErrorContainer'
 
 const WatchlistTableContainer = () => {
   const { data, loading, error } = useSelector(
-    (state: AppState) => state.commodity
+    (state: AppState) => state.watchlist
   );
 
   const realDataStatus = useSelector(

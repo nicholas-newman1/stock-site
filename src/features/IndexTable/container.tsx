@@ -8,7 +8,7 @@ import { fetchIndex } from './indexSlice';
 
 const IndexTableContainer = () => {
   const { data, loading, error } = useSelector(
-    (state: AppState) => state.commodity
+    (state: AppState) => state.index
   );
 
   const realDataStatus = useSelector(

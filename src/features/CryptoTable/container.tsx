@@ -8,7 +8,7 @@ import { fetchCrypto } from './cryptoSlice';
 
 const CryptoTableContainer = () => {
   const { data, loading, error } = useSelector(
-    (state: AppState) => state.commodity
+    (state: AppState) => state.crypto
   );
 
   const realDataStatus = useSelector(
