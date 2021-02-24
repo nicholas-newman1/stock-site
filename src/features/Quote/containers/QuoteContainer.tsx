@@ -3,17 +3,20 @@ import { useSelector } from 'react-redux';
 import { AppState } from '../../../app/rootReducer';
 import Quote from '../components/Quote';
 import FetchErrorContainer from '../../../common/containers/FetchErrorContainer';
+import Spinner from '../../../common/components/Spinner';
 
 const QuoteContainer = () => {
   const { data, loading, error } = useSelector(
     (state: AppState) => state.quote.quoteData
   );
 
-  const quote = data[0] || {};
-
+  if (loading) return <Spinner />;
   if (error) return <FetchErrorContainer error='Failed to fetch quote' />;
+  if (!data.length) return <h1>No Data Available</h1>;
 
-  return <Quote quote={quote} loading={loading} />;
+  const quote = data[0];
+
+  return <Quote quote={quote} />;
 };
 
 export default QuoteContainer;

@@ -1,17 +1,13 @@
 import React from 'react';
 import { Quote as QuoteType } from '../../../../common/types/APITypes';
 import { formatQuoteData } from '../../../../common/utils/helpers';
-import Spinner from '../../../../common/components/Spinner';
 import './quote.css';
 
 interface Props {
   quote: QuoteType;
-  loading: boolean;
 }
 
-const Quote: React.FC<Props> = ({ quote, loading }) => {
-  if (loading) return <Spinner />;
-
+const Quote: React.FC<Props> = ({ quote }) => {
   const {
     price,
     color,

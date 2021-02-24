@@ -91,7 +91,9 @@ const quoteReducer = (state = initialState, action: QuoteActionTypes) => {
           loading: false,
           error: '',
         },
-        isStock: isStock(action.payload[0].exchange),
+        isStock: action.payload.length
+          ? isStock(action.payload[0].exchange)
+          : false,
       };
     case 'FETCH_QUOTE_FAILURE':
       return {
@@ -192,7 +194,9 @@ export const fetchQuoteAndQuoteNews = (symbol: string) => {
     // @ts-ignore
     return dispatch(fetchQuote(symbol)).then(() => {
       const data = getState().quote.quoteData.data;
-      return isStock(data.length ? data[0].exchange : '')
+      return data.length
+        ? isStock(data[0].exchange)
+        : false
         ? // @ts-ignore
           dispatch(fetchQuoteNews(symbol))
         : // @ts-ignore
@@ -200,31 +204,3 @@ export const fetchQuoteAndQuoteNews = (symbol: string) => {
     });
   };
 };
-
-// export const fetchQuoteAndQuoteNews = (symbol: string) => {
-//   return (dispatch: Dispatch<AppActions>, getState: () => AppState) => {
-//     dispatch(fetchQuoteRequest());
-
-//     if (getState().realData.status) {
-//       return fetch(
-//         `https://financialmodelingprep.com/api/v3/quote/${symbol}?apikey=${process.env.REACT_APP_FMP_KEY}`
-//       )
-//         .then((res) => res.json())
-//         .then((data) => {
-//           if (data['Error Message']) {
-//             dispatch(fetchQuoteFailure(data['Error Message']));
-//           } else if (data.hasOwnProperty('error')) {
-//             dispatch(fetchQuoteFailure(data.error));
-//           } else {
-//             dispatch(fetchQuoteSuccess(data));
-//           }
-//         })
-//         .catch((err) => dispatch(fetchQuoteFailure(err.message)));
-//     } else {
-//       return fetch(`../dummyData/quote.json`)
-//         .then((res) => res.json())
-//         .then((data) => dispatch(fetchQuoteSuccess(data)))
-//         .catch((err) => dispatch(fetchQuoteFailure(err.message)));
-//     }
-//   };
-// };
