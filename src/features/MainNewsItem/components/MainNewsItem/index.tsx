@@ -1,7 +1,7 @@
 import React from 'react';
-import MainNewsItemLoading from './MainNewsItemLoading';
-import { NewsItem } from '../../../common/types/APITypes';
-import { getTimeAgoString, truncate } from '../../../common/utils/helpers';
+import MainNewsItemLoading from '../MainNewsItemLoading';
+import { NewsItem } from '../../../../common/types/APITypes';
+import { getTimeAgoString, truncate } from '../../../../common/utils/helpers';
 import './mainNewsItem.css';
 
 interface Props {
