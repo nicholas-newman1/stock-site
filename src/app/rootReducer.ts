@@ -10,6 +10,9 @@ import forexReducer from '../features/ForexTable/forexSlice';
 import indexReducer from '../features/IndexTable/indexSlice';
 import mainNewsItemReducer from '../features/MainNewsItem/mainNewsItemSlice';
 import sectorsReducer from '../features/SectorTable/sectorsSlice';
+import activesReducer from '../features/ActivesPriceList/activesSlice';
+import gainersReducer from '../features/GainersPriceList/gainersSlice';
+import losersReducer from '../features/LosersPriceList/losersSlice';
 
 const rootReducer = combineReducers({
   news: newsReducer,
@@ -23,6 +26,9 @@ const rootReducer = combineReducers({
   index: indexReducer,
   mainNewsItem: mainNewsItemReducer,
   sectors: sectorsReducer,
+  actives: activesReducer,
+  gainers: gainersReducer,
+  losers: losersReducer,
 });
 
 export type AppState = ReturnType<typeof rootReducer>;

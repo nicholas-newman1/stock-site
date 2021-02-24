@@ -1,0 +1,212 @@
+[
+  {
+    "ticker": "PPSI",
+    "changes": 1.35,
+    "price": "4.3",
+    "changesPercentage": "(+45.76%)",
+    "companyName": "Pioneer Power Solutions Inc"
+  },
+  {
+    "ticker": "CBAT",
+    "changes": 2.7599,
+    "price": "8.9099",
+    "changesPercentage": "(+44.88%)",
+    "companyName": "CBAK Energy Technology Inc"
+  },
+  {
+    "ticker": "HPR",
+    "changes": 1.53,
+    "price": "5.29",
+    "changesPercentage": "(+40.69%)",
+    "companyName": "HighPoint Resources Corp"
+  },
+  {
+    "ticker": "MHLD",
+    "changes": 0.396,
+    "price": "1.766",
+    "changesPercentage": "(+28.91%)",
+    "companyName": "Maiden Holdings Ltd"
+  },
+  {
+    "ticker": "DIVC",
+    "changes": 6.9196,
+    "price": "30.9196",
+    "changesPercentage": "(+28.83%)",
+    "companyName": "Citigroup Inc. C-Tracks ETN Miller/Howard Strategic Dividend Reinvestors Due 9/16/2014"
+  },
+  {
+    "ticker": "FBM",
+    "changes": 3.98,
+    "price": "19.14",
+    "changesPercentage": "(+26.25%)",
+    "companyName": "Foundation Building Materials Inc"
+  },
+  {
+    "ticker": "OILD",
+    "changes": 9.32,
+    "price": "45.32",
+    "changesPercentage": "(+25.89%)",
+    "companyName": "ProShares UltraPro 3x Short Crude Oil"
+  },
+  {
+    "ticker": "HDS",
+    "changes": 10.87,
+    "price": "55.68",
+    "changesPercentage": "(+24.26%)",
+    "companyName": "HD Supply Holdings Inc"
+  },
+  {
+    "ticker": "TOUR",
+    "changes": 0.37,
+    "price": "1.93",
+    "changesPercentage": "(+23.72%)",
+    "companyName": "Tuniu Corp"
+  },
+  {
+    "ticker": "CAN",
+    "changes": 0.58,
+    "price": "3.24",
+    "changesPercentage": "(+21.80%)",
+    "companyName": "Canaan Inc"
+  },
+  {
+    "ticker": "SUNW",
+    "changes": 0.6743,
+    "price": "3.9243",
+    "changesPercentage": "(+20.75%)",
+    "companyName": "Sunworks Inc"
+  },
+  {
+    "ticker": "TISI",
+    "changes": 1.75,
+    "price": "10.31",
+    "changesPercentage": "(+20.44%)",
+    "companyName": "Team Inc"
+  },
+  {
+    "ticker": "GCE",
+    "changes": 2.1552,
+    "price": "12.7052",
+    "changesPercentage": "(+20.43%)",
+    "companyName": "Clarymore CEF GS Connect ETN"
+  },
+  {
+    "ticker": "IDEX",
+    "changes": 0.2001,
+    "price": "1.1901",
+    "changesPercentage": "(+20.21%)",
+    "companyName": "Ideanomics Inc"
+  },
+  {
+    "ticker": "WWR",
+    "changes": 0.83,
+    "price": "5.03",
+    "changesPercentage": "(+19.76%)",
+    "companyName": "Westwater Resources Inc"
+  },
+  {
+    "ticker": "GASX",
+    "changes": 2.6294,
+    "price": "16",
+    "changesPercentage": "(+19.67%)",
+    "companyName": "Direxion Daily Natural Gas Related Bear 3X Shares"
+  },
+  {
+    "ticker": "FCEL",
+    "changes": 0.555,
+    "price": "3.405",
+    "changesPercentage": "(+19.47%)",
+    "companyName": "Fuelcell Energy Inc"
+  },
+  {
+    "ticker": "AHT",
+    "changes": 0.6311,
+    "price": "3.9311",
+    "changesPercentage": "(+19.12%)",
+    "companyName": "Ashford Hospitality Trust Inc"
+  },
+  {
+    "ticker": "TGEN",
+    "changes": 0.2,
+    "price": "1.25",
+    "changesPercentage": "(+19.05%)",
+    "companyName": "Tecogen Inc"
+  },
+  {
+    "ticker": "EVC",
+    "changes": 0.435,
+    "price": "2.795",
+    "changesPercentage": "(+18.43%)",
+    "companyName": "Entravision Communications Corp"
+  },
+  {
+    "ticker": "PNRG",
+    "changes": 9.56,
+    "price": "63.71",
+    "changesPercentage": "(+17.65%)",
+    "companyName": "Primeenergy Resources Corp"
+  },
+  {
+    "ticker": "RUSS",
+    "changes": 1.28,
+    "price": "9.09",
+    "changesPercentage": "(+16.39%)",
+    "companyName": "Direxion Daily Russia Bear 3x Shares"
+  },
+  {
+    "ticker": "FOSL",
+    "changes": 1.27,
+    "price": "9.04",
+    "changesPercentage": "(+16.34%)",
+    "companyName": "Fossil Group Inc"
+  },
+  {
+    "ticker": "DAC",
+    "changes": 1.82,
+    "price": "13.14",
+    "changesPercentage": "(+16.08%)",
+    "companyName": "Danaos Corp"
+  },
+  {
+    "ticker": "GMS",
+    "changes": 4.535,
+    "price": "33.355",
+    "changesPercentage": "(+15.74%)",
+    "companyName": "GMS Inc"
+  },
+  {
+    "ticker": "MESA",
+    "changes": 0.67,
+    "price": "5",
+    "changesPercentage": "(+15.47%)",
+    "companyName": "Mesa Air Group Inc"
+  },
+  {
+    "ticker": "CEL",
+    "changes": 0.61,
+    "price": "4.57",
+    "changesPercentage": "(+15.40%)",
+    "companyName": "Cellcom Israel Ltd"
+  },
+  {
+    "ticker": "ZVO",
+    "changes": 0.555,
+    "price": "4.185",
+    "changesPercentage": "(+15.29%)",
+    "companyName": "Zovio Inc"
+  },
+  {
+    "ticker": "TRQ",
+    "changes": 1.33,
+    "price": "10.12",
+    "changesPercentage": "(+15.13%)",
+    "companyName": "Turquoise Hill Resources Ltd"
+  },
+  {
+    "ticker": "MIDZ",
+    "changes": 9.4148,
+    "price": "74.3298",
+    "changesPercentage": "(+14.50%)",
+    "companyName": "Direxion Mid Cap Bear 3X Shares"
+  }
+]

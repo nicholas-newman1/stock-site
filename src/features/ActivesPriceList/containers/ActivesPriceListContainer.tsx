@@ -1,15 +1,30 @@
-import React from 'react';
-import { dummyActivesData } from '../../../app/dummyData';
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { AppState } from '../../../app/rootReducer';
 import PriceList from '../../../common/components/PriceList';
-import useFetch from '../../../common/hooks/useFetch';
+import Spinner from '../../../common/components/Spinner';
+import FetchErrorContainer from '../../../common/containers/FetchErrorContainer';
 import { formatMarketQuotes } from '../../../common/utils/helpers';
+import { fetchActives } from '../activesSlice';
 
 const ActivesPriceListContainer = () => {
-  const { data, loading } = useFetch(
-    [], // initial value
-    'actives', // endpoint
-    dummyActivesData // dummy data
+  const { data, loading, error } = useSelector(
+    (state: AppState) => state.actives
   );
+
+  const realDataStatus = useSelector(
+    (state: AppState) => state.realData.status
+  );
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchActives());
+  }, [dispatch, realDataStatus]);
+
+  if (loading) return <Spinner />;
+  if (error)
+    return <FetchErrorContainer error='Failed to fetch active stocks' />;
 
   return (
     <PriceList

@@ -1,0 +1,212 @@
+[
+  {
+    "ticker": "BRK-A",
+    "changes": 5910.16,
+    "price": "347664",
+    "changesPercentage": "(+1.73%)",
+    "companyName": "Berkshire Hathaway Inc"
+  },
+  {
+    "ticker": "NVR",
+    "changes": 109.26,
+    "price": "4357.2",
+    "changesPercentage": "(+2.57%)",
+    "companyName": "NVR Inc"
+  },
+  {
+    "ticker": "BKNG",
+    "changes": 63.92,
+    "price": "2116.79",
+    "changesPercentage": "(+3.11%)",
+    "companyName": "Booking Holdings Inc"
+  },
+  {
+    "ticker": "SAM",
+    "changes": -29.51,
+    "price": "908.02",
+    "changesPercentage": "(-3.15%)",
+    "companyName": "Boston Beer Company Inc"
+  },
+  {
+    "ticker": "CABO",
+    "changes": 27.7883,
+    "price": "2011.26",
+    "changesPercentage": "(+1.40%)",
+    "companyName": "Cable One Inc"
+  },
+  {
+    "ticker": "WTM",
+    "changes": 20.4107,
+    "price": "938.781",
+    "changesPercentage": "(+2.22%)",
+    "companyName": "White Mountains Insurance Group Ltd"
+  },
+  {
+    "ticker": "MKL",
+    "changes": 19.3401,
+    "price": "1061.4",
+    "changesPercentage": "(+1.86%)",
+    "companyName": "Markel Corp"
+  },
+  {
+    "ticker": "SOXL",
+    "changes": 18.88,
+    "price": "359.9",
+    "changesPercentage": "(+5.54%)",
+    "companyName": "Direxion Daily Semiconductor Bull 3x Shares"
+  },
+  {
+    "ticker": "FCNCA",
+    "changes": 18.85,
+    "price": "561.42",
+    "changesPercentage": "(+3.47%)",
+    "companyName": "First Citizens BancShares Inc (Delaware)"
+  },
+  {
+    "ticker": "RETL",
+    "changes": 18.735,
+    "price": "297.295",
+    "changesPercentage": "(+6.73%)",
+    "companyName": "Direxion Daily Retail Bull 3X Shares"
+  },
+  {
+    "ticker": "ATRI",
+    "changes": 18.6,
+    "price": "612.9",
+    "changesPercentage": "(+3.13%)",
+    "companyName": "Atrion Corp"
+  },
+  {
+    "ticker": "TPL",
+    "changes": 18.0407,
+    "price": "567.891",
+    "changesPercentage": "(+3.28%)",
+    "companyName": "Texas Pacific Land Trust"
+  },
+  {
+    "ticker": "BNTX",
+    "changes": -17.36,
+    "price": "88.64",
+    "changesPercentage": "(-16.38%)",
+    "companyName": "BioNTech SE"
+  },
+  {
+    "ticker": "SHOP",
+    "changes": -17.3,
+    "price": "901",
+    "changesPercentage": "(-1.88%)",
+    "companyName": "Shopify Inc"
+  },
+  {
+    "ticker": "ZM",
+    "changes": -16.0625,
+    "price": "387.517",
+    "changesPercentage": "(-3.98%)",
+    "companyName": "Zoom Video Communications Inc"
+  },
+  {
+    "ticker": "AMZN",
+    "changes": -15.8952,
+    "price": "3112.91",
+    "changesPercentage": "(-0.51%)",
+    "companyName": "Amazon.com Inc"
+  },
+  {
+    "ticker": "MELI",
+    "changes": -15.04,
+    "price": "1286.62",
+    "changesPercentage": "(-1.16%)",
+    "companyName": "Mercadolibre Inc"
+  },
+  {
+    "ticker": "PANW",
+    "changes": 14.045,
+    "price": "272.745",
+    "changesPercentage": "(+5.43%)",
+    "companyName": "Palo Alto Networks Inc"
+  },
+  {
+    "ticker": "BA",
+    "changes": 13.99,
+    "price": "201.1",
+    "changesPercentage": "(+7.48%)",
+    "companyName": "Boeing Co"
+  },
+  {
+    "ticker": "RAPT",
+    "changes": -13.8707,
+    "price": "16.5993",
+    "changesPercentage": "(-45.52%)",
+    "companyName": "Rapt Therapeutics Inc"
+  },
+  {
+    "ticker": "TDG",
+    "changes": 12.565,
+    "price": "579.345",
+    "changesPercentage": "(+2.22%)",
+    "companyName": "TransDigm Group Inc"
+  },
+  {
+    "ticker": "MTD",
+    "changes": -12.41,
+    "price": "1168.97",
+    "changesPercentage": "(-1.05%)",
+    "companyName": "Mettler-Toledo International Inc"
+  },
+  {
+    "ticker": "CTAS",
+    "changes": 12.4007,
+    "price": "368.401",
+    "changesPercentage": "(+3.48%)",
+    "companyName": "Cintas Corp"
+  },
+  {
+    "ticker": "NOW",
+    "changes": -11.725,
+    "price": "496.285",
+    "changesPercentage": "(-2.31%)",
+    "companyName": "ServiceNow Inc"
+  },
+  {
+    "ticker": "NVAX",
+    "changes": -10.955,
+    "price": "85.645",
+    "changesPercentage": "(-11.34%)",
+    "companyName": "Novavax Inc"
+  },
+  {
+    "ticker": "HDS",
+    "changes": 10.87,
+    "price": "55.68",
+    "changesPercentage": "(+24.26%)",
+    "companyName": "HD Supply Holdings Inc"
+  },
+  {
+    "ticker": "PH",
+    "changes": 10.67,
+    "price": "269.66",
+    "changesPercentage": "(+4.12%)",
+    "companyName": "Parker-Hannifin Corp"
+  },
+  {
+    "ticker": "GWW",
+    "changes": 10.6,
+    "price": "413.91",
+    "changesPercentage": "(+2.63%)",
+    "companyName": "W W Grainger Inc"
+  },
+  {
+    "ticker": "ROP",
+    "changes": 10.39,
+    "price": "406.78",
+    "changesPercentage": "(+2.62%)",
+    "companyName": "Roper Technologies Inc"
+  },
+  {
+    "ticker": "DPST",
+    "changes": 10.36,
+    "price": "100.94",
+    "changesPercentage": "(+11.44%)",
+    "companyName": "Direxion Daily Regional Banks Bull 3X Shares"
+  }
+]

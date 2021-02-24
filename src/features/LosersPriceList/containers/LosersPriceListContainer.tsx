@@ -1,15 +1,30 @@
-import React from 'react';
-import { dummyLosersData } from '../../../app/dummyData';
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { AppState } from '../../../app/rootReducer';
 import PriceList from '../../../common/components/PriceList';
-import useFetch from '../../../common/hooks/useFetch';
+import Spinner from '../../../common/components/Spinner';
+import FetchErrorContainer from '../../../common/containers/FetchErrorContainer';
 import { formatMarketQuotes } from '../../../common/utils/helpers';
+import { fetchLosers } from '../losersSlice';
 
 const LosersPriceListContainer = () => {
-  const { data, loading } = useFetch(
-    [], // initial value
-    'losers', // endpoint
-    dummyLosersData // dummy data
+  const { data, loading, error } = useSelector(
+    (state: AppState) => state.losers
   );
+
+  const realDataStatus = useSelector(
+    (state: AppState) => state.realData.status
+  );
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchLosers());
+  }, [dispatch, realDataStatus]);
+
+  if (loading) return <Spinner />;
+  if (error)
+    return <FetchErrorContainer error='Failed to fetch loser stocks' />;
 
   return (
     <PriceList
