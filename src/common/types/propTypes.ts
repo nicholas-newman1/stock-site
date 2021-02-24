@@ -6,6 +6,5 @@ export interface NavItem {
 
 export interface TableProps {
   data: any[][];
-  loading: boolean;
   horizontal?: boolean;
 }

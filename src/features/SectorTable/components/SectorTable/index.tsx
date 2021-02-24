@@ -1,5 +1,4 @@
 import React from 'react';
-import SectorTableLoading from '../SectorTableLoading';
 import SectorTableRow from '../SectorTableRow';
 import './sectorTable.css';
 
@@ -8,7 +7,7 @@ interface Props {
   loading: boolean;
 }
 
-const SectorTable: React.FC<Props> = ({ data, loading }) => {
+const SectorTable: React.FC<Props> = ({ data }) => {
   return (
     <table className='sector-table'>
       <thead className='sector-table__thead'>
@@ -18,13 +17,9 @@ const SectorTable: React.FC<Props> = ({ data, loading }) => {
         </tr>
       </thead>
       <tbody className='sector-table__tbody'>
-        {loading ? (
-          <SectorTableLoading />
-        ) : (
-          data.map((quote) => (
-            <SectorTableRow key={quote.sector} data={quote} />
-          ))
-        )}
+        {data.map((quote) => (
+          <SectorTableRow key={quote.sector} data={quote} />
+        ))}
       </tbody>
     </table>
   );

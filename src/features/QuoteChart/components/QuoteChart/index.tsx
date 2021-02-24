@@ -3,13 +3,8 @@ import BtnBarOne from '../../../../common/components/BtnBarOne';
 import HistoricalChart from '../../../../common/components/HistoricalChart';
 import './quoteChart.css';
 
-interface TimeframeBtn {
-  text: Timeframe;
-}
-
 interface Props {
   chartData: FormattedHistoricalPrices;
-  loading: boolean;
   timeScaleFormat: TimeScaleFormat;
   tooltipFormat: TooltipFormat;
   setTimeframe: React.Dispatch<React.SetStateAction<Timeframe>>;
@@ -17,7 +12,6 @@ interface Props {
 
 const QuoteChart: React.FC<Props> = ({
   chartData,
-  loading,
   timeScaleFormat,
   tooltipFormat,
   setTimeframe,
@@ -36,12 +30,15 @@ const QuoteChart: React.FC<Props> = ({
   return (
     <div className='quote-chart'>
       <BtnBarOne btns={timeframeBtns} setState={setTimeframe} />
-      <HistoricalChart
-        data={chartData}
-        loading={loading}
-        timeScaleFormat={timeScaleFormat}
-        tooltipFormat={tooltipFormat}
-      />
+      {chartData.length ? (
+        <HistoricalChart
+          data={chartData}
+          timeScaleFormat={timeScaleFormat}
+          tooltipFormat={tooltipFormat}
+        />
+      ) : (
+        <h2>No Chart Data Available</h2>
+      )}
     </div>
   );
 };

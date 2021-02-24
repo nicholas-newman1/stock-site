@@ -5,11 +5,10 @@ import './quoteValuation.css';
 
 interface Props {
   tableData: any[][];
-  loading: boolean;
   setPeriod: React.Dispatch<React.SetStateAction<Period>>;
 }
 
-const QuoteValuation: React.FC<Props> = ({ tableData, loading, setPeriod }) => {
+const QuoteValuation: React.FC<Props> = ({ tableData, setPeriod }) => {
   return (
     <div className='quote-valuation'>
       <BtnBarOne
@@ -20,7 +19,7 @@ const QuoteValuation: React.FC<Props> = ({ tableData, loading, setPeriod }) => {
         setState={setPeriod}
       />
 
-      <Table data={tableData} loading={loading} horizontal={true} />
+      <Table data={tableData} horizontal={true} />
     </div>
   );
 };

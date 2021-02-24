@@ -1,17 +1,13 @@
 import React from 'react';
-import MainNewsItemLoading from '../MainNewsItemLoading';
 import { NewsItem } from '../../../../common/types/APITypes';
 import { getTimeAgoString, truncate } from '../../../../common/utils/helpers';
 import './mainNewsItem.css';
 
 interface Props {
   data: NewsItem;
-  loading: boolean;
 }
 
-const MainNewsItem: React.FC<Props> = ({ data, loading }) => {
-  if (loading) return <MainNewsItemLoading />;
-
+const MainNewsItem: React.FC<Props> = ({ data }) => {
   const { site, title, text, publishedDate, url, image } = data;
 
   return (

@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { AppState } from '../../../app/rootReducer';
 import FetchErrorContainer from '../../../common/containers/FetchErrorContainer';
 import { fetchCrypto } from '../cryptoSlice';
+import Spinner from '../../../common/components/Spinner';
 
 const CryptoTableContainer = () => {
   const { data, loading, error } = useSelector(
@@ -21,6 +22,7 @@ const CryptoTableContainer = () => {
     dispatch(fetchCrypto());
   }, [dispatch, realDataStatus]);
 
+  if (loading) return <Spinner />;
   if (error)
     return <FetchErrorContainer error='Failed to fetch cryptocurrencies' />;
 
@@ -28,7 +30,6 @@ const CryptoTableContainer = () => {
     <TableSortedPaginated
       data={data}
       formatData={formatData}
-      loading={loading}
       properties={properties}
       initialSortProperty='name'
     />

@@ -5,16 +5,12 @@ import {
   shortenNumbers,
 } from '../../../../common/utils/helpers';
 import './quoteSummary.css';
-import QuoteSummaryLoading from './QuoteSummaryLoading';
 
 interface Props {
   quote: Quote;
-  loading: boolean;
 }
 
-const QuoteSummary: React.FC<Props> = ({ quote, loading }) => {
-  if (loading) return <QuoteSummaryLoading />;
-
+const QuoteSummary: React.FC<Props> = ({ quote }) => {
   const formattedQuote = shortenNumbers(replaceNullValues(quote));
 
   return (

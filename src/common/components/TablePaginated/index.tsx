@@ -5,11 +5,7 @@ import PageOptions from '../PageOptions';
 import Table from '../Table';
 import './tablePaginated.css';
 
-const TablePaginated: React.FC<TableProps> = ({
-  data,
-  loading,
-  horizontal,
-}) => {
+const TablePaginated: React.FC<TableProps> = ({ data, horizontal }) => {
   const [page, setPage] = useState(0);
   const [resultsPerPage, setResultsPerPage] = useState(10);
 
@@ -36,11 +32,7 @@ const TablePaginated: React.FC<TableProps> = ({
         setPage={setPage}
         resultsPerPage={resultsPerPage}
       />
-      <Table
-        data={filterRows(data)}
-        loading={loading}
-        horizontal={horizontal}
-      />
+      <Table data={filterRows(data)} horizontal={horizontal} />
       <PageNav
         length={data.length}
         page={page}

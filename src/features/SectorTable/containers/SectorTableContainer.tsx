@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { AppState } from '../../../app/rootReducer';
 import FetchErrorContainer from '../../../common/containers/FetchErrorContainer';
 import SectorTable from '../components/SectorTable';
+import SectorTableLoading from '../components/SectorTableLoading';
 import { fetchSectors } from '../sectorsSlice';
 
 const SectorTableContainer = () => {
@@ -22,6 +23,7 @@ const SectorTableContainer = () => {
     dispatch(fetchSectors());
   }, [dispatch, realDataStatus]);
 
+  if (loading) return <SectorTableLoading />;
   if (error) return <FetchErrorContainer error='Failed to fetch sectors' />;
 
   return (

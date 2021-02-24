@@ -9,7 +9,6 @@ interface Props {
   formatData: (data: KeyValueObject[]) => any[][];
   properties: string[];
   initialSortProperty: string;
-  loading: boolean;
   horizontal?: boolean;
 }
 
@@ -18,7 +17,6 @@ const TableSorted: React.FC<Props> = ({
   formatData,
   properties, // properties should be of the same length and in the same order as the formatted data
   initialSortProperty,
-  loading,
   horizontal,
 }) => {
   const [reverse, setReverse] = useState(true);
@@ -81,7 +79,7 @@ const TableSorted: React.FC<Props> = ({
     //eslint-disable-next-line
   }, [data, sortProperty, reverse]);
 
-  return <Table data={tableData} loading={loading} horizontal={horizontal} />;
+  return <Table data={tableData} horizontal={horizontal} />;
 };
 
 export default TableSorted;

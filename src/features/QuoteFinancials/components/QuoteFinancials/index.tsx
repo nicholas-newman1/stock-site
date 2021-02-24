@@ -5,14 +5,12 @@ import './quoteFinancials.css';
 
 interface Props {
   tableData: any[][];
-  loading: boolean;
   setStatement: React.Dispatch<React.SetStateAction<Statement>>;
   setPeriod: React.Dispatch<React.SetStateAction<Period>>;
 }
 
 const QuoteFinancials: React.FC<Props> = ({
   tableData,
-  loading,
   setStatement,
   setPeriod,
 }) => {
@@ -36,7 +34,7 @@ const QuoteFinancials: React.FC<Props> = ({
         />
       </div>
 
-      <Table data={tableData} loading={loading} horizontal={true} />
+      <Table data={tableData} horizontal={true} />
     </div>
   );
 };

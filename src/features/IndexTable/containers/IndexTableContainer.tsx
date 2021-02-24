@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { AppState } from '../../../app/rootReducer';
 import FetchErrorContainer from '../../../common/containers/FetchErrorContainer';
 import { fetchIndex } from '../indexSlice';
+import Spinner from '../../../common/components/Spinner';
 
 const IndexTableContainer = () => {
   const { data, loading, error } = useSelector(
@@ -21,13 +22,13 @@ const IndexTableContainer = () => {
     dispatch(fetchIndex());
   }, [dispatch, realDataStatus]);
 
+  if (loading) return <Spinner />;
   if (error) return <FetchErrorContainer error='Failed to fetch indexes' />;
 
   return (
     <TableSortedPaginated
       data={data}
       formatData={formatData}
-      loading={loading}
       properties={properties}
       initialSortProperty='name'
     />

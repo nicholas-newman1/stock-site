@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { AppState } from '../../../app/rootReducer';
 import FetchErrorContainer from '../../../common/containers/FetchErrorContainer';
 import { fetchCommodity } from '../commoditySlice';
+import Spinner from '../../../common/components/Spinner';
 
 const CommodityTableContainer = () => {
   const { data, loading, error } = useSelector(
@@ -21,13 +22,13 @@ const CommodityTableContainer = () => {
     dispatch(fetchCommodity());
   }, [dispatch, realDataStatus]);
 
+  if (loading) return <Spinner />;
   if (error) return <FetchErrorContainer error='Failed to fetch commodities' />;
 
   return (
     <TableSortedPaginated
       data={data}
       formatData={formatData}
-      loading={loading}
       properties={properties}
       initialSortProperty='name'
     />

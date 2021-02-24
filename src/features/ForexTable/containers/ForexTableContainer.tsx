@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { AppState } from '../../../app/rootReducer';
 import FetchErrorContainer from '../../../common/containers/FetchErrorContainer';
 import { fetchForex } from '../forexSlice';
+import Spinner from '../../../common/components/Spinner';
 
 const ForexTableContainer = () => {
   const { data, loading, error } = useSelector(
@@ -21,13 +22,13 @@ const ForexTableContainer = () => {
     dispatch(fetchForex());
   }, [dispatch, realDataStatus]);
 
+  if (loading) return <Spinner />;
   if (error) return <FetchErrorContainer error='Failed to fetch forex data' />;
 
   return (
     <TableSortedPaginated
       data={data}
       formatData={formatData}
-      loading={loading}
       properties={properties}
       initialSortProperty='name'
     />

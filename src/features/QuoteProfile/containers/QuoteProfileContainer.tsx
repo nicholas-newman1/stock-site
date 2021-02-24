@@ -2,6 +2,7 @@ import React from 'react';
 import QuoteProfile from '../components/QuoteProfile';
 import useFetch from '../../../common/hooks/useFetch';
 import { dummyProfileData } from '../../../app/dummyData';
+import Spinner from '../../../common/components/Spinner';
 
 interface Props {
   symbol: string;
@@ -14,7 +15,9 @@ const QuoteProfileContainer: React.FC<Props> = ({ symbol }) => {
     dummyProfileData // dummy data
   );
 
-  return <QuoteProfile profile={data[0]} loading={loading} />;
+  if (loading) return <Spinner />;
+
+  return <QuoteProfile profile={data[0]} />;
 };
 
 export default QuoteProfileContainer;

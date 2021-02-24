@@ -1,18 +1,15 @@
 import React from 'react';
 import { Scatter } from 'react-chartjs-2';
-import Spinner from '../Spinner';
 import './historicalChart.css';
 
 interface Props {
   data: HistoricalChartData;
-  loading: boolean;
   tooltipFormat: TooltipFormat;
   timeScaleFormat: TimeScaleFormat;
 }
 
 const HistoricalChart: React.FC<Props> = ({
   data,
-  loading,
   tooltipFormat,
   timeScaleFormat,
 }) => {
@@ -75,13 +72,7 @@ const HistoricalChart: React.FC<Props> = ({
 
   return (
     <div className='historical-chart'>
-      {loading ? (
-        <Spinner />
-      ) : data.length > 0 ? (
-        <Scatter data={{ datasets }} options={options} />
-      ) : (
-        <h3>No Data Available</h3>
-      )}
+      <Scatter data={{ datasets }} options={options} />
     </div>
   );
 };

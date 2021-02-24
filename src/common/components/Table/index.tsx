@@ -1,12 +1,9 @@
 import React from 'react';
 import { TableProps } from '../../types/propTypes';
-import Spinner from '../Spinner';
 import './table.css';
 
-const Table: React.FC<TableProps> = ({ data, loading, horizontal = false }) => {
-  return loading ? (
-    <Spinner />
-  ) : data.length > 0 ? (
+const Table: React.FC<TableProps> = ({ data, horizontal = false }) => {
+  return data.length > 0 ? (
     <table className='table'>
       {!horizontal && (
         <thead className='table__thead'>

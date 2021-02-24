@@ -4,6 +4,7 @@ import BottomNews from '../components/BottomNews';
 import { AppState } from '../../app/rootReducer';
 import { fetchNews } from '../redux/modules/news';
 import FetchErrorContainer from './FetchErrorContainer';
+import BottomNewsLoading from '../components/BottomNews/BottomNewsLoading';
 
 const GeneralBottomNewsContainer = () => {
   const dispatch = useDispatch();
@@ -17,9 +18,10 @@ const GeneralBottomNewsContainer = () => {
     dispatch(fetchNews('limit=10&tickers=AAPL,FB,AMZN,TSLA'));
   }, [dispatch, realDataStatus]);
 
+  if (loading) return <BottomNewsLoading />;
   if (error) return <FetchErrorContainer error='Failed to fetch news' />;
 
-  return <BottomNews newsData={data} loading={loading} />;
+  return <BottomNews newsData={data} />;
 };
 
 export default GeneralBottomNewsContainer;

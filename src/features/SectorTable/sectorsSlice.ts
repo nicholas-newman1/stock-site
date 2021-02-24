@@ -70,8 +70,8 @@ export const fetchSectorsFailure = (error: string): FetchSectorsFailure => ({
 
 export const fetchSectors = () => {
   return fetchFromAPI(
-    'quotes/commodity',
-    'commodity',
+    'sectors-performance',
+    'sectors',
     fetchSectorsRequest,
     fetchSectorsSuccess,
     fetchSectorsFailure

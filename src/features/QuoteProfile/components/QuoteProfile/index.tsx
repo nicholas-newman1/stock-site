@@ -1,17 +1,13 @@
 import React from 'react';
 import { formatPhoneNumber } from '../../../../common/utils/helpers';
-import Spinner from '../../../../common/components/Spinner';
 import './quoteProfile.css';
 
 interface Props {
   profile: KeyValueObject;
-  loading: boolean;
 }
 
-const QuoteProfile: React.FC<Props> = ({ profile, loading }) => {
-  if (loading) {
-    return <Spinner />;
-  } else if (profile) {
+const QuoteProfile: React.FC<Props> = ({ profile }) => {
+  if (profile) {
     const {
       address,
       city,

@@ -5,6 +5,7 @@ import { AppState } from '../../../app/rootReducer';
 import { formatData, properties } from '../../../common/utils/quoteTable';
 import { fetchWatchlist } from '../watchlistSlice';
 import FetchErrorContainer from '../../../common/containers/FetchErrorContainer';
+import Spinner from '../../../common/components/Spinner';
 
 const WatchlistTableContainer = () => {
   const { data, loading, error } = useSelector(
@@ -21,13 +22,13 @@ const WatchlistTableContainer = () => {
     dispatch(fetchWatchlist());
   }, [dispatch, realDataStatus]);
 
+  if (loading) return <Spinner />;
   if (error) return <FetchErrorContainer error='Failed to fetch watchlist' />;
 
   return (
     <TableSortedPaginated
       data={data}
       formatData={formatData}
-      loading={loading}
       properties={properties}
       initialSortProperty='name'
     />
