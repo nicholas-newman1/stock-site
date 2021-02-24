@@ -4,18 +4,17 @@ import { AppState } from '../../app/rootReducer';
 import { Helmet } from 'react-helmet-async';
 import { RouteComponentProps } from 'react-router-dom';
 import { fetchQuoteAndQuoteNews } from './quoteSlice';
-import BottomNews from '../../common/components/BottomNews';
 import useScrollTop from '../../common/hooks/useScrollTop';
 import QuoteChartContainer from '../../features/QuoteChart/QuoteChartContainer';
 import QuoteFinancialsContainer from '../../features/QuoteFinancials/QuoteFinancialsContainer';
 import QuoteProfileContainer from '../../features/QuoteProfile/QuoteProfileContainer';
 import QuoteValuationContainer from '../../features/QuoteValuation/QuoteValuationContainer';
 import { WatchlistBtnContainer } from '../../features/Watchlist';
-import Quote from '../../common/components/Quote';
-import QuoteSummary from '../../common/components/QuoteSummary';
+import { QuoteSummaryContainer } from '../../features/QuoteSummary';
 import './quotePage.css';
-import FetchErrorContainer from '../../common/containers/FetchErrorContainer';
 import BtnBarTwo from '../../common/components/BtnBarTwo';
+import { QuoteContainer } from '../../features/Quote';
+import { QuoteNewsContainer } from '../../features/QuoteNews';
 
 interface MatchProps {
   symbol: string;
@@ -31,26 +30,19 @@ const QuotePage: React.FC<Props> = ({ match }) => {
 
   const dispatch = useDispatch();
 
-  const {
-    quote: {
-      quoteData: { data: quoteData, loading: loadingQuote },
-      newsData: { data: newsData, loading: loadingNews, error: newsError },
-      isStock,
-    },
-    realData,
-  } = useSelector((state: AppState) => state);
-
-  const quote = quoteData[0] || {};
+  const realData = useSelector((state: AppState) => state.realData.status);
+  const quote = useSelector((state: AppState) => state.quote.quoteData.data[0]);
+  const isStock = useSelector((state: AppState) => state.quote.isStock);
 
   useEffect(() => {
     dispatch(fetchQuoteAndQuoteNews(symbol));
     //eslint-disable-next-line
-  }, [realData.status]);
+  }, [realData]);
 
   return (
     <div className='quote-page'>
       <Helmet>
-        {'symbol' in quote && 'name' in quote && (
+        {quote && 'symbol' in quote && 'name' in quote && (
           <>
             <title>{`${quote.symbol} | ${quote.name} | Free Quote | Stock Site`}</title>{' '}
             <meta
@@ -60,39 +52,35 @@ const QuotePage: React.FC<Props> = ({ match }) => {
           </>
         )}
       </Helmet>
-      <>
-        <div className='quote-page__flex'>
-          <Quote quote={quote} loading={loadingQuote} />
-          <WatchlistBtnContainer symbol={symbol} />
-        </div>
 
-        {isStock && (
-          <BtnBarTwo
-            btns={[
-              { text: 'Summary' },
-              { text: 'Financials' },
-              { text: 'Profile' },
-              { text: 'Valuation' },
-            ]}
-            setState={setTab}
-          />
-        )}
-        {tab === 'Summary' && (
-          <>
-            <QuoteChartContainer symbol={symbol} />
-            <QuoteSummary quote={quote} loading={loadingQuote} />
-          </>
-        )}
-        {tab === 'Financials' && <QuoteFinancialsContainer symbol={symbol} />}
-        {tab === 'Profile' && <QuoteProfileContainer symbol={symbol} />}
-        {tab === 'Valuation' && <QuoteValuationContainer symbol={symbol} />}
+      <div className='quote-page__flex'>
+        <QuoteContainer />
+        <WatchlistBtnContainer symbol={symbol} />
+      </div>
 
-        {newsError ? (
-          <FetchErrorContainer error='Failed to fetch news' />
-        ) : (
-          <BottomNews newsData={newsData} loading={loadingNews} />
-        )}
-      </>
+      {isStock && (
+        <BtnBarTwo
+          btns={[
+            { text: 'Summary' },
+            { text: 'Financials' },
+            { text: 'Profile' },
+            { text: 'Valuation' },
+          ]}
+          setState={setTab}
+        />
+      )}
+
+      {tab === 'Summary' && (
+        <>
+          <QuoteChartContainer symbol={symbol} />
+          <QuoteSummaryContainer />
+        </>
+      )}
+      {tab === 'Financials' && <QuoteFinancialsContainer symbol={symbol} />}
+      {tab === 'Profile' && <QuoteProfileContainer symbol={symbol} />}
+      {tab === 'Valuation' && <QuoteValuationContainer symbol={symbol} />}
+
+      <QuoteNewsContainer />
     </div>
   );
 };

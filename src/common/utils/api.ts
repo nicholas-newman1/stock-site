@@ -15,7 +15,7 @@ export const fetchFromAPI = (
 
     if (getState().realData.status) {
       return fetch(
-        `https://financialmodelingprep.com/api/v3/${endpoint}?apikey=${
+        `https://financialmodelingprep.com/api/v3/${endpoint}?apiky=${
           process.env.REACT_APP_FMP_KEY
         }${params && '&' + params}`
       )
