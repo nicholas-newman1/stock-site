@@ -1,7 +1,7 @@
 import React from 'react';
-import { Quote as QuoteType } from '../../../common/types/APITypes';
-import { formatQuoteData } from '../../../common/utils/helpers';
-import Spinner from '../../../common/components/Spinner';
+import { Quote as QuoteType } from '../../types/APITypes';
+import { formatQuoteData } from '../../utils/helpers';
+import Spinner from '../Spinner';
 import './quote.css';
 
 interface Props {

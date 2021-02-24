@@ -1,3 +1,8 @@
+.quote-page {
+  display: grid;
+  gap: 1rem;
+}
+
 .quote-page__flex {
   display: flex;
   justify-content: space-between;

@@ -4,7 +4,6 @@ import { AppState } from '../../app/rootReducer';
 import { Helmet } from 'react-helmet-async';
 import { RouteComponentProps } from 'react-router-dom';
 import { fetchQuoteAndQuoteNews } from './quoteSlice';
-import QuoteNav from '../../features/QuoteNav';
 import BottomNews from '../../common/components/BottomNews';
 import useScrollTop from '../../common/hooks/useScrollTop';
 import QuoteChartContainer from '../../features/QuoteChart/QuoteChartContainer';
@@ -12,10 +11,11 @@ import QuoteFinancialsContainer from '../../features/QuoteFinancials/QuoteFinanc
 import QuoteProfileContainer from '../../features/QuoteProfile/QuoteProfileContainer';
 import QuoteValuationContainer from '../../features/QuoteValuation/QuoteValuationContainer';
 import QuoteWatchlistBtnContainer from '../../features/Watchlist/WatchlistBtnContainer';
-import QuoteContainer from '../../features/Quote/QuoteContainer';
-import QuoteSummaryContainer from '../../features/QuoteSummary/QuoteSummaryContainer';
+import Quote from '../../common/components/Quote';
+import QuoteSummary from '../../common/components/QuoteSummary';
 import './quotePage.css';
 import FetchErrorContainer from '../../common/containers/FetchErrorContainer';
+import BtnBarTwo from '../../common/components/BtnBarTwo';
 
 interface MatchProps {
   symbol: string;
@@ -33,7 +33,7 @@ const QuotePage: React.FC<Props> = ({ match }) => {
 
   const {
     quote: {
-      quoteData: { data: quoteData },
+      quoteData: { data: quoteData, loading: loadingQuote },
       newsData: { data: newsData, loading: loadingNews, error: newsError },
       isStock,
     },
@@ -48,7 +48,7 @@ const QuotePage: React.FC<Props> = ({ match }) => {
   }, [realData.status]);
 
   return (
-    <>
+    <div className='quote-page'>
       <Helmet>
         {'symbol' in quote && 'name' in quote && (
           <>
@@ -62,15 +62,25 @@ const QuotePage: React.FC<Props> = ({ match }) => {
       </Helmet>
       <>
         <div className='quote-page__flex'>
-          <QuoteContainer />
+          <Quote quote={quote} loading={loadingQuote} />
           <QuoteWatchlistBtnContainer symbol={symbol} />
         </div>
 
-        {isStock && <QuoteNav setTab={setTab} />}
+        {isStock && (
+          <BtnBarTwo
+            btns={[
+              { text: 'Summary' },
+              { text: 'Financials' },
+              { text: 'Profile' },
+              { text: 'Valuation' },
+            ]}
+            setState={setTab}
+          />
+        )}
         {tab === 'Summary' && (
           <>
             <QuoteChartContainer symbol={symbol} />
-            <QuoteSummaryContainer />
+            <QuoteSummary quote={quote} loading={loadingQuote} />
           </>
         )}
         {tab === 'Financials' && <QuoteFinancialsContainer symbol={symbol} />}
@@ -83,7 +93,7 @@ const QuotePage: React.FC<Props> = ({ match }) => {
           <BottomNews newsData={newsData} loading={loadingNews} />
         )}
       </>
-    </>
+    </div>
   );
 };
 

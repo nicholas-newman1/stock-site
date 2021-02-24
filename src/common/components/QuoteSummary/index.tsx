@@ -1,9 +1,6 @@
 import React from 'react';
-import { Quote } from '../../../common/types/APITypes';
-import {
-  replaceNullValues,
-  shortenNumbers,
-} from '../../../common/utils/helpers';
+import { Quote } from '../../types/APITypes';
+import { replaceNullValues, shortenNumbers } from '../../utils/helpers';
 import './quoteSummary.css';
 import QuoteSummaryLoading from './QuoteSummaryLoading';
 
