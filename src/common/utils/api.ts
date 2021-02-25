@@ -13,12 +13,21 @@ export const fetchFromAPI = (
   return (dispatch: Dispatch<AppActions>, getState: () => AppState) => {
     dispatch(onRequest());
 
+    // const res = await
+
     if (getState().realData.status) {
-      return fetch(
-        `https://financialmodelingprep.com/api/v3/${endpoint}?apikey=${
-          process.env.REACT_APP_FMP_KEY
-        }${params && '&' + params}`
-      )
+      return fetch('/.netlify/functions/FMPRequest', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: btoa(
+          JSON.stringify({
+            endpoint,
+            params,
+          })
+        ),
+      })
         .then((res) => res.json())
         .then((data) => {
           if (data['Error Message']) {
@@ -30,6 +39,22 @@ export const fetchFromAPI = (
           }
         })
         .catch((err) => dispatch(onFailure(err.message)));
+      // return fetch(
+      //   `https://financialmodelingprep.com/api/v3/${endpoint}?apikey=${
+      //     process.env.REACT_APP_FMP_KEY
+      //   }${params && '&' + params}`
+      // )
+      //   .then((res) => res.json())
+      //   .then((data) => {
+      //     if (data['Error Message']) {
+      //       dispatch(onFailure(data['Error Message']));
+      //     } else if (data.hasOwnProperty('error')) {
+      //       dispatch(onFailure(data.error));
+      //     } else {
+      //       dispatch(onSuccess(data));
+      //     }
+      //   })
+      //   .catch((err) => dispatch(onFailure(err.message)));
     } else {
       return fetch(`../dummyData/${dummyDataEndpoint}.json`)
         .then((res) => res.json())
