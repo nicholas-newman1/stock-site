@@ -54,33 +54,40 @@ const QuotePage: React.FC<Props> = ({ match }) => {
       </Helmet>
 
       <div className='quote-page__flex'>
-        <QuoteContainer />
+        <div className='quote-page__quote'>
+          <QuoteContainer />
+        </div>
+
         <WatchlistBtnContainer symbol={symbol} />
       </div>
 
-      {isStock && (
-        <BtnBarTwo
-          btns={[
-            { text: 'Summary' },
-            { text: 'Financials' },
-            { text: 'Profile' },
-            { text: 'Valuation' },
-          ]}
-          setState={setTab}
-        />
-      )}
+      <div className='quote-page__grid'>
+        {isStock && (
+          <div className='quote-page__nav'>
+            <BtnBarTwo
+              btns={[
+                { text: 'Summary' },
+                { text: 'Financials' },
+                { text: 'Profile' },
+                { text: 'Valuation' },
+              ]}
+              setState={setTab}
+            />
+          </div>
+        )}
 
-      {tab === 'Summary' && (
-        <>
-          <QuoteChartContainer symbol={symbol} />
-          <QuoteSummaryContainer />
-        </>
-      )}
-      {tab === 'Financials' && <QuoteFinancialsContainer symbol={symbol} />}
-      {tab === 'Profile' && <QuoteProfileContainer symbol={symbol} />}
-      {tab === 'Valuation' && <QuoteValuationContainer symbol={symbol} />}
+        {tab === 'Summary' && (
+          <>
+            <QuoteChartContainer symbol={symbol} />
+            <QuoteSummaryContainer />
+          </>
+        )}
+        {tab === 'Financials' && <QuoteFinancialsContainer symbol={symbol} />}
+        {tab === 'Profile' && <QuoteProfileContainer symbol={symbol} />}
+        {tab === 'Valuation' && <QuoteValuationContainer symbol={symbol} />}
 
-      <QuoteNewsContainer />
+        <QuoteNewsContainer />
+      </div>
     </div>
   );
 };

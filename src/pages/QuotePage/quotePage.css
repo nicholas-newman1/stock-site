@@ -1,12 +1,21 @@
-.quote-page {
-  display: grid;
-  gap: 1rem;
-}
-
 .quote-page__flex {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
   flex-wrap: wrap;
   margin-bottom: 1rem;
+}
+
+.quote-page__quote {
+  margin-right: 1rem;
+  margin-bottom: 1rem;
+}
+
+.quote-page__grid {
+  display: grid;
+  gap: 1rem;
+}
+
+.quote-page__nav {
+  overflow: auto;
 }

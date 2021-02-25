@@ -194,9 +194,10 @@ export const fetchQuoteAndQuoteNews = (symbol: string) => {
     // @ts-ignore
     return dispatch(fetchQuote(symbol)).then(() => {
       const data = getState().quote.quoteData.data;
-      return data.length
-        ? isStock(data[0].exchange)
-        : false
+      return !data.length
+        ? // @ts-ignore
+          dispatch(fetchQuoteNews())
+        : isStock(data[0].exchange)
         ? // @ts-ignore
           dispatch(fetchQuoteNews(symbol))
         : // @ts-ignore
