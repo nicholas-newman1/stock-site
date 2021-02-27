@@ -460,214 +460,6 @@ describe('formatQuoteData', () => {
   });
 });
 
-describe('formatValuationDates', () => {
-  it('should convert quarterly dates to localeDateString with month and year', () => {
-    const DATA = [
-      { date: '2020-09-26' },
-      { date: '2020-06-27' },
-      { date: '2020-03-28' },
-    ];
-
-    const FORMATTED_DATA = DATA.map((item) => ({
-      ...item,
-      date: new Date(item.date).toLocaleDateString([], {
-        month: 'numeric',
-        year: 'numeric',
-      }),
-    }));
-
-    expect(helpers.formatValuationDates(DATA, 'quarter')).toEqual(
-      FORMATTED_DATA
-    );
-  });
-
-  it('should replace invalid quarterly dates with "N/A"', () => {
-    const DATA = [{ date: 'fewfe6' }, { date: null }, { date: true }];
-
-    const FORMATTED_DATA = DATA.map((item) => ({
-      ...item,
-      date: 'N/A',
-    }));
-
-    expect(helpers.formatValuationDates(DATA, 'quarter')).toEqual(
-      FORMATTED_DATA
-    );
-  });
-
-  it('should convert annual dates to show only the year', () => {
-    const DATA = [
-      { date: '2020-09-26' },
-      { date: '2019-06-27' },
-      { date: '2018-03-28' },
-    ];
-
-    const FORMATTED_DATA = [
-      { date: '2020' },
-      { date: '2019' },
-      { date: '2018' },
-    ];
-
-    expect(helpers.formatValuationDates(DATA, '')).toEqual(FORMATTED_DATA);
-  });
-
-  it('should replace invalid annual dates with "N/A"', () => {
-    const DATA = [{ date: 'fewfe6' }, { date: null }, { date: true }];
-
-    const FORMATTED_DATA = DATA.map((item) => ({
-      ...item,
-      date: 'N/A',
-    }));
-
-    expect(helpers.formatValuationDates(DATA, '')).toEqual(FORMATTED_DATA);
-  });
-
-  it('should not alter any values except quarterlly dates', () => {
-    const DATA = [
-      {
-        symbol: 'AAPL',
-        date: '2020-09-26',
-        marketCap: 1915229781102.37817,
-      },
-      {
-        symbol: 'AAPL',
-        date: '2019-06-27',
-        marketCap: 1525055207240.29199,
-      },
-      {
-        symbol: 'AAPL',
-        date: '2018-03-28',
-        marketCap: 1080171439180.40405,
-      },
-    ];
-
-    const FORMATTED_DATA = DATA.map((item) => ({
-      ...item,
-      date: new Date(item.date).toLocaleDateString([], {
-        month: 'numeric',
-        year: 'numeric',
-      }),
-    }));
-
-    expect(helpers.formatValuationDates(DATA, 'quarter')).toEqual(
-      FORMATTED_DATA
-    );
-  });
-
-  it('should not alter any values except annual dates', () => {
-    const DATA = [
-      {
-        symbol: 'AAPL',
-        date: '2020-09-26',
-        marketCap: 1915229781102.37817,
-      },
-      {
-        symbol: 'AAPL',
-        date: '2019-06-27',
-        marketCap: 1525055207240.29199,
-      },
-      {
-        symbol: 'AAPL',
-        date: '2018-03-28',
-        marketCap: 1080171439180.40405,
-      },
-    ];
-
-    const FORMATTED_DATA = [
-      {
-        symbol: 'AAPL',
-        date: '2020',
-        marketCap: 1915229781102.37817,
-      },
-      {
-        symbol: 'AAPL',
-        date: '2019',
-        marketCap: 1525055207240.29199,
-      },
-      {
-        symbol: 'AAPL',
-        date: '2018',
-        marketCap: 1080171439180.40405,
-      },
-    ];
-
-    expect(helpers.formatValuationDates(DATA, '')).toEqual(FORMATTED_DATA);
-  });
-});
-
-describe('formatValuationData', () => {
-  it('should replace null values in each object using helpers.replaceNullValues', () => {
-    const DATA = [
-      { a: false, b: null, c: null },
-      { a: null, b: true, c: null },
-    ];
-
-    const FORMATTED_DATA = DATA.map((obj) => helpers.replaceNullValues(obj));
-
-    expect(helpers.formatValuationData(DATA, '')).toMatchObject(FORMATTED_DATA);
-  });
-
-  it('should replace numbers in each object using helpers.shortenNumbers', () => {
-    const DATA = [
-      { a: false, b: 12314.13213, c: 437590185.14 },
-      { a: 13.432875, b: true, c: 10423943214 },
-    ];
-
-    const FORMATTED_DATA = DATA.map((obj) => helpers.shortenNumbers(obj));
-
-    expect(helpers.formatValuationData(DATA, '')).toMatchObject(FORMATTED_DATA);
-  });
-
-  it('should multiply earningsYield * 100 before applying helpers.shortenNumbers', () => {
-    const DATA = [
-      { earningsYield: 0.15 },
-      { earningsYield: 0.17 },
-      { earningsYield: 0.12 },
-    ];
-
-    const FORMATTED_DATA = [
-      helpers.shortenNumbers({ earningsYield: 15 }),
-      helpers.shortenNumbers({ earningsYield: 17 }),
-      helpers.shortenNumbers({ earningsYield: 12 }),
-    ];
-
-    expect(helpers.formatValuationData(DATA, '')).toMatchObject(FORMATTED_DATA);
-  });
-
-  it('should set earningsYield to "N/A"', () => {
-    const DATA = [{}];
-    const FORMATTED_DATA = [{ earningsYield: 'N/A' }];
-
-    expect(helpers.formatValuationData(DATA, '')).toMatchObject(FORMATTED_DATA);
-  });
-
-  it('should format annual dates with helpers.formatValuationDates', () => {
-    const DATA = [
-      { date: '2020-09-26' },
-      { date: '2019-06-27' },
-      { date: null },
-      { date: '2018-03-28' },
-    ];
-
-    const FORMATTED_DATA = helpers.formatValuationDates(DATA, '');
-
-    expect(helpers.formatValuationData(DATA, '')).toMatchObject(FORMATTED_DATA);
-  });
-
-  it('should format quarterly dates with helpers.formatValuationDates', () => {
-    const DATA = [
-      { date: '2020-09-26' },
-      { date: '2020-06-27' },
-      { date: '2020-03-28' },
-    ];
-
-    const FORMATTED_DATA = helpers.formatValuationDates(DATA, 'quarter');
-
-    expect(helpers.formatValuationData(DATA, 'quarter')).toMatchObject(
-      FORMATTED_DATA
-    );
-  });
-});
-
 describe('filterChartData', () => {
   const DATA = [
     { date: '2021-01-21 16:00:00' },
@@ -858,6 +650,8 @@ describe('formatChartData', () => {
   });
 });
 
+test.todo('pluck');
+
 describe('pluckProperties', () => {
   const DATA = [
     { foo: 1, bar: 'one' },
@@ -891,3 +685,7 @@ describe('pluckProperties', () => {
     );
   });
 });
+
+test.todo('pluckAll');
+test.todo('formatDate');
+test.todo('formatDates');
