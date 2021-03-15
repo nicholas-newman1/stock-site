@@ -1,6 +1,7 @@
 import React from 'react';
 import BtnBarOne from '../../../../common/components/BtnBarOne';
 import HistoricalChart from '../../../../common/components/HistoricalChart';
+import Spinner from '../../../../common/components/Spinner';
 import './quoteChart.css';
 
 interface Props {
@@ -8,6 +9,7 @@ interface Props {
   timeScaleFormat: TimeScaleFormat;
   tooltipFormat: TooltipFormat;
   setTimeframe: React.Dispatch<React.SetStateAction<Timeframe>>;
+  loading: boolean;
 }
 
 const QuoteChart: React.FC<Props> = ({
@@ -15,6 +17,7 @@ const QuoteChart: React.FC<Props> = ({
   timeScaleFormat,
   tooltipFormat,
   setTimeframe,
+  loading,
 }) => {
   const timeframeBtns: { text: Timeframe }[] = [
     { text: '1D' },
@@ -30,7 +33,9 @@ const QuoteChart: React.FC<Props> = ({
   return (
     <div className='quote-chart'>
       <BtnBarOne btns={timeframeBtns} setState={setTimeframe} />
-      {chartData.length ? (
+      {loading ? (
+        <Spinner />
+      ) : chartData.length ? (
         <HistoricalChart
           data={chartData}
           timeScaleFormat={timeScaleFormat}

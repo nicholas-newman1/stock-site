@@ -1,14 +1,16 @@
 import React from 'react';
 import BtnBarOne from '../../../../common/components/BtnBarOne';
+import Spinner from '../../../../common/components/Spinner';
 import Table from '../../../../common/components/Table';
 import './quoteValuation.css';
 
 interface Props {
   tableData: any[][];
   setPeriod: React.Dispatch<React.SetStateAction<Period>>;
+  loading: boolean;
 }
 
-const QuoteValuation: React.FC<Props> = ({ tableData, setPeriod }) => {
+const QuoteValuation: React.FC<Props> = ({ tableData, setPeriod, loading }) => {
   return (
     <div className='quote-valuation'>
       <BtnBarOne
@@ -19,7 +21,7 @@ const QuoteValuation: React.FC<Props> = ({ tableData, setPeriod }) => {
         setState={setPeriod}
       />
 
-      <Table data={tableData} horizontal={true} />
+      {loading ? <Spinner /> : <Table data={tableData} horizontal={true} />}
     </div>
   );
 };

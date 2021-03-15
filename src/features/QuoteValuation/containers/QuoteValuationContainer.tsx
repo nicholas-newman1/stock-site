@@ -6,7 +6,6 @@ import {
   dummyQuarterlyValuationData,
   dummyAnnualValuationData,
 } from '../../../app/dummyData';
-import Spinner from '../../../common/components/Spinner';
 
 interface Props {
   symbol: string;
@@ -32,9 +31,13 @@ const QuoteValuationContainer: React.FC<Props> = ({ symbol }) => {
     //eslint-disable-next-line
   }, [data]);
 
-  if (loading) return <Spinner />;
-
-  return <QuoteValuation tableData={tableData} setPeriod={setPeriod} />;
+  return (
+    <QuoteValuation
+      tableData={tableData}
+      setPeriod={setPeriod}
+      loading={loading}
+    />
+  );
 };
 
 export default QuoteValuationContainer;

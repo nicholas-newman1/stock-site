@@ -11,7 +11,6 @@ import {
   formatChartData,
   filterChartData,
 } from '../../../common/utils/helpers';
-import Spinner from '../../../common/components/Spinner';
 
 interface Props {
   symbol: string;
@@ -38,14 +37,13 @@ const QuoteChartContainer: React.FC<Props> = ({ symbol }) => {
     )
   );
 
-  if (loading) return <Spinner />;
-
   return (
     <QuoteChart
       chartData={chartData}
       timeScaleFormat={getTimeScaleFormat(timeframe)}
       tooltipFormat={getTooltipFormat(timeframe)}
       setTimeframe={setTimeframe}
+      loading={loading}
     />
   );
 };
