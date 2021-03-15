@@ -1,6 +1,6 @@
 import React from 'react';
 import { Quote as QuoteType } from '../../../../common/types/APITypes';
-import { formatQuoteData } from '../../../../common/utils/helpers';
+import { formatQuoteData } from '../../helpers';
 import './quote.css';
 
 interface Props {

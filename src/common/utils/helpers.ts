@@ -177,146 +177,6 @@ export const getChangeColor = (change: any) => {
   return change > 0 ? '#25783b' : change < 0 ? '#cf0007' : 'black';
 };
 
-// formats the data in the quote to be more readable
-export const formatQuoteData = (quote: KeyValueObject) => {
-  const { price, change, changesPercentage } = quote;
-
-  // determine number of decimals to round to
-  let decimals = typeof change === 'number' ? decimalsToRoundTo(change) : 2;
-
-  // variables to hold formatted values
-  let priceStr: string;
-  let changeStr: string;
-  let changesPercentageStr: string;
-
-  // round price
-  if (typeof price === 'number') {
-    priceStr = roundLocale(price, decimals, true);
-  } else {
-    priceStr = 'N/A';
-  }
-
-  // round change and add '+' if necessary
-  if (typeof change === 'number') {
-    changeStr = roundLocale(change, decimals, true);
-    if (change > 0) changeStr = '+' + changeStr;
-  } else {
-    changeStr = 'N/A';
-  }
-
-  // round changesPercentage and add '+' if necessary
-  if (typeof changesPercentage === 'number') {
-    changesPercentageStr = roundLocale(changesPercentage, 2);
-    if (changesPercentage > 0)
-      changesPercentageStr = '+' + changesPercentageStr;
-  } else {
-    changesPercentageStr = 'N/A';
-  }
-
-  // set formatted price, change, and changesPercentage. Add change color property
-  let formattedQuote: KeyValueObject = {
-    ...quote,
-    price: priceStr,
-    change: changeStr,
-    changesPercentage: changesPercentageStr,
-    color: getChangeColor(change),
-  };
-
-  /* replace null values with N/A, large numbers with shortened versions in
-  local format */
-  formattedQuote = shortenNumbers(replaceNullValues(formattedQuote));
-
-  return formattedQuote;
-};
-
-export const filterChartData = (
-  data: HistoricalPrices,
-  timeframe: Timeframe
-) => {
-  // filters out objects not within the timeframe
-  if (timeframe === '1D') {
-    data = data.filter((item) => {
-      const latestDate = new Date(data[0].date).toLocaleDateString();
-      const itemDate = new Date(item.date).toLocaleDateString();
-      return latestDate === itemDate;
-    });
-  } else if (timeframe === '5D') {
-    data = data.filter((item) => {
-      const fiveDaysInMS = 1000 * 60 * 60 * 24 * 5;
-      const latestDate = Date.parse(data[0].date);
-      const itemDate = Date.parse(item.date);
-      return latestDate - itemDate < fiveDaysInMS;
-    });
-  } else if (timeframe === '1M') {
-    data = data.filter((item) => {
-      const thirtyDaysInMS = 1000 * 60 * 60 * 24 * 30;
-      const latestDate = Date.parse(data[0].date);
-      const itemDate = Date.parse(item.date);
-      return latestDate - itemDate < thirtyDaysInMS;
-    });
-  } else if (timeframe === '6M') {
-    data = data.filter((item) => {
-      const sixMonthsInMS = 1000 * 60 * 60 * 24 * 30 * 6;
-      const latestDate = Date.parse(data[0].date);
-      const itemDate = Date.parse(item.date);
-      return latestDate - itemDate < sixMonthsInMS;
-    });
-  } else if (timeframe === 'YTD') {
-    data = data.filter((item) => {
-      const yearBeginning = Date.parse(new Date().getFullYear().toString());
-      const itemDate = Date.parse(item.date);
-      return itemDate > yearBeginning;
-    });
-  } else if (timeframe === '1Y') {
-    data = data.filter((item) => {
-      const oneYearInMS = 1000 * 60 * 60 * 24 * 365;
-      const latestDate = Date.parse(data[0].date);
-      const itemDate = Date.parse(item.date);
-      return latestDate - itemDate < oneYearInMS;
-    });
-  } else if (timeframe === '5Y') {
-    data = data.filter((item) => {
-      const fiveYearsInMS = 1000 * 60 * 60 * 24 * 365 * 5;
-      const latestDate = Date.parse(data[0].date);
-      const itemDate = Date.parse(item.date);
-      return latestDate - itemDate < fiveYearsInMS;
-    });
-  }
-
-  // thins out the amount of data points returned (max 300)
-  data = filterNumberOfDataPoints(data, 300);
-
-  return data;
-};
-
-// returns an array with length <= max given
-export const filterNumberOfDataPoints = (
-  data: HistoricalPrices,
-  max: number
-) => {
-  while (data.length > max) {
-    data = data.filter((item: any, i: number) => {
-      // keeps first item in array (important to display current stock price)
-      // filters relatively evenly accros the array with i % 2 === 1
-      return i === 0 || i % 2 === 1;
-    });
-  }
-
-  return data;
-};
-
-// formats data to be compatible with chartJS
-export const formatChartData = (data: HistoricalPrices) => {
-  let formattedData: FormattedHistoricalPrices = data.map((item) => {
-    return {
-      x: new Date(item.date),
-      y: item.close,
-    };
-  });
-
-  return formattedData;
-};
-
 export const pluck = (arr: KeyValueObject[], key: string) => {
   return arr.map((obj) => obj[key]);
 };
@@ -353,14 +213,6 @@ export const formatDates = (dates: string[], period: Period) => {
   });
 };
 
-export const isStock = (exchange: string) => {
-  return (
-    ['INDEX', 'ETF', 'MUTUAL_FUND', 'FOREX', 'CRYPTO', 'COMMODITY'].findIndex(
-      (item) => item === exchange
-    ) === -1
-  );
-};
-
 export const getFromLocalStorage = <T>(key: string, fallbackValue: T): T => {
   const savedValue = localStorage.getItem(key);
   if (savedValue) return JSON.parse(savedValue);
@@ -368,11 +220,11 @@ export const getFromLocalStorage = <T>(key: string, fallbackValue: T): T => {
   return fallbackValue;
 };
 
-const filterMarketQuotes = (quotes: MarketQuote[]) => {
+export const filterMarketQuotes = (quotes: MarketQuote[]) => {
   return quotes.filter((quote, i) => i < 4);
 };
 
-const formatMarketQuoteData = (quotes: MarketQuote[]) => {
+export const formatMarketQuoteData = (quotes: MarketQuote[]) => {
   return quotes.map((item) => ({
     symbol: item.ticker,
     price: parseFloat(item.price),

@@ -5,12 +5,10 @@ import {
   getDummyData,
   getTimeScaleFormat,
   getTooltipFormat,
+  filterChartData,
+  formatChartData,
 } from '../helpers';
 import useFetch from '../../../common/hooks/useFetch';
-import {
-  formatChartData,
-  filterChartData,
-} from '../../../common/utils/helpers';
 
 interface Props {
   symbol: string;
