@@ -13,8 +13,6 @@ export const fetchFromAPI = (
   return (dispatch: Dispatch<AppActions>, getState: () => AppState) => {
     dispatch(onRequest());
 
-    // const res = await
-
     if (getState().realData.status) {
       return process.env.NODE_ENV === 'production'
         ? fetch('/.netlify/functions/FMPRequest', {
