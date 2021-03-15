@@ -3,10 +3,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import HeaderWarning from './HeaderWarning';
-import MainNavItems from '../../../common/components/MainNavItems';
 import Nav from '../../../common/components/Nav';
 import SearchBar from '../../../common/components/SearchBar';
 import './header.css';
+import { navItems } from '../../navItems';
 
 interface Props {
   realData: boolean;
@@ -93,10 +93,7 @@ const Header: React.FC<Props> = ({
             mobileNav ? '' : 'header--hidden'
           }`}
         >
-          <MainNavItems
-            hideNav={() => hideMobileNav()}
-            render={(navItems) => <Nav navItems={navItems} />}
-          />
+          <Nav navItems={navItems} hideNav={() => hideMobileNav()} />
         </div>
       </div>
     </header>

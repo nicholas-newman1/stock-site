@@ -1,9 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import SearchBar from '../../common/components/SearchBar';
-import MainNavItems from '../../common/components/MainNavItems';
 import Nav from '../../common/components/Nav';
 import './footer.css';
+import { navItems } from '../navItems';
 
 const Footer: React.FC = () => {
   return (
@@ -18,7 +18,7 @@ const Footer: React.FC = () => {
         </div>
 
         <div className='footer__nav-container'>
-          <MainNavItems render={(navItems) => <Nav navItems={navItems} />} />
+          <Nav navItems={navItems} />
         </div>
 
         <Link className='btn btn-outline-blue' to={`/watchlist`}>
