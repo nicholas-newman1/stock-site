@@ -16,6 +16,7 @@ import { HistoricalPricesActionTypes } from '../../features/QuoteChart/quoteChar
 import { FinancialsActionTypes } from '../../features/QuoteFinancials/quoteFinancialsSlice';
 import { ProfileActionTypes } from '../../features/QuoteProfile/quoteProfileSlice';
 import { ValuationActionTypes } from '../../features/QuoteValuation/quoteValuationSlice';
+import { SearchResultsActionTypes } from '../../pages/SearchResultsPage/searchResultsSlice';
 
 export type AppActions =
   | RealDataActionTypes
@@ -35,4 +36,5 @@ export type AppActions =
   | HistoricalPricesActionTypes
   | FinancialsActionTypes
   | ProfileActionTypes
-  | ValuationActionTypes;
+  | ValuationActionTypes
+  | SearchResultsActionTypes;

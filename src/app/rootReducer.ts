@@ -17,6 +17,7 @@ import quoteChartReducer from '../features/QuoteChart/quoteChartSlice';
 import quoteFinancialsReducer from '../features/QuoteFinancials/quoteFinancialsSlice';
 import quoteProfileReducer from '../features/QuoteProfile/quoteProfileSlice';
 import quoteValuationReducer from '../features/QuoteValuation/quoteValuationSlice';
+import searchResultsReducer from '../pages/SearchResultsPage/searchResultsSlice';
 
 const rootReducer = combineReducers({
   news: newsReducer,
@@ -37,6 +38,7 @@ const rootReducer = combineReducers({
   quoteFinancials: quoteFinancialsReducer,
   quoteProfile: quoteProfileReducer,
   quoteValuation: quoteValuationReducer,
+  searchResults: searchResultsReducer,
 });
 
 export type AppState = ReturnType<typeof rootReducer>;

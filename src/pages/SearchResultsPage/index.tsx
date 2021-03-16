@@ -1,14 +1,12 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { RouteComponentProps } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppState } from '../../app/rootReducer';
 import { Helmet } from 'react-helmet-async';
-import { dummySearchResults } from '../../app/dummyData';
 import Spinner from '../../common/components/Spinner';
 import SearchFilter from '../../features/SearchResults/ExchangeFilter';
 import PageNav from '../../common/components/PageNav';
 import Heading from '../../common/components/Heading';
-import useFetch from '../../common/hooks/useFetch';
 import useScrollTop from '../../common/hooks/useScrollTop';
 import './searchResultsPage.css';
 import HorizontalRule from '../../common/components/HorizontalRule';
@@ -18,6 +16,8 @@ import {
 } from '../../features/Watchlist/watchlistSlice';
 import SearchResults from '../../features/SearchResults/SearchResults';
 import GeneralBottomNewsContainer from '../../common/containers/GeneralBottomNewsContainer';
+import { fetchSearchResults } from './searchResultsSlice';
+import FetchErrorContainer from '../../common/containers/FetchErrorContainer';
 
 interface SearchResultsFetch {
   data: SearchResult[];
@@ -53,17 +53,21 @@ const SearchResultsPage: React.FC<Props> = ({ match }) => {
     'EURONEXT',
   ];
 
-  const { data, loading }: SearchResultsFetch = useFetch(
-    [], // initial value
-    'search', // endpoint
-    dummySearchResults, // dummy data
-    `query=${query}${exchange && '&exchange=' + exchange}`, // parameters
-    [query, exchange] // dependencies
-  );
-
   const dispatch = useDispatch();
 
   const watchlist = useSelector((state: AppState) => state.watchlist.items);
+
+  const { data, loading, error } = useSelector(
+    (state: AppState) => state.searchResults
+  );
+
+  const realDataStatus = useSelector(
+    (state: AppState) => state.realData.status
+  );
+
+  useEffect(() => {
+    dispatch(fetchSearchResults(query, exchange));
+  }, [dispatch, query, exchange, realDataStatus]);
 
   return (
     <>
@@ -97,6 +101,8 @@ const SearchResultsPage: React.FC<Props> = ({ match }) => {
 
       {loading ? (
         <Spinner />
+      ) : error ? (
+        <FetchErrorContainer error='Failed to fetch search results' />
       ) : data.length > 0 ? (
         <>
           <SearchResults
