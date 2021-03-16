@@ -1,5 +1,4 @@
 import React from 'react';
-import { Quote } from '../../../../common/types/APITypes';
 import {
   replaceNullValues,
   shortenNumbers,

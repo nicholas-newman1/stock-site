@@ -1,10 +1,9 @@
 import React from 'react';
-import { Quote as QuoteType } from '../../../../common/types/APITypes';
 import { formatQuoteData } from '../../helpers';
 import './quote.css';
 
 interface Props {
-  quote: QuoteType;
+  quote: Quote;
 }
 
 const Quote: React.FC<Props> = ({ quote }) => {

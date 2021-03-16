@@ -2,7 +2,6 @@ import { Dispatch } from 'redux';
 import { AppState } from '../../app/rootReducer';
 import { AppActions } from '../../common/types/actionTypes';
 import { fetchFromAPI } from '../../common/utils/api';
-import { NewsItem, Quote } from '../../common/types/APITypes';
 import { isStock } from './helpers';
 
 // types

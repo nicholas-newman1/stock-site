@@ -1,12 +1,4 @@
 import {
-  dummyQuarterlyIncomeStatement,
-  dummyAnnualIncomeStatement,
-  dummyQuarterlyBalanceSheet,
-  dummyAnnualBalanceSheet,
-  dummyQuarterlyCashFlow,
-  dummyAnnualCashFlow,
-} from '../../app/dummyData';
-import {
   shortenNumbers,
   replaceNullValues,
   pluckProperties,
@@ -16,16 +8,14 @@ import {
 export const getDummyData = (statement: Statement, period: Period) => {
   if (statement === 'income-statement') {
     return period === 'quarter'
-      ? [...dummyQuarterlyIncomeStatement]
-      : [...dummyAnnualIncomeStatement];
+      ? 'quarterlyIncomeStatement'
+      : 'annualIncomeStatement';
   } else if (statement === 'balance-sheet-statement') {
     return period === 'quarter'
-      ? [...dummyQuarterlyBalanceSheet]
-      : [...dummyAnnualBalanceSheet];
+      ? 'quarterlyBalanceSheet'
+      : 'annualBalanceSheet';
   } else {
-    return period === 'quarter'
-      ? [...dummyQuarterlyCashFlow]
-      : [...dummyAnnualCashFlow];
+    return period === 'quarter' ? 'quarterlyCashFlow' : 'annualCashFlow';
   }
 };
 

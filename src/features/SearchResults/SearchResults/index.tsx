@@ -1,5 +1,4 @@
 import React from 'react';
-import { SearchResult } from '../../../common/types/APITypes';
 import SearchResultItem from './SearchResultItem';
 import './searchResults.css';
 

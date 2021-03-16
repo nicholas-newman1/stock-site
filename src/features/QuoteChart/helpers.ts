@@ -1,10 +1,3 @@
-import {
-  dummyDailyData,
-  dummyIntradayData,
-  dummyFiveDayData,
-  dummyOneMonthData,
-} from '../../app/dummyData';
-
 export const getTimeScaleFormat = (timeframe: Timeframe) => {
   if (timeframe === '1D') {
     return 'hour';
@@ -36,10 +29,10 @@ export const getEndpoint = (symbol: string, timeframe: Timeframe) => {
 };
 
 export const getDummyData = (timeframe: Timeframe) => {
-  if (timeframe === '1D') return dummyIntradayData;
-  if (timeframe === '5D') return dummyFiveDayData;
-  if (timeframe === '1M') return dummyOneMonthData;
-  return dummyDailyData.historical;
+  if (timeframe === '1D') return 'intradayData';
+  if (timeframe === '5D') return 'fiveDayData';
+  if (timeframe === '1M') return 'oneMonthData';
+  return 'historicalData';
 };
 
 export const filterChartData = (

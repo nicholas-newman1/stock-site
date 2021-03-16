@@ -12,6 +12,10 @@ import { SectorsActionTypes } from '../../features/SectorTable/sectorsSlice';
 import { ActivesActionTypes } from '../../features/ActivesPriceList/activesSlice';
 import { GainersActionTypes } from '../../features/GainersPriceList/gainersSlice';
 import { LosersActionTypes } from '../../features/LosersPriceList/losersSlice';
+import { HistoricalPricesActionTypes } from '../../features/QuoteChart/quoteChartSlice';
+import { FinancialsActionTypes } from '../../features/QuoteFinancials/quoteFinancialsSlice';
+import { ProfileActionTypes } from '../../features/QuoteProfile/quoteProfileSlice';
+import { ValuationActionTypes } from '../../features/QuoteValuation/quoteValuationSlice';
 
 export type AppActions =
   | RealDataActionTypes
@@ -27,4 +31,8 @@ export type AppActions =
   | SectorsActionTypes
   | ActivesActionTypes
   | GainersActionTypes
-  | LosersActionTypes;
+  | LosersActionTypes
+  | HistoricalPricesActionTypes
+  | FinancialsActionTypes
+  | ProfileActionTypes
+  | ValuationActionTypes;

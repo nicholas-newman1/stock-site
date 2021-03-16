@@ -1,4 +1,3 @@
-import { NewsItem } from '../../types/APITypes';
 import { fetchFromAPI } from '../../utils/api';
 
 // types

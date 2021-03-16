@@ -2,7 +2,6 @@ import React from 'react';
 import BottomNewsItem from './BottomNewsItem';
 import HorizontalRule from '../HorizontalRule';
 import './bottomNews.css';
-import { NewsItem } from '../../types/APITypes';
 
 interface Props {
   newsData: NewsItem[];

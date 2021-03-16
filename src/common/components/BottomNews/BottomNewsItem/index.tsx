@@ -1,5 +1,4 @@
 import React from 'react';
-import { NewsItem } from '../../../types/APITypes';
 import { getTimeAgoString, truncate } from '../../../utils/helpers';
 import './bottomNewsItem.css';
 

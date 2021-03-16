@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchPriceOverviewData } from '../priceOverviewSlice';
 import PriceListOverview from '../components/PriceOverview';
 import { AppState } from '../../../app/rootReducer';
-import { Quote } from '../../../common/types/APITypes';
 import FetchErrorContainer from '../../../common/containers/FetchErrorContainer';
 
 const PriceOverviewContainer = () => {

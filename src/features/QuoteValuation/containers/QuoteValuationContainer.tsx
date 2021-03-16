@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import QuoteValuation from '../components/QuoteValuation';
 import { formatValuationData } from '../helpers';
-import useFetch from '../../../common/hooks/useFetch';
-import {
-  dummyQuarterlyValuationData,
-  dummyAnnualValuationData,
-} from '../../../app/dummyData';
+import { useSelector, useDispatch } from 'react-redux';
+import { AppState } from '../../../app/rootReducer';
+import { fetchValuation } from '../quoteValuationSlice';
+import FetchErrorContainer from '../../../common/containers/FetchErrorContainer';
 
 interface Props {
   symbol: string;
@@ -15,21 +14,26 @@ const QuoteValuationContainer: React.FC<Props> = ({ symbol }) => {
   const [period, setPeriod] = useState<Period>('annual');
   const [tableData, setTableData] = useState<any[][]>([]);
 
-  // custom hook fetches data
-  const { data, loading } = useFetch(
-    [], // intial value
-    `key-metrics/${symbol}`, // endpoint
-    period === 'quarter'
-      ? dummyQuarterlyValuationData
-      : dummyAnnualValuationData,
-    `period=${period}`, // parameters
-    [period] // dependencies
+  const { data, loading, error } = useSelector(
+    (state: AppState) => state.quoteValuation
   );
+
+  const realDataStatus = useSelector(
+    (state: AppState) => state.realData.status
+  );
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchValuation(symbol, period));
+  }, [dispatch, symbol, period, realDataStatus]);
 
   useEffect(() => {
     setTableData(formatValuationData(data, period));
     //eslint-disable-next-line
   }, [data]);
+
+  if (error) return <FetchErrorContainer error='Failed to fetch valuation' />;
 
   return (
     <QuoteValuation

@@ -1,7 +1,6 @@
 import { Dispatch } from 'redux';
 import { AppState } from '../../app/rootReducer';
 import { AppActions } from '../../common/types/actionTypes';
-import { Quote } from '../../common/types/APITypes';
 import { fetchFromAPI } from '../../common/utils/api';
 import { getFromLocalStorage } from '../../common/utils/helpers';
 

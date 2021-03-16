@@ -17,7 +17,6 @@ import {
   removeFromWatchlist,
 } from '../../features/Watchlist/watchlistSlice';
 import SearchResults from '../../features/SearchResults/SearchResults';
-import { SearchResult } from '../../common/types/APITypes';
 import GeneralBottomNewsContainer from '../../common/containers/GeneralBottomNewsContainer';
 
 interface SearchResultsFetch {
