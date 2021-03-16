@@ -1,6 +1,10 @@
 import React from 'react';
-import { TableProps } from '../../types/propTypes';
 import './table.css';
+
+export interface TableProps {
+  data: any[][];
+  horizontal?: boolean;
+}
 
 const Table: React.FC<TableProps> = ({ data, horizontal = false }) => {
   return data.length > 0 ? (
