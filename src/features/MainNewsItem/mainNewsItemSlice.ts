@@ -76,7 +76,7 @@ export const fetchMainNewsItemFailure = (
 export const fetchMainNewsItem = () => {
   return fetchFromAPI(
     'stock_news',
-    'commodity',
+    'news',
     fetchMainNewsItemRequest,
     fetchMainNewsItemSuccess,
     fetchMainNewsItemFailure,
