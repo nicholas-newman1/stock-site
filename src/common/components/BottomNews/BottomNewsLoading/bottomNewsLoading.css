@@ -1,14 +1,15 @@
-.bottom-news-loading__item {
-  background: #ddd;
-  border-radius: 10px;
-  min-height: 10rem;
-}
-
 .bottom-news-loading {
   list-style: none;
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1rem;
+  margin-top: 1rem;
+}
+
+.bottom-news-loading__item {
+  background: #ddd;
+  border-radius: 10px;
+  min-height: 10rem;
 }
 
 .bottom-news-loading__div {
