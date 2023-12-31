@@ -23,7 +23,8 @@ const IndexTableContainer = () => {
   }, [dispatch, realDataStatus]);
 
   if (loading) return <Spinner />;
-  if (error) return <FetchErrorContainer error='Failed to fetch indexes' />;
+  if (error || !data)
+    return <FetchErrorContainer error='Failed to fetch indexes' />;
 
   return (
     <TableSortedPaginated

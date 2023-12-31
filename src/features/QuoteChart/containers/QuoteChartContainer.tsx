@@ -38,7 +38,8 @@ const QuoteChartContainer: React.FC<Props> = ({ symbol }) => {
     filterChartData('historical' in data ? data.historical : data, timeframe)
   );
 
-  if (error) return <FetchErrorContainer error='Failed to fetch chart data' />;
+  if (error || !data)
+    return <FetchErrorContainer error='Failed to fetch chart data' />;
 
   return (
     <QuoteChart

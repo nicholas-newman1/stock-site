@@ -13,7 +13,8 @@ const QuoteSummaryContainer = () => {
   const quote = data[0] || {};
 
   if (loading) return <QuoteSummaryLoading />;
-  if (error) return <FetchErrorContainer error='Failed to fetch quote' />;
+  if (error || !data)
+    return <FetchErrorContainer error='Failed to fetch quote' />;
   if (!data.length) return <h2>No Summary Data Available</h2>;
 
   return <QuoteSummary quote={quote} />;

@@ -33,7 +33,8 @@ const QuoteValuationContainer: React.FC<Props> = ({ symbol }) => {
     //eslint-disable-next-line
   }, [data]);
 
-  if (error) return <FetchErrorContainer error='Failed to fetch valuation' />;
+  if (error || !data)
+    return <FetchErrorContainer error='Failed to fetch valuation' />;
 
   return (
     <QuoteValuation

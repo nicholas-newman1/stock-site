@@ -10,7 +10,8 @@ const QuoteNewsContainer = () => {
     (state: AppState) => state.quote.newsData
   );
 
-  if (error) return <FetchErrorContainer error='Failed to fetch news' />;
+  if (error || !data)
+    return <FetchErrorContainer error='Failed to fetch news' />;
 
   if (loading) return <BottomNewsLoading />;
 

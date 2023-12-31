@@ -24,7 +24,8 @@ const SectorTableContainer = () => {
   }, [dispatch, realDataStatus]);
 
   if (loading) return <SectorTableLoading />;
-  if (error) return <FetchErrorContainer error='Failed to fetch sectors' />;
+  if (error || !data)
+    return <FetchErrorContainer error='Failed to fetch sectors' />;
 
   return (
     <div>

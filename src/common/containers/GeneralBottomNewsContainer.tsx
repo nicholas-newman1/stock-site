@@ -19,7 +19,8 @@ const GeneralBottomNewsContainer = () => {
   }, [dispatch, realDataStatus]);
 
   if (loading) return <BottomNewsLoading />;
-  if (error) return <FetchErrorContainer error='Failed to fetch news' />;
+  if (error || !data)
+    return <FetchErrorContainer error='Failed to fetch news' />;
 
   return <BottomNews newsData={data} />;
 };

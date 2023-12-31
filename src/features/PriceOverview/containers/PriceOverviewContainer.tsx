@@ -79,7 +79,8 @@ const PriceOverviewContainer = () => {
     },
   ];
 
-  if (error) return <FetchErrorContainer error='Failed to fetch quotes' />;
+  if (error || !data)
+    return <FetchErrorContainer error='Failed to fetch quotes' />;
 
   return <PriceListOverview pricelists={pricelists} />;
 };

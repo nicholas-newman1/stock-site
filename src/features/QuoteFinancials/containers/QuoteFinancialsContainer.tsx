@@ -34,7 +34,7 @@ const QuoteFinancialsContainer: React.FC<Props> = ({ symbol }) => {
     //eslint-disable-next-line
   }, [data]);
 
-  if (error)
+  if (error || !data)
     return <FetchErrorContainer error='Failed to fetch financial statement' />;
 
   return (

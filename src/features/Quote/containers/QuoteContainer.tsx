@@ -11,7 +11,8 @@ const QuoteContainer = () => {
   );
 
   if (loading) return <Spinner />;
-  if (error) return <FetchErrorContainer error='Failed to fetch quote' />;
+  if (error || !data)
+    return <FetchErrorContainer error='Failed to fetch quote' />;
   if (!data.length) return <h1>No Quote Available</h1>;
 
   const quote = data[0];

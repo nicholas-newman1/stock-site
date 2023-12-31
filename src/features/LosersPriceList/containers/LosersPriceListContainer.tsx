@@ -23,7 +23,7 @@ const LosersPriceListContainer = () => {
   }, [dispatch, realDataStatus]);
 
   if (loading) return <Spinner />;
-  if (error)
+  if (error || !data)
     return <FetchErrorContainer error='Failed to fetch loser stocks' />;
 
   return (

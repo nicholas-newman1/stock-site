@@ -23,7 +23,7 @@ const MainNewsItemContainer = () => {
 
   if (loading) return <MainNewsItemLoading />;
 
-  if (error)
+  if (error || !data)
     return <FetchErrorContainer error='Failed to fetch main news item' />;
 
   return <MainNewsItem data={data} />;

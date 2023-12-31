@@ -27,7 +27,8 @@ const QuoteProfileContainer: React.FC<Props> = ({ symbol }) => {
 
   if (loading) return <Spinner />;
 
-  if (error) return <FetchErrorContainer error='Failed to fetch profile' />;
+  if (error || !data)
+    return <FetchErrorContainer error='Failed to fetch profile' />;
 
   return <QuoteProfile profile={data[0]} />;
 };
