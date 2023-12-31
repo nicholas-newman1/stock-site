@@ -37,6 +37,9 @@ const PriceOverviewContainer = () => {
     //eslint-disable-next-line
   }, [realData.status]);
 
+  if (error || !data)
+    return <FetchErrorContainer error='Failed to fetch quotes' />;
+
   const filterQuotes = (quotes: Quote[], symbols: string[]) => {
     return quotes.filter(({ symbol }) => {
       return symbols.includes(symbol);
@@ -78,9 +81,6 @@ const PriceOverviewContainer = () => {
       loading,
     },
   ];
-
-  if (error || !data)
-    return <FetchErrorContainer error='Failed to fetch quotes' />;
 
   return <PriceListOverview pricelists={pricelists} />;
 };
