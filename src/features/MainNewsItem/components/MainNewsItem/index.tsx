@@ -7,6 +7,7 @@ interface Props {
 }
 
 const MainNewsItem: React.FC<Props> = ({ data }) => {
+  if (!data) return null
   const { site, title, text, publishedDate, url, image } = data;
 
   return (
