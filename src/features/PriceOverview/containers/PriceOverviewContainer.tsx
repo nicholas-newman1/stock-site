@@ -37,9 +37,6 @@ const PriceOverviewContainer = () => {
     //eslint-disable-next-line
   }, [realData.status]);
 
-  if (error || !data)
-    return <FetchErrorContainer error='Failed to fetch quotes' />;
-
   const filterQuotes = (quotes: Quote[], symbols: string[]) => {
     return quotes.filter(({ symbol }) => {
       return symbols.includes(symbol);
@@ -59,30 +56,34 @@ const PriceOverviewContainer = () => {
     return formatQuotes(filterQuotes(quotes, symbols));
   };
 
-  const pricelists = [
-    {
-      headingLink: 'Indexes',
-      quotes: format(data, ['^DJI', '^GSPC', '^IXIC', '^GSPTSE']),
-      loading,
-    },
-    {
-      headingLink: 'Stocks',
-      quotes: format(data, ['AMZN', 'AAPL', 'FB', 'TSLA']),
-      loading,
-    },
-    {
-      headingLink: 'Forex',
-      quotes: format(data, ['CADUSD', 'CADEUR', 'CADGBP', 'CADJPY']),
-      loading,
-    },
-    {
-      headingLink: 'Cryptocurrencies',
-      quotes: format(data, ['BTCUSD', 'ETHUSD', 'XRPUSD', 'USDTUSD']),
-      loading,
-    },
-  ];
-
-  return <PriceListOverview pricelists={pricelists} />;
+  return error || !data ? (
+    <FetchErrorContainer error='Failed to fetch quotes' />
+  ) : (
+    <PriceListOverview
+      pricelists={[
+        {
+          headingLink: 'Indexes',
+          quotes: format(data, ['^DJI', '^GSPC', '^IXIC', '^GSPTSE']),
+          loading,
+        },
+        {
+          headingLink: 'Stocks',
+          quotes: format(data, ['AMZN', 'AAPL', 'FB', 'TSLA']),
+          loading,
+        },
+        {
+          headingLink: 'Forex',
+          quotes: format(data, ['CADUSD', 'CADEUR', 'CADGBP', 'CADJPY']),
+          loading,
+        },
+        {
+          headingLink: 'Cryptocurrencies',
+          quotes: format(data, ['BTCUSD', 'ETHUSD', 'XRPUSD', 'USDTUSD']),
+          loading,
+        },
+      ]}
+    />
+  );
 };
 
 export default PriceOverviewContainer;
