@@ -37,7 +37,7 @@ const PriceOverviewContainer = () => {
     //eslint-disable-next-line
   }, [realData.status]);
 
-  const filterQuotes = (quotes: Quote[], symbols: string[]) => {
+  const filterQuotes = (quotes: Quote[] = [], symbols: string[]) => {
     return quotes.filter(({ symbol }) => {
       return symbols.includes(symbol);
     });
