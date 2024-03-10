@@ -1,6 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { getChangeColor, replaceNullValues, shortenNumbers } from './helpers';
+import {
+  decimalsToRoundTo,
+  getChangeColor,
+  replaceNullValues,
+  roundLocale,
+  shortenNumbers,
+} from './helpers';
 
 const headings = [
   { property: 'symbol', label: 'Symbol' },
@@ -23,22 +29,23 @@ export const formatData = (data: KeyValueObject[]) => {
     return item;
   });
 
-  //
   newData = newData.map((item) => {
     const color = getChangeColor(item.change);
     const isPositive = typeof item.change === 'number' && item.change > 0;
+    const change = item.change || 0;
+    const decimals = decimalsToRoundTo(change);
     return {
       ...item,
       change: (
         <span style={{ color }}>
           {isPositive && '+'}
-          {item.change}
+          {roundLocale(change, decimals, true)}
         </span>
       ),
       changesPercentage: (
         <span style={{ color }}>
           {isPositive && '+'}
-          {item.changesPercentage}
+          {roundLocale(item.changesPercentage, decimals)}
         </span>
       ),
     };

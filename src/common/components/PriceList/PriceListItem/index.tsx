@@ -30,7 +30,10 @@ const PriceListItem: React.FC<Props> = ({ data }) => {
     roundLocale(change, decimals, true)
   )}`;
   let priceStr = roundLocale(price, decimals, true);
-  let changesPercentageStr = `${isPositive ? '+' : ''}${changesPercentage}%`;
+  let changesPercentageStr = `${isPositive ? '+' : ''}${roundLocale(
+    changesPercentage,
+    decimals
+  )}%`;
 
   return (
     <li className='price-list-item'>

@@ -55,7 +55,7 @@ const SearchResultsPage: React.FC<Props> = ({ match }) => {
 
   const dispatch = useDispatch();
 
-  const watchlist = useSelector((state: AppState) => state.watchlist.items);
+  const watchlist = useSelector((state: AppState) => state.watchlist?.items);
 
   const { data, loading, error } = useSelector(
     (state: AppState) => state.searchResults

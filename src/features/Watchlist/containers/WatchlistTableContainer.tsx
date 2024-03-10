@@ -8,7 +8,7 @@ import FetchErrorContainer from '../../../common/containers/FetchErrorContainer'
 import Spinner from '../../../common/components/Spinner';
 
 const WatchlistTableContainer = () => {
-  const { data, loading, error } = useSelector(
+  const { data, loading, error, items } = useSelector(
     (state: AppState) => state.watchlist
   );
 
@@ -19,8 +19,8 @@ const WatchlistTableContainer = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchWatchlist());
-  }, [dispatch, realDataStatus]);
+    dispatch(fetchWatchlist(items));
+  }, [dispatch, realDataStatus, items]);
 
   if (loading) return <Spinner />;
   if (error || !data)

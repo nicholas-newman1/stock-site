@@ -1,6 +1,3 @@
-import { Dispatch } from 'redux';
-import { AppState } from '../../app/rootReducer';
-import { AppActions } from '../../common/types/actionTypes';
 import { fetchFromAPI } from '../../common/utils/api';
 import { getFromLocalStorage } from '../../common/utils/helpers';
 
@@ -118,13 +115,12 @@ export const fetchWatchlistFailure = (
   payload: error,
 });
 
-export const fetchWatchlist = () => {
-  return (dispatch: Dispatch<AppActions>, getState: AppState) =>
-    fetchFromAPI(
-      `quotes/${getState.watchlist.items.join()}`,
-      'watchlist',
-      fetchWatchlistRequest,
-      fetchWatchlistSuccess,
-      fetchWatchlistFailure
-    );
+export const fetchWatchlist = (items: string[]) => {
+  return fetchFromAPI(
+    `quote/${items.join()}`,
+    'watchlist',
+    fetchWatchlistRequest,
+    fetchWatchlistSuccess,
+    fetchWatchlistFailure
+  );
 };
