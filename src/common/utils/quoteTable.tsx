@@ -33,6 +33,7 @@ export const formatData = (data: KeyValueObject[]) => {
     const color = getChangeColor(item.change);
     const isPositive = typeof item.change === 'number' && item.change > 0;
     const change = item.change || 0;
+    const changesPercentage = item.changesPercentage || 0;
     const decimals = decimalsToRoundTo(change);
     return {
       ...item,
@@ -45,7 +46,7 @@ export const formatData = (data: KeyValueObject[]) => {
       changesPercentage: (
         <span style={{ color }}>
           {isPositive && '+'}
-          {roundLocale(item.changesPercentage, decimals)}
+          {roundLocale(changesPercentage, decimals)}
         </span>
       ),
     };
